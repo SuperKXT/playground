@@ -14,9 +14,6 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
-      fast-equals:
-        specifier: ^5.2.2
-        version: 5.2.2
       minimist-lite:
         specifier: ^2.2.1
         version: 2.2.1
