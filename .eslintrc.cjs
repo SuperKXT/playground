@@ -249,6 +249,14 @@ const config = {
 			{ minimumDescriptionLength: 3 },
 		],
 		"@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
+		"@typescript-eslint/naming-convention": [
+			"warn",
+			{
+				selector: ["interface", "typeAlias"],
+				format: ["PascalCase"],
+				prefix: ["T", "_T"],
+			},
+		],
 		"@typescript-eslint/array-type": "off",
 		"@typescript-eslint/prefer-regexp-exec": "off",
 		"@typescript-eslint/no-empty-object-type": "off",
@@ -276,6 +284,7 @@ const config = {
 			files: ["type-challenges/**/*"],
 			rules: {
 				"@typescript-eslint/no-explicit-any": "off",
+				"@typescript-eslint/naming-convention": "off",
 				"unused-imports/no-unused-vars": "off",
 			},
 		},
