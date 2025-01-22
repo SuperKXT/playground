@@ -1,13 +1,13 @@
-type prettify<T> = { [k in keyof T]: T[k] } & {};
+type TPrettify<T> = { [k in keyof T]: T[k] } & {};
 
-type DeleteVar<
+type TDeleteVar<
 	Map extends Record<string, unknown>,
 	Name extends string,
 > = Map[Name] extends [infer dep extends string, ...unknown[]]
-	? prettify<Omit<DeleteVar<Map, dep>, Name>>
-	: prettify<Omit<Map, Name>>;
+	? TPrettify<Omit<TDeleteVar<Map, dep>, Name>>
+	: TPrettify<Omit<Map, Name>>;
 
-type UpdateMap<
+type TUpdateMap<
 	str extends string,
 	Lookup extends { vars: string[]; map: Record<string, unknown> },
 	name extends string = "",
@@ -15,10 +15,10 @@ type UpdateMap<
 	eqFound extends boolean = false,
 > = str extends `${infer curr}${infer rest}`
 	? curr extends " "
-		? UpdateMap<rest, Lookup, name, val, eqFound>
+		? TUpdateMap<rest, Lookup, name, val, eqFound>
 		: curr extends "="
-			? UpdateMap<rest, Lookup, name, val, true>
-			: UpdateMap<
+			? TUpdateMap<rest, Lookup, name, val, true>
+			: TUpdateMap<
 					rest,
 					Lookup,
 					eqFound extends true ? name : `${name}${curr}`,
@@ -30,16 +30,16 @@ type UpdateMap<
 			map: Lookup["map"] & Record<name, [val]>;
 		};
 
-type ReturnUnused<
+type TReturnUnused<
 	Vars extends string[],
 	Map extends Record<string, unknown>,
 > = Vars extends [infer curr extends string, ...infer rest extends string[]]
 	? Map[curr] extends string[]
-		? [curr, ...ReturnUnused<rest, Map>]
-		: ReturnUnused<rest, Map>
+		? [curr, ...TReturnUnused<rest, Map>]
+		: TReturnUnused<rest, Map>
 	: [];
 
-type FindUnused<
+type TFindUnused<
 	Arr extends string[],
 	Lookup extends { vars: string[]; map: Record<string, unknown> } = {
 		vars: [];
@@ -47,12 +47,12 @@ type FindUnused<
 	},
 > = Arr extends [infer curr extends string, ...infer rest extends string[]]
 	? curr extends `log(${infer name extends string})`
-		? FindUnused<
+		? TFindUnused<
 				rest,
-				{ vars: Lookup["vars"]; map: DeleteVar<Lookup["map"], name> }
+				{ vars: Lookup["vars"]; map: TDeleteVar<Lookup["map"], name> }
 			>
-		: FindUnused<rest, UpdateMap<curr, Lookup>>
-	: ReturnUnused<Lookup["vars"], Lookup["map"]>;
+		: TFindUnused<rest, TUpdateMap<curr, Lookup>>
+	: TReturnUnused<Lookup["vars"], Lookup["map"]>;
 
 const deleteVar = (vars: Map<string, string[]>, varName: string) => {
 	const curr = vars.get(varName);
@@ -63,7 +63,7 @@ const deleteVar = (vars: Map<string, string[]>, varName: string) => {
 
 export const findUnused = <const Arr extends [string, ...string[]]>(
 	arr: Arr,
-): FindUnused<Arr> => {
+): TFindUnused<Arr> => {
 	const vars = new Map<string, string[]>();
 	for (const curr of arr) {
 		const log = curr.match(/log\((.*)\)/u);

@@ -1,9 +1,9 @@
-export type Pair = `${number} ${number}`;
+export type TPair = `${number} ${number}`;
 
-export const minimumPairs = (numbers: number[]): Pair[] => {
+export const minimumPairs = (numbers: number[]): TPair[] => {
 	const sorted = numbers.sort((first, second) => first - second);
 	let minimumDistance = Infinity;
-	const pairs: Pair[] = [];
+	const pairs: TPair[] = [];
 
 	for (let index = 1; index < sorted.length; index++) {
 		const current = sorted[index] as number;

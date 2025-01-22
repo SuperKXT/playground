@@ -1,49 +1,49 @@
-type Fill<T extends number, A extends number[] = []> = A["length"] extends T
+type TFill<T extends number, A extends number[] = []> = A["length"] extends T
 	? A
-	: Fill<T, [...A, 1]>;
+	: TFill<T, [...A, 1]>;
 
-type Shift<T extends number[]> = T extends [
+type TShift<T extends number[]> = T extends [
 	unknown,
 	...infer R extends number[],
 ]
 	? R
 	: never;
 
-type NumberToArray<
+type TNumberToArray<
 	T extends number,
 	R extends string = `${T}`,
 	A extends number[] = [],
 > = R extends `${infer F extends number}${infer L}`
-	? NumberToArray<T, L, [...A, F]>
+	? TNumberToArray<T, L, [...A, F]>
 	: A;
 
-type GreaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = Fill<T[0]>,
-	UF extends number[] = Fill<U[0]>,
+	TF extends number[] = TFill<T[0]>,
+	UF extends number[] = TFill<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? GreaterThanDigits<Shift<T>, Shift<U>>
+		? TGreaterThanDigits<TShift<T>, TShift<U>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type GreaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = NumberToArray<T>,
-	UA extends number[] = NumberToArray<U>,
+	TA extends number[] = TNumberToArray<T>,
+	UA extends number[] = TNumberToArray<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? GreaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type IncreasingSubsequence<
+type TIncreasingSubsequence<
 	Arr extends number[],
 	longest extends unknown[] = [],
 	curr extends unknown[] = [],
@@ -52,9 +52,9 @@ type IncreasingSubsequence<
 	infer num extends number,
 	...infer rest extends number[],
 ]
-	? GreaterThan<num, last> extends true
-		? IncreasingSubsequence<[num, ...rest], longest, [...curr, 1]>
-		: IncreasingSubsequence<
+	? TGreaterThan<num, last> extends true
+		? TIncreasingSubsequence<[num, ...rest], longest, [...curr, 1]>
+		: TIncreasingSubsequence<
 				[num, ...rest],
 				longest[curr["length"]] extends number ? longest : curr,
 				[1]
@@ -65,7 +65,7 @@ type IncreasingSubsequence<
 
 export const increasingSubsequence = <const Arr extends [number, ...number[]]>(
 	array: Arr,
-): IncreasingSubsequence<Arr> => {
+): TIncreasingSubsequence<Arr> => {
 	let longest = 0;
 	let curr = 0;
 	let last = Infinity;

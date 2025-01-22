@@ -1,31 +1,31 @@
 import type { Utils } from "../../types/utils.types.js";
 
 export const BLACK_PIECES = ["p", "r", "b", "n", "q", "k"] as const;
-export type BlackPiece = (typeof BLACK_PIECES)[number];
+export type TBlackPiece = (typeof BLACK_PIECES)[number];
 
 export const WHITE_PIECES = ["P", "R", "B", "N", "Q", "K"] as const;
-export type WhitePiece = (typeof WHITE_PIECES)[number];
+export type TWhitePiece = (typeof WHITE_PIECES)[number];
 
 export const PIECES = [...BLACK_PIECES, ...WHITE_PIECES] as const;
-export type Piece = (typeof PIECES)[number];
+export type TPiece = (typeof PIECES)[number];
 
 export const SQUARE = [...PIECES, "~"] as const;
-export type Square = (typeof SQUARE)[number];
+export type TSquare = (typeof SQUARE)[number];
 
 export const COORDS = [0, 1, 2, 3, 4, 5, 6, 7] as const;
 
-export type Coord = (typeof COORDS)[number];
+export type TCoord = (typeof COORDS)[number];
 
-export type Position = [Coord, Coord];
+export type TPosition = [TCoord, TCoord];
 
-export type IsValidMoveArgs = {
+export type TIsValidMoveArgs = {
 	board: string;
-	from: Position;
-	to: Position;
+	from: TPosition;
+	to: TPosition;
 };
 
-type Row = Utils.tuple<8, Piece | "~">;
-export type Board = Utils.tuple<8, Row>;
+type TRow = Utils.tuple<8, TPiece | "~">;
+export type TBoard = Utils.tuple<8, TRow>;
 
 export const CHESS_ERRORS = {
 	badBishop: "the bishop can only move diagonally",
@@ -43,21 +43,21 @@ export const CHESS_ERRORS = {
 	noMove: "a move must change the position of a piece",
 } as const;
 
-export type ChessError = (typeof CHESS_ERRORS)[keyof typeof CHESS_ERRORS];
+export type TChessError = (typeof CHESS_ERRORS)[keyof typeof CHESS_ERRORS];
 
-type AgnosticChessResponse = {
+type TAgnosticChessResponse = {
 	isValid: boolean;
 };
 
-type ErrorChessResponse = {
+type TErrorChessResponse = {
 	isValid: false;
-	error: ChessError;
-} & AgnosticChessResponse;
+	error: TChessError;
+} & TAgnosticChessResponse;
 
-type ValidChessResponse = {
+type TValidChessResponse = {
 	isValid: true;
 	isKill: boolean;
-	path: Position[];
-} & AgnosticChessResponse;
+	path: TPosition[];
+} & TAgnosticChessResponse;
 
-export type ChessResponse = ErrorChessResponse | ValidChessResponse;
+export type TChessResponse = TErrorChessResponse | TValidChessResponse;

@@ -18,7 +18,7 @@
 
   ```ts
   // you should make this work
-  type test = Expect<Equal<HelloWorld, string>>
+  type TTest = Expect<Equal<HelloWorld, string>>
   ```
 
   Click the `Take the Challenge` button to start coding! Happy Hacking!

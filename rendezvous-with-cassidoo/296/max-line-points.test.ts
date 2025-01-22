@@ -1,11 +1,11 @@
 import { maxPointsOnLine } from "./max-line-points.js";
 
-type Test = {
+type TTest = {
 	input: [number, number][];
 	output: number;
 };
 
-const tests: Test[] = [
+const tests: TTest[] = [
 	{
 		input: [
 			[1, 1],

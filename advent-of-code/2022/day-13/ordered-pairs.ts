@@ -1,16 +1,16 @@
-type Solution = {
+type TSolution = {
 	indicesSum: number;
 	part2: number;
 };
 
-type Packet = (Packet | number)[];
+type TPacket = (TPacket | number)[];
 
 const checkPacketOrder = (
-	leftPacket: Packet,
-	rightPacket: Packet,
+	leftPacket: TPacket,
+	rightPacket: TPacket,
 ): boolean | undefined => {
 	for (let index = 0; index < leftPacket.length; index++) {
-		const left = leftPacket[index] as Packet | number;
+		const left = leftPacket[index] as TPacket | number;
 		const right = rightPacket[index];
 		if (right === undefined) return false;
 
@@ -33,8 +33,8 @@ const checkPacketOrder = (
 	return leftPacket.length === rightPacket.length ? undefined : true;
 };
 
-export const orderedPairs = (input: string): Solution => {
-	const solution: Solution = {
+export const orderedPairs = (input: string): TSolution => {
+	const solution: TSolution = {
 		indicesSum: 0,
 		part2: 0,
 	};
@@ -43,7 +43,7 @@ export const orderedPairs = (input: string): Solution => {
 		.split("\n\n")
 		.map(
 			(row) =>
-				row.split("\n").map((curr) => JSON.parse(curr)) as [Packet, Packet],
+				row.split("\n").map((curr) => JSON.parse(curr)) as [TPacket, TPacket],
 		);
 
 	for (const pair of pairs) {
@@ -51,7 +51,7 @@ export const orderedPairs = (input: string): Solution => {
 		if (checkPacketOrder(...pair)) solution.indicesSum += index + 1;
 	}
 
-	const dividers: [Packet, Packet] = [[2], [6]];
+	const dividers: [TPacket, TPacket] = [[2], [6]];
 	const sorted = pairs
 		.flat()
 		.concat(dividers)

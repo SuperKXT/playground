@@ -1,11 +1,11 @@
 import { maxSubArray } from "./max-sub-array.js";
 
-type Test = {
+type TTest = {
 	input: [number[], number];
 	output: number[];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: [[-4, 2, -5, 1, 2, 3, 6, -5, 1], 4], output: [1, 2, 3, 6] },
 	{ input: [[1, 2, 0, 5], 2], output: [0, 5] },
 	{ input: [[1, 2, 0, 5], 4], output: [1, 2, 0, 5] },

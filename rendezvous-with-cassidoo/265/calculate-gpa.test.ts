@@ -1,13 +1,13 @@
 import { calculateGpa } from "./calculate-gpa.js";
 
-import type { GradePoint } from "./calculate-gpa.js";
+import type { TGradePoint } from "./calculate-gpa.js";
 
-type Test = {
-	input: GradePoint[];
+type TTest = {
+	input: TGradePoint[];
 	output: number;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: ["A"],
 		output: 4,

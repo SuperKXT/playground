@@ -7,38 +7,38 @@ export const RENAME_ERRORS = {
 
 export const RENAME_RESULT_TYPE = ["success", "error", "unchanged"] as const;
 
-export type RenameResultType = (typeof RENAME_RESULT_TYPE)[number];
+export type TRenameResultType = (typeof RENAME_RESULT_TYPE)[number];
 
-type AgnosticResult = {
-	type: RenameResultType;
+type TAgnosticResult = {
+	type: TRenameResultType;
 	path: string;
 	oldName: string;
 	newName?: string;
 	error?: string;
-	children?: RenameResult[];
+	children?: TRenameResult[];
 };
 
-type ValidResult = {
+type TValidResult = {
 	type: "success";
 	newName: string;
 	error?: undefined;
-} & AgnosticResult;
+} & TAgnosticResult;
 
-type ErrorResult = {
+type TErrorResult = {
 	type: "error";
 	newName: string;
 	error: string;
-} & AgnosticResult;
+} & TAgnosticResult;
 
-type UnchangedResult = {
+type TUnchangedResult = {
 	type: "unchanged";
 	newName?: undefined;
 	error?: undefined;
-} & AgnosticResult;
+} & TAgnosticResult;
 
-export type RenameResult = ErrorResult | UnchangedResult | ValidResult;
+export type TRenameResult = TErrorResult | TUnchangedResult | TValidResult;
 
-export type RenameOptions = {
+export type TRenameOptions = {
 	verbose?: boolean;
 	yes?: boolean;
 	onlyChanges?: boolean;

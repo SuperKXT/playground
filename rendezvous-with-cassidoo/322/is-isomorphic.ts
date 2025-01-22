@@ -1,4 +1,4 @@
-export type IsIsomorphic<
+export type TIsIsomorphic<
 	T extends string,
 	U extends string,
 	map extends Record<string, string> = {},
@@ -6,9 +6,9 @@ export type IsIsomorphic<
 	? U extends `${infer mapped}${infer uRest}`
 		? map[first] extends string
 			? map[first] extends mapped
-				? IsIsomorphic<tRest, uRest, map>
+				? TIsIsomorphic<tRest, uRest, map>
 				: false
-			: IsIsomorphic<tRest, uRest, map & Record<first, mapped>>
+			: TIsIsomorphic<tRest, uRest, map & Record<first, mapped>>
 		: false
 	: U extends T
 		? true
@@ -17,7 +17,7 @@ export type IsIsomorphic<
 export const isIsomorphic = <T extends string, U extends string>(
 	first: T,
 	second: U,
-): IsIsomorphic<T, U> => {
+): TIsIsomorphic<T, U> => {
 	if (first.length !== second.length) return false as never;
 	const map = new Map<string, string>();
 	for (let i = 0; i < first.length; ++i) {

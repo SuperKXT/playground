@@ -1,38 +1,38 @@
-type person = {
+type TPerson = {
 	name: string;
 	num: number;
 };
 
-type tuple<T extends number, R extends 1[] = []> = R["length"] extends T
+type TTuple<T extends number, R extends 1[] = []> = R["length"] extends T
 	? R
-	: tuple<T, [...R, 1]>;
+	: TTuple<T, [...R, 1]>;
 
-type requiredPieces<
-	T extends readonly person[],
+type TRequiredPieces<
+	T extends readonly TPerson[],
 	result extends unknown[] = [],
-> = T extends readonly [infer F extends person, ...infer R extends person[]]
-	? requiredPieces<R, [...result, ...tuple<F["num"]>]>
+> = T extends readonly [infer F extends TPerson, ...infer R extends TPerson[]]
+	? TRequiredPieces<R, [...result, ...TTuple<F["num"]>]>
 	: result;
 
-type MmmPie<
-	People extends readonly Readonly<person>[],
+type TMmmPie<
+	People extends readonly Readonly<TPerson>[],
 	Pieces extends number,
-	PiecesTuple extends unknown[] = tuple<Pieces>,
-	RequiredTuple extends unknown[] = requiredPieces<People>,
+	PiecesTuple extends unknown[] = TTuple<Pieces>,
+	RequiredTuple extends unknown[] = TRequiredPieces<People>,
 	Result extends unknown[] = [],
 > = RequiredTuple extends [...PiecesTuple, ...infer R]
-	? MmmPie<never, never, PiecesTuple, R, [...Result, 1]>
+	? TMmmPie<never, never, PiecesTuple, R, [...Result, 1]>
 	: RequiredTuple extends []
 		? Result["length"]
 		: [...Result, 1]["length"];
 
 export const mmmPie = <
-	const People extends readonly person[],
+	const People extends readonly TPerson[],
 	Pieces extends number,
 >(
 	people: People,
 	pieces: Pieces,
-): MmmPie<People, Pieces> => {
+): TMmmPie<People, Pieces> => {
 	const requiredPieces = people.reduce((acc, curr) => acc + curr.num, 0);
 	return Math.ceil(requiredPieces / pieces) as never;
 };

@@ -3,14 +3,14 @@ import path from "node:path";
 
 import { config } from "../../../config.js";
 
-export type CountCaloriesSolution = {
+export type TCountCaloriesSolution = {
 	maxIndex: number;
 	maxCalories: number;
 	topThreeIndexes: [number, number, number];
 	topThreeCalories: number;
 };
 
-export const countCalories = async (): Promise<CountCaloriesSolution> => {
+export const countCalories = async (): Promise<TCountCaloriesSolution> => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
 
 	const calories = input.split("\n\n").map((row) =>

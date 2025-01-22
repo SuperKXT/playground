@@ -1,9 +1,9 @@
-export type ReplaceString<
+export type TReplaceString<
 	Str extends string,
 	Search extends string,
 	Replace extends string,
 > = Str extends `${infer Prefix}${Search}${infer Suffix}`
-	? `${Prefix}${Replace}${ReplaceString<Suffix, Search, Replace>}`
+	? `${Prefix}${Replace}${TReplaceString<Suffix, Search, Replace>}`
 	: Str;
 
 export const replaceString = <
@@ -14,6 +14,6 @@ export const replaceString = <
 	string: Str,
 	searchValue: Search,
 	replaceValue: Replace,
-): ReplaceString<Str, Search, Replace> => {
+): TReplaceString<Str, Search, Replace> => {
 	return string.replace(new RegExp(searchValue, "gu"), replaceValue) as never;
 };

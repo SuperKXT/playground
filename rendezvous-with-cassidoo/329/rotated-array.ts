@@ -1,64 +1,67 @@
-type tuple<
+type TTuple<
 	size extends number,
 	res extends 1[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type shift<tup extends number[]> = tup extends [
+type TShift<tup extends number[]> = tup extends [
 	unknown,
 	...infer rest extends number[],
 ]
 	? rest
 	: never;
 
-type numberToTuple<
+type TNumberToTuple<
 	T extends number,
 	R extends string = `${T}`,
 	A extends number[] = [],
 > = R extends `${infer F extends number}${infer L}`
-	? numberToTuple<T, L, [...A, F]>
+	? TNumberToTuple<T, L, [...A, F]>
 	: A;
 
-type greaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = tuple<T[0]>,
-	UF extends number[] = tuple<U[0]>,
+	TF extends number[] = TTuple<T[0]>,
+	UF extends number[] = TTuple<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? greaterThanDigits<shift<T>, shift<U>>
+		? TGreaterThanDigits<TShift<T>, TShift<U>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type greaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numberToTuple<T>,
-	UA extends number[] = numberToTuple<U>,
+	TA extends number[] = TNumberToTuple<T>,
+	UA extends number[] = TNumberToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? greaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type RotatedArray<
+type TRotatedArray<
 	input extends number[],
 	idx extends 1[] = [],
 	rotated extends 1[] = [],
 > = [...idx, 1]["length"] extends input["length"]
 	? rotated["length"]
-	: greaterThan<input[idx["length"]], input[[...idx, 1]["length"]]> extends true
+	: TGreaterThan<
+				input[idx["length"]],
+				input[[...idx, 1]["length"]]
+		  > extends true
 		? input extends [infer first extends number, ...infer rest extends number[]]
-			? RotatedArray<[...rest, first], [], [...rotated, 1]>
+			? TRotatedArray<[...rest, first], [], [...rotated, 1]>
 			: never
-		: RotatedArray<input, [...idx, 1], rotated>;
+		: TRotatedArray<input, [...idx, 1], rotated>;
 
 export const rotatedArray = <const Input extends number[]>(
 	input: Input,
-): RotatedArray<Input> => {
+): TRotatedArray<Input> => {
 	const array = [...input];
 	let rotated = 0;
 	let idx = 0;

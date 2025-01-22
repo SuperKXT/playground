@@ -1,4 +1,4 @@
-type Option = "hex" | "hsl" | "rgb";
+type TOption = "hex" | "hsl" | "rgb";
 
 const HEX_REGEX = /^#[0-9A-F]{6}$/u;
 const RGB_REGEX = /^rgb\(\d{1,3},\d{1,3},\d{1,3}\)$/u;
@@ -110,9 +110,9 @@ const hslToRgb = (
 	];
 };
 
-export const convertColor = <T extends Option>(
+export const convertColor = <T extends TOption>(
 	from: T,
-	to: Exclude<Option, T>,
+	to: Exclude<TOption, T>,
 	input: string,
 ): string => {
 	switch (from) {

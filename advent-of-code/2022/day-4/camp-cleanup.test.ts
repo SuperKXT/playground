@@ -9,11 +9,11 @@ const INPUT = [
 	"2-6,4-8",
 ].join("\n");
 
-type Solution = Awaited<ReturnType<typeof campCleanup>>;
+type TSolution = Awaited<ReturnType<typeof campCleanup>>;
 
 test("testing campCleanup against example input", async () => {
 	const response = await campCleanup(INPUT);
-	const solution: Solution = {
+	const solution: TSolution = {
 		fullOverlap: 2,
 		overlap: 4,
 	};
@@ -21,7 +21,7 @@ test("testing campCleanup against example input", async () => {
 });
 test("testing campCleanup against real input", async () => {
 	const response = await campCleanup();
-	const solution: Solution = {
+	const solution: TSolution = {
 		fullOverlap: 498,
 		overlap: 859,
 	};

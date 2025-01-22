@@ -1,22 +1,22 @@
-type Point = {
+type TPoint = {
 	row: number;
 	col: number;
 };
-type Sensor = {
-	beacon: Point;
+type TSensor = {
+	beacon: TPoint;
 	distance: number;
-} & Point;
+} & TPoint;
 
-const getDistance = (from: Point, to: Point): number =>
+const getDistance = (from: TPoint, to: TPoint): number =>
 	Math.abs(to.row - from.row) + Math.abs(to.col - from.col);
 
-const equal = (first: Point, second: Point) =>
+const equal = (first: TPoint, second: TPoint) =>
 	first.row === second.row && first.col === second.col;
 
 export const beaconGopher1 = (input: string, row: number): number => {
 	let solution = 0;
 
-	const sensors: Sensor[] = [];
+	const sensors: TSensor[] = [];
 	let startRow = 0;
 	let endRow = 0;
 	let startCol = 0;
@@ -28,14 +28,14 @@ export const beaconGopher1 = (input: string, row: number): number => {
 			.split(/,|:/gu)
 			.map(Number) as [number, number, number, number];
 
-		const beacon: Point = {
+		const beacon: TPoint = {
 			col: beaconCol,
 			row: beaconRow,
 		};
 
 		const distance = getDistance({ col: sensorCol, row: sensorRow }, beacon);
 
-		const sensor: Sensor = {
+		const sensor: TSensor = {
 			beacon,
 			col: sensorCol,
 			distance,
@@ -78,7 +78,7 @@ export const beaconGopher1 = (input: string, row: number): number => {
 };
 
 export const beaconGopher2 = (input: string, max: number): number => {
-	const sensors: Sensor[] = [];
+	const sensors: TSensor[] = [];
 	let startRow = 0;
 	let endRow = 0;
 	let startCol = 0;
@@ -90,14 +90,14 @@ export const beaconGopher2 = (input: string, max: number): number => {
 			.split(/,|:/gu)
 			.map(Number) as [number, number, number, number];
 
-		const beacon: Point = {
+		const beacon: TPoint = {
 			col: beaconCol,
 			row: beaconRow,
 		};
 
 		const distance = getDistance({ col: sensorCol, row: sensorRow }, beacon);
 
-		const sensor: Sensor = {
+		const sensor: TSensor = {
 			beacon,
 			col: sensorCol,
 			distance,

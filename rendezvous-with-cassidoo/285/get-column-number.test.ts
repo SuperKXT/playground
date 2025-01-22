@@ -1,11 +1,11 @@
 import { getColumnNumber } from "./get-column-number.js";
 
-type Test = {
+type TTest = {
 	input: string;
 	output: number;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: "A", output: 1 },
 	{ input: "B", output: 2 },
 	{ input: "C", output: 3 },

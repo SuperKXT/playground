@@ -9,15 +9,15 @@ import {
 
 import type { Utils } from "../types/utils.types.js";
 import type {
-	Alphabet,
-	AlphaNumeric,
-	LowerAlphabet,
-	Numeric,
-	UpperAlphabet,
-	WordSeparators,
+	TAlphabet,
+	TAlphaNumeric,
+	TLowerAlphabet,
+	TNumeric,
+	TUpperAlphabet,
+	TWordSeparators,
 } from "./string-literals.helpers.js";
 
-type Strategy = "camel" | "pascal" | "snake" | "kebab" | "constant" | "human";
+type TStrategy = "camel" | "pascal" | "snake" | "kebab" | "constant" | "human";
 
 const separatorMap = {
 	camel: "",
@@ -28,54 +28,54 @@ const separatorMap = {
 	human: " ",
 } as const;
 
-type SeparatorMap = typeof separatorMap;
+type TSeparatorMap = typeof separatorMap;
 
-type _firstChar<
+type _TFirstChar<
 	char extends string,
-	strategy extends Strategy,
-> = `${SeparatorMap[strategy]}${strategy extends "kebab" | "snake" | "human"
+	strategy extends TStrategy,
+> = `${TSeparatorMap[strategy]}${strategy extends "kebab" | "snake" | "human"
 	? Lowercase<char>
 	: Uppercase<char>}`;
 
-type _formatChar<
+type _TFormatChar<
 	char extends string,
 	lastChar extends string,
-	strategy extends Strategy,
+	strategy extends TStrategy,
 	formatted extends string,
 > =
-	char extends Exclude<char, AlphaNumeric> // char !== AlphaNumeric
+	char extends Exclude<char, TAlphaNumeric> // char !== AlphaNumeric
 		? ""
 		: formatted extends ""
 			? strategy extends "pascal" | "constant"
 				? Uppercase<char>
 				: Lowercase<char>
 			: [char, lastChar] extends
-						| [Alphabet, WordSeparators]
-						| [UpperAlphabet, LowerAlphabet]
-						| [Numeric, Exclude<lastChar, Numeric>]
-				? _firstChar<char, strategy>
+						| [TAlphabet, TWordSeparators]
+						| [TUpperAlphabet, TLowerAlphabet]
+						| [TNumeric, Exclude<lastChar, TNumeric>]
+				? _TFirstChar<char, strategy>
 				: strategy extends "constant"
 					? Uppercase<char>
 					: Lowercase<char>;
 
-type _formatToken<
+type _TFormatToken<
 	str extends string,
-	strategy extends Strategy,
+	strategy extends TStrategy,
 	lastChar extends string = "",
 	formatted extends string = "",
 > = str extends `${infer first}${infer rest}`
-	? _formatToken<
+	? _TFormatToken<
 			rest,
 			strategy,
 			first,
-			`${formatted}${_formatChar<first, lastChar, strategy, formatted>}`
+			`${formatted}${_TFormatChar<first, lastChar, strategy, formatted>}`
 		>
 	: formatted;
 
-export type FormatToken<
+export type TFormatToken<
 	str extends string,
-	strategy extends Strategy,
-> = str extends str ? _formatToken<Utils.trim<str>, strategy> : never;
+	strategy extends TStrategy,
+> = str extends str ? _TFormatToken<Utils.trim<str>, strategy> : never;
 
 /**
  * Takes a token name, and format strategy and returns the converted token name
@@ -83,10 +83,10 @@ export type FormatToken<
  * @param strategy - the strategy to format the string
  * @example formatToken('camelCaseString', 'kebab') => 'camel-case-string'
  */
-export const formatToken = <T extends string, S extends Strategy>(
+export const formatToken = <T extends string, S extends TStrategy>(
 	input: T,
 	strategy: S,
-): FormatToken<T, S> => {
+): TFormatToken<T, S> => {
 	const string = input.trim();
 	if (!string) return "" as never;
 

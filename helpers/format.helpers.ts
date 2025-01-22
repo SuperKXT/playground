@@ -45,18 +45,18 @@ export const NUMBER_UNITS = [
 	"nineteen",
 ] as const;
 
-type Periods = typeof NUMBER_PERIODS;
-type Tens = typeof NUMBER_TENS;
-type Units = typeof NUMBER_UNITS;
+type TPeriods = typeof NUMBER_PERIODS;
+type TTens = typeof NUMBER_TENS;
+type TUnits = typeof NUMBER_UNITS;
 
-type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type TDigit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-type Join<
+type TJoin<
 	T extends readonly string[],
 	Separator extends string = ",",
 	Result extends string = "",
 > = T extends [infer First extends string, ...infer Rest extends string[]]
-	? Join<
+	? TJoin<
 			Rest,
 			Separator,
 			First extends ""
@@ -67,112 +67,115 @@ type Join<
 		>
 	: Result;
 
-type Int<T extends number> = `${T}` extends `${infer I extends
+type TInt<T extends number> = `${T}` extends `${infer I extends
 	number}.${string}`
 	? I
 	: T;
 
-type Unsigned<T extends number> = `${T}` extends `-${infer I extends number}`
+type TUnsigned<T extends number> = `${T}` extends `-${infer I extends number}`
 	? I
 	: T;
 
-type HundredsTuple = [Digit] | [Digit, Digit] | [Digit, Digit, Digit];
+type THundredsTuple = [TDigit] | [TDigit, TDigit] | [TDigit, TDigit, TDigit];
 
-type HundredsToWords<
-	Type extends HundredsTuple,
+type THundredsToWords<
+	Type extends THundredsTuple,
 	Result extends string[] = [],
 > = Type extends [
-	infer Hundred extends Exclude<Digit, "0">,
-	...infer Rest extends [Digit, Digit],
+	infer Hundred extends Exclude<TDigit, "0">,
+	...infer Rest extends [TDigit, TDigit],
 ]
-	? HundredsToWords<Rest, Hundred extends 0 ? [] : [Units[Hundred], "hundred"]>
-	: Type extends [infer Ten extends Digit, infer Unit extends Digit]
+	? THundredsToWords<
+			Rest,
+			Hundred extends 0 ? [] : [TUnits[Hundred], "hundred"]
+		>
+	: Type extends [infer Ten extends TDigit, infer Unit extends TDigit]
 		? `${Ten}${Unit}` extends `${infer I extends number}`
-			? Join<
+			? TJoin<
 					[
 						...Result,
-						...(Units[I] extends Exclude<Units[number], "">
-							? [Units[I]]
-							: [Tens[Ten], Units[Unit]]),
+						...(TUnits[I] extends Exclude<TUnits[number], "">
+							? [TUnits[I]]
+							: [TTens[Ten], TUnits[Unit]]),
 					],
 					" "
 				>
 			: never
-		: Type extends [infer Unit extends Digit]
-			? Join<[...Result, Units[Unit]], " ">
+		: Type extends [infer Unit extends TDigit]
+			? TJoin<[...Result, TUnits[Unit]], " ">
 			: never;
 
-type NumberToDigits<
+type TNumberToDigits<
 	T extends number,
 	Str extends string = `${T}` extends `-${infer I}` ? I : `${T}`,
-	Result extends Digit[] = [],
-> = Str extends `${infer First extends Digit}${infer Rest}`
-	? NumberToDigits<never, Rest, [...Result, First]>
+	Result extends TDigit[] = [],
+> = Str extends `${infer First extends TDigit}${infer Rest}`
+	? TNumberToDigits<never, Rest, [...Result, First]>
 	: Result;
 
-type GroupTuple<
+type TGroupTuple<
 	T extends unknown[],
 	Size extends number,
 	Curr extends unknown[] = [],
 	Groups extends unknown[][] = [],
 > = T extends [...infer Rest, infer Last]
 	? [Last, ...Curr]["length"] extends Size
-		? GroupTuple<Rest, Size, [], [[Last, ...Curr], ...Groups]>
-		: GroupTuple<Rest, Size, [Last, ...Curr], Groups>
+		? TGroupTuple<Rest, Size, [], [[Last, ...Curr], ...Groups]>
+		: TGroupTuple<Rest, Size, [Last, ...Curr], Groups>
 	: Curr extends []
 		? Groups
 		: [Curr, ...Groups];
 
-type FractionalToWords<
+type TFractionalToWords<
 	T extends number,
-	Digits extends Digit[] = NumberToDigits<T>,
+	Digits extends TDigit[] = TNumberToDigits<T>,
 	Result extends string[] = [],
-> = Digits extends [infer First extends Digit, ...infer Rest extends Digit[]]
-	? FractionalToWords<never, Rest, [...Result, Units[First]]>
-	: ` point ${Join<Result, " ">}`;
+> = Digits extends [infer First extends TDigit, ...infer Rest extends TDigit[]]
+	? TFractionalToWords<never, Rest, [...Result, TUnits[First]]>
+	: ` point ${TJoin<Result, " ">}`;
 
-type JoinNumberChunks<
+type TJoinNumberChunks<
 	T extends number,
 	Result extends string[],
 	Sign extends string = `${T}` extends `-${string}` ? "minus " : "",
 	Fraction extends string = `${T}` extends `${string}.${infer F extends number}`
-		? FractionalToWords<F>
+		? TFractionalToWords<F>
 		: "",
-> = `${Sign}${Join<Result, ", ">}${Fraction}`;
+> = `${Sign}${TJoin<Result, ", ">}${Fraction}`;
 
-type NumberToWords<
+type TNumberToWords<
 	T extends number,
-	Groups extends HundredsTuple[] = GroupTuple<
-		NumberToDigits<Unsigned<Int<T>>>,
+	Groups extends THundredsTuple[] = TGroupTuple<
+		TNumberToDigits<TUnsigned<TInt<T>>>,
 		3
 	>,
 	Result extends string[] = [],
-	Postfix extends string = ["", ...Periods][Groups["length"]],
+	Postfix extends string = ["", ...TPeriods][Groups["length"]],
 > = number extends T
 	? string
 	: T extends 0
 		? "zero"
 		: Groups extends [
-					infer First extends HundredsTuple,
-					...infer Rest extends HundredsTuple[],
+					infer First extends THundredsTuple,
+					...infer Rest extends THundredsTuple[],
 			  ]
-			? NumberToWords<
+			? TNumberToWords<
 					T,
 					Rest,
 					[
 						...Result,
 						Postfix extends ""
-							? HundredsToWords<First>
-							: `${HundredsToWords<First>} ${Postfix}`,
+							? THundredsToWords<First>
+							: `${THundredsToWords<First>} ${Postfix}`,
 					]
 				>
-			: JoinNumberChunks<T, Result>;
+			: TJoinNumberChunks<T, Result>;
 
 export const numberToWords = <T extends number>(
 	number: T,
-): NumberToWords<T> => {
+): TNumberToWords<T> => {
 	if (isNaN(number)) throw new Error("invalid number!");
-	if (number === 0) return "zero" as NumberToWords<T>;
+	if (number === 0) return "zero" as TNumberToWords<T>;
 	const string = Math.trunc(Math.abs(number)).toString();
 
 	const groups = Array.from(
@@ -213,5 +216,5 @@ export const numberToWords = <T extends number>(
 	const stringified = groupWords.reverse().filter(Boolean).join(", ");
 	return ((number < 0 ? "minus " : "") +
 		stringified +
-		(fraction ? ` point ${fraction}` : "")) as NumberToWords<T>;
+		(fraction ? ` point ${fraction}` : "")) as TNumberToWords<T>;
 };

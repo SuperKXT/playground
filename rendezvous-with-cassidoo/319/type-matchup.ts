@@ -1,6 +1,9 @@
-export type TypeMatchupRes = { weakAgainst: string[]; strongAgainst: string[] };
+export type TTypeMatchupRes = {
+	weakAgainst: string[];
+	strongAgainst: string[];
+};
 
-export const typeMatchup = async (input: string): Promise<TypeMatchupRes> => {
+export const typeMatchup = async (input: string): Promise<TTypeMatchupRes> => {
 	const dataRes = await fetch(`https://pokeapi.co/api/v2/type/${input}`);
 	if (dataRes.status === 404) throw new Error(`Invalid Pokemon type: ${input}`);
 	const data = (await dataRes.json()) as {

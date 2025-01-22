@@ -1,6 +1,6 @@
 import { scoreWordGame } from "./score-word-game.js";
 
-import type { LetterScores } from "./score-word-game.js";
+import type { TLetterScores } from "./score-word-game.js";
 
 test("testing scoreWordGame against test 1", () => {
 	const wordList = ["apple", "banana", "cherry", "date", "fig"] as const;
@@ -11,7 +11,7 @@ test("testing scoreWordGame against test 1", () => {
 			return scores;
 		},
 		{},
-	) as LetterScores;
+	) as TLetterScores;
 
 	const result = scoreWordGame(wordList, letterScores);
 	const expected = "cherry";

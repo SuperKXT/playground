@@ -1,13 +1,13 @@
 import { minimumPairs } from "./minimum-pairs.js";
 
-import type { Pair } from "./minimum-pairs.js";
+import type { TPair } from "./minimum-pairs.js";
 
-type Test = {
+type TTest = {
 	input: number[];
-	solution: Pair[];
+	solution: TPair[];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: [4, 3, 2, 1],
 		solution: ["1 2", "2 3", "3 4"],

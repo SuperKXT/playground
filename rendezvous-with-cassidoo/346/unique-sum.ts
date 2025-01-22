@@ -1,30 +1,30 @@
-type areDigitsUnique<
+type TAreDigitsUnique<
 	num extends number,
 	str extends string = `${num}`,
 > = str extends `${infer first}${infer rest}`
 	? rest extends `${string}${first}${string}`
 		? false
-		: areDigitsUnique<never, rest>
+		: TAreDigitsUnique<never, rest>
 	: true;
 
-type tuple<
+type TTuple<
 	size extends number,
 	res extends unknown[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type UniqueSum<arr extends number[], sum extends unknown[] = []> = arr extends [
-	infer first extends number,
-	...infer rest extends number[],
-]
-	? UniqueSum<
+type TUniqueSum<
+	arr extends number[],
+	sum extends unknown[] = [],
+> = arr extends [infer first extends number, ...infer rest extends number[]]
+	? TUniqueSum<
 			rest,
-			areDigitsUnique<first> extends true ? [...sum, ...tuple<first>] : sum
+			TAreDigitsUnique<first> extends true ? [...sum, ...TTuple<first>] : sum
 		>
 	: sum["length"];
 
 export const uniqueSum = <const Arr extends number[]>(
 	arr: Arr,
-): UniqueSum<Arr> => {
+): TUniqueSum<Arr> => {
 	let sum = 0;
 	for (const num of arr) {
 		const uniqueDigits = new Set(num.toString().split(""));

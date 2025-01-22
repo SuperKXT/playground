@@ -8,17 +8,17 @@ import {
 
 import type { Utils } from "../../types/utils.types.js";
 import type {
-	BlackPiece,
-	Board,
-	ChessError,
-	ChessResponse,
-	IsValidMoveArgs,
-	Piece,
-	Position,
-	WhitePiece,
+	TBlackPiece,
+	TBoard,
+	TChessError,
+	TChessResponse,
+	TIsValidMoveArgs,
+	TPiece,
+	TPosition,
+	TWhitePiece,
 } from "./check-chess-move.types.js";
 
-const assertBoard: Utils.assertFunction<Board> = (board: unknown) => {
+const assertBoard: Utils.assertFunction<TBoard> = (board: unknown) => {
 	if (!Array.isArray(board) || board.length !== 8)
 		throw new Error(CHESS_ERRORS.badRows);
 
@@ -31,15 +31,15 @@ const assertBoard: Utils.assertFunction<Board> = (board: unknown) => {
 	}
 };
 
-const isEnemy = <P extends Piece>(
+const isEnemy = <P extends TPiece>(
 	piece: P,
 	toCheck: string,
-): toCheck is P extends WhitePiece ? BlackPiece : WhitePiece => {
+): toCheck is P extends TWhitePiece ? TBlackPiece : TWhitePiece => {
 	const opposite = WHITE_PIECES.includes(piece) ? BLACK_PIECES : WHITE_PIECES;
 	return opposite.includes(toCheck);
 };
 
-const isPosition = (value: unknown): value is Position => {
+const isPosition = (value: unknown): value is TPosition => {
 	return (
 		Array.isArray(value) &&
 		value.length === 2 &&
@@ -54,7 +54,7 @@ export const isValidMove = ({
 	board,
 	from: [row, col],
 	to: [toRow, toCol],
-}: IsValidMoveArgs): ChessResponse => {
+}: TIsValidMoveArgs): TChessResponse => {
 	try {
 		const squares = board.split("\n").map((curr) => curr.split(""));
 
@@ -71,7 +71,7 @@ export const isValidMove = ({
 
 		const isKill = toPiece !== "~";
 
-		const path: Position[] = [];
+		const path: TPosition[] = [];
 
 		if (col === toCol && row === toRow) throw new Error(CHESS_ERRORS.noMove);
 
@@ -115,7 +115,7 @@ export const isValidMove = ({
 			let currentRow = row;
 			let currentCol = col;
 			while (true) {
-				path.push([currentRow, currentCol] as Position);
+				path.push([currentRow, currentCol] as TPosition);
 				if (currentRow === toRow && currentCol === toCol) break;
 
 				toRow > row ? currentRow++ : currentRow--;
@@ -140,7 +140,7 @@ export const isValidMove = ({
 			let currentRow = row;
 			let currentCol = col;
 			while (true) {
-				path.push([currentRow, currentCol] as Position);
+				path.push([currentRow, currentCol] as TPosition);
 				if (currentRow === toRow && currentCol === toCol) break;
 				else if (currentRow !== toRow)
 					toRow > row ? currentRow++ : currentRow--;
@@ -156,7 +156,7 @@ export const isValidMove = ({
 			let currentRow = row;
 			let currentCol = col;
 			while (true) {
-				path.push([currentRow, currentCol] as Position);
+				path.push([currentRow, currentCol] as TPosition);
 				if (currentRow === toRow && currentCol === toCol) break;
 
 				if (toRow > row) currentRow++;
@@ -196,7 +196,7 @@ export const isValidMove = ({
 		};
 	} catch (error: unknown) {
 		return {
-			error: (error as Error).message as ChessError,
+			error: (error as Error).message as TChessError,
 			isValid: false,
 		};
 	}

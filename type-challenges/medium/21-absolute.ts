@@ -10,7 +10,7 @@
   For example
 
   ```ts
-  type Test = -100;
+  type TTest = -100;
   type Result = Absolute<Test>; // expected to be "100"
   ```
 

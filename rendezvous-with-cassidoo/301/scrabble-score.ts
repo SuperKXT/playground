@@ -1,10 +1,10 @@
 /** cSpell: disable */
-type Tuple<
+type TTuple<
 	T extends number,
 	Result extends 1[] = [],
-> = Result["length"] extends T ? Result : Tuple<T, [...Result, 1]>;
+> = Result["length"] extends T ? Result : TTuple<T, [...Result, 1]>;
 
-type ScrabbleKey = {
+type TScrabbleKey = {
 	EAIONRTLSU: 1;
 	DG: 2;
 	BCMP: 3;
@@ -14,19 +14,19 @@ type ScrabbleKey = {
 	QZ: 10;
 };
 
-type ScrabbleKeyScore<
+type TScrabbleKeyScore<
 	T extends string,
-	Keys extends keyof ScrabbleKey = keyof ScrabbleKey,
-> = Keys extends `${string}${T}${string}` ? ScrabbleKey[Keys] : never;
+	Keys extends keyof TScrabbleKey = keyof TScrabbleKey,
+> = Keys extends `${string}${T}${string}` ? TScrabbleKey[Keys] : never;
 
-type Scrabble<
+type TScrabble<
 	T extends string,
 	Score extends unknown[] = [],
 > = T extends `${infer First}${infer Rest}`
-	? ScrabbleKeyScore<First> extends infer N extends number
+	? TScrabbleKeyScore<First> extends infer N extends number
 		? [N] extends [never]
 			? `Invalid Character ${First}`
-			: Scrabble<Rest, [...Score, ...Tuple<N>]>
+			: TScrabble<Rest, [...Score, ...TTuple<N>]>
 		: `Invalid Character ${First}`
 	: Score["length"];
 
@@ -38,7 +38,7 @@ const fivePoints = ["K"];
 const eightPoints = ["J", "X"];
 const tenPoints = ["Q", "Z"];
 
-export const scrabbleScore = <T extends string>(input: T): Scrabble<T> => {
+export const scrabbleScore = <T extends string>(input: T): TScrabble<T> => {
 	let score = 0;
 	for (const letter of input.toUpperCase().split("")) {
 		if (onePoints.includes(letter)) score += 1;

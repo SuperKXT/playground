@@ -1,22 +1,24 @@
-type Combine<
+type TCombine<
 	T extends string,
 	Str extends string,
 > = Str extends `${infer U}+${infer V}`
 	? U extends T
-		? `${T}+${Combine<T, V>}`
+		? `${T}+${TCombine<T, V>}`
 		: never
 	: Str extends T
 		? T
 		: never;
 
-type Dice = `${number}d${number}`;
+type TDice = `${number}d${number}`;
 
-export type CheckNotation<T extends string> =
-	Combine<Dice, T> extends never ? "bad dice notation!" : T;
+export type TCheckNotation<T extends string> =
+	TCombine<TDice, T> extends never ? "bad dice notation!" : T;
 
 const diceRegex = /^(\d+d\d+\+)*\d+d\d+$/u;
 
-export const rollDice = <T extends string>(input: CheckNotation<T>): number => {
+export const rollDice = <T extends string>(
+	input: TCheckNotation<T>,
+): number => {
 	if (!diceRegex.test(input)) throw new Error("bad dice notation!");
 	const notations = input
 		.split("+")

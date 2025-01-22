@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 type _repeatString<
 	S extends string,
 	N extends number,

@@ -1,11 +1,11 @@
 import { combineStrings, INVALID_ERROR } from "./combine-strings.js";
 
-type Test = {
+type TTest = {
 	input: [string[], number];
 	output: string[];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: [["a", "b", "c", "d", "e", "f", "g"], 5],
 		output: ["a b c", "d e f", "g"],

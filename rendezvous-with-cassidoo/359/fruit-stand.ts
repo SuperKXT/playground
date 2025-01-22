@@ -1,11 +1,11 @@
-type Fruit = {
+type TFruit = {
 	name: string;
 	quantity: number;
 	price: number;
 };
 
 export class FruitStand {
-	private fruits = new Map<string, Fruit>();
+	private fruits = new Map<string, TFruit>();
 
 	addFruit(name: string, quantity: number, price: number) {
 		const existing = this.fruits.get(name);

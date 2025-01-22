@@ -1,11 +1,11 @@
-type stringToTuple<str extends string> =
+type TStringToTuple<str extends string> =
 	str extends `${infer first}${infer rest}`
-		? [first, ...stringToTuple<rest>]
+		? [first, ...TStringToTuple<rest>]
 		: [];
 
-type UniqueSubstring<
+type TUniqueSubstring<
 	str extends string,
-	strTuple extends string[] = stringToTuple<str>,
+	strTuple extends string[] = TStringToTuple<str>,
 	maxLength extends 1[] = [],
 	currStart extends 1[] = [],
 	currLength extends 1[] = [],
@@ -15,7 +15,7 @@ type UniqueSubstring<
 > = idx["length"] extends strTuple["length"]
 	? maxLength["length"]
 	: curr extends uniqueChars[number]
-		? UniqueSubstring<
+		? TUniqueSubstring<
 				str,
 				strTuple,
 				[...currLength, 1][maxLength["length"]] extends number
@@ -27,7 +27,7 @@ type UniqueSubstring<
 				[...idx, 1]
 			>
 		: uniqueChars[1] extends undefined
-			? UniqueSubstring<
+			? TUniqueSubstring<
 					str,
 					strTuple,
 					[...currLength, 1][maxLength["length"]] extends number
@@ -38,7 +38,7 @@ type UniqueSubstring<
 					[...uniqueChars, curr],
 					[...idx, 1]
 				>
-			: UniqueSubstring<
+			: TUniqueSubstring<
 					str,
 					strTuple,
 					maxLength,
@@ -50,7 +50,7 @@ type UniqueSubstring<
 
 export const uniqueSubstring = <Str extends string>(
 	str: Str,
-): UniqueSubstring<Str> => {
+): TUniqueSubstring<Str> => {
 	let maxLength = 0;
 	let currStart = 0;
 	let currLength = 0;

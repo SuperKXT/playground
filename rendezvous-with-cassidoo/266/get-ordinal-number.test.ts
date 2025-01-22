@@ -1,13 +1,13 @@
 import { getOrdinalNumber } from "./get-ordinal-number.js";
 
-import type { OrdinalNumber } from "./get-ordinal-number.js";
+import type { TOrdinalNumber } from "./get-ordinal-number.js";
 
-type Test = {
+type TTest = {
 	input: number;
-	output: OrdinalNumber;
+	output: TOrdinalNumber;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: 0, output: "0th" },
 	{ input: 1, output: "1st" },
 	{ input: 2, output: "2nd" },

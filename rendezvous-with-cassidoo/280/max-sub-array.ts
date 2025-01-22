@@ -1,4 +1,4 @@
-type Max = {
+type TMax = {
 	subArray: number[];
 	sum: number;
 };
@@ -7,7 +7,7 @@ export const maxSubArray = (array: number[], length: number): number[] => {
 	const difference = array.length - length;
 	if (difference < 1) return array;
 
-	const max: Max = {
+	const max: TMax = {
 		subArray: [],
 		sum: 0,
 	};

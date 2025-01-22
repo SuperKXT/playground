@@ -1,11 +1,11 @@
 import { truncateWords } from "./truncate-words.js";
 
-type Test = {
+type TTest = {
 	input: [string, number];
 	output: string;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: ["never gonna give you up", 3], output: "nev gon giv you up" },
 	{
 		input: ["*hello* darkness, my ~old_friend", 3],

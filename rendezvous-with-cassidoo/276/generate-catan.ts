@@ -5,13 +5,17 @@ import {
 	SINGLE_PIECES,
 } from "./generate-catan.types.js";
 
-import type { Board, Cell, ProspectiveBoard } from "./generate-catan.types.js";
+import type {
+	TBoard,
+	TCell,
+	TProspectiveBoard,
+} from "./generate-catan.types.js";
 
 const isBadNeighbor = (
-	cell: Cell,
+	cell: TCell,
 	row: number,
 	col: number,
-	board: ProspectiveBoard,
+	board: TProspectiveBoard,
 ): boolean => {
 	if (cell !== "6" && cell !== "8") return false;
 
@@ -34,9 +38,9 @@ export const assertValidCatanBoard = (input: string) => {
 
 	const board = input
 		.split("\n")
-		.map((row) => row.split(/\s+/u).filter(Boolean)) as Board;
+		.map((row) => row.split(/\s+/u).filter(Boolean)) as TBoard;
 
-	const counts: Partial<Record<Cell, number>> = {};
+	const counts: Partial<Record<TCell, number>> = {};
 
 	board.forEach((row, rowIndex) => {
 		row.forEach((cell, index) => {
@@ -56,14 +60,14 @@ export const assertValidCatanBoard = (input: string) => {
 const generateNextCellIndex = (
 	row: number,
 	col: number,
-	availablePieces: Cell[],
-	board: ProspectiveBoard,
-	pieces: Cell[] = structuredClone(availablePieces),
+	availablePieces: TCell[],
+	board: TProspectiveBoard,
+	pieces: TCell[] = structuredClone(availablePieces),
 ): number => {
 	if (pieces.length === 1) return 0;
 
 	const index = Math.random() * pieces.length;
-	const cell = pieces.splice(index, 1)[0] as Cell;
+	const cell = pieces.splice(index, 1)[0] as TCell;
 	if (isBadNeighbor(cell, row, col, board))
 		return generateNextCellIndex(row, col, availablePieces, board, pieces);
 
@@ -77,7 +81,7 @@ export const generateCatanBoard = (): string => {
 		...DOUBLE_PIECES,
 	];
 
-	const board: ProspectiveBoard = [
+	const board: TProspectiveBoard = [
 		["", "", ""],
 		["", "", "", ""],
 		["", "", "", "", ""],
@@ -88,7 +92,7 @@ export const generateCatanBoard = (): string => {
 	board.forEach((boardRow, row) => {
 		boardRow.forEach((_cell, col) => {
 			const index = generateNextCellIndex(row, col, availablePieces, board);
-			boardRow[col] = availablePieces.splice(index, 1)[0] as Cell;
+			boardRow[col] = availablePieces.splice(index, 1)[0] as TCell;
 		});
 	});
 

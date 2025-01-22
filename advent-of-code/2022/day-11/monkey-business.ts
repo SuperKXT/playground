@@ -1,4 +1,4 @@
-type Monkey = {
+type TMonkey = {
 	items: number[];
 	operation: (item: number) => number;
 	divisor: number;
@@ -7,7 +7,7 @@ type Monkey = {
 	inspected: number;
 };
 
-type Solution = {
+type TSolution = {
 	monkeyBusiness: number;
 	bigMb: number;
 };
@@ -20,8 +20,8 @@ const PREFIX = {
 	trueIndex: "If true: throw to monkey",
 };
 
-export const monkeyBusiness = (input: string): Solution => {
-	const solution: Solution = {
+export const monkeyBusiness = (input: string): TSolution => {
+	const solution: TSolution = {
 		bigMb: 0,
 		monkeyBusiness: 0,
 	};
@@ -35,7 +35,7 @@ export const monkeyBusiness = (input: string): Solution => {
 			const [first, op, second] =
 				rows[2]?.replace(PREFIX.operation, "").trim().split(/\s+/gu) ?? [];
 
-			const monkey: Monkey = {
+			const monkey: TMonkey = {
 				divisor: parseInt(rows[3]?.replace(PREFIX.divisor, "") ?? ""),
 				falseIndex: parseInt(rows[5]?.replace(PREFIX.falseIndex, "") ?? ""),
 				inspected: 0,
@@ -65,7 +65,7 @@ export const monkeyBusiness = (input: string): Solution => {
 		1,
 	);
 
-	const executeCycle = (list: Monkey[], isBig?: boolean) => {
+	const executeCycle = (list: TMonkey[], isBig?: boolean) => {
 		for (const monkey of list) {
 			const { items, operation, divisor, trueIndex, falseIndex } = monkey;
 			while (items.length) {

@@ -1,9 +1,9 @@
-type Solution = {
+type TSolution = {
 	part1: number;
 	part2: number;
 };
 
-type CoordInput = {
+type TCoordInput = {
 	row: number;
 	col: number;
 };
@@ -12,7 +12,7 @@ class Coord {
 	row: number;
 	col: number;
 
-	constructor(input: CoordInput) {
+	constructor(input: TCoordInput) {
 		this.row = input.row;
 		this.col = input.col;
 	}
@@ -28,14 +28,14 @@ class Coord {
 	}
 }
 
-type MapRow = ("." | "#" | "+" | "o")[];
-type Map = MapRow[];
+type TMapRow = ("." | "#" | "+" | "o")[];
+type TMap = TMapRow[];
 
 const SOURCE = new Coord({ col: 500, row: 0 });
 const ROW_LENGTH = SOURCE.col * 2;
 
 const getLanding = (
-	map: Map,
+	map: TMap,
 	row: number = SOURCE.row,
 	col: number = SOURCE.col,
 ): Coord | null => {
@@ -50,8 +50,8 @@ const getLanding = (
 	return new Coord({ col, row });
 };
 
-export const sandTetris = (input: string): Solution => {
-	const solution: Solution = {
+export const sandTetris = (input: string): TSolution => {
+	const solution: TSolution = {
 		part1: 0,
 		part2: 0,
 	};
@@ -122,14 +122,14 @@ export const sandTetris = (input: string): Solution => {
 		[],
 	);
 
-	const part1Map: Map = [...new Array<undefined>(end.row + 1)].map<MapRow>(() =>
-		[...new Array<".">(ROW_LENGTH)].fill("."),
+	const part1Map: TMap = [...new Array<undefined>(end.row + 1)].map<TMapRow>(
+		() => [...new Array<".">(ROW_LENGTH)].fill("."),
 	);
 	rocks.forEach(({ row, col }) => {
 		const mapRow = part1Map[row];
-		if (mapRow) (part1Map[row] as MapRow)[col] = "#";
+		if (mapRow) (part1Map[row] as TMapRow)[col] = "#";
 	});
-	const part2Map: Map = structuredClone(part1Map);
+	const part2Map: TMap = structuredClone(part1Map);
 	part2Map.push(
 		new Array<".">(ROW_LENGTH).fill("."),
 		new Array<"#">(ROW_LENGTH).fill("#"),
@@ -140,7 +140,7 @@ export const sandTetris = (input: string): Solution => {
 		if (!coord) break;
 
 		const { row, col } = coord;
-		(part1Map[row] as MapRow)[col] = "o";
+		(part1Map[row] as TMapRow)[col] = "o";
 		solution.part1++;
 	}
 
@@ -149,7 +149,7 @@ export const sandTetris = (input: string): Solution => {
 		if (!coord) break;
 
 		const { row, col } = coord;
-		(part2Map[row] as MapRow)[col] = "o";
+		(part2Map[row] as TMapRow)[col] = "o";
 		solution.part2++;
 	}
 

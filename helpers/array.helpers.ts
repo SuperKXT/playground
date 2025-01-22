@@ -1,4 +1,4 @@
-import type { LinkedList, LinkedListNode } from "./linked-list.helpers.js";
+import type { TLinkedList, TLinkedListNode } from "./linked-list.helpers.js";
 
 export const areArraysEqual = <Type extends unknown[]>(
 	first: Type,
@@ -12,26 +12,26 @@ export const areArraysEqual = <Type extends unknown[]>(
 	return true;
 };
 
-type _LinkedListToArray<T extends NonNullable<LinkedListNode>> =
-	T["next"] extends NonNullable<LinkedListNode>
-		? [T["value"], ..._LinkedListToArray<T["next"]>]
+type _TLinkedListToArray<T extends NonNullable<TLinkedListNode>> =
+	T["next"] extends NonNullable<TLinkedListNode>
+		? [T["value"], ..._TLinkedListToArray<T["next"]>]
 		: [T["value"]];
 
-type LinkedListToArray<T extends LinkedList<unknown>> =
-	T["head"] extends NonNullable<LinkedListNode>
-		? _LinkedListToArray<T["head"]>
+type TLinkedListToArray<T extends TLinkedList<unknown>> =
+	T["head"] extends NonNullable<TLinkedListNode>
+		? _TLinkedListToArray<T["head"]>
 		: [];
 
-export const linkedListToArray = <const List extends LinkedList<unknown>>(
+export const linkedListToArray = <const List extends TLinkedList<unknown>>(
 	list: List,
-): LinkedListToArray<List> => {
+): TLinkedListToArray<List> => {
 	const array = [];
 	let node = list.head;
 	while (node) {
 		array.push(node.value);
 		node = node.next;
 	}
-	return array as LinkedListToArray<List>;
+	return array as TLinkedListToArray<List>;
 };
 
 export const inPlaceInsertToSortedArray = (

@@ -1,77 +1,77 @@
-type tuple<T extends number, tup extends 1[] = []> = tup["length"] extends T
+type TTuple<T extends number, tup extends 1[] = []> = tup["length"] extends T
 	? tup
-	: tuple<T, [...tup, 1]>;
+	: TTuple<T, [...tup, 1]>;
 
-type smallest<T extends number[], curr extends 1[] = []> = T extends [
+type TSmallest<T extends number[], curr extends 1[] = []> = T extends [
 	infer first extends number,
 	...infer rest extends number[],
 ]
-	? smallest<
+	? TSmallest<
 			rest,
 			curr extends []
-				? tuple<first>
-				: curr extends [...tuple<first>, ...number[]]
-					? tuple<first>
+				? TTuple<first>
+				: curr extends [...TTuple<first>, ...number[]]
+					? TTuple<first>
 					: curr
 		>
 	: curr["length"];
 
-type without<
+type TWithout<
 	T extends number[],
 	N extends number,
 	res extends number[] = [],
 > = T extends [infer first extends number, ...infer rest extends number[]]
 	? first extends N
 		? [...res, ...rest]
-		: without<rest, N, [...res, first]>
+		: TWithout<rest, N, [...res, first]>
 	: res;
 
-type sort<T extends number[], sorted extends number[] = []> = T extends [
+type TSort<T extends number[], sorted extends number[] = []> = T extends [
 	number,
 	...number[],
 ]
-	? sort<without<T, smallest<T>>, [...sorted, smallest<T>]>
+	? TSort<TWithout<T, TSmallest<T>>, [...sorted, TSmallest<T>]>
 	: sorted;
 
-type isEven<
+type TIsEven<
 	T extends number,
-	tup extends 1[] = tuple<T>,
+	tup extends 1[] = TTuple<T>,
 	idx extends 1[] = [],
 > = tup extends [...idx, ...idx]
 	? true
 	: tup extends [...idx, ...idx, 1]
 		? false
-		: isEven<never, tup, [...idx, 1]>;
+		: TIsEven<never, tup, [...idx, 1]>;
 
-type unReadonly<T extends readonly unknown[]> = T extends readonly [
+type TUnReadonly<T extends readonly unknown[]> = T extends readonly [
 	...infer arr,
 ]
 	? arr
 	: T;
 
-type deepReadonly<T extends object> = Readonly<{
-	[k in keyof T]: T[k] extends object ? deepReadonly<T[k]> : T[k];
+type TDeepReadonly<T extends object> = Readonly<{
+	[k in keyof T]: T[k] extends object ? TDeepReadonly<T[k]> : T[k];
 }>;
 
-type SeparateAndSort<
+type TSeparateAndSort<
 	T extends readonly number[],
-	sorted extends number[] = sort<unReadonly<T>>,
+	sorted extends number[] = TSort<TUnReadonly<T>>,
 	res extends [number[], number[]] = [[], []],
 > = sorted extends [infer first extends number, ...infer rest extends number[]]
-	? SeparateAndSort<
+	? TSeparateAndSort<
 			never,
 			rest,
 			first extends 0
 				? res
-				: isEven<first> extends true
+				: TIsEven<first> extends true
 					? [[...res[0], first], res[1]]
 					: [res[0], [...res[1], first]]
 		>
-	: deepReadonly<res>;
+	: TDeepReadonly<res>;
 
 export const separateAndSort = <const T extends readonly number[]>(
 	input: T,
-): SeparateAndSort<T> => {
+): TSeparateAndSort<T> => {
 	const result: [number[], number[]] = [[], []];
 	for (const num of input.toSorted((a, b) => a - b)) {
 		if (!num) continue;

@@ -5,14 +5,14 @@ import { tuningTrouble } from "./tuning-trouble.js";
 
 import { config } from "../../../config.js";
 
-type Solution = ReturnType<typeof tuningTrouble>;
+type TSolution = ReturnType<typeof tuningTrouble>;
 
-type Test = {
+type TTest = {
 	input: string;
-	output: Solution;
+	output: TSolution;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		/** cSpell: disable-next-line */
 		input: "mjqjpqmgbljsphdztnvjfqwrcgsmlb",
@@ -65,7 +65,7 @@ test.each(TESTS)(
 test("testing turningTrouble against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
 	const response = tuningTrouble(input);
-	const solution: Solution = {
+	const solution: TSolution = {
 		messageMarker: 3476,
 		packetMarker: 1210,
 	};

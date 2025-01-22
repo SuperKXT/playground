@@ -7,7 +7,7 @@ import {
 
 export const humanizeCases = ["lower", "sentence", "title", "upper"] as const;
 
-export type HumanizeCase = (typeof humanizeCases)[number];
+export type THumanizeCase = (typeof humanizeCases)[number];
 
 /**
  * Takes a token name and returns a human readable string
@@ -17,7 +17,7 @@ export type HumanizeCase = (typeof humanizeCases)[number];
  */
 export const humanizeToken = (
 	input: string,
-	casing: HumanizeCase = "title",
+	casing: THumanizeCase = "title",
 ): string => {
 	const string = input.trim();
 	if (!string.trim()) return "";

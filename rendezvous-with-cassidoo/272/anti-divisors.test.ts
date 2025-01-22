@@ -1,11 +1,11 @@
 import { findAntiDivisors } from "./anti-divisors.js";
 
-type Test = {
+type TTest = {
 	input: number;
 	output: number[];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: 1, output: [] },
 	{ input: 2, output: [] },
 	{ input: 3, output: [2] },

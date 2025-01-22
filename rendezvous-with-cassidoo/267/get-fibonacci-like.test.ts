@@ -4,12 +4,12 @@ import {
 	isFibonacciLike,
 } from "./get-fibonacci-like.js";
 
-type GetTest = {
+type TGetTest = {
 	input: [number, number, number];
 	output: number[];
 };
 
-const GET_TESTS: GetTest[] = [
+const GET_TESTS: TGetTest[] = [
 	{ input: [10, 20, 5], output: [10, 20, 30, 50, 80] },
 	{ input: [3, 7, 7], output: [3, 7, 10, 17, 27, 44, 71] },
 	{ input: [5, 10, 3], output: [5, 10, 15] },
@@ -17,12 +17,12 @@ const GET_TESTS: GetTest[] = [
 	{ input: [4, -1, 5], output: [4, -1, 3, 2, 5] },
 ];
 
-type BadGetTest = {
+type TBadGetTest = {
 	input: [number, number, number];
 	error: string;
 };
 
-const BAD_GET_TESTS: BadGetTest[] = [
+const BAD_GET_TESTS: TBadGetTest[] = [
 	{ error: ERRORS.length, input: [5, 10, 2] },
 	{ error: ERRORS.length, input: [5, 10, -5] },
 	{ error: ERRORS.length, input: [5, 10, 1] },
@@ -30,12 +30,12 @@ const BAD_GET_TESTS: BadGetTest[] = [
 	{ error: ERRORS.undefined, input: [5, undefined, 5] },
 ];
 
-type CheckTest = {
+type TCheckTest = {
 	input: number[];
 	output: boolean;
 };
 
-const CHECK_TESTS: CheckTest[] = [
+const CHECK_TESTS: TCheckTest[] = [
 	{ input: [10, 20, 5], output: false },
 	{ input: [3, 7, 10, 17, 27], output: true },
 	{ input: [], output: false },

@@ -1,11 +1,11 @@
 import { INVALID_ERROR, verticalSlashes } from "./vertical-slashes.js";
 
-type Test = {
+type TTest = {
 	input: string;
 	output: string;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: String.raw`\\\//\/\\`,
 		output: ["\\", " \\", "  \\", "  /", " /", " \\", " /", " \\", "  \\"].join(

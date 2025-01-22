@@ -1,121 +1,121 @@
 /* eslint-disable no-param-reassign */
-type Task = { name: string; duration: number };
+type TTask = { name: string; duration: number };
 
-type tuple<
+type TTuple<
 	size extends number,
 	tup extends 1[] = [],
-> = tup["length"] extends size ? tup : tuple<size, [...tup, 1]>;
+> = tup["length"] extends size ? tup : TTuple<size, [...tup, 1]>;
 
-type numberToTuple<
+type TNumberToTuple<
 	T extends number,
 	R extends string = `${T}`,
 	A extends number[] = [],
 > = R extends `${infer F extends number}${infer L}`
-	? numberToTuple<T, L, [...A, F]>
+	? TNumberToTuple<T, L, [...A, F]>
 	: A;
 
-type removeFromTuple<
+type TRemoveFromTuple<
 	tup extends unknown[],
 	toRemove extends number,
 	idx extends 1[] = [],
 > = idx["length"] extends toRemove
 	? tup
 	: tup extends [unknown, ...infer rest]
-		? removeFromTuple<rest, toRemove, [...idx, 1]>
+		? TRemoveFromTuple<rest, toRemove, [...idx, 1]>
 		: [];
 
-type greaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = tuple<T[0]>,
-	UF extends number[] = tuple<U[0]>,
+	TF extends number[] = TTuple<T[0]>,
+	UF extends number[] = TTuple<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? greaterThanDigits<removeFromTuple<T, 1>, removeFromTuple<U, 1>>
+		? TGreaterThanDigits<TRemoveFromTuple<T, 1>, TRemoveFromTuple<U, 1>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type greaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numberToTuple<T>,
-	UA extends number[] = numberToTuple<U>,
+	TA extends number[] = TNumberToTuple<T>,
+	UA extends number[] = TNumberToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? greaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type includes<tup extends unknown[], val> = tup extends [
+type TIncludes<tup extends unknown[], val> = tup extends [
 	infer first,
 	...infer rest,
 ]
 	? first extends val
 		? true
-		: includes<rest, val>
+		: TIncludes<rest, val>
 	: false;
 
-type minDurationTask<
-	tasks extends readonly Task[],
+type TMinDurationTask<
+	tasks extends readonly TTask[],
 	names extends string[],
-	min extends Task | undefined = undefined,
+	min extends TTask | undefined = undefined,
 > = tasks extends readonly [
-	infer first extends Task,
-	...infer rest extends Task[],
+	infer first extends TTask,
+	...infer rest extends TTask[],
 ]
-	? includes<names, first["name"]> extends true
-		? minDurationTask<rest, names, min>
-		: minDurationTask<
+	? TIncludes<names, first["name"]> extends true
+		? TMinDurationTask<rest, names, min>
+		: TMinDurationTask<
 				rest,
 				names,
-				min extends Task
-					? greaterThan<min["duration"], first["duration"]> extends false
+				min extends TTask
+					? TGreaterThan<min["duration"], first["duration"]> extends false
 						? min
 						: first
 					: first
 			>
 	: min;
 
-type sortNames<
-	tasks extends readonly Task[],
+type TSortNames<
+	tasks extends readonly TTask[],
 	names extends string[],
 > = tasks extends readonly [
-	infer first extends Task,
-	...infer rest extends Task[],
+	infer first extends TTask,
+	...infer rest extends TTask[],
 ]
-	? includes<names, first["name"]> extends true
-		? [first["name"], ...sortNames<rest, names>]
-		: sortNames<rest, names>
+	? TIncludes<names, first["name"]> extends true
+		? [first["name"], ...TSortNames<rest, names>]
+		: TSortNames<rest, names>
 	: [];
 
-type DoWork<
-	tasks extends readonly Task[],
+type TDoWork<
+	tasks extends readonly TTask[],
 	time extends number,
-	timeTup extends 1[] = tuple<time>,
+	timeTup extends 1[] = TTuple<time>,
 	names extends string[] = [],
-	minTask extends Task | undefined = minDurationTask<tasks, names>,
+	minTask extends TTask | undefined = TMinDurationTask<tasks, names>,
 > = timeTup extends []
-	? sortNames<tasks, names>
-	: minTask extends Task
-		? DoWork<
+	? TSortNames<tasks, names>
+	: minTask extends TTask
+		? TDoWork<
 				tasks,
 				time,
-				removeFromTuple<timeTup, minTask["duration"]>,
+				TRemoveFromTuple<timeTup, minTask["duration"]>,
 				[...names, minTask["name"]]
 			>
-		: sortNames<tasks, names>;
+		: TSortNames<tasks, names>;
 
 export const doWork = <
-	const Tasks extends readonly Task[],
+	const Tasks extends readonly TTask[],
 	Time extends number,
 >(
 	tasks: Tasks,
 	time: Time,
-): DoWork<Tasks, Time> => {
+): TDoWork<Tasks, Time> => {
 	const names: string[] = [];
 	if (!tasks.length) return [] as never;
 	while (time > 0) {

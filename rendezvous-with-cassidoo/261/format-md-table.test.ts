@@ -1,11 +1,11 @@
 import { formatMarkdownTable } from "./format-md-table.js";
 
-type Test = {
+type TTest = {
 	input: string;
 	output: string;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: [
 			"| Syntax | Description |",

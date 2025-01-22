@@ -1,80 +1,80 @@
 import type { Utils } from "../../types/utils.types.js";
 
-type Fill<T extends number, A extends number[] = []> = A["length"] extends T
+type TFill<T extends number, A extends number[] = []> = A["length"] extends T
 	? A
-	: Fill<T, [...A, 1]>;
+	: TFill<T, [...A, 1]>;
 
-type Shift<T extends number[]> = T extends [
+type TShift<T extends number[]> = T extends [
 	unknown,
 	...infer R extends number[],
 ]
 	? R
 	: never;
 
-type NumberToArray<
+type TNumberToArray<
 	T extends number,
 	R extends string = `${T}`,
 	A extends number[] = [],
 > = R extends `${infer F extends number}${infer L}`
-	? NumberToArray<T, L, [...A, F]>
+	? TNumberToArray<T, L, [...A, F]>
 	: A;
 
-type GreaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = Fill<T[0]>,
-	UF extends number[] = Fill<U[0]>,
+	TF extends number[] = TFill<T[0]>,
+	UF extends number[] = TFill<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? GreaterThanDigits<Shift<T>, Shift<U>>
+		? TGreaterThanDigits<TShift<T>, TShift<U>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type lastInUnion<T> =
+type TLastInUnion<T> =
 	Utils.unionToIntersection<T extends unknown ? (x: T) => 0 : never> extends (
 		x: infer U,
 	) => 0
 		? U
 		: never;
 
-type GreaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = NumberToArray<T>,
-	UA extends number[] = NumberToArray<U>,
+	TA extends number[] = TNumberToArray<T>,
+	UA extends number[] = TNumberToArray<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? GreaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type Max<
+type TMax<
 	T extends number,
 	M extends number = 0,
-	last extends number = lastInUnion<T> & number,
+	last extends number = TLastInUnion<T> & number,
 > = [T] extends [never]
 	? M
-	: Max<Exclude<T, last>, GreaterThan<last, M> extends true ? last : M>;
+	: TMax<Exclude<T, last>, TGreaterThan<last, M> extends true ? last : M>;
 
-export type DepthJson<
+export type TDepthJson<
 	T,
 	Depth extends number = 0,
 	Tup extends unknown[] = Utils.tuple<Depth>,
 	NextDepth extends number = [...Tup, 1]["length"],
 > = T extends object
-	? Max<
+	? TMax<
 			| NextDepth
 			| {
-					[k in Exclude<keyof T, keyof unknown[]>]: DepthJson<T[k], NextDepth>;
+					[k in Exclude<keyof T, keyof unknown[]>]: TDepthJson<T[k], NextDepth>;
 			  }[Exclude<keyof T, keyof unknown[]>]
 		>
 	: Depth;
 
-export const depthJson = <const T>(json: T): DepthJson<T> => {
+export const depthJson = <const T>(json: T): TDepthJson<T> => {
 	try {
 		let maxDepth = 0;
 		const curr: { stack: string[]; depth: number } = { stack: [], depth: 0 };

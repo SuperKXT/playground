@@ -1,9 +1,9 @@
-type initCombo<
+type TInitCombo<
 	dice extends number,
 	res extends unknown[][] = [],
-> = res["length"] extends dice ? res : initCombo<dice, [...res, [1]]>;
+> = res["length"] extends dice ? res : TInitCombo<dice, [...res, [1]]>;
 
-type updateCombo<
+type TUpdateCombo<
 	sideCombo extends unknown[][],
 	sides extends number,
 > = sideCombo extends [
@@ -11,34 +11,34 @@ type updateCombo<
 	infer last extends unknown[],
 ]
 	? last["length"] extends sides
-		? [...updateCombo<rest, sides>, [1]]
+		? [...TUpdateCombo<rest, sides>, [1]]
 		: [...rest, [...last, 1]]
 	: [[1]];
 
-type addCombo<
+type TAddCombo<
 	sideCombo extends unknown[][],
 	sum extends unknown[] = [],
 > = sideCombo extends [
 	infer first extends unknown[],
 	...infer rest extends unknown[][],
 ]
-	? addCombo<rest, [...sum, ...first]>
+	? TAddCombo<rest, [...sum, ...first]>
 	: sum["length"];
 
-type RollDice<
+type TRollDice<
 	dice extends number,
 	sides extends number,
 	sum extends number,
-	sideCombo extends unknown[][] = initCombo<dice>,
+	sideCombo extends unknown[][] = TInitCombo<dice>,
 	count extends unknown[] = [],
 > = sideCombo[dice] extends unknown[]
 	? count["length"]
-	: RollDice<
+	: TRollDice<
 			dice,
 			sides,
 			sum,
-			updateCombo<sideCombo, sides>,
-			addCombo<sideCombo> extends sum ? [...count, 1] : count
+			TUpdateCombo<sideCombo, sides>,
+			TAddCombo<sideCombo> extends sum ? [...count, 1] : count
 		>;
 
 const rollDice = (
@@ -68,6 +68,6 @@ export const diceSum = <
 	dice: Dice,
 	sides: Sides,
 	sum: Sum,
-): RollDice<Dice, Sides, Sum> => {
+): TRollDice<Dice, Sides, Sum> => {
 	return rollDice(dice, sides, sum) as never;
 };

@@ -1,6 +1,6 @@
-type Direction = "left" | "right" | "up" | "down";
+type TDirection = "left" | "right" | "up" | "down";
 
-export const printArrow = (direction: Direction, size: number): string => {
+export const printArrow = (direction: TDirection, size: number): string => {
 	switch (direction) {
 		case "left": {
 			let string = "*";

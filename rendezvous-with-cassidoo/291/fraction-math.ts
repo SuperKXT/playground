@@ -1,10 +1,10 @@
-type Fraction = `${number}/${number}`;
+type TFraction = `${number}/${number}`;
 
 export const fractionMath = (
-	fractionA: Fraction,
+	fractionA: TFraction,
 	operation: "add" | "divide" | "multiply" | "subtract",
-	fractionB: Fraction,
-): Fraction => {
+	fractionB: TFraction,
+): TFraction => {
 	const parsedA = fractionA.split("/").map(Number) as [number, number];
 	const parsedB = fractionB.split("/").map(Number) as [number, number];
 	const solution: [number, number] = [0, 0];

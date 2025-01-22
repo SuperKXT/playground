@@ -1,11 +1,11 @@
 import { fromTo } from "./from-to.js";
 
-type Test = {
+type TTest = {
 	min: number;
 	max: number;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ max: 7, min: 5 },
 	{ max: 10, min: 1 },
 	{ max: 150, min: 100 },

@@ -1,4 +1,4 @@
-import type { LinkedList } from "../../helpers/linked-list.helpers.js";
+import type { TLinkedList } from "../../helpers/linked-list.helpers.js";
 
 export const swapArrayPairsWithRegex = (array: number[]): number[] =>
 	array
@@ -26,8 +26,8 @@ export const swapArrayPairsWithLoop = (array: number[]): number[] => {
 };
 
 export const swapLinkedListPairs = (
-	list: LinkedList<number>,
-): LinkedList<number> => {
+	list: TLinkedList<number>,
+): TLinkedList<number> => {
 	const swapped = { ...list };
 	let node = swapped.head;
 	while (node?.value && node.next?.value !== undefined) {

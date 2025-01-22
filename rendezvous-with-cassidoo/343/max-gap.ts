@@ -1,24 +1,24 @@
-type tuple<
+type TTuple<
 	size extends number,
 	res extends unknown[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type subtract<first extends number, second extends number> =
-	tuple<second> extends [...tuple<first>, ...infer rest] ? rest["length"] : 0;
+type TSubtract<first extends number, second extends number> =
+	TTuple<second> extends [...TTuple<first>, ...infer rest] ? rest["length"] : 0;
 
-type MaxGap<nums extends number[], max extends number = 0> = nums extends [
+type TMaxGap<nums extends number[], max extends number = 0> = nums extends [
 	infer first extends number,
 	infer second extends number,
 	...infer rest extends number[],
 ]
-	? subtract<first, second> extends infer curr extends number
-		? MaxGap<rest, subtract<max, curr> extends 0 ? max : curr>
+	? TSubtract<first, second> extends infer curr extends number
+		? TMaxGap<rest, TSubtract<max, curr> extends 0 ? max : curr>
 		: never
 	: max;
 
 export const maxGap = <const nums extends number[]>(
 	nums: nums,
-): MaxGap<nums> => {
+): TMaxGap<nums> => {
 	let max = 0;
 	for (let idx = 1; idx < nums.length; idx++) {
 		const curr = nums[idx] as number;

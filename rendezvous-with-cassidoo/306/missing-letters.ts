@@ -1,4 +1,4 @@
-type AlphabetArray = [
+type TAlphabetArray = [
 	"a",
 	"b",
 	"c",
@@ -27,24 +27,24 @@ type AlphabetArray = [
 	"z",
 ];
 
-type Alphabet = AlphabetArray[number];
+type TAlphabet = TAlphabetArray[number];
 
-export type MissingLetters<
-	T extends readonly Alphabet[],
-	A extends readonly unknown[] = AlphabetArray,
+export type TMissingLetters<
+	T extends readonly TAlphabet[],
+	A extends readonly unknown[] = TAlphabetArray,
 	Flag extends boolean = false,
-	Gaps extends readonly Alphabet[] = [],
-> = A extends readonly [infer F extends Alphabet, ...infer R]
+	Gaps extends readonly TAlphabet[] = [],
+> = A extends readonly [infer F extends TAlphabet, ...infer R]
 	? F extends [0, ...T][T["length"]]
 		? Gaps
 		: Flag extends false
-			? MissingLetters<T, R, F extends T[0] ? true : false>
-			: MissingLetters<T, R, true, F extends T[number] ? Gaps : [...Gaps, F]>
+			? TMissingLetters<T, R, F extends T[0] ? true : false>
+			: TMissingLetters<T, R, true, F extends T[number] ? Gaps : [...Gaps, F]>
 	: Gaps;
 
-export const missingLetters = <const T extends readonly Alphabet[]>(
+export const missingLetters = <const T extends readonly TAlphabet[]>(
 	array: T,
-): MissingLetters<T> => {
+): TMissingLetters<T> => {
 	const missing: string[] = [];
 	for (let i = 1; i < array.length; i++) {
 		const currCode = array[i]?.charCodeAt(0) ?? 0;

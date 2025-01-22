@@ -5,66 +5,66 @@ const cardIdMap = {
 	Visa: [4],
 } as const;
 
-type CardIdMap = typeof cardIdMap;
+type TCardIdMap = typeof cardIdMap;
 
-type tuple<
+type TTuple<
 	T extends number,
 	result extends 1[] = [],
-> = result["length"] extends T ? result : tuple<T, [...result, 1]>;
+> = result["length"] extends T ? result : TTuple<T, [...result, 1]>;
 
-type numberToTuple<
+type TNumberToTuple<
 	T extends number,
 	str extends string = `${T}`,
 > = str extends `${infer first}${infer rest}`
 	? first extends `${infer num extends number}`
-		? [num, ...numberToTuple<never, rest>]
+		? [num, ...TNumberToTuple<never, rest>]
 		: never
 	: [];
 
-type doubleNum<T extends number> = [...tuple<T>, ...tuple<T>]["length"] &
+type TDoubleNum<T extends number> = [...TTuple<T>, ...TTuple<T>]["length"] &
 	number;
 
-type sumDigit<
+type TSumDigit<
 	T extends number,
 	digits extends string = `${T}`,
 > = digits extends `${infer first extends number}${infer rest}`
-	? [...tuple<first>, ...sumDigit<never, rest>]
+	? [...TTuple<first>, ...TSumDigit<never, rest>]
 	: [];
 
-type sumPayload<
+type TSumPayload<
 	T extends number[],
 	double extends boolean = true,
 	sum extends 1[] = [],
 > = T extends [...infer rest extends number[], infer last extends number]
-	? sumPayload<
+	? TSumPayload<
 			rest,
 			double extends true ? false : true,
-			[...sum, ...sumDigit<double extends true ? doubleNum<last> : last>]
+			[...sum, ...TSumDigit<double extends true ? TDoubleNum<last> : last>]
 		>
 	: sum["length"];
 
-type mod<
+type TMod<
 	T extends number,
 	M extends number,
-	tTuple extends 1[] = tuple<T>,
-	mTuple extends 1[] = tuple<M>,
+	tTuple extends 1[] = TTuple<T>,
+	mTuple extends 1[] = TTuple<M>,
 > = tTuple extends [...mTuple, ...infer rest extends 1[]]
-	? mod<never, never, rest, mTuple>
+	? TMod<never, never, rest, mTuple>
 	: tTuple["length"];
 
-type subtract<T extends number, M extends number> =
-	tuple<T> extends [...tuple<M>, ...infer rest extends 1[]]
+type TSubtract<T extends number, M extends number> =
+	TTuple<T> extends [...TTuple<M>, ...infer rest extends 1[]]
 		? rest["length"]
 		: 0;
 
-type verifyLuhn<T extends number> =
-	numberToTuple<T> extends [
+type TVerifyLuhn<T extends number> =
+	TNumberToTuple<T> extends [
 		...infer payload extends number[],
 		infer check extends number,
 	]
-		? subtract<
+		? TSubtract<
 				10,
-				mod<sumPayload<payload>, 10> extends infer m extends number
+				TMod<TSumPayload<payload>, 10> extends infer m extends number
 					? m extends 0
 						? 10
 						: m
@@ -74,38 +74,38 @@ type verifyLuhn<T extends number> =
 			: false
 		: false;
 
-type startsWith<T extends string, S extends string> = T extends `${S}${string}`
+type TStartsWith<T extends string, S extends string> = T extends `${S}${string}`
 	? true
 	: false;
 
-type checkBrandTuple<
+type TCheckBrandTuple<
 	T extends readonly number[],
 	U extends number,
 > = T extends readonly [
 	infer first extends number,
 	...infer rest extends number[],
 ]
-	? startsWith<`${U}`, `${first}`> extends true
+	? TStartsWith<`${U}`, `${first}`> extends true
 		? true
-		: checkBrandTuple<rest, U>
+		: TCheckBrandTuple<rest, U>
 	: false;
 
-type brand<T extends number> = {
-	[k in keyof CardIdMap]: checkBrandTuple<CardIdMap[k], T> extends true
+type TBrand<T extends number> = {
+	[k in keyof TCardIdMap]: TCheckBrandTuple<TCardIdMap[k], T> extends true
 		? k
 		: never;
-}[keyof CardIdMap] extends infer b
+}[keyof TCardIdMap] extends infer b
 	? [b] extends [never]
 		? "Other"
 		: b
 	: never;
 
-type LuhnCheck<T extends number> =
-	verifyLuhn<T> extends true
-		? { valid: true; brand: brand<T> }
+type TLuhnCheck<T extends number> =
+	TVerifyLuhn<T> extends true
+		? { valid: true; brand: TBrand<T> }
 		: { valid: false };
 
-export const luhnCheck = <T extends number>(number: T): LuhnCheck<T> => {
+export const luhnCheck = <T extends number>(number: T): TLuhnCheck<T> => {
 	const sum = String(Math.floor(number / 10))
 		.split("")
 		.reverse()

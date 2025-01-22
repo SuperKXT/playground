@@ -38,19 +38,19 @@ const map = {
 	"9": "Nine",
 } as const;
 
-type NatoNotate<
+type TNatoNotate<
 	Str extends string,
 	res extends string = "",
 > = Str extends `${infer first}${infer rest}`
 	? first extends keyof typeof map
-		? NatoNotate<
+		? TNatoNotate<
 				rest,
 				res extends "" ? (typeof map)[first] : `${res} ${(typeof map)[first]}`
 			>
-		: NatoNotate<rest, res>
+		: TNatoNotate<rest, res>
 	: res;
 
-export const natoNotate = <Str extends string>(str: Str): NatoNotate<Str> => {
+export const natoNotate = <Str extends string>(str: Str): TNatoNotate<Str> => {
 	const result: string[] = [];
 	for (const char of str) {
 		const val = (map as Record<string, string>)[char];

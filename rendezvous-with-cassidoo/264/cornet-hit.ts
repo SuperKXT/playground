@@ -1,8 +1,8 @@
-export type XY = [number, number];
+export type TCoord = [number, number];
 export const cornerHit = (
-	boxSize: XY,
-	initialPosition: XY,
-	screenSize: XY,
+	boxSize: TCoord,
+	initialPosition: TCoord,
+	screenSize: TCoord,
 ): boolean => {
 	const [width, height] = boxSize;
 	const [posX, posY] = initialPosition;

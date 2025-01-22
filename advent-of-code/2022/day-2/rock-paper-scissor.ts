@@ -6,12 +6,12 @@ import { z } from "zod";
 import { config } from "../../../config.js";
 
 const ARG_1_SCHEMA = z.enum(["a", "b", "c"]);
-type VersusMove = z.infer<typeof ARG_1_SCHEMA>;
+type TVersusMove = z.infer<typeof ARG_1_SCHEMA>;
 
 const ARG_2_SCHEMA = z.enum(["x", "y", "z"]);
-type PlayerMove = z.infer<typeof ARG_2_SCHEMA>;
+type TPlayerMove = z.infer<typeof ARG_2_SCHEMA>;
 
-type Result = z.infer<typeof ARG_2_SCHEMA>;
+type TResult = z.infer<typeof ARG_2_SCHEMA>;
 
 const MATCH_SCHEMA = z.tuple([ARG_1_SCHEMA, ARG_2_SCHEMA]);
 
@@ -32,11 +32,11 @@ const PLAYER_RULES = {
 		wins: "b",
 	},
 } satisfies Record<
-	PlayerMove,
+	TPlayerMove,
 	{
 		score: 1 | 2 | 3;
-		wins: VersusMove;
-		loses: VersusMove;
+		wins: TVersusMove;
+		loses: TVersusMove;
 	}
 >;
 
@@ -57,17 +57,17 @@ const VERSUS_RULES = {
 		wins: "y",
 	},
 } satisfies Record<
-	VersusMove,
+	TVersusMove,
 	{
-		wins: PlayerMove;
-		loses: PlayerMove;
-		draws: PlayerMove;
+		wins: TPlayerMove;
+		loses: TPlayerMove;
+		draws: TPlayerMove;
 	}
 >;
 
 const getPart1Score = (
-	versusMove: VersusMove,
-	playerMove: PlayerMove,
+	versusMove: TVersusMove,
+	playerMove: TPlayerMove,
 ): number => {
 	const { score, wins, loses } = PLAYER_RULES[playerMove];
 	switch (versusMove) {
@@ -80,7 +80,7 @@ const getPart1Score = (
 	}
 };
 
-const getPart2Score = (versusMove: VersusMove, result: Result): number => {
+const getPart2Score = (versusMove: TVersusMove, result: TResult): number => {
 	const { wins, loses, draws } = VERSUS_RULES[versusMove];
 	switch (result) {
 		case "z":
@@ -92,13 +92,13 @@ const getPart2Score = (versusMove: VersusMove, result: Result): number => {
 	}
 };
 
-export type RockPaperScissorsSolution = {
+export type TRockPaperScissorsSolution = {
 	part1: number;
 	part2: number;
 };
 
 export const rockPaperScissors =
-	async (): Promise<RockPaperScissorsSolution> => {
+	async (): Promise<TRockPaperScissorsSolution> => {
 		const input = await readFile(
 			path.join(config.dirname, "input.txt"),
 			"utf-8",

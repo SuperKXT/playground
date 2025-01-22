@@ -1,11 +1,11 @@
 import { canBePalindrome } from "./palindrome.js";
 
-type Test = {
+type TTest = {
 	string: string;
 	result: boolean;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	// cSpell: disable-next-line
 	{ result: true, string: "aaccd" },
 	{ result: true, string: "nurses run" },
