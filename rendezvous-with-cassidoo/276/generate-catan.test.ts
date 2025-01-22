@@ -1,7 +1,7 @@
 import { assertValidCatanBoard, generateCatanBoard } from "./generate-catan.js";
 import { CATAN_ERRORS } from "./generate-catan.types.js";
 
-import type { CatanError } from "./generate-catan.types.js";
+import type { TCatanError } from "./generate-catan.types.js";
 
 const VALID_BOARDS: string[] = [
 	["  B 9 A", " 5 6 C 8", "6 4 B 5 3", " 2 8 9 3", "  A . 4"].join("\n"),
@@ -9,12 +9,12 @@ const VALID_BOARDS: string[] = [
 	["  6 3 8", " 2 4 5 A", "5 9 . 6 9", " A B 3 C", "  8 4 B"].join("\n"),
 ];
 
-type InvalidBoard = {
+type TInvalidBoard = {
 	board: string;
-	error: CatanError;
+	error: TCatanError;
 };
 
-const INVALID_BOARDS: InvalidBoard[] = [
+const INVALID_BOARDS: TInvalidBoard[] = [
 	{
 		board: ["  6 3 8", " 2 4 5 A"].join("\n"),
 		error: CATAN_ERRORS.badFormatting,

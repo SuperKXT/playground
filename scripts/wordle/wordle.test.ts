@@ -1,14 +1,14 @@
 import { DEFAULT_ARGS, findWordle } from "./wordle.js";
 
-import type { WordleWord } from "./word-list.js";
-import type { Arguments } from "./wordle.js";
+import type { TWordleWord } from "./word-list.js";
+import type { TArguments } from "./wordle.js";
 
-type Test = {
-	args: Partial<Arguments>;
-	results: WordleWord[];
+type TTest = {
+	args: Partial<TArguments>;
+	results: TWordleWord[];
 };
 
-const TEST_CASES: Test[] = [
+const TEST_CASES: TTest[] = [
 	{
 		args: {
 			known: "qul",

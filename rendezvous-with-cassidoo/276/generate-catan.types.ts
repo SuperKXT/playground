@@ -4,24 +4,24 @@ export const SINGLE_PIECES = [".", "2", "C"] as const;
 
 export const DOUBLE_PIECES = ["3", "4", "5", "6", "8", "9", "A", "B"] as const;
 
-export type Cell =
+export type TCell =
 	| (typeof DOUBLE_PIECES)[number]
 	| (typeof SINGLE_PIECES)[number];
 
-export type Board = [
-	Utils.tuple<3, Cell>,
-	Utils.tuple<4, Cell>,
-	Utils.tuple<5, Cell>,
-	Utils.tuple<4, Cell>,
-	Utils.tuple<3, Cell>,
+export type TBoard = [
+	Utils.tuple<3, TCell>,
+	Utils.tuple<4, TCell>,
+	Utils.tuple<5, TCell>,
+	Utils.tuple<4, TCell>,
+	Utils.tuple<3, TCell>,
 ];
 
-export type ProspectiveBoard = [
-	Utils.tuple<3, Cell | "">,
-	Utils.tuple<4, Cell | "">,
-	Utils.tuple<5, Cell | "">,
-	Utils.tuple<4, Cell | "">,
-	Utils.tuple<3, Cell | "">,
+export type TProspectiveBoard = [
+	Utils.tuple<3, TCell | "">,
+	Utils.tuple<4, TCell | "">,
+	Utils.tuple<5, TCell | "">,
+	Utils.tuple<4, TCell | "">,
+	Utils.tuple<3, TCell | "">,
 ];
 
 const ROW_PIECES = [3, 4, 5, 4, 3] as const;
@@ -43,4 +43,4 @@ export const CATAN_ERRORS = {
 	badPositioning: "6 and 8 cells can not touch each other",
 } as const;
 
-export type CatanError = (typeof CATAN_ERRORS)[keyof typeof CATAN_ERRORS];
+export type TCatanError = (typeof CATAN_ERRORS)[keyof typeof CATAN_ERRORS];

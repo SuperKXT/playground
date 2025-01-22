@@ -1,11 +1,11 @@
 import { generateArrays } from "./generate-arrays.js";
 
-type Test = {
+type TTest = {
 	input: number;
 	output: number[][];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: 4,
 		output: [[1], [1, 2], [1, 2, 3], [1, 2, 3, 4]],

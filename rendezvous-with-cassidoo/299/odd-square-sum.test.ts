@@ -1,11 +1,11 @@
 import { oddSquareNumbers } from "./odd-square-sum.js";
 
-type Test = {
+type TTest = {
 	input: number;
 	output: number;
 };
 
-const tests: Test[] = [
+const tests: TTest[] = [
 	{
 		input: 1,
 		output: 0,

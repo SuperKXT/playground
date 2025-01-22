@@ -1,4 +1,4 @@
-type MinRows<_Groups extends number[], _RowSize extends number> = number;
+type TMinRows<_Groups extends number[], _RowSize extends number> = number;
 
 const getCombinations = (nums: number[], prev: number[] = []) => {
 	const combinations: number[][] = [];
@@ -16,7 +16,7 @@ export const minRows = <
 >(
 	groups: Groups,
 	rowSize: RowSize,
-): MinRows<Groups, RowSize> => {
+): TMinRows<Groups, RowSize> => {
 	const combinations = getCombinations(groups.map((_, idx) => idx));
 	const valid = [];
 	for (const arr of combinations) {

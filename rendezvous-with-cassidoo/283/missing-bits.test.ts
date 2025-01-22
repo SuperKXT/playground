@@ -1,11 +1,11 @@
 import { missingBits } from "./missing-bits.js";
 
-type Test = {
+type TTest = {
 	input: number[];
 	output: string;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: [1, 2, 3, 4, 20, 21, 22, 23],
 		output: "[1,2,3,4,...,20,21,22,23]",

@@ -1,32 +1,32 @@
-type tuple<
+type TTuple<
 	size extends number,
 	res extends unknown[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type numberToTuple<
+type TNumberToTuple<
 	num extends number,
 	str extends string = `${num}`,
 	res extends number[] = [],
 > = str extends `${infer curr extends number}${infer rest}`
-	? numberToTuple<never, rest, [...res, curr]>
+	? TNumberToTuple<never, rest, [...res, curr]>
 	: res;
 
-type compareDigits<
+type TCompareDigits<
 	digitA extends number,
 	digitB extends number,
-	tupA extends unknown[] = tuple<digitA>,
-	tupB extends unknown[] = tuple<digitB>,
+	tupA extends unknown[] = TTuple<digitA>,
+	tupB extends unknown[] = TTuple<digitB>,
 > = digitA extends digitB
 	? "equal"
 	: tupA[tupB["length"]] extends 1
 		? "greater"
 		: "lesser";
 
-type compareNumbers<
+type TCompareNumbers<
 	numA extends number,
 	numB extends number,
-	tupA extends number[] = numberToTuple<numA>,
-	tupB extends number[] = numberToTuple<numB>,
+	tupA extends number[] = TNumberToTuple<numA>,
+	tupB extends number[] = TNumberToTuple<numB>,
 > = numA extends numB
 	? "equal"
 	: tupA["length"] extends tupB["length"]
@@ -34,9 +34,9 @@ type compareNumbers<
 				[infer firstA extends number, ...infer restA extends number[]],
 				[infer firstB extends number, ...infer restB extends number[]],
 			]
-			? compareDigits<firstA, firstB> extends infer res
+			? TCompareDigits<firstA, firstB> extends infer res
 				? res extends "equal"
-					? compareNumbers<never, never, restA, restB>
+					? TCompareNumbers<never, never, restA, restB>
 					: res
 				: never
 			: never
@@ -44,7 +44,7 @@ type compareNumbers<
 			? "greater"
 			: "lesser";
 
-type Valleys<
+type TValleys<
 	arr extends readonly number[],
 	count extends unknown[] = [],
 	downhill extends boolean = false,
@@ -53,8 +53,8 @@ type Valleys<
 	infer next extends number,
 	...infer rest extends number[],
 ]
-	? compareNumbers<curr, next> extends infer res
-		? Valleys<
+	? TCompareNumbers<curr, next> extends infer res
+		? TValleys<
 				[next, ...rest],
 				[res, downhill] extends ["lesser", true] ? [...count, 1] : count,
 				res extends "greater" ? true : downhill
@@ -62,7 +62,7 @@ type Valleys<
 		: never
 	: count["length"];
 
-type Hills<
+type THills<
 	arr extends readonly number[],
 	count extends unknown[] = [],
 	uphill extends boolean = false,
@@ -71,8 +71,8 @@ type Hills<
 	infer next extends number,
 	...infer rest extends number[],
 ]
-	? compareNumbers<curr, next> extends infer res
-		? Hills<
+	? TCompareNumbers<curr, next> extends infer res
+		? THills<
 				[next, ...rest],
 				[res, uphill] extends ["greater", true] ? [...count, 1] : count,
 				res extends "lesser" ? true : uphill
@@ -82,7 +82,7 @@ type Hills<
 
 export const hills = <const arr extends readonly number[]>(
 	arr: arr,
-): Hills<arr> => {
+): THills<arr> => {
 	let count = 0;
 	let uphill = false;
 	for (let i = 0; i < arr.length - 1; i++) {
@@ -99,7 +99,7 @@ export const hills = <const arr extends readonly number[]>(
 
 export const valleys = <const arr extends readonly number[]>(
 	arr: arr,
-): Valleys<arr> => {
+): TValleys<arr> => {
 	let count = 0;
 	let downhill = false;
 	for (let i = 0; i < arr.length - 1; i++) {

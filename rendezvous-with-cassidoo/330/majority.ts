@@ -1,29 +1,29 @@
-type tuple<
+type TTuple<
 	size extends number,
 	res extends 1[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type incrementMap<
+type TIncrementMap<
 	T extends Record<number, number>,
 	num extends number,
 > = num extends keyof T
 	? {
 			[k in keyof T]: T[k] extends num
-				? [...tuple<T[k]>, 1]["length"] & number
+				? [...TTuple<T[k]>, 1]["length"] & number
 				: T[k];
 		}
 	: T & Record<num, 1>;
 
-type isEven<
+type TIsEven<
 	num extends number,
-	tup extends unknown[] = tuple<num>,
+	tup extends unknown[] = TTuple<num>,
 > = tup extends []
 	? true
 	: tup extends [1, 1, ...infer rest]
-		? isEven<never, rest>
+		? TIsEven<never, rest>
 		: false;
 
-type Majority<
+type TMajority<
 	input extends number[],
 	map extends Record<number, number> = {},
 	most extends 1[] = [],
@@ -31,20 +31,23 @@ type Majority<
 	evens extends 1[] = [],
 	odds extends 1[] = [],
 > = input extends [infer first extends number, ...infer rest extends number[]]
-	? incrementMap<map, first> extends infer newMap extends Record<number, number>
-		? Majority<
+	? TIncrementMap<map, first> extends infer newMap extends Record<
+			number,
+			number
+		>
+		? TMajority<
 				rest,
 				newMap,
 				[...most, 1][newMap[first]] extends undefined
-					? tuple<newMap[first]>
+					? TTuple<newMap[first]>
 					: most,
 				[...most, 1][newMap[first]] extends undefined
 					? first
 					: newMap[first] extends most["length"]
 						? never
 						: winner,
-				isEven<first> extends true ? [...evens, 1] : evens,
-				isEven<first> extends false ? [...odds, 1] : odds
+				TIsEven<first> extends true ? [...evens, 1] : evens,
+				TIsEven<first> extends false ? [...odds, 1] : odds
 			>
 		: never
 	: [winner] extends [never]
@@ -57,7 +60,7 @@ type Majority<
 
 export const majority = <const Input extends number[]>(
 	input: Input,
-): Majority<Input> => {
+): TMajority<Input> => {
 	let curr = { num: Infinity, count: 0 };
 	let mostCount = 0;
 	let winner: undefined | number = undefined;

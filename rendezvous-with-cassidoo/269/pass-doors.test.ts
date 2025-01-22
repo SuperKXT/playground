@@ -1,11 +1,11 @@
 import { passDoors } from "./pass-doors.js";
 
-type Test = {
+type TTest = {
 	input: [number, number];
 	output: number;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: [7, 3], output: 4 },
 	{ input: [8, 4], output: 6 },
 	{ input: [2, 0], output: 0 },

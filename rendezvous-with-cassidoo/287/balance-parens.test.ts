@@ -1,11 +1,11 @@
 import { balanceParens } from "./balance-parens.js";
 
-type Test = {
+type TTest = {
 	input: string;
 	output: number;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: "()", output: 0 },
 	{ input: "(()", output: 1 },
 	{ input: "))()))))()", output: 6 },

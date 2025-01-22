@@ -1,15 +1,15 @@
 import { cornerHit } from "./cornet-hit.js";
 
-import type { XY } from "./cornet-hit.js";
+import type { TCoord } from "./cornet-hit.js";
 
-type Test = {
-	boxSize: XY;
-	initialPosition: XY;
-	screenSize: XY;
+type TTest = {
+	boxSize: TCoord;
+	initialPosition: TCoord;
+	screenSize: TCoord;
 	result: boolean;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		boxSize: [5, 5],
 		initialPosition: [0, 0],

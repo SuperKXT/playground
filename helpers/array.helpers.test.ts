@@ -6,13 +6,13 @@ import {
 } from "./array.helpers.js";
 import { getRandomInteger } from "./random.helpers.js";
 
-type EqualityTest = {
+type TEqualityTest = {
 	first: unknown[];
 	second: unknown[];
 	areEqual: boolean;
 };
 
-const EQUALITY_TESTS: EqualityTest[] = [
+const EQUALITY_TESTS: TEqualityTest[] = [
 	{
 		areEqual: true,
 		first: [1, 2, 3, 4],

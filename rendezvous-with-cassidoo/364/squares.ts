@@ -1,9 +1,9 @@
-type Reverse<A extends string | number | bigint> =
+type TReverse<A extends string | number | bigint> =
 	`${A}` extends `${infer AH}${infer AT extends string | number | bigint}`
-		? `${Reverse<AT>}${AH}`
+		? `${TReverse<AT>}${AH}`
 		: `${A}`;
 
-type DigsNext = {
+type TDigsNext = {
 	0: 1;
 	1: 2;
 	2: 3;
@@ -15,41 +15,41 @@ type DigsNext = {
 	8: 9;
 };
 
-type DigsPrev = { [K in keyof DigsNext as DigsNext[K]]: K };
+type TDigsPrev = { [K in keyof TDigsNext as TDigsNext[K]]: K };
 
-type AddOne<A extends string> = A extends `${infer AH extends
+type TAddOne<A extends string> = A extends `${infer AH extends
 	number}${infer AT}`
 	? AH extends 9
-		? `0${AddOne<AT>}`
-		: AH extends keyof DigsNext
-			? `${DigsNext[AH]}${AT}`
+		? `0${TAddOne<AT>}`
+		: AH extends keyof TDigsNext
+			? `${TDigsNext[AH]}${AT}`
 			: never
 	: `1`;
 
-type SubOne<A> = A extends `${infer AH extends number}${infer AT}`
+type TSubOne<A> = A extends `${infer AH extends number}${infer AT}`
 	? AH extends 0
-		? `9${SubOne<AT>}`
-		: AH extends keyof DigsPrev
-			? `${DigsPrev[AH]}${AT}`
+		? `9${TSubOne<AT>}`
+		: AH extends keyof TDigsPrev
+			? `${TDigsPrev[AH]}${AT}`
 			: never
 	: never;
 
-type Add<
+type TAdd<
 	A extends string,
 	B extends string,
 > = A extends `${infer AH}${infer AT}`
 	? B extends `${infer BH}${infer BT}`
 		? BH extends "0"
-			? `${AH}${Add<AT, BT>}`
-			: Add<AddOne<A>, SubOne<B>>
+			? `${AH}${TAdd<AT, BT>}`
+			: TAdd<TAddOne<A>, TSubOne<B>>
 		: A
 	: B;
 
-type ToNum<Str extends string> = Str extends `${infer N extends number}`
+type TToNum<Str extends string> = Str extends `${infer N extends number}`
 	? N
 	: never;
 
-type Multiply<
+type TMultiply<
 	A extends string,
 	B extends string,
 	R extends string = "0",
@@ -59,23 +59,23 @@ type Multiply<
 		? R
 		: A extends `${infer AH}${infer AT}`
 			? AH extends "0"
-				? Multiply<AT, `0${B}`, R>
-				: Multiply<SubOne<A>, B, Add<R, B>>
+				? TMultiply<AT, `0${B}`, R>
+				: TMultiply<TSubOne<A>, B, TAdd<R, B>>
 			: R;
 
-type Squares<
+type TSquares<
 	Num extends number,
 	Idx extends unknown[] = [1],
 	Res extends string = "0",
 > = Idx[Num] extends 1
-	? ToNum<Reverse<Res>>
-	: Squares<
+	? TToNum<TReverse<Res>>
+	: TSquares<
 			Num,
 			[...Idx, 1],
-			Add<Res, Multiply<Reverse<Idx["length"]>, Reverse<Idx["length"]>>>
+			TAdd<Res, TMultiply<TReverse<Idx["length"]>, TReverse<Idx["length"]>>>
 		>;
 
-export const squares = <const Num extends number>(num: Num): Squares<Num> => {
+export const squares = <const Num extends number>(num: Num): TSquares<Num> => {
 	let res = 0;
 	for (let i = 1; i <= num; i++) {
 		res += i ** 2;

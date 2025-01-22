@@ -1,49 +1,49 @@
 import type { Utils } from "../types/utils.types.js";
 
-export type LinkedListNode<Type = unknown> = {
+export type TLinkedListNode<Type = unknown> = {
 	value: Type;
-	next: LinkedListNode<Type>;
+	next: TLinkedListNode<Type>;
 } | null;
 
-export type LinkedList<Type> = {
-	head: LinkedListNode<Type>;
+export type TLinkedList<Type> = {
+	head: TLinkedListNode<Type>;
 };
 
-type InsertToNode<
-	Node extends NonNullable<LinkedListNode>,
+type TInsertToNode<
+	Node extends NonNullable<TLinkedListNode>,
 	Val,
 > = Utils.prettify<{
 	value: Node["value"];
-	next: Node["next"] extends NonNullable<LinkedListNode>
-		? InsertToNode<Node["next"], Val>
+	next: Node["next"] extends NonNullable<TLinkedListNode>
+		? TInsertToNode<Node["next"], Val>
 		: { value: Val; next: null };
 }>;
 
-type InsertNode<List extends LinkedList<unknown>, Val> = Utils.prettify<{
-	head: List["head"] extends NonNullable<LinkedListNode>
-		? InsertToNode<List["head"], Val>
+type TInsertNode<List extends TLinkedList<unknown>, Val> = Utils.prettify<{
+	head: List["head"] extends NonNullable<TLinkedListNode>
+		? TInsertToNode<List["head"], Val>
 		: { value: Val; next: null };
 }>;
 
-type ArrayToLinkedList<
+type TArrayToLinkedList<
 	Type extends readonly unknown[],
-	Result extends LinkedList<unknown> = { head: null },
+	Result extends TLinkedList<unknown> = { head: null },
 > = number extends Type["length"]
-	? LinkedList<Type[number]>
+	? TLinkedList<Type[number]>
 	: Type extends readonly [infer First, ...infer Rest]
-		? ArrayToLinkedList<Rest, InsertNode<Result, First>>
+		? TArrayToLinkedList<Rest, TInsertNode<Result, First>>
 		: Result;
 
 export const arrayToLinkedList = <const Arr extends readonly unknown[]>(
 	array: Arr,
-): ArrayToLinkedList<Arr> => {
-	const list: LinkedList<unknown> = {
+): TArrayToLinkedList<Arr> => {
+	const list: TLinkedList<unknown> = {
 		head: null,
 	};
-	let lastNode: LinkedListNode = null;
+	let lastNode: TLinkedListNode = null;
 
 	for (const item of array) {
-		const node: LinkedListNode = {
+		const node: TLinkedListNode = {
 			next: null,
 			value: item,
 		};
@@ -57,22 +57,25 @@ export const arrayToLinkedList = <const Arr extends readonly unknown[]>(
 		}
 	}
 
-	return list as ArrayToLinkedList<Arr>;
+	return list as TArrayToLinkedList<Arr>;
 };
 
-export const insertToLinkedList = <List extends LinkedList<unknown>, const Val>(
+export const insertToLinkedList = <
+	List extends TLinkedList<unknown>,
+	const Val,
+>(
 	list: List,
 	value: Val,
-): InsertNode<List, Val> => {
+): TInsertNode<List, Val> => {
 	const newNode = { value, next: null };
 	if (!list.head) {
 		list.head = newNode;
 	} else {
-		const insertNode = (node: NonNullable<LinkedListNode>) => {
+		const insertNode = (node: NonNullable<TLinkedListNode>) => {
 			if (node.next) insertNode(node.next);
 			else node.next = newNode;
 		};
 		insertNode(list.head);
 	}
-	return list as InsertNode<List, Val>;
+	return list as TInsertNode<List, Val>;
 };

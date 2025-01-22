@@ -1,193 +1,193 @@
-type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type TDigit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-export type Integer<T extends number> = `${T}` extends `${infer I extends
+export type TInteger<T extends number> = `${T}` extends `${infer I extends
 	number}.${string}`
 	? I
 	: T;
 
-export type UnsignedInt<T extends number | string | bigint> =
+export type TUnsignedInt<T extends number | string | bigint> =
 	`${T}` extends `-${infer I extends number}`
-		? Integer<I>
+		? TInteger<I>
 		: `${T}` extends `${infer I extends number}`
-			? Integer<I>
+			? TInteger<I>
 			: never;
 
-type ArrayReverse<T extends Digit[], Out extends Digit[] = []> = T extends [
-	...infer Rest extends Digit[],
-	infer L extends Digit,
+type TArrayReverse<T extends TDigit[], Out extends TDigit[] = []> = T extends [
+	...infer Rest extends TDigit[],
+	infer L extends TDigit,
 ]
-	? ArrayReverse<Rest, [...Out, L]>
+	? TArrayReverse<Rest, [...Out, L]>
 	: Out;
 
-type Fill<T extends number, A extends number[] = []> = A["length"] extends T
+type TFill<T extends number, A extends number[] = []> = A["length"] extends T
 	? A
-	: Fill<T, [...A, 1]>;
+	: TFill<T, [...A, 1]>;
 
-type Shift<T extends number[]> = T extends [
+type TShift<T extends number[]> = T extends [
 	unknown,
 	...infer R extends number[],
 ]
 	? R
 	: never;
 
-type NumberToArray<
+type TNumberToArray<
 	T extends number,
 	R extends string = `${T}`,
-	A extends Digit[] = [],
-> = R extends `${infer F extends Digit}${infer L}`
-	? NumberToArray<T, L, [...A, F]>
+	A extends TDigit[] = [],
+> = R extends `${infer F extends TDigit}${infer L}`
+	? TNumberToArray<T, L, [...A, F]>
 	: A;
 
-type ArrayToNumber<T extends Digit[], R extends string = ""> = T extends [
-	infer F extends Digit,
-	...infer Rest extends Digit[],
+type TArrayToNumber<T extends TDigit[], R extends string = ""> = T extends [
+	infer F extends TDigit,
+	...infer Rest extends TDigit[],
 ]
-	? ArrayToNumber<Rest, `${R}${F}`>
+	? TArrayToNumber<Rest, `${R}${F}`>
 	: `${R}` extends `${infer I extends number}`
 		? I
 		: never;
 
-type GreaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = Fill<T[0]>,
-	UF extends number[] = Fill<U[0]>,
+	TF extends number[] = TFill<T[0]>,
+	UF extends number[] = TFill<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? GreaterThanDigits<Shift<T>, Shift<U>>
+		? TGreaterThanDigits<TShift<T>, TShift<U>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type GreaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = NumberToArray<T>,
-	UA extends number[] = NumberToArray<U>,
+	TA extends number[] = TNumberToArray<T>,
+	UA extends number[] = TNumberToArray<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? GreaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type Max<T extends number[], M extends number = never> = T extends [
+type TMax<T extends number[], M extends number = never> = T extends [
 	infer F extends number,
 	...infer R extends number[],
 ]
-	? GreaterThan<F, M> extends true
-		? Max<R, F>
-		: Max<R, M>
+	? TGreaterThan<F, M> extends true
+		? TMax<R, F>
+		: TMax<R, M>
 	: M;
 
-type PadLeft<T extends Digit[], Size extends number> = [
+type TPadLeft<T extends TDigit[], Size extends number> = [
 	0,
 	...T,
-][Size] extends Digit
+][Size] extends TDigit
 	? T
-	: PadLeft<[0, ...T], Size>;
+	: TPadLeft<[0, ...T], Size>;
 
-type AddDigits<T extends Digit[], R extends unknown[] = []> = T extends [
-	infer F extends Digit,
-	...infer Rest extends Digit[],
+type TAddDigits<T extends TDigit[], R extends unknown[] = []> = T extends [
+	infer F extends TDigit,
+	...infer Rest extends TDigit[],
 ]
-	? AddDigits<Rest, [...R, ...Fill<F>]>
-	: PadLeft<NumberToArray<R["length"]>, 2>;
+	? TAddDigits<Rest, [...R, ...TFill<F>]>
+	: TPadLeft<TNumberToArray<R["length"]>, 2>;
 
-type _innerSum<
-	A extends Digit[],
-	B extends Digit[],
-	R extends Digit[] = [],
-	Carry extends Digit = 0,
-> = A extends [infer FA extends Digit, ...infer RA extends Digit[]]
-	? B extends [infer FB extends Digit, ...infer RB extends Digit[]]
-		? AddDigits<[FA, FB, Carry]> extends [
-				infer NewCarry extends Digit,
-				infer Sum extends Digit,
+type _TInnerSum<
+	A extends TDigit[],
+	B extends TDigit[],
+	R extends TDigit[] = [],
+	Carry extends TDigit = 0,
+> = A extends [infer FA extends TDigit, ...infer RA extends TDigit[]]
+	? B extends [infer FB extends TDigit, ...infer RB extends TDigit[]]
+		? TAddDigits<[FA, FB, Carry]> extends [
+				infer NewCarry extends TDigit,
+				infer Sum extends TDigit,
 			]
-			? _innerSum<RA, RB, [...R, Sum], NewCarry>
+			? _TInnerSum<RA, RB, [...R, Sum], NewCarry>
 			: never
 		: never
 	: Carry extends 0
 		? R
 		: [...R, Carry];
 
-export type Sum<
+export type TSum<
 	A extends string | number | bigint,
 	B extends string | number | bigint,
-	ArrayA extends Digit[] = NumberToArray<UnsignedInt<A>>,
-	ArrayB extends Digit[] = NumberToArray<UnsignedInt<B>>,
-	MaxNum extends number = Max<[ArrayA["length"], ArrayB["length"]]>,
-> = ArrayToNumber<
-	ArrayReverse<
-		_innerSum<
-			ArrayReverse<PadLeft<ArrayA, MaxNum>>,
-			ArrayReverse<PadLeft<ArrayB, MaxNum>>
+	ArrayA extends TDigit[] = TNumberToArray<TUnsignedInt<A>>,
+	ArrayB extends TDigit[] = TNumberToArray<TUnsignedInt<B>>,
+	MaxNum extends number = TMax<[ArrayA["length"], ArrayB["length"]]>,
+> = TArrayToNumber<
+	TArrayReverse<
+		_TInnerSum<
+			TArrayReverse<TPadLeft<ArrayA, MaxNum>>,
+			TArrayReverse<TPadLeft<ArrayB, MaxNum>>
 		>
 	>
 >;
 
 const options = [6, 3, 2] as const;
 
-type Option = (typeof options)[number];
+type TOption = (typeof options)[number];
 
-type Combination = { sum: number; combination: number[] };
+type TCombination = { sum: number; combination: number[] };
 
-type GreatestInTuple<
+type TGreatestInTuple<
 	T extends number[],
 	Val extends number = T[0],
 > = T extends [infer first extends number, ...infer rest extends number[]]
-	? GreatestInTuple<rest, GreaterThan<first, Val> extends true ? first : Val>
+	? TGreatestInTuple<rest, TGreaterThan<first, Val> extends true ? first : Val>
 	: Val;
 
-type RemoveFromTuple<T extends number[], Remove extends number> = T extends [
+type TRemoveFromTuple<T extends number[], Remove extends number> = T extends [
 	infer first extends number,
 	...infer rest extends number[],
 ]
 	? first extends Remove
 		? rest
-		: [first, ...RemoveFromTuple<rest, Remove>]
+		: [first, ...TRemoveFromTuple<rest, Remove>]
 	: [];
 
-type SortTuple<T extends number[]> =
-	GreatestInTuple<T> extends infer curr extends number
-		? [...SortTuple<RemoveFromTuple<T, curr>>, curr]
+type TSortTuple<T extends number[]> =
+	TGreatestInTuple<T> extends infer curr extends number
+		? [...TSortTuple<TRemoveFromTuple<T, curr>>, curr]
 		: [];
 
-type GetCombinations<
+type TGetCombinations<
 	Target extends number,
-	Current extends Combination = { sum: 0; combination: [] },
-	Opts extends Option = Option,
+	Current extends TCombination = { sum: 0; combination: [] },
+	Opts extends TOption = TOption,
 > = Opts extends Opts
-	? Sum<Current["sum"], Opts> extends infer sum extends number
+	? TSum<Current["sum"], Opts> extends infer sum extends number
 		? sum extends Target
-			? SortTuple<[...Current["combination"], Opts]>
-			: GreaterThan<sum, Target> extends true
+			? TSortTuple<[...Current["combination"], Opts]>
+			: TGreaterThan<sum, Target> extends true
 				? never
-				: GetCombinations<
+				: TGetCombinations<
 						Target,
 						{ sum: sum; combination: [...Current["combination"], Opts] }
 					>
 		: never
 	: never;
 
-type CountUnionMembers<T, Count extends 1[] = [], U = T> = [U] extends [never]
+type TCountUnionMembers<T, Count extends 1[] = [], U = T> = [U] extends [never]
 	? Count["length"]
 	: U extends U
-		? CountUnionMembers<Exclude<T, U>, [...Count, 1]>
+		? TCountUnionMembers<Exclude<T, U>, [...Count, 1]>
 		: Count["length"];
 
-type WaysToScore<Target extends number> = CountUnionMembers<
-	GetCombinations<Target>
+type TWaysToScore<Target extends number> = TCountUnionMembers<
+	TGetCombinations<Target>
 >;
 
 const getCombinations = (
 	targetSum: number,
-	current: Combination = { sum: 0, combination: [] },
-): Combination[] => {
-	const combinations: Combination[] = [];
+	current: TCombination = { sum: 0, combination: [] },
+): TCombination[] => {
+	const combinations: TCombination[] = [];
 	for (const option of options) {
 		const sum = current.sum + option;
 		const combination = [...current.combination, option];
@@ -200,7 +200,7 @@ const getCombinations = (
 
 export const waysToScore = <Target extends number>(
 	target: Target,
-): WaysToScore<Target> => {
+): TWaysToScore<Target> => {
 	const candidates = getCombinations(target).map((r) =>
 		r.combination.sort((a, b) => a - b),
 	);

@@ -156,7 +156,7 @@ store.setNum("3");
 store.setNum(3);
 const r = store.reset();
 
-type _tests = [
+type _Tests = [
 	Expect<Equal<typeof store.num, number>>,
 	Expect<Equal<typeof store.str, string>>,
 	Expect<Equal<typeof store.stringifiedNum, string>>,

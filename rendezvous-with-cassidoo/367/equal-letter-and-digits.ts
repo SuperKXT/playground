@@ -1,36 +1,36 @@
-type IsNum<Str extends string> = Str extends `${number}` ? true : false;
+type TIsNum<Str extends string> = Str extends `${number}` ? true : false;
 
-type IsEqual<
+type TIsEqual<
 	Str extends string,
 	NumCount extends 1[] = [],
 	CharCount extends 1[] = [],
 > = Str extends `${infer first}${infer rest}`
-	? IsEqual<
+	? TIsEqual<
 			rest,
-			IsNum<first> extends true ? [...NumCount, 1] : NumCount,
-			IsNum<first> extends true ? CharCount : [...CharCount, 1]
+			TIsNum<first> extends true ? [...NumCount, 1] : NumCount,
+			TIsNum<first> extends true ? CharCount : [...CharCount, 1]
 		>
 	: NumCount["length"] extends CharCount["length"]
 		? true
 		: false;
 
-type RemoveFirst<Str extends string> = Str extends `${string}${infer rest}`
+type TRemoveFirst<Str extends string> = Str extends `${string}${infer rest}`
 	? rest
 	: "";
-type RemoveLast<Str extends string> =
+type TRemoveLast<Str extends string> =
 	Str extends `${infer first}${infer second}${infer rest}`
-		? `${first}${RemoveLast<`${second}${rest}`>}`
+		? `${first}${TRemoveLast<`${second}${rest}`>}`
 		: "";
 
-type EqualLetterAndDigits<
+type TEqualLetterAndDigits<
 	Forward extends string,
 	Backward extends string = Forward,
 > =
-	IsEqual<Forward> extends true
+	TIsEqual<Forward> extends true
 		? Forward
-		: IsEqual<Backward> extends true
+		: TIsEqual<Backward> extends true
 			? Backward
-			: EqualLetterAndDigits<RemoveFirst<Forward>, RemoveLast<Backward>>;
+			: TEqualLetterAndDigits<TRemoveFirst<Forward>, TRemoveLast<Backward>>;
 
 const isEqual = (curr: string) => {
 	const letters = curr.replace(/\d/gu, "").length;
@@ -40,7 +40,7 @@ const isEqual = (curr: string) => {
 
 export const equalLetterAndDigits = <const Str extends string>(
 	str: Str,
-): EqualLetterAndDigits<Str> => {
+): TEqualLetterAndDigits<Str> => {
 	for (let i = 0; i < str.length; i++) {
 		const forward = str.slice(i);
 		if (isEqual(forward)) return forward as never;

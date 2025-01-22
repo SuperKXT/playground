@@ -1,11 +1,11 @@
 import { repeatedGroups } from "./repeated-groups.js";
 
-type Test = {
+type TTest = {
 	input: number[];
 	output: number[][];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: [1, 2, 2, 4, 5], output: [[2, 2]] },
 	{
 		input: [1, 1, 0, 0, 8, 4, 4, 4, 3, 2, 1, 9, 9],

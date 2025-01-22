@@ -1,23 +1,27 @@
-type Fabric = "normal" | "heavy" | "delicate";
+type TFabric = "normal" | "heavy" | "delicate";
 
-type Item = [color: string, fabric: Fabric];
+type TItem = [color: string, fabric: TFabric];
 
-type ItemKey<T extends Item> =
+type TItemKey<T extends TItem> =
 	`${T[0]}-${T[1] extends "delicate" ? "delicate" : "mixed"}`;
 
-type MinLaundryLoads<
-	Items extends Item[],
+type TMinLaundryLoads<
+	Items extends TItem[],
 	Count extends 1[] = [],
 	Existing extends Record<string, 1> = {},
-> = Items extends [infer first extends Item, ...infer rest extends Item[]]
-	? ItemKey<first> extends keyof Existing
-		? MinLaundryLoads<rest, Count, Existing>
-		: MinLaundryLoads<rest, [...Count, 1], Existing & Record<ItemKey<first>, 1>>
+> = Items extends [infer first extends TItem, ...infer rest extends TItem[]]
+	? TItemKey<first> extends keyof Existing
+		? TMinLaundryLoads<rest, Count, Existing>
+		: TMinLaundryLoads<
+				rest,
+				[...Count, 1],
+				Existing & Record<TItemKey<first>, 1>
+			>
 	: Count["length"];
 
-export const minLaundryLoads = <const Items extends [Item, ...Item[]]>(
+export const minLaundryLoads = <const Items extends [TItem, ...TItem[]]>(
 	items: Items,
-): MinLaundryLoads<Items> => {
+): TMinLaundryLoads<Items> => {
 	const colorSet = new Set<string>();
 	for (const [color, fabric] of items) {
 		const key = `${color}-${fabric === "delicate" ? "delicate" : "mixed"}`;

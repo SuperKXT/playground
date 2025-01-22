@@ -1,11 +1,11 @@
 import { replaceZeros } from "./replace-zeros.js";
 
-type Test = {
+type TTest = {
 	input: string;
 	output: string;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: "1234500362000440", output: "1234523623441" },
 	{ input: "123450036200044", output: "123452362344" },
 	{ input: "000000000000", output: "12" },

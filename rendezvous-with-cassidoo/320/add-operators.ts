@@ -1,13 +1,13 @@
 const operators = ["+", "-", "*", "/"] as const;
 
-type Result = { string: string; amount: number };
+type TResult = { string: string; amount: number };
 
 const digitOperate = (
 	[first, ...rest]: string[],
 	string: string = "",
 	amount?: number,
-): Result[] => {
-	const results: Result[] = [];
+): TResult[] => {
+	const results: TResult[] = [];
 	if (!first) return [];
 	if (amount === undefined) {
 		results.push(...digitOperate(rest, first, Number(first)));

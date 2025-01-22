@@ -1,11 +1,11 @@
 import { fractionMath } from "./fraction-math.js";
 
-type Test = {
+type TTest = {
 	args: Parameters<typeof fractionMath>;
 	output: Parameters<typeof fractionMath>[0];
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		args: ["3/4", "add", "3/4"],
 		output: "3/2",

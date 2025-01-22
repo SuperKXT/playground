@@ -20,7 +20,7 @@ export const dayjsSchema = z.instanceof(
 	{ message: "Invalid Date" },
 );
 
-export type ZodDayjs = typeof dayjsSchema;
+export type TZodDayjs = typeof dayjsSchema;
 
 export const datetimeSchema = z.preprocess((value) => {
 	if (dayjsUtc.isDayjs(value)) return value.isValid() ? value.utc() : null;
@@ -29,13 +29,13 @@ export const datetimeSchema = z.preprocess((value) => {
 	return parsed.isValid() ? parsed.utc() : null;
 }, dayjsSchema);
 
-export type ZodDatetime = typeof datetimeSchema;
+export type TZodDatetime = typeof datetimeSchema;
 
-export type DateLike = string | number | Dayjs | Date;
+export type TDateLike = string | number | Dayjs | Date;
 
 export const dayMinutesSchema = z.number().int().min(0).max(1440);
 
-export const isDate = (value: unknown): value is DateLike => {
+export const isDate = (value: unknown): value is TDateLike => {
 	return datetimeSchema.safeParse(value).success;
 };
 
@@ -45,7 +45,7 @@ export const getDateOrNull = (value: unknown): null | Date => {
 	return parsed.data.toDate();
 };
 
-export const compareDate = (first: DateLike, second: DateLike): number => {
+export const compareDate = (first: TDateLike, second: TDateLike): number => {
 	return dayjsUtc.utc(first).diff(second);
 };
 
@@ -94,7 +94,7 @@ export const dayNames = [
 	"sunday",
 ] as const;
 
-export type DayName = (typeof dayNames)[number];
+export type TDayName = (typeof dayNames)[number];
 
 export class DateRange<
 	Start extends string = "start",

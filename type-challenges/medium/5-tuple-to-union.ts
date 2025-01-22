@@ -12,7 +12,7 @@
   ```ts
   type Arr = ['1', '2', '3']
 
-  type Test = TupleToUnion<Arr> // expected to be '1' | '2' | '3'
+  type TTest = TupleToUnion<Arr> // expected to be '1' | '2' | '3'
   ```
 
   > View on GitHub: https://tsch.js.org/10

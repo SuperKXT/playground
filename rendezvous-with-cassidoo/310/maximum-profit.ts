@@ -1,64 +1,64 @@
-type tuple<
+type TTuple<
 	T extends number,
 	result extends 1[] = [],
-> = result["length"] extends T ? result : tuple<T, [...result, 1]>;
+> = result["length"] extends T ? result : TTuple<T, [...result, 1]>;
 
-type digit = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0;
+type TDigit = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0;
 
-type numberToTuple<
+type TNumberToTuple<
 	T extends number,
 	str extends string = `${T}`,
-> = str extends `${infer first extends digit}${infer rest}`
-	? [first, ...numberToTuple<never, rest>]
-	: str extends `${infer first extends digit}`
+> = str extends `${infer first extends TDigit}${infer rest}`
+	? [first, ...TNumberToTuple<never, rest>]
+	: str extends `${infer first extends TDigit}`
 		? [first]
 		: [];
 
-type compareDigit<T extends digit, U extends digit> = T extends U
+type TCompareDigit<T extends TDigit, U extends TDigit> = T extends U
 	? "equal"
-	: tuple<U> extends [...tuple<T>, ...unknown[]]
+	: TTuple<U> extends [...TTuple<T>, ...unknown[]]
 		? "less"
 		: "greater";
 
-type compareNumInner<tTuple extends digit[], uTuple extends digit[]> = [
+type TCompareNumInner<tTuple extends TDigit[], uTuple extends TDigit[]> = [
 	tTuple,
 	uTuple,
 ] extends [
-	[infer tFirst extends digit, ...infer tRest extends digit[]],
-	[infer uFirst extends digit, ...infer uRest extends digit[]],
+	[infer tFirst extends TDigit, ...infer tRest extends TDigit[]],
+	[infer uFirst extends TDigit, ...infer uRest extends TDigit[]],
 ]
-	? compareDigit<tFirst, uFirst> extends "less"
+	? TCompareDigit<tFirst, uFirst> extends "less"
 		? "less"
-		: compareDigit<tFirst, uFirst> extends "greater"
+		: TCompareDigit<tFirst, uFirst> extends "greater"
 			? "greater"
-			: compareNumInner<tRest, uRest>
+			: TCompareNumInner<tRest, uRest>
 	: "equal";
 
-type compareNum<
+type TCompareNum<
 	T extends number,
 	U extends number,
-	tTuple extends digit[] = numberToTuple<T>,
-	uTuple extends digit[] = numberToTuple<U>,
+	tTuple extends TDigit[] = TNumberToTuple<T>,
+	uTuple extends TDigit[] = TNumberToTuple<U>,
 > = T extends U
 	? "equal"
-	: tTuple[uTuple["length"]] extends digit
+	: tTuple[uTuple["length"]] extends TDigit
 		? "greater"
-		: uTuple[tTuple["length"]] extends digit
+		: uTuple[tTuple["length"]] extends TDigit
 			? "less"
-			: compareNumInner<tTuple, uTuple>;
+			: TCompareNumInner<tTuple, uTuple>;
 
-type min<
+type TMin<
 	T extends readonly number[],
 	val extends number = never,
 > = T extends readonly [
 	infer first extends number,
 	...infer rest extends number[],
 ]
-	? min<
+	? TMin<
 			rest,
 			[val] extends [never]
 				? first
-				: compareNum<first, val> extends "less"
+				: TCompareNum<first, val> extends "less"
 					? first
 					: val
 		>
@@ -66,18 +66,18 @@ type min<
 		? 0
 		: val;
 
-type max<
+type TMax<
 	T extends readonly number[],
 	val extends number = never,
 > = T extends readonly [
 	infer first extends number,
 	...infer rest extends number[],
 ]
-	? max<
+	? TMax<
 			rest,
 			[val] extends [never]
 				? first
-				: compareNum<first, val> extends "greater"
+				: TCompareNum<first, val> extends "greater"
 					? first
 					: val
 		>
@@ -85,26 +85,26 @@ type max<
 		? 0
 		: val;
 
-type subtract<T extends number, U extends number> =
-	tuple<T> extends [...tuple<U>, ...infer rest] ? rest["length"] : never;
+type TSubtract<T extends number, U extends number> =
+	TTuple<T> extends [...TTuple<U>, ...infer rest] ? rest["length"] : never;
 
-type MaximumProfit<
+type TMaximumProfit<
 	Arr extends readonly number[],
-	minVal extends number = min<Arr>,
+	minVal extends number = TMin<Arr>,
 > = Arr extends readonly [
 	infer first extends number,
 	...infer rest extends number[],
 ]
 	? first extends minVal
-		? compareNum<minVal, max<rest>> extends "less"
-			? subtract<max<rest>, minVal>
+		? TCompareNum<minVal, TMax<rest>> extends "less"
+			? TSubtract<TMax<rest>, minVal>
 			: 0
-		: MaximumProfit<rest, minVal>
+		: TMaximumProfit<rest, minVal>
 	: minVal;
 
 export const maximumProfit = <const arr extends readonly number[]>(
 	array: arr,
-): MaximumProfit<arr> => {
+): TMaximumProfit<arr> => {
 	const min = Math.min(...array, 0);
 	const max = Math.max(...array.slice(array.indexOf(min)), 0);
 	return (max - min) as never;

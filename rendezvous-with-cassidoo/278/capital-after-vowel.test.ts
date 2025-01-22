@@ -1,11 +1,11 @@
 import { capitalAfterVowel } from "./capital-after-vowel.js";
 
-type Test = {
+type TTest = {
 	input: string;
 	output: string;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: "hello world", output: "heLlo WoRld" },
 	/** cSpell: disable-next-line */
 	{ input: "xaabeuekadii", output: "xaaBeueKaDii" },

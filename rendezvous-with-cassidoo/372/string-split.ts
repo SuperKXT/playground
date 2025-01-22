@@ -1,17 +1,17 @@
-type StringSplit<
+type TStringSplit<
 	Str extends string,
 	SplitChar extends string,
 	curr extends string = "",
 	arr extends string[] = [],
 > = Str extends `${infer first}${infer rest}`
 	? SplitChar extends "" | first
-		? StringSplit<
+		? TStringSplit<
 				rest,
 				SplitChar,
 				"",
 				[...arr, SplitChar extends "" ? first : curr]
 			>
-		: StringSplit<rest, SplitChar, `${curr}${first}`, arr>
+		: TStringSplit<rest, SplitChar, `${curr}${first}`, arr>
 	: curr extends ""
 		? arr
 		: [...arr, curr];
@@ -19,7 +19,7 @@ type StringSplit<
 export const stringSplit = <Str extends string, SplitChar extends string>(
 	str: Str,
 	splitChar: SplitChar,
-): StringSplit<Str, SplitChar> => {
+): TStringSplit<Str, SplitChar> => {
 	const arr = [] as string[];
 	let curr = "";
 	for (const char of str) {

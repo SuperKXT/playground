@@ -1,11 +1,11 @@
 import { addEventDigits, addEventDigitsSinglePass } from "./add-even-digits.js";
 
-type Test = {
+type TTest = {
 	input: number;
 	output: number;
 };
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{ input: 548915381, output: 26 },
 	{ input: 10, output: 0 },
 	{ input: 1010.11, output: 1 },

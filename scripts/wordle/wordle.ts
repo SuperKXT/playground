@@ -12,7 +12,7 @@ const DUPLICATE_CHARACTER_REGEX = /(.).*\1/iu;
 /* cspell: disable-next-line */
 const ALPHABETS = "abcdefghijklmnopqrstuvxwyz";
 
-export const DEFAULT_ARGS: Arguments = {
+export const DEFAULT_ARGS: TArguments = {
 	a: ALPHABETS,
 	available: ALPHABETS,
 	k: "",
@@ -38,7 +38,7 @@ const ARGUMENT_SCHEMA = z.strictObject({
 	unavailable: z.string().regex(/^[a-z]{0,26}$/iu),
 });
 
-export const findWordle = (parameters: Arguments): string[] => {
+export const findWordle = (parameters: TArguments): string[] => {
 	const { available, unavailable, pattern, known, repeat } =
 		ARGUMENT_SCHEMA.parse(parameters);
 
@@ -77,10 +77,10 @@ export const findWordle = (parameters: Arguments): string[] => {
 	return matches;
 };
 
-export type Arguments = z.infer<typeof ARGUMENT_SCHEMA>;
+export type TArguments = z.infer<typeof ARGUMENT_SCHEMA>;
 
 if (!config.isTest) {
-	const args = argumentParser<Arguments>(process.argv.slice(2), {
+	const args = argumentParser<TArguments>(process.argv.slice(2), {
 		alias: {
 			available: "a",
 			known: "k",

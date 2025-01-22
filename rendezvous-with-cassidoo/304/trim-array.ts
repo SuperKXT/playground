@@ -1,12 +1,12 @@
-type tuple<T extends number, R extends unknown[] = []> = R["length"] extends T
+type TTuple<T extends number, R extends unknown[] = []> = R["length"] extends T
 	? R
-	: tuple<T, [...R, unknown]>;
+	: TTuple<T, [...R, unknown]>;
 
-type TrimArray<
+type TTrimArray<
 	Arr extends readonly number[],
 	Start extends number,
 	End extends number,
-> = Arr extends readonly [...tuple<Start>, ...infer Rest, ...tuple<End>]
+> = Arr extends readonly [...TTuple<Start>, ...infer Rest, ...TTuple<End>]
 	? Rest
 	: [];
 
@@ -18,6 +18,6 @@ export const trimArray = <
 	array: Arr,
 	start: Start,
 	end: End,
-): TrimArray<Arr, Start, End> => {
+): TTrimArray<Arr, Start, End> => {
 	return array.slice(start, array.length - end) as never;
 };

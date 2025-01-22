@@ -1,96 +1,96 @@
-type tuple<
+type TTuple<
 	size extends number,
 	tup extends 1[] = [],
-> = tup["length"] extends size ? tup : tuple<size, [...tup, 1]>;
+> = tup["length"] extends size ? tup : TTuple<size, [...tup, 1]>;
 
-type shift<T extends number[]> = T extends [
+type TShift<T extends number[]> = T extends [
 	unknown,
 	...infer R extends number[],
 ]
 	? R
 	: never;
 
-type numberToTuple<
+type TNumberToTuple<
 	T extends number,
 	R extends string = `${T}`,
 	A extends number[] = [],
 > = R extends `${infer F extends number}${infer L}`
-	? numberToTuple<T, L, [...A, F]>
+	? TNumberToTuple<T, L, [...A, F]>
 	: A;
 
-type greaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = tuple<T[0]>,
-	UF extends number[] = tuple<U[0]>,
+	TF extends number[] = TTuple<T[0]>,
+	UF extends number[] = TTuple<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? greaterThanDigits<shift<T>, shift<U>>
+		? TGreaterThanDigits<TShift<T>, TShift<U>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type greaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numberToTuple<T>,
-	UA extends number[] = numberToTuple<U>,
+	TA extends number[] = TNumberToTuple<T>,
+	UA extends number[] = TNumberToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? greaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type stringToUnion<T extends string> = T extends `${infer first}${infer rest}`
-	? first | stringToUnion<rest>
+type TStringToUnion<T extends string> = T extends `${infer first}${infer rest}`
+	? first | TStringToUnion<rest>
 	: never;
 
-type strLength<
+type TStrLength<
 	T extends string,
 	tup extends 1[] = [],
 > = T extends `${string}${infer rest}`
-	? strLength<rest, [...tup, 1]>
+	? TStrLength<rest, [...tup, 1]>
 	: tup["length"];
 
-type multiply<
+type TMultiply<
 	times extends number,
 	tup extends 1[],
 	res extends 1[] = [],
 	idx extends 1[] = [],
 > = idx["length"] extends times
 	? res["length"]
-	: multiply<times, tup, [...res, ...tup], [...idx, 1]>;
+	: TMultiply<times, tup, [...res, ...tup], [...idx, 1]>;
 
-type wordScore<
+type TWordScore<
 	T extends string,
-	scores extends Record<stringToUnion<T>, number>,
+	scores extends Record<TStringToUnion<T>, number>,
 	str extends string = T,
 	score extends 1[] = [],
 > = str extends `${infer first}${infer rest}`
 	? first extends keyof scores
-		? tuple<scores[first]> extends infer newScore extends 1[]
-			? wordScore<T, scores, rest, [...score, ...newScore]>
+		? TTuple<scores[first]> extends infer newScore extends 1[]
+			? TWordScore<T, scores, rest, [...score, ...newScore]>
 			: never
 		: never
-	: multiply<strLength<T>, score>;
+	: TMultiply<TStrLength<T>, score>;
 
-type ScoreWordGame<
+type TScoreWordGame<
 	str extends readonly string[],
-	scores extends Record<stringToUnion<str[number]>, number>,
+	scores extends Record<TStringToUnion<str[number]>, number>,
 	highest extends { score: number; word: string } = { score: 0; word: "" },
 > = str extends readonly [
 	infer first extends string,
 	...infer rest extends string[],
 ]
-	? scores extends Record<stringToUnion<first>, number>
-		? ScoreWordGame<
+	? scores extends Record<TStringToUnion<first>, number>
+		? TScoreWordGame<
 				rest,
 				scores,
-				greaterThan<wordScore<first, scores>, highest["score"]> extends true
-					? { word: first; score: wordScore<first, scores> }
+				TGreaterThan<TWordScore<first, scores>, highest["score"]> extends true
+					? { word: first; score: TWordScore<first, scores> }
 					: highest
 			>
 		: never
@@ -98,11 +98,11 @@ type ScoreWordGame<
 
 export const scoreWordGame = <
 	const Str extends readonly string[],
-	Scores extends Record<stringToUnion<Str[number]>, number>,
+	Scores extends Record<TStringToUnion<Str[number]>, number>,
 >(
 	words: Str,
 	scores: Scores,
-): ScoreWordGame<Str, Scores> => {
+): TScoreWordGame<Str, Scores> => {
 	const winner: { score: number; word: string } = { score: 0, word: "" };
 	for (const word of words) {
 		const score =
@@ -118,20 +118,20 @@ export const scoreWordGame = <
 	return winner.word as never;
 };
 
-type prettify<T> = { [k in keyof T]: T[k] } & {};
+type TPrettify<T> = { [k in keyof T]: T[k] } & {};
 
-type alphabet = "abcdefghijklmnopqrstuvwxyz";
+type TAlphabet = "abcdefghijklmnopqrstuvwxyz";
 
-type offset = tuple<98>;
+type TOffset = TTuple<98>;
 
-export type LetterScores<
-	tup extends string = alphabet,
+export type TLetterScores<
+	tup extends string = TAlphabet,
 	map extends Record<string, number> = {},
 	idx extends 1[] = [],
 > = tup extends `${infer first}${infer rest}`
-	? LetterScores<
+	? TLetterScores<
 			rest,
-			map & Record<first, [...offset, ...idx]["length"]>,
+			map & Record<first, [...TOffset, ...idx]["length"]>,
 			[...idx, 1]
 		>
-	: prettify<map>;
+	: TPrettify<map>;

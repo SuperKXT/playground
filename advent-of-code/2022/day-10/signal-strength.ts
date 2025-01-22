@@ -1,16 +1,16 @@
 const COMMANDS = ["addx", "noop"] as const;
 
-type Command = (typeof COMMANDS)[number];
+type TCommand = (typeof COMMANDS)[number];
 
-const isCommand = (value: unknown): value is Command =>
+const isCommand = (value: unknown): value is TCommand =>
 	typeof value === "string" && COMMANDS.includes(value);
 
-type Solution = {
+type TSolution = {
 	strength: number;
 	crtOutput: string;
 };
 
-type Clock = {
+type TClock = {
 	cycle: number;
 	register: number;
 	target: number;
@@ -19,7 +19,7 @@ type Clock = {
 const getCrtOutput = ({
 	register,
 	cycle,
-}: Clock): "." | "\n." | "\n#" | "#" => {
+}: TClock): "." | "\n." | "\n#" | "#" => {
 	const sprite = [register - 1, register, register + 1];
 	const position = (cycle - 1) % 40;
 	const isEol = cycle > 1 && position === 0;
@@ -28,14 +28,14 @@ const getCrtOutput = ({
 		: `${isEol ? "\n" : ""}.`;
 };
 
-export const signalStrength = (input: string): Solution => {
-	const clock: Clock = {
+export const signalStrength = (input: string): TSolution => {
+	const clock: TClock = {
 		cycle: 0,
 		register: 1,
 		target: 20,
 	};
 
-	const solution: Solution = {
+	const solution: TSolution = {
 		crtOutput: "",
 		strength: 0,
 	};

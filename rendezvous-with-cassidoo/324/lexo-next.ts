@@ -1,74 +1,74 @@
-type digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type TDigit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-type tuple<
+type TTuple<
 	size extends number,
 	tup extends 1[] = [],
-> = tup["length"] extends size ? tup : tuple<size, [...tup, 1]>;
+> = tup["length"] extends size ? tup : TTuple<size, [...tup, 1]>;
 
-type numToTuple<num extends number> = `${num}` extends `${infer first extends
-	digit}${infer rest extends number}`
-	? [first, ...numToTuple<rest>]
-	: num extends digit
+type TNumToTuple<num extends number> = `${num}` extends `${infer first extends
+	TDigit}${infer rest extends number}`
+	? [first, ...TNumToTuple<rest>]
+	: num extends TDigit
 		? [num]
 		: [];
 
-type tupleToString<T extends digit[]> = T extends [
-	infer first extends digit,
-	...infer rest extends digit[],
+type TTupleToString<T extends TDigit[]> = T extends [
+	infer first extends TDigit,
+	...infer rest extends TDigit[],
 ]
-	? `${first}${tupleToString<rest>}`
+	? `${first}${TTupleToString<rest>}`
 	: "";
 
-type tupleToNum<T extends digit[]> =
-	`${tupleToString<T>}` extends `${infer num extends number}` ? num : never;
-type shift<T extends number[]> = T extends [
+type TTupleToNum<T extends TDigit[]> =
+	`${TTupleToString<T>}` extends `${infer num extends number}` ? num : never;
+type TShift<T extends number[]> = T extends [
 	unknown,
 	...infer R extends number[],
 ]
 	? R
 	: never;
 
-type lessThanDigits<
+type TLessThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = tuple<T[0]>,
-	UF extends number[] = tuple<U[0]>,
+	TF extends number[] = TTuple<T[0]>,
+	UF extends number[] = TTuple<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? lessThanDigits<shift<T>, shift<U>>
+		? TLessThanDigits<TShift<T>, TShift<U>>
 		: TF[UF["length"]] extends undefined
 			? true
 			: false;
 
-type lessThan<
+type TLessThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numToTuple<T>,
-	UA extends number[] = numToTuple<U>,
+	TA extends number[] = TNumToTuple<T>,
+	UA extends number[] = TNumToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? lessThanDigits<TA, UA>
+		? TLessThanDigits<TA, UA>
 		: TA[UA["length"]] extends undefined
 			? true
 			: false;
 
-export type LexoNext<
+export type TLexoNext<
 	num extends number,
-	tup extends digit[] = numToTuple<num>,
-	res extends digit[] = [],
+	tup extends TDigit[] = TNumToTuple<num>,
+	res extends TDigit[] = [],
 > = tup extends [
-	...infer rest extends digit[],
-	infer last extends digit,
-	infer curr extends digit,
+	...infer rest extends TDigit[],
+	infer last extends TDigit,
+	infer curr extends TDigit,
 ]
-	? lessThan<last, curr> extends true
-		? tupleToNum<[...rest, curr, last, ...res]>
-		: LexoNext<never, rest, [last, curr, ...res]>
-	: tupleToNum<[...tup, ...res]>;
+	? TLessThan<last, curr> extends true
+		? TTupleToNum<[...rest, curr, last, ...res]>
+		: TLexoNext<never, rest, [last, curr, ...res]>
+	: TTupleToNum<[...tup, ...res]>;
 
-export const lexoNext = <Num extends number>(num: Num): LexoNext<Num> => {
+export const lexoNext = <Num extends number>(num: Num): TLexoNext<Num> => {
 	const digitArray = num.toString().split("");
 	for (let i = digitArray.length - 1; i > 0; i--) {
 		const curr = parseInt(digitArray[i] as string);

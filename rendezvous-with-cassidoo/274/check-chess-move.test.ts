@@ -2,13 +2,13 @@ import { isValidMove } from "./check-chess-move.js";
 import { CHESS_ERRORS } from "./check-chess-move.types.js";
 
 import type {
-	ChessResponse,
-	IsValidMoveArgs,
+	TChessResponse,
+	TIsValidMoveArgs,
 } from "./check-chess-move.types.js";
 
-type Test = {
-	input: IsValidMoveArgs;
-	response: ChessResponse;
+type TTest = {
+	input: TIsValidMoveArgs;
+	response: TChessResponse;
 };
 
 const BOARD = [
@@ -22,7 +22,7 @@ const BOARD = [
 	"~~~R~~~~",
 ].join("\n");
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	{
 		input: {
 			board: BOARD,

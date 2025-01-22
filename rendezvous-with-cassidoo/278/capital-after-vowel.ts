@@ -1,4 +1,4 @@
-type Solution = {
+type TSolution = {
 	withRegex: string;
 	withoutRegex: string;
 };
@@ -7,7 +7,7 @@ const VOWELS = "aeiou"; // cSpell: disable-line
 const CONSONANTS = "bcdfghjklmnpqrstvwxyz"; // cSpell: disable-line
 const REGEX = new RegExp(`(?<=[${VOWELS}]\\s*)[${CONSONANTS}]`, "gu");
 
-export const capitalAfterVowel = (input: string): Solution => {
+export const capitalAfterVowel = (input: string): TSolution => {
 	return {
 		withRegex: input.replace(REGEX, (value) => value.toUpperCase()),
 		withoutRegex: Array.from(input, (char, index) => {

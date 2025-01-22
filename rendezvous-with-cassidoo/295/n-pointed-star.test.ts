@@ -1,11 +1,11 @@
 import { getStarAngles } from "./n-pointed-star.js";
 
-type Test = {
+type TTest = {
 	input: number;
 	output: number;
 };
 
-const tests: Test[] = [
+const tests: TTest[] = [
 	{ input: 3, output: 180 },
 	{ input: 4, output: 360 },
 	{ input: 5, output: 180 },

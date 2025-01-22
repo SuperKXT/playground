@@ -1,18 +1,18 @@
 import { areArraysEqual } from "../../helpers/array.helpers.js";
 
-import type { LinkedListNode } from "../../helpers/linked-list.helpers.js";
+import type { TLinkedListNode } from "../../helpers/linked-list.helpers.js";
 
-export type Intersection = LinkedListNode<number> | [number, number];
+export type TIntersection = TLinkedListNode<number> | [number, number];
 
 const findIntersection = (
-	paramA: LinkedListNode<number> | number[],
-	paramB: LinkedListNode<number> | number[],
-): Intersection | null => {
+	paramA: TLinkedListNode<number> | number[],
+	paramB: TLinkedListNode<number> | number[],
+): TIntersection | null => {
 	if (!Array.isArray(paramA)) {
 		let nodeA = paramA;
 
 		while (nodeA) {
-			let nodeB = paramB as LinkedListNode<number>;
+			let nodeB = paramB as TLinkedListNode<number>;
 			while (nodeB) {
 				if (JSON.stringify(nodeA) === JSON.stringify(nodeB)) return nodeA;
 

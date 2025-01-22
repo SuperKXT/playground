@@ -1,38 +1,38 @@
 const delimiters = [".", "?", "!"] as const;
 
-type Delimiter = (typeof delimiters)[number];
+type TDelimiter = (typeof delimiters)[number];
 
 const startMap = { "?": "¿", "!": "¡" } as const;
 
-type StartMap = typeof startMap;
+type TStartMap = typeof startMap;
 
-type AppendStart<
+type TAppendStart<
 	Sentence extends string,
-	end extends Delimiter,
-> = end extends keyof StartMap
-	? Sentence extends `${StartMap[end]}${string}`
+	end extends TDelimiter,
+> = end extends keyof TStartMap
+	? Sentence extends `${TStartMap[end]}${string}`
 		? Sentence
-		: `${StartMap[end]}${Sentence}`
+		: `${TStartMap[end]}${Sentence}`
 	: Sentence;
 
-type FixInvertedPunctuation<
+type TFixInvertedPunctuation<
 	Input extends string,
 	Fixed extends string = "",
 	Sentence extends string = "",
 > = Input extends `${infer first}${infer rest}`
 	? [Sentence, first] extends ["", " "]
-		? FixInvertedPunctuation<rest, `${Fixed} `, Sentence>
-		: first extends Delimiter
-			? FixInvertedPunctuation<
+		? TFixInvertedPunctuation<rest, `${Fixed} `, Sentence>
+		: first extends TDelimiter
+			? TFixInvertedPunctuation<
 					rest,
-					`${Fixed}${AppendStart<`${Sentence}${first}`, first>}`
+					`${Fixed}${TAppendStart<`${Sentence}${first}`, first>}`
 				>
-			: FixInvertedPunctuation<rest, Fixed, `${Sentence}${first}`>
+			: TFixInvertedPunctuation<rest, Fixed, `${Sentence}${first}`>
 	: `${Fixed}${Sentence}`;
 
 export const fixInvertedPunctuation = <Input extends string>(
 	input: Input,
-): FixInvertedPunctuation<Input> => {
+): TFixInvertedPunctuation<Input> => {
 	let fixed = "";
 	let sentence = "";
 	for (const char of input) {

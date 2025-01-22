@@ -17,11 +17,11 @@ const INPUT = [
 	"move 1 from 1 to 2",
 ].join("\n");
 
-type Solution = Awaited<ReturnType<typeof supplyStacks>>;
+type TSolution = Awaited<ReturnType<typeof supplyStacks>>;
 
 test("testing supplyStacks against example input", () => {
 	const response = supplyStacks(INPUT);
-	const solution: Solution = {
+	const solution: TSolution = {
 		part1: "CMZ",
 		part2: "MCD",
 	};
@@ -31,7 +31,7 @@ test("testing supplyStacks against example input", () => {
 test("testing supplyStacks against real input", async () => {
 	const file = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
 	const response = supplyStacks(file);
-	const solution: Solution = {
+	const solution: TSolution = {
 		/** cSpell: disable-next-line */
 		part1: "VRWBSFZWM",
 		/** cSpell: disable-next-line */

@@ -1,11 +1,11 @@
-type Visited = Map<`${number}${number}`, true>;
-type Item = 0 | 1;
+type TVisited = Map<`${number}${number}`, true>;
+type TItem = 0 | 1;
 
 const exploreIsland = (
-	arr: Item[][],
+	arr: TItem[][],
 	row: number,
 	col: number,
-	visited: Visited,
+	visited: TVisited,
 ): number => {
 	const curr = arr[row]?.[col];
 	if (!curr || visited.has(`${row}${col}`)) return 0;
@@ -18,11 +18,11 @@ const exploreIsland = (
 	return length;
 };
 
-export const largestIsland = (arr: Item[][]): number => {
+export const largestIsland = (arr: TItem[][]): number => {
 	const visited = new Map<`${number}${number}`, true>();
 	let largest: number = 0;
 	for (let row = 0; row < arr.length; row++) {
-		for (let col = 0; col < (arr[row] as Item[]).length; col++) {
+		for (let col = 0; col < (arr[row] as TItem[]).length; col++) {
 			const currLength = exploreIsland(arr, row, col, visited);
 			largest = Math.max(largest, currLength);
 		}

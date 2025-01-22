@@ -1,55 +1,55 @@
-type tuple<T extends number, A extends 1[] = []> = A["length"] extends T
+type TTuple<T extends number, A extends 1[] = []> = A["length"] extends T
 	? A
-	: tuple<T, [...A, 1]>;
+	: TTuple<T, [...A, 1]>;
 
-type shift<tup extends number[]> = tup extends [
+type TShift<tup extends number[]> = tup extends [
 	unknown,
 	...infer rest extends number[],
 ]
 	? rest
 	: never;
 
-type numberToTuple<
+type TNumberToTuple<
 	num extends number,
 	str extends string = `${num}`,
 	result extends number[] = [],
 > = str extends `${infer F extends number}${infer L}`
-	? numberToTuple<num, L, [...result, F]>
+	? TNumberToTuple<num, L, [...result, F]>
 	: result;
 
-type greaterThanDigits<
+type TGreaterThanDigits<
 	T extends number[],
 	U extends number[],
-	TF extends number[] = tuple<T[0]>,
-	UF extends number[] = tuple<U[0]>,
+	TF extends number[] = TTuple<T[0]>,
+	UF extends number[] = TTuple<U[0]>,
 > = T["length"] extends 0
 	? false
 	: T[0] extends U[0]
-		? greaterThanDigits<shift<T>, shift<U>>
+		? TGreaterThanDigits<TShift<T>, TShift<U>>
 		: UF[TF["length"]] extends undefined
 			? true
 			: false;
 
-type greaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numberToTuple<T>,
-	UA extends number[] = numberToTuple<U>,
+	TA extends number[] = TNumberToTuple<T>,
+	UA extends number[] = TNumberToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? greaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type lessThan<T extends number, U extends number> = T extends U
+type TLessThan<T extends number, U extends number> = T extends U
 	? false
-	: greaterThan<T, U> extends true
+	: TGreaterThan<T, U> extends true
 		? false
 		: true;
 
-type IsBitonic<
+type TIsBitonic<
 	input extends number[],
 	increased extends boolean = false,
 	peak extends number = never,
@@ -62,24 +62,24 @@ type IsBitonic<
 		: increased extends false
 			? false
 			: peak
-	: greaterThan<curr, next> extends true
+	: TGreaterThan<curr, next> extends true
 		? increased extends false
 			? false
-			: IsBitonic<
+			: TIsBitonic<
 					input,
 					increased,
 					[peak] extends [never] ? curr : peak,
 					[...idx, 1]
 				>
-		: lessThan<curr, next> extends true
+		: TLessThan<curr, next> extends true
 			? [peak] extends [never]
-				? IsBitonic<input, true, peak, [...idx, 1]>
+				? TIsBitonic<input, true, peak, [...idx, 1]>
 				: false
-			: IsBitonic<input, increased, peak, [...idx, 1]>;
+			: TIsBitonic<input, increased, peak, [...idx, 1]>;
 
 export const isBitonic = <const Input extends number[]>(
 	input: Input,
-): IsBitonic<Input> => {
+): TIsBitonic<Input> => {
 	let increased = false;
 	let peak: number | undefined = undefined;
 	for (let i = 0; i < input.length - 1; i++) {

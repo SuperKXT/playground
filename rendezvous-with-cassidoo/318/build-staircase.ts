@@ -1,4 +1,4 @@
-type BuildStaircase<
+type TBuildStaircase<
 	T extends number,
 	idx extends 1[] = [1],
 	sum extends 1[] = [1],
@@ -6,11 +6,11 @@ type BuildStaircase<
 	? idx extends [unknown, ...infer rest]
 		? rest["length"]
 		: 0
-	: BuildStaircase<T, [...idx, 1], [...sum, ...idx, 1]>;
+	: TBuildStaircase<T, [...idx, 1], [...sum, ...idx, 1]>;
 
 export const buildStaircase = <T extends number>(
 	input: T,
-): BuildStaircase<T> => {
+): TBuildStaircase<T> => {
 	let sum = 1;
 	let idx = 1;
 	while (sum <= input) sum += ++idx;

@@ -15,11 +15,11 @@ const EXAMPLE = [
 ].join("\n");
 /** cSpell: enable */
 
-type Solution = ReturnType<typeof pathfinder>;
+type TSolution = ReturnType<typeof pathfinder>;
 
 test("testing pathFinder against example input", () => {
 	const response = pathfinder(EXAMPLE);
-	const solution: Solution = {
+	const solution: TSolution = {
 		fewestSteps: 0,
 		part2: 0,
 	};
@@ -28,7 +28,7 @@ test("testing pathFinder against example input", () => {
 
 test("testing pathFinder against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
-	const solution: Solution = {
+	const solution: TSolution = {
 		fewestSteps: 0,
 		part2: 0,
 	};

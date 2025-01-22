@@ -13,9 +13,9 @@ import { stringifyError } from "../../helpers/error.helpers.js";
 import { formatToken } from "../../helpers/format-token.helpers.js";
 
 import type {
-	RenameOptions,
-	RenameResult,
-	RenameResultType,
+	TRenameOptions,
+	TRenameResult,
+	TRenameResultType,
 } from "./recursive-rename.types.js";
 
 const PARAMS_SCHEMA = z.strictObject({
@@ -33,18 +33,18 @@ const PARAMS_SCHEMA = z.strictObject({
 	yes: z.boolean().optional(),
 });
 
-export type Params = z.infer<typeof PARAMS_SCHEMA>;
+export type TParams = z.infer<typeof PARAMS_SCHEMA>;
 
-type RecursiveLogResponse = {
+type TRecursiveLogResponse = {
 	logs: string[];
-	success: RenameResult[];
-	error: RenameResult[];
-	unchanged: RenameResult[];
+	success: TRenameResult[];
+	error: TRenameResult[];
+	unchanged: TRenameResult[];
 };
 
-type RecursiveLogParams = {
-	results: RenameResult[];
-	labels: Record<RenameResultType, string>;
+type TRecursiveLogParams = {
+	results: TRenameResult[];
+	labels: Record<TRenameResultType, string>;
 	verbose?: boolean;
 	onlyChanges?: boolean;
 	tree?: boolean;
@@ -60,8 +60,8 @@ export const getRecursiveLogs = ({
 	tree,
 	isConfirmation,
 	depth = 1,
-}: RecursiveLogParams): RecursiveLogResponse => {
-	const response: RecursiveLogResponse = {
+}: TRecursiveLogParams): TRecursiveLogResponse => {
+	const response: TRecursiveLogResponse = {
 		error: [],
 		logs: [],
 		success: [],
@@ -121,13 +121,13 @@ export const getRecursiveLogs = ({
 };
 
 export const getRenameLogs = (
-	results: RenameResult[],
+	results: TRenameResult[],
 	verbose?: boolean,
 	onlyChanges?: boolean,
 	tree?: boolean,
 	isConfirmation?: boolean,
 ): string => {
-	const labels: Record<RenameResultType, string> = {
+	const labels: Record<TRenameResultType, string> = {
 		error: chalk.bgRedBright(!isConfirmation ? "   ERROR   " : "   ISSUE   "),
 		success: chalk.bgGreenBright(
 			!isConfirmation ? "  SUCCESS  " : "  POSSIBLE ",
@@ -173,7 +173,7 @@ const getIsFolder = async (file: string): Promise<boolean> => {
 		.catch(() => false);
 };
 
-const findFiles = async (folder: string): Promise<RenameResult[]> => {
+const findFiles = async (folder: string): Promise<TRenameResult[]> => {
 	const files = await readdir(folder);
 	files.sort((first, second) => first.localeCompare(second));
 
@@ -186,7 +186,7 @@ const findFiles = async (folder: string): Promise<RenameResult[]> => {
 				extension ? "." : ""
 			}${extension}`;
 			const newPath = newName !== file ? path.join(folder, newName) : oldPath;
-			let children: RenameResult["children"];
+			let children: TRenameResult["children"];
 
 			try {
 				const isFolder = await getIsFolder(oldPath);
@@ -228,8 +228,8 @@ const findFiles = async (folder: string): Promise<RenameResult[]> => {
 
 const renameFiles = async (
 	folder: string,
-	files: RenameResult[],
-): Promise<RenameResult[]> => {
+	files: TRenameResult[],
+): Promise<TRenameResult[]> => {
 	return await Promise.all(
 		files.map(async (file) => {
 			const oldPath = path.join(folder, file.oldName);
@@ -267,8 +267,8 @@ export const RECURSIVE_RENAME_HELP = [
 
 export const recursiveRename = async (
 	location: string,
-	{ yes, verbose, onlyChanges, tree }: RenameOptions,
-): Promise<RenameResult[]> => {
+	{ yes, verbose, onlyChanges, tree }: TRenameOptions,
+): Promise<TRenameResult[]> => {
 	const folder = location.replace(/\/+$/u, "");
 
 	if (!(await getIsFolder(folder))) throw new Error(RENAME_ERRORS.badPath);
@@ -304,7 +304,7 @@ export const recursiveRename = async (
 
 if (!config.isTest) {
 	try {
-		const args = argumentParser<Params>(process.argv.slice(2), {
+		const args = argumentParser<TParams>(process.argv.slice(2), {
 			alias: {
 				help: "h",
 				"only-changes": "o",

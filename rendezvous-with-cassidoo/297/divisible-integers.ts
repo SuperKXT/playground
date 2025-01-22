@@ -1,4 +1,4 @@
-export type DivisibleIntegerN = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type TDivisibleIntegerN = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 const isEven = (digit: number) => digit % 2 === 0;
 const isOdd = (digit: number) => !isEven(digit);
@@ -24,7 +24,7 @@ const permutations = (digits: number[]) => {
 };
 
 export const divisibleIntegers = (
-	n: DivisibleIntegerN,
+	n: TDivisibleIntegerN,
 	array: number[],
 ): boolean => {
 	const digits = array.map((row) => String(row).split("").map(Number)).flat();

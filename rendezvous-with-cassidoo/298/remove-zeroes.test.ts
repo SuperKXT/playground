@@ -1,11 +1,11 @@
 import { removeZeroes } from "./remove-zeroes.js";
 
-type Test = {
+type TTest = {
 	input: number[];
 	output: number[];
 };
 
-const tests: Test[] = [
+const tests: TTest[] = [
 	{
 		input: [0, 0, 0, 3, 1, 4, 1, 5, 9, 0, 0, 0, 0],
 		output: [3, 1, 4, 1, 5, 9],

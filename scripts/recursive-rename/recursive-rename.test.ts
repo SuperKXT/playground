@@ -7,13 +7,16 @@ import { RENAME_ERRORS } from "./recursive-rename.types.js";
 
 import { config } from "../../config.js";
 
-import type { RenameOptions, RenameResult } from "./recursive-rename.types.js";
+import type {
+	TRenameOptions,
+	TRenameResult,
+} from "./recursive-rename.types.js";
 
 const TEMP_PATH = path.join(tmpdir(), "test");
 
-type Test = RenameResult[];
+type TTest = TRenameResult[];
 
-const TESTS: Test[] = [
+const TESTS: TTest[] = [
 	[
 		{
 			children: [
@@ -87,7 +90,7 @@ const TESTS: Test[] = [
 	],
 ];
 
-const recursiveSort = (files: RenameResult[]): RenameResult[] => {
+const recursiveSort = (files: TRenameResult[]): TRenameResult[] => {
 	files.sort((first, second) => first.oldName.localeCompare(second.oldName));
 	return files.map(({ children, ...file }) => ({
 		...file,
@@ -114,7 +117,7 @@ afterEach(() => {
 	rmSync(TEMP_PATH, { force: true, recursive: true });
 });
 
-const createFiles = (files: Test, directory: string = TEMP_PATH) => {
+const createFiles = (files: TTest, directory: string = TEMP_PATH) => {
 	for (const { oldName, children } of files) {
 		const oldPath = path.join(directory, oldName);
 		if (children) {
@@ -126,7 +129,7 @@ const createFiles = (files: Test, directory: string = TEMP_PATH) => {
 	}
 };
 
-const checkFiles = (files: Test, directory: string = TEMP_PATH) => {
+const checkFiles = (files: TTest, directory: string = TEMP_PATH) => {
 	for (const { type, oldName, newName, children } of files) {
 		const currentName = path.join(
 			directory,
@@ -151,7 +154,7 @@ test.each(SORTED_TESTS)(
 
 		createFiles(files);
 
-		const options: RenameOptions = {
+		const options: TRenameOptions = {
 			onlyChanges: false,
 			tree: false,
 			verbose: true,

@@ -20,14 +20,14 @@ const EXAMPLE_2 = [
 	"U 20",
 ].join("\n");
 
-type Solution = ReturnType<typeof ropeBridge>;
+type TSolution = ReturnType<typeof ropeBridge>;
 
 test("testing ropeBridge against example input", () => {
 	const response = ropeBridge(EXAMPLE, {
 		col: 0,
 		row: 4,
 	});
-	const solution: Solution = {
+	const solution: TSolution = {
 		firstTail: 13,
 		lastTail: 1,
 	};
@@ -35,7 +35,7 @@ test("testing ropeBridge against example input", () => {
 });
 
 test("testing ropeBridge against 2nd example input", () => {
-	const solution: Solution = {
+	const solution: TSolution = {
 		firstTail: 88,
 		lastTail: 36,
 	};
@@ -44,7 +44,7 @@ test("testing ropeBridge against 2nd example input", () => {
 
 test("testing ropeBridge against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
-	const solution: Solution = {
+	const solution: TSolution = {
 		firstTail: 5902,
 		lastTail: 2445,
 	};

@@ -1,101 +1,102 @@
-type shift<arr extends number[]> = arr extends [
+type TShift<arr extends number[]> = arr extends [
 	unknown,
 	...infer rest extends number[],
 ]
 	? rest
 	: never;
 
-type numberToTuple<
+type TNumberToTuple<
 	num extends number,
 	numString extends string = `${num}`,
 	res extends number[] = [],
 > = numString extends `${infer first extends number}${infer last}`
-	? numberToTuple<num, last, [...res, first]>
+	? TNumberToTuple<num, last, [...res, first]>
 	: res;
 
-type greaterThanDigits<
+type TGreaterThanDigits<
 	numA extends number[],
 	numB extends number[],
-	tupleA extends number[] = tuple<numA[0]>,
-	tupleB extends number[] = tuple<numB[0]>,
+	tupleA extends number[] = TTuple<numA[0]>,
+	tupleB extends number[] = TTuple<numB[0]>,
 > = numA["length"] extends 0
 	? false
 	: numA[0] extends numB[0]
-		? greaterThanDigits<shift<numA>, shift<numB>>
+		? TGreaterThanDigits<TShift<numA>, TShift<numB>>
 		: tupleB[tupleA["length"]] extends undefined
 			? true
 			: false;
 
-type greaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numberToTuple<T>,
-	UA extends number[] = numberToTuple<U>,
+	TA extends number[] = TNumberToTuple<T>,
+	UA extends number[] = TNumberToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? greaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type tuple<
+type TTuple<
 	size extends number,
 	res extends unknown[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type stringTuple<str extends string> = str extends `${infer first}${infer rest}`
-	? [first, ...stringTuple<rest>]
-	: [];
+type TStringTuple<str extends string> =
+	str extends `${infer first}${infer rest}`
+		? [first, ...TStringTuple<rest>]
+		: [];
 
-type multiply<
+type TMultiply<
 	numA extends number,
 	numB extends number,
 	idx extends unknown[] = [],
 	res extends unknown[] = [],
 > = idx["length"] extends numB
 	? res["length"]
-	: multiply<numA, numB, [...idx, 1], [...res, ...tuple<numA>]>;
+	: TMultiply<numA, numB, [...idx, 1], [...res, ...TTuple<numA>]>;
 
-type nextMax<
+type TNextMax<
 	strA extends string,
 	strB extends string,
 	currMax extends number,
-	charsA extends string = stringTuple<strA>[number],
-> = true extends (charsA extends stringTuple<strB>[number] ? true : false)
+	charsA extends string = TStringTuple<strA>[number],
+> = true extends (charsA extends TStringTuple<strB>[number] ? true : false)
 	? currMax
-	: multiply<
-				stringTuple<strA>["length"],
-				stringTuple<strB>["length"]
+	: TMultiply<
+				TStringTuple<strA>["length"],
+				TStringTuple<strB>["length"]
 		  > extends infer product extends number
-		? greaterThan<product, currMax> extends true
+		? TGreaterThan<product, currMax> extends true
 			? product
 			: currMax
 		: currMax;
 
-type maxProductForWord<
+type TMaxProductForWord<
 	word extends string,
 	arr extends string[],
 	currMax extends number = 0,
 > = arr extends [infer first extends string, ...infer rest extends string[]]
-	? maxProductForWord<word, rest, nextMax<word, first, currMax>>
+	? TMaxProductForWord<word, rest, TNextMax<word, first, currMax>>
 	: currMax;
 
-type WordLengthProduct<
+type TWordLengthProduct<
 	arr extends string[],
 	maxProduct extends number = 0,
 	idx extends unknown[] = [],
 > = idx["length"] extends arr["length"]
 	? maxProduct
-	: WordLengthProduct<
+	: TWordLengthProduct<
 			arr,
-			maxProductForWord<arr[idx["length"]], arr, maxProduct>,
+			TMaxProductForWord<arr[idx["length"]], arr, maxProduct>,
 			[...idx, 1]
 		>;
 
 export const wordLengthProduct = <const Arr extends string[]>(
 	arr: Arr,
-): WordLengthProduct<Arr> => {
+): TWordLengthProduct<Arr> => {
 	let maxProduct: number = 0;
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = i; j < arr.length; j++) {

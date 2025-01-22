@@ -29,11 +29,11 @@ const EXAMPLE = `[1,1,3,1,1]
 [1,[2,[3,[4,[5,6,7]]]],8,9]
 [1,[2,[3,[4,[5,6,0]]]],8,9]`;
 
-type Solution = ReturnType<typeof orderedPairs>;
+type TSolution = ReturnType<typeof orderedPairs>;
 
 test("testing orderedPairs against example input", () => {
 	const response = orderedPairs(EXAMPLE);
-	const solution: Solution = {
+	const solution: TSolution = {
 		indicesSum: 13,
 		part2: 140,
 	};
@@ -44,7 +44,7 @@ test("testing orderedPairs against real input", async () => {
 	const input = (
 		await readFile(path.join(config.dirname, "input.txt"), "utf-8")
 	).slice(0, -1);
-	const solution: Solution = {
+	const solution: TSolution = {
 		indicesSum: 5013,
 		part2: 25038,
 	};

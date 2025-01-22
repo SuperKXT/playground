@@ -1,40 +1,40 @@
-type Log = {
+type TLog = {
 	name: string;
 	time: number;
 	event: "start" | "end";
 };
 
-type Tuple<T, Res extends 1[] = []> = 0 extends 1
+type TTuple<T, Res extends 1[] = []> = 0 extends 1
 	? never
 	: Res["length"] extends T
 		? Res
-		: Tuple<T, [...Res, 1]>;
+		: TTuple<T, [...Res, 1]>;
 
-type Subtract<M extends number, S extends number> =
-	Tuple<M> extends [...Tuple<S>, ...infer Rest] ? Rest["length"] : never;
+type TSubtract<M extends number, S extends number> =
+	TTuple<M> extends [...TTuple<S>, ...infer Rest] ? Rest["length"] : never;
 
-type CalculateExecutionTimes<
-	Logs extends Log[],
+type TCalculateExecutionTimes<
+	Logs extends TLog[],
 	res extends Record<string, number> = {},
-> = Logs extends [infer first extends Log, ...infer rest extends Log[]]
+> = Logs extends [infer first extends TLog, ...infer rest extends TLog[]]
 	? first["event"] extends "start"
-		? CalculateExecutionTimes<
+		? TCalculateExecutionTimes<
 				rest,
 				Omit<res, first["name"]> & Record<first["name"], first["time"]>
 			>
-		: CalculateExecutionTimes<
+		: TCalculateExecutionTimes<
 				rest,
 				{
 					[k in keyof res]: k extends first["name"]
-						? Subtract<first["time"], res[k]>
+						? TSubtract<first["time"], res[k]>
 						: res[k];
 				}
 			>
 	: res;
 
-export const calculateExecutionTimes = <const Logs extends [Log, ...Log[]]>(
+export const calculateExecutionTimes = <const Logs extends [TLog, ...TLog[]]>(
 	logs: Logs,
-): CalculateExecutionTimes<Logs> => {
+): TCalculateExecutionTimes<Logs> => {
 	const times: Record<string, number> = {};
 	for (const curr of logs) {
 		if (curr.event === "start") {

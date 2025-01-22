@@ -1,54 +1,54 @@
-type digitOpts = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type TDigitOpts = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
-type tuple<
+type TTuple<
 	size extends number,
 	res extends unknown[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+> = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
-type shift<arr extends number[]> = arr extends [
+type TShift<arr extends number[]> = arr extends [
 	unknown,
 	...infer rest extends number[],
 ]
 	? rest
 	: never;
 
-type numberToTuple<
+type TNumberToTuple<
 	num extends number,
 	numString extends string = `${num}`,
 	res extends number[] = [],
 > = numString extends `${infer first extends number}${infer last}`
-	? numberToTuple<num, last, [...res, first]>
+	? TNumberToTuple<num, last, [...res, first]>
 	: res;
 
-type greaterThanDigits<
+type TGreaterThanDigits<
 	numA extends number[],
 	numB extends number[],
-	tupleA extends number[] = tuple<numA[0]>,
-	tupleB extends number[] = tuple<numB[0]>,
+	tupleA extends number[] = TTuple<numA[0]>,
+	tupleB extends number[] = TTuple<numB[0]>,
 > = numA["length"] extends 0
 	? false
 	: numA[0] extends numB[0]
-		? greaterThanDigits<shift<numA>, shift<numB>>
+		? TGreaterThanDigits<TShift<numA>, TShift<numB>>
 		: tupleB[tupleA["length"]] extends undefined
 			? true
 			: false;
 
-type greaterThan<
+type TGreaterThan<
 	T extends number,
 	U extends number,
-	TA extends number[] = numberToTuple<T>,
-	UA extends number[] = numberToTuple<U>,
+	TA extends number[] = TNumberToTuple<T>,
+	UA extends number[] = TNumberToTuple<U>,
 > = T extends U
 	? false
 	: TA["length"] extends UA["length"]
-		? greaterThanDigits<TA, UA>
+		? TGreaterThanDigits<TA, UA>
 		: UA[TA["length"]] extends undefined
 			? true
 			: false;
 
-type RemoveDigit<
+type TRemoveDigit<
 	num extends number,
-	digit extends digitOpts,
+	digit extends TDigitOpts,
 	numStr extends string = `${num}`,
 	prevStr extends string = "",
 	max extends number = 0,
@@ -57,20 +57,20 @@ type RemoveDigit<
 			digit,
 			`${infer currNum extends number}`,
 		]
-		? RemoveDigit<
+		? TRemoveDigit<
 				num,
 				digit,
 				rest,
 				`${prevStr}${first}`,
-				greaterThan<currNum, max> extends true ? currNum : max
+				TGreaterThan<currNum, max> extends true ? currNum : max
 			>
-		: RemoveDigit<num, digit, rest, `${prevStr}${first}`, max>
+		: TRemoveDigit<num, digit, rest, `${prevStr}${first}`, max>
 	: max;
 
-export const removeDigit = <num extends number, digit extends digitOpts>(
+export const removeDigit = <num extends number, digit extends TDigitOpts>(
 	num: num,
 	digit: digit,
-): RemoveDigit<num, digit> => {
+): TRemoveDigit<num, digit> => {
 	let maxProduct = 0;
 	const numStr = num.toString();
 	for (let idx = 0; idx < numStr.length; idx++) {

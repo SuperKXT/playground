@@ -153,11 +153,11 @@ noop
 noop
 noop`;
 
-type Solution = ReturnType<typeof signalStrength>;
+type TSolution = ReturnType<typeof signalStrength>;
 
 test("testing signalStrength against example input", () => {
 	const response = signalStrength(EXAMPLE);
-	const solution: Solution = {
+	const solution: TSolution = {
 		crtOutput: [
 			"##..##..##..##..##..##..##..##..##..##..",
 			"###...###...###...###...###...###...###.",
@@ -173,7 +173,7 @@ test("testing signalStrength against example input", () => {
 
 test("testing signalStrength against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
-	const solution: Solution = {
+	const solution: TSolution = {
 		crtOutput: [
 			"###...##...##..####.#..#.#....#..#.####.",
 			"#..#.#..#.#..#.#....#.#..#....#..#.#....",

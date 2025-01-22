@@ -33,11 +33,11 @@ Monkey 3:
     If true: throw to monkey 0
     If false: throw to monkey 1`;
 
-type Solution = ReturnType<typeof monkeyBusiness>;
+type TSolution = ReturnType<typeof monkeyBusiness>;
 
 test("testing monkeyBusiness against example input", () => {
 	const response = monkeyBusiness(EXAMPLE);
-	const solution: Solution = {
+	const solution: TSolution = {
 		bigMb: 2713310158,
 		monkeyBusiness: 10605,
 	};
@@ -46,7 +46,7 @@ test("testing monkeyBusiness against example input", () => {
 
 test("testing monkeyBusiness against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
-	const solution: Solution = {
+	const solution: TSolution = {
 		bigMb: 21816744824,
 		monkeyBusiness: 120056,
 	};

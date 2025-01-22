@@ -1,4 +1,4 @@
-export type GradePoint =
+export type TGradePoint =
 	| "A-"
 	| "A"
 	| "B-"
@@ -12,7 +12,7 @@ export type GradePoint =
 	| "D+"
 	| "F";
 
-export const key: Record<GradePoint, number> = {
+export const key: Record<TGradePoint, number> = {
 	A: 4,
 	"A-": 3.7,
 	B: 3,
@@ -27,7 +27,7 @@ export const key: Record<GradePoint, number> = {
 	F: 0,
 };
 
-export const calculateGpa = (grades: GradePoint[]): number => {
+export const calculateGpa = (grades: TGradePoint[]): number => {
 	return Number(
 		(
 			grades.reduce((sum, grade) => sum + key[grade], 0) / grades.length
