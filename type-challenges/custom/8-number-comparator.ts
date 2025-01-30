@@ -1,51 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils";
 
-type tuple<
-	size extends number,
-	res extends unknown[] = [],
-> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
-
-type numberToTuple<
-	num extends number,
-	str extends string = `${num}`,
-	res extends number[] = [],
-> = str extends `${infer curr extends number}${infer rest}`
-	? numberToTuple<never, rest, [...res, curr]>
-	: res;
-
-type compareDigits<
-	digitA extends number,
-	digitB extends number,
-	tupA extends unknown[] = tuple<digitA>,
-	tupB extends unknown[] = tuple<digitB>,
-> = digitA extends digitB
-	? "equal"
-	: tupA[tupB["length"]] extends 1
-		? "greater"
-		: "lesser";
-
-type compareNumbers<
-	numA extends number,
-	numB extends number,
-	tupA extends number[] = numberToTuple<numA>,
-	tupB extends number[] = numberToTuple<numB>,
-> = numA extends numB
-	? "equal"
-	: tupA["length"] extends tupB["length"]
-		? [tupA, tupB] extends [
-				[infer firstA extends number, ...infer restA extends number[]],
-				[infer firstB extends number, ...infer restB extends number[]],
-			]
-			? compareDigits<firstA, firstB> extends infer res
-				? res extends "equal"
-					? compareNumbers<numA, numB, restA, restB>
-					: res
-				: never
-			: never
-		: tupA[tupB["length"]] extends number
-			? "greater"
-			: "lesser";
-
 type toInt<T extends number> = T extends T
 	? `${T}` extends `${infer int extends number}.${string}`
 		? int
@@ -57,6 +11,64 @@ type trunc<T extends number> = T extends T
 		? truncated
 		: T
 	: never;
+
+type tuple<
+	size extends number,
+	res extends unknown[] = [],
+> = res["length"] extends size ? res : tuple<size, [...res, 1]>;
+
+type numberToTuple<
+	num extends number,
+	str extends string = `${trunc<num>}`,
+	res extends number[] = [],
+> = str extends `${infer curr extends number}${infer rest}`
+	? numberToTuple<never, rest, [...res, curr]>
+	: res;
+
+type reverseIfNegative<
+	T extends "lesser" | "greater",
+	areNegative extends boolean,
+> = areNegative extends true ? (T extends "lesser" ? "greater" : "lesser") : T;
+
+type compareDigits<
+	digitA extends number,
+	digitB extends number,
+	areNegative extends boolean,
+	tupA extends unknown[] = tuple<digitA>,
+	tupB extends unknown[] = tuple<digitB>,
+> = digitA extends digitB
+	? "equal"
+	: tupA[tupB["length"]] extends 1
+		? reverseIfNegative<"greater", areNegative>
+		: reverseIfNegative<"lesser", areNegative>;
+
+type compareNumbers<
+	numA extends number,
+	numB extends number,
+	isANeg extends boolean = trunc<numA> extends numA ? false : true,
+	isBNeg extends boolean = trunc<numB> extends numB ? false : true,
+	tupA extends number[] = numberToTuple<numA>,
+	tupB extends number[] = numberToTuple<numB>,
+> = numA extends numB
+	? "equal"
+	: [isANeg, isBNeg] extends [true, false]
+		? "lesser"
+		: [isANeg, isBNeg] extends [false, true]
+			? "greater"
+			: tupA["length"] extends tupB["length"]
+				? [tupA, tupB] extends [
+						[infer firstA extends number, ...infer restA extends number[]],
+						[infer firstB extends number, ...infer restB extends number[]],
+					]
+					? compareDigits<firstA, firstB, isANeg> extends infer res
+						? res extends "equal"
+							? compareNumbers<numA, numB, isANeg, isBNeg, restA, restB>
+							: res
+						: never
+					: never
+				: tupA[tupB["length"]] extends number
+					? reverseIfNegative<"greater", isANeg>
+					: reverseIfNegative<"lesser", isANeg>;
 
 type TCompareType = ">" | "<" | ">=" | "<=" | "=";
 
@@ -70,31 +82,28 @@ type TNumberComparator<
 	ToCompare extends number,
 	Type extends TCompareType,
 > = Num extends Num
-	? compareNumbers<
-			toInt<trunc<Num>>,
-			toInt<trunc<ToCompare>>
-		> extends infer result
+	? compareNumbers<toInt<Num>, toInt<ToCompare>> extends infer result
 		? [result, Type] extends validComparison
 			? Num
 			: never
 		: never
 	: never;
 
-type _ = TNumberComparator<typeof _num, 20, "<">;
+type _ = TNumberComparator<typeof _num, 20, "=">;
 //   ^?
 
-type TCheckPositiveInt<T extends number> =
-	trunc<toInt<T>> extends T ? T : "Only positive integers allowed";
+type TCheckInt<T extends number> =
+	toInt<T> extends T ? T : "Only integers allowed";
 
 function numberComparator<
 	Num extends number,
 	ToCompare extends number,
 	Type extends TCompareType,
 >(
-	input: TCheckPositiveInt<Num>,
-	toCompare: TCheckPositiveInt<ToCompare>,
+	input: TCheckInt<Num>,
+	toCompare: TCheckInt<ToCompare>,
 	type: Type,
-): input is TNumberComparator<Num & TCheckPositiveInt<Num>, ToCompare, Type> {
+): input is TNumberComparator<Num & TCheckInt<Num>, ToCompare, Type> {
 	const val = input as number;
 	const comp = toCompare as number;
 	switch (type) {
@@ -113,7 +122,7 @@ function numberComparator<
 	}
 }
 
-declare const _num: 1 | 2 | 3 | 4 | 50_000 | 65_000 | 10_000_001 | 20;
+declare const _num: 1 | 2 | 3 | 4 | 50_000 | 65_000 | 10_000_001 | 20 | -20;
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 _num;
 //^?
@@ -124,19 +133,28 @@ if (numberComparator(_num, 20, ">=")) {
 	//^?
 }
 type _cases = [
+	Expect<Equal<compareNumbers<20, 21>, "lesser">>,
+	Expect<Equal<compareNumbers<-21, -20>, "lesser">>,
+	Expect<Equal<compareNumbers<-21, -21>, "equal">>,
+	Expect<Equal<compareNumbers<-21, 21>, "lesser">>,
+	Expect<Equal<compareNumbers<21, -21>, "greater">>,
+	Expect<Equal<compareNumbers<0, -21>, "greater">>,
+	Expect<Equal<compareNumbers<0, 21>, "lesser">>,
 	Expect<
 		Equal<
 			TNumberComparator<typeof _num, 20, ">=">,
-			Exclude<typeof _num, 1 | 2 | 3 | 4>
+			Exclude<typeof _num, 1 | 2 | 3 | 4 | -20>
 		>
 	>,
 	Expect<
 		Equal<
 			TNumberComparator<typeof _num, 20, ">">,
-			Exclude<typeof _num, 1 | 2 | 3 | 4 | 20>
+			Exclude<typeof _num, 1 | 2 | 3 | 4 | 20 | -20>
 		>
 	>,
 	Expect<Equal<TNumberComparator<typeof _num, 20, "=">, 20>>,
-	Expect<Equal<TNumberComparator<typeof _num, 20, "<=">, 1 | 2 | 3 | 4 | 20>>,
-	Expect<Equal<TNumberComparator<typeof _num, 20, "<">, 1 | 2 | 3 | 4>>,
+	Expect<
+		Equal<TNumberComparator<typeof _num, 20, "<=">, 1 | 2 | 3 | 4 | 20 | -20>
+	>,
+	Expect<Equal<TNumberComparator<typeof _num, 20, "<">, 1 | 2 | 3 | 4 | -20>>,
 ];
