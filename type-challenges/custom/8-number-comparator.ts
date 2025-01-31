@@ -6,11 +6,15 @@ type toInt<T extends number> = T extends T
 		: T
 	: never;
 
-type trunc<T extends number> = T extends T
+type abs<T extends number | string> = T extends T
 	? `${T}` extends `-${infer truncated extends number}`
 		? truncated
 		: T
 	: never;
+
+type toFractional<T extends number> = `${T}` extends `${string}.${infer d}`
+	? d
+	: "";
 
 type tuple<
 	size extends number,
@@ -18,8 +22,8 @@ type tuple<
 > = res["length"] extends size ? res : tuple<size, [...res, 1]>;
 
 type numberToTuple<
-	num extends number,
-	str extends string = `${trunc<num>}`,
+	num extends number | string,
+	str extends string = `${abs<num>}`,
 	res extends number[] = [],
 > = str extends `${infer curr extends number}${infer rest}`
 	? numberToTuple<never, rest, [...res, curr]>
@@ -42,33 +46,43 @@ type compareDigits<
 		? reverseIfNegative<"greater", areNegative>
 		: reverseIfNegative<"lesser", areNegative>;
 
+type _compareNumbers<
+	tupA extends number[],
+	tupB extends number[],
+	areNegative extends boolean,
+> = tupA["length"] extends tupB["length"]
+	? [tupA, tupB] extends [
+			[infer firstA extends number, ...infer restA extends number[]],
+			[infer firstB extends number, ...infer restB extends number[]],
+		]
+		? compareDigits<firstA, firstB, areNegative> extends infer res
+			? res extends "equal"
+				? _compareNumbers<restA, restB, areNegative>
+				: res
+			: never
+		: never
+	: tupA[tupB["length"]] extends number
+		? reverseIfNegative<"greater", areNegative>
+		: reverseIfNegative<"lesser", areNegative>;
+
 type compareNumbers<
 	numA extends number,
 	numB extends number,
-	isANeg extends boolean = trunc<numA> extends numA ? false : true,
-	isBNeg extends boolean = trunc<numB> extends numB ? false : true,
-	tupA extends number[] = numberToTuple<numA>,
-	tupB extends number[] = numberToTuple<numB>,
+	isANeg extends boolean = abs<numA> extends numA ? false : true,
+	isBNeg extends boolean = abs<numB> extends numB ? false : true,
 > = numA extends numB
 	? "equal"
 	: [isANeg, isBNeg] extends [true, false]
 		? "lesser"
 		: [isANeg, isBNeg] extends [false, true]
 			? "greater"
-			: tupA["length"] extends tupB["length"]
-				? [tupA, tupB] extends [
-						[infer firstA extends number, ...infer restA extends number[]],
-						[infer firstB extends number, ...infer restB extends number[]],
-					]
-					? compareDigits<firstA, firstB, isANeg> extends infer res
-						? res extends "equal"
-							? compareNumbers<numA, numB, isANeg, isBNeg, restA, restB>
-							: res
-						: never
-					: never
-				: tupA[tupB["length"]] extends number
-					? reverseIfNegative<"greater", isANeg>
-					: reverseIfNegative<"lesser", isANeg>;
+			: toInt<numA> extends toInt<numB>
+				? _compareNumbers<
+						numberToTuple<toFractional<numA>>,
+						numberToTuple<toFractional<numB>>,
+						isANeg
+					>
+				: _compareNumbers<numberToTuple<numA>, numberToTuple<numB>, isANeg>;
 
 type TCompareType = ">" | "<" | ">=" | "<=" | "=";
 
@@ -82,7 +96,7 @@ type TNumberComparator<
 	ToCompare extends number,
 	Type extends TCompareType,
 > = Num extends Num
-	? compareNumbers<toInt<Num>, toInt<ToCompare>> extends infer result
+	? compareNumbers<Num, ToCompare> extends infer result
 		? [result, Type] extends validComparison
 			? Num
 			: never
@@ -122,7 +136,17 @@ function numberComparator<
 	}
 }
 
-declare const _num: 1 | 2 | 3 | 4 | 50_000 | 65_000 | 10_000_001 | 20 | -20;
+declare const _num:
+	| 1
+	| 2
+	| 3
+	| 4
+	| 50_000
+	| 65_000
+	| 10_000_001
+	| 20
+	| -20
+	| 20.234;
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 _num;
 //^?
@@ -140,6 +164,9 @@ type _cases = [
 	Expect<Equal<compareNumbers<21, -21>, "greater">>,
 	Expect<Equal<compareNumbers<0, -21>, "greater">>,
 	Expect<Equal<compareNumbers<0, 21>, "lesser">>,
+	Expect<Equal<compareNumbers<2134.012345, 2134.012346>, "lesser">>,
+	Expect<Equal<compareNumbers<2134.012345, 2134.012345>, "equal">>,
+	Expect<Equal<compareNumbers<2134.012345, 2134.012344>, "greater">>,
 	Expect<
 		Equal<
 			TNumberComparator<typeof _num, 20, ">=">,
