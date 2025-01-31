@@ -19,10 +19,48 @@ export const isAnagram = <T extends string, U extends string>(
 	return (firstArray.join("") === secondArray.join("")) as never;
 };
 
+type TSlice<
+	Num extends string,
+	Start extends number,
+	End extends number,
+	Idx extends 1[] = [1],
+> = Idx[End] extends 1
+	? ""
+	: Num extends `${infer first}${infer rest}`
+		? Idx[Start] extends 1
+			? `${first}${TSlice<rest, Start, End, [...Idx, 1]>}`
+			: TSlice<rest, Start, End, [...Idx, 1]>
+		: "";
+
+type TStringLength<
+	T extends string,
+	Idx extends 1[] = [],
+> = T extends `${string}${infer rest}`
+	? TStringLength<rest, [...Idx, 1]>
+	: Idx["length"];
+
+type TFindAnagrams<
+	Str extends string,
+	ToCheck extends string,
+	ToCheckLength extends number = TStringLength<ToCheck>,
+	Res extends number[] = [],
+	Idx extends 1[] = [],
+> = Str extends `${string}${infer rest}`
+	? TFindAnagrams<
+			rest,
+			ToCheck,
+			ToCheckLength,
+			TIsAnagram<TSlice<Str, 0, ToCheckLength>, ToCheck> extends true
+				? [...Res, Idx["length"]]
+				: Res,
+			[...Idx, 1]
+		>
+	: Res;
+
 export const findAnagrams = <Str extends string, ToCheck extends string>(
 	string: Str,
 	toCheck: ToCheck,
-): number[] => {
+): TFindAnagrams<Str, ToCheck> => {
 	if (toCheck.length > string.length) return [] as never;
 
 	const indices: number[] = [];
