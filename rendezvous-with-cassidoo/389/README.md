@@ -18,3 +18,7 @@ findAnagrams("abab", "ab");
 > [0, 1, 2];
 // cSpell: enable
 ```
+
+---
+
+[Solution Playground](https://tsplay.dev/mxdKbm)
