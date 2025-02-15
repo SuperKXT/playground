@@ -44,9 +44,29 @@ const positionMap = {
 	] as const,
 };
 
-export const availableNumbers = (
-	position: TPosition,
-	filled: number[],
-): number[] => {
-	return positionMap[position].filter((num) => !filled.includes(num));
+type TAvailableNumbers<
+	Pos extends TPosition,
+	Filled extends number[],
+	opts extends readonly number[] = (typeof positionMap)[Pos],
+	res extends number[] = [],
+> = opts extends readonly [
+	infer first extends number,
+	...infer rest extends readonly number[],
+]
+	? TAvailableNumbers<
+			Pos,
+			Filled,
+			rest,
+			first extends Filled[number] ? res : [...res, first]
+		>
+	: res;
+
+export const availableNumbers = <
+	Pos extends TPosition,
+	const Filled extends number[],
+>(
+	position: Pos,
+	filled: Filled,
+): TAvailableNumbers<Pos, Filled> => {
+	return positionMap[position].filter((num) => !filled.includes(num)) as never;
 };
