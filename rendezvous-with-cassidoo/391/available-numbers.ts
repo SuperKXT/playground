@@ -68,5 +68,6 @@ export const availableNumbers = <
 	position: Pos,
 	filled: Filled,
 ): TAvailableNumbers<Pos, Filled> => {
-	return positionMap[position].filter((num) => !filled.includes(num)) as never;
+	const set = new Set(filled);
+	return positionMap[position].filter((num) => !set.has(num)) as never;
 };
