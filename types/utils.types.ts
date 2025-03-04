@@ -217,7 +217,7 @@ export declare namespace Utils {
 		Tuple extends Tuple
 			? Utils.prettify<{
 					-readonly [k in keyof Omit<Tuple, keyof unknown[]> as Tuple[k] &
-						PropertyKey]: `${k & string}` extends `${infer num extends number}`
+						PropertyKey]: k & string extends `${infer num extends number}`
 						? num
 						: never;
 				}>

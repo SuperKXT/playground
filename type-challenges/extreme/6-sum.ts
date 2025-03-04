@@ -127,10 +127,10 @@ type _innerSum<
 > = A extends [infer FA extends Digit, ...infer RA extends Digit[]]
 	? B extends [infer FB extends Digit, ...infer RB extends Digit[]]
 		? AddDigits<[FA, FB, Carry]> extends [
-				infer NewCarry extends Digit,
-				infer Sum extends Digit,
+				infer newCarry extends Digit,
+				infer sum extends Digit,
 			]
-			? _innerSum<RA, RB, [...R, Sum], NewCarry>
+			? _innerSum<RA, RB, [...R, sum], newCarry>
 			: never
 		: never
 	: Carry extends 0

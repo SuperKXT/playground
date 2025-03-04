@@ -19,7 +19,9 @@ export const scrambleWords = (string: string): string => {
 			let scrambled = scramble(inner);
 			while (scrambled === inner) scrambled = scramble(inner);
 
-			return [first, ...scrambled, last, hasPeriod ? "." : ""].join("");
+			return [first, ...scrambled.split(""), last, hasPeriod ? "." : ""].join(
+				"",
+			);
 		})
 		.join(" ");
 };

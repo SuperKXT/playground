@@ -31,9 +31,9 @@ type Eval<T> = T extends `${Escapes}${infer U}`
 				? [null, U]
 				: T extends `"${infer U}`
 					? EvalString<U>
-					: T extends `${"["}${infer U}`
+					: T extends `[${infer U}`
 						? EvalArray<U>
-						: T extends `${"{"}${infer U}`
+						: T extends `{${infer U}`
 							? EvalObject<U>
 							: EvalNumber<T>;
 
