@@ -88,20 +88,6 @@ export const objectToFormData = (obj: object): FormData => {
 	return formData;
 };
 
-export const groupArrayBy = <T extends object, const U extends keyof T>(
-	arr: T[],
-	...groupBy: U[]
-) => {
-	const grouped = new Map<string, T[]>();
-	for (const item of arr) {
-		const val = groupBy.map((key) => item[key]).join("-");
-		const existing = grouped.get(val);
-		if (!existing) grouped.set(val, [item]);
-		else existing.push(item);
-	}
-	return grouped;
-};
-
 /** Useful for React Native. Use `URLSearchParams` in Node and Browser environments */
 export const objectToSearchParams = (obj: Record<string, string>) => {
 	return Object.entries(obj)

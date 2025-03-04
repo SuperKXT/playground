@@ -1,6 +1,5 @@
 import {
 	deepMerge,
-	groupArrayBy,
 	objectEntries,
 	objectKeys,
 	objectToFormData,
@@ -91,55 +90,6 @@ test("testing objectToFormData", () => {
 	expect(result.get("b")).toBe("new");
 	expect(result.get("c")).toBe("3");
 	expect(result.get("d")).toBe("true");
-});
-
-test("testing groupArrayBy", () => {
-	const array1 = [
-		{ foo: 1, bar: 1, baz: 1 },
-		{ foo: 1, bar: 1, baz: 2 },
-		{ foo: 1, bar: 2, baz: 1 },
-		{ foo: 1, bar: 2, baz: 2 },
-		{ foo: 1, bar: 2, baz: 3 },
-		{ foo: 1, bar: 3, baz: 1 },
-		{ foo: 2, bar: 1, baz: 1 },
-		{ foo: 2, bar: 1, baz: 2 },
-		{ foo: 2, bar: 2, baz: 1 },
-	];
-	const result1 = groupArrayBy(array1, "foo");
-	const expected1 = new Map();
-	expected1.set("1", [
-		{ foo: 1, bar: 1, baz: 1 },
-		{ foo: 1, bar: 1, baz: 2 },
-		{ foo: 1, bar: 2, baz: 1 },
-		{ foo: 1, bar: 2, baz: 2 },
-		{ foo: 1, bar: 2, baz: 3 },
-		{ foo: 1, bar: 3, baz: 1 },
-	]);
-	expected1.set("2", [
-		{ foo: 2, bar: 1, baz: 1 },
-		{ foo: 2, bar: 1, baz: 2 },
-		{ foo: 2, bar: 2, baz: 1 },
-	]);
-	expect(result1).toStrictEqual(expected1);
-
-	const result2 = groupArrayBy(array1, "foo", "bar");
-	const expected2 = new Map();
-	expected2.set("1-1", [
-		{ foo: 1, bar: 1, baz: 1 },
-		{ foo: 1, bar: 1, baz: 2 },
-	]);
-	expected2.set("1-2", [
-		{ foo: 1, bar: 2, baz: 1 },
-		{ foo: 1, bar: 2, baz: 2 },
-		{ foo: 1, bar: 2, baz: 3 },
-	]);
-	expected2.set("1-3", [{ foo: 1, bar: 3, baz: 1 }]);
-	expected2.set("2-1", [
-		{ foo: 2, bar: 1, baz: 1 },
-		{ foo: 2, bar: 1, baz: 2 },
-	]);
-	expected2.set("2-2", [{ foo: 2, bar: 2, baz: 1 }]);
-	expect(result2).toStrictEqual(expected2);
 });
 
 test("testing objectToSearchParams", () => {

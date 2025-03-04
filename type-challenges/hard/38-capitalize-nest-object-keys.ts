@@ -20,7 +20,7 @@ type CapitalizeNestObjectKeys<T extends object> = T extends unknown[]
 			]
 		: T
 	: {
-			[K in keyof T as `${Capitalize<string & K>}`]: T[K] extends object
+			[K in keyof T as Capitalize<string & K>]: T[K] extends object
 				? CapitalizeNestObjectKeys<T[K]>
 				: T[K];
 		};
