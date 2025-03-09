@@ -34,7 +34,7 @@ test("testing objectValues", () => {
 });
 
 test("testing omit with a single key", () => {
-	const omitted = { first: 1 };
+	const omitted = { first: 1 } as { first: 1 } | { zero: 0 };
 	const object = { ...omitted, second: 2 };
 	const result = omit(object, "second");
 	expect(result).toStrictEqual(omitted);
@@ -42,7 +42,7 @@ test("testing omit with a single key", () => {
 });
 
 test("testing omit with multiple keys", () => {
-	const omitted = { first: 1 };
+	const omitted = { first: 1 } as { first: 1 } | { zero: 0 };
 	const object = { ...omitted, second: 2, third: 3 };
 	const result = omit(object, "second", "third");
 	expect(result).toStrictEqual(omitted);
