@@ -24,13 +24,13 @@ export const objectValues = <T extends object>(object: T): T[keyof T][] => {
 export const omit = <Type extends object, ToOmit extends keyof Type>(
 	obj: Type,
 	...keys: ToOmit[]
-): Utils.prettify<Omit<Type, ToOmit>> => {
+): Utils.prettify<Utils.distributiveOmit<Type, ToOmit>> => {
 	const omitted = {} as Record<string, unknown>;
 	for (const key in obj) {
 		if (!Object.hasOwn(obj, key) || keys.includes(key as never)) continue;
 		omitted[key] = obj[key];
 	}
-	return omitted as Utils.prettify<Omit<Type, ToOmit>>;
+	return omitted as Utils.prettify<Utils.distributiveOmit<Type, ToOmit>>;
 };
 
 export const pick = <Type extends object, ToPick extends keyof Type>(
