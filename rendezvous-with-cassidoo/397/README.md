@@ -22,4 +22,4 @@ findLongestStreak([true, true, true, true], 2);
 
 ---
 
-[Solution Playground](https://tsplay.dev/NVDY7W)
+[Solution Playground](https://tsplay.dev/mqnYYW)
