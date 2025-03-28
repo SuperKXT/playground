@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { betweenNums } from "./between-nums.js";
 
 test("testing betweenNums against test 1", () => {

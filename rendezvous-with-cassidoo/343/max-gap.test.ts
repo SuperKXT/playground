@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { maxGap } from "./max-gap.js";
 
 test("testing removeDigit against test 1", () => {

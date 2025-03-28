@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { DEFAULT_ARGS, findWordle } from "./wordle.js";
 
 import type { TWordleWord } from "./word-list.js";

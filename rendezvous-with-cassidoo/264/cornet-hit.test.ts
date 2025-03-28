@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { cornerHit } from "./cornet-hit.js";
 
 import type { TCoord } from "./cornet-hit.js";
@@ -23,7 +25,6 @@ const TESTS: TTest[] = [
 		screenSize: [400, 200],
 	},
 ];
-
 test.each(TESTS)("testing cornerHit", (testCase) => {
 	const result = cornerHit(
 		testCase.boxSize,

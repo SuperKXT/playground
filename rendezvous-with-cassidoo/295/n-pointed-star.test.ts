@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { getStarAngles } from "./n-pointed-star.js";
 
 type TTest = {
@@ -22,7 +24,6 @@ test.each(tests)(
 		expect(response).toBe(output);
 	},
 );
-
 test("should fail for less then 3 sides", () => {
 	expect(() => {
 		getStarAngles(2);

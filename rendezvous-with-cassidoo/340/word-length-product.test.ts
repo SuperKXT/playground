@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { wordLengthProduct } from "./word-length-product.js";
 
 test("testing wordLengthProduct against test 1", () => {

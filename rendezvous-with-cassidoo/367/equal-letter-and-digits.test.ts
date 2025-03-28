@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { equalLetterAndDigits } from "./equal-letter-and-digits.js";
 
 test("testing equalLetterAndDigits against test 1", () => {

@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { divisibleIntegers } from "./divisible-integers.js";
 
 import type { Utils } from "../../types/utils.types.js";
@@ -14,7 +16,6 @@ const TESTS: TTest[] = [
 		outputs: [true, true, true, true, true, true, false, true, true],
 	},
 ];
-
 test.each(TESTS)(
 	"should return the if the number is divisible to given array digits",
 	({ input, outputs }) => {

@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { countCalories } from "./count-calories.js";
 
 import type { TCountCaloriesSolution } from "./count-calories.js";

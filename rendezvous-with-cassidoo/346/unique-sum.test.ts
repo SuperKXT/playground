@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { uniqueSum } from "./unique-sum.js";
 
 test("testing uniqueSum against test 1", () => {

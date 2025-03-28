@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { pathfinder } from "./pathfinder.js";
 
 import { config } from "../../../config.js";
@@ -16,7 +18,6 @@ const EXAMPLE = [
 /** cSpell: enable */
 
 type TSolution = ReturnType<typeof pathfinder>;
-
 test("testing pathFinder against example input", () => {
 	const response = pathfinder(EXAMPLE);
 	const solution: TSolution = {

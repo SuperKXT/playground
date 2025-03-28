@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import {
 	aoc2024Day15Part1,
 	aoc2024Day15Part2,

@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { calculateGpa } from "./calculate-gpa.js";
 
 import type { TGradePoint } from "./calculate-gpa.js";
@@ -29,7 +31,6 @@ const TESTS: TTest[] = [
 		output: 2.2,
 	},
 ];
-
 test.each(TESTS)("testing calculateGpa", ({ input, output }) => {
 	const response = calculateGpa(input);
 	expect(response).toStrictEqual(output);

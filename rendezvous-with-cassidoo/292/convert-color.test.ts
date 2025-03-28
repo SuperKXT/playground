@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { convertColor } from "./convert-color.js";
 
 test("convertColor: test # 1", () => {

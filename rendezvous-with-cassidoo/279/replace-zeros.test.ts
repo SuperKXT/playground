@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { replaceZeros } from "./replace-zeros.js";
 
 type TTest = {
@@ -13,7 +15,6 @@ const TESTS: TTest[] = [
 	{ input: "", output: "" },
 	{ input: "33032420000", output: "33132424" },
 ];
-
 test.each(TESTS)("testing replaceZeros", ({ input, output }) => {
 	expect(replaceZeros(input)).toStrictEqual(output);
 });

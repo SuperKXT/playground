@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { truncateWords } from "./truncate-words.js";
 
 type TTest = {
@@ -20,7 +22,6 @@ const TESTS: TTest[] = [
 		output: "not all who wand are lost.",
 	},
 ];
-
 test.each(TESTS)("testing truncateWords", ({ input, output }) => {
 	const response = truncateWords(...input);
 	expect(response).toStrictEqual(output);

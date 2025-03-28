@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import {
 	assert,
 	assertArray,
@@ -8,7 +10,6 @@ import {
 } from "./type.helpers.js";
 
 const isNumber = (value: unknown): value is number => typeof value === "number";
-
 test("should test readableTypeof helper", () => {
 	expect(readableTypeOf(2)).toBe("number");
 	expect(readableTypeOf("2")).toBe("string");

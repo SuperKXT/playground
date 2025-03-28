@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { increasingSubsequence } from "./increasing-subsequence.js";
 
 test("testing increasingSubsequence against test 1", () => {

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { reversedSquare } from "./reversed-squares.js";
 
 test("testing reversedSquares against test 1", () => {

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { wrapGifts } from "./wrap-gifts.js";
 
 test("testing wrapGifts 1", () => {

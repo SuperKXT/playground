@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { removeDigit } from "./remove-digit.js";
 
 test("testing removeDigit against test 1", () => {

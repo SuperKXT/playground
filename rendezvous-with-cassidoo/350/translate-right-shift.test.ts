@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { translateShiftRight } from "./translate-right-shift.js";
 
 test("testing translateShiftRight against test 1", () => {
@@ -6,7 +8,6 @@ test("testing translateShiftRight against test 1", () => {
 	expect(result).toStrictEqual(expected);
 	assertType<typeof result>(expected);
 });
-
 test("testing translateShiftRight against test 2", () => {
 	const result = translateShiftRight("ejp s, o");
 	const expected = "who am i";

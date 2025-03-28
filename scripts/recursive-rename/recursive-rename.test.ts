@@ -2,6 +2,8 @@ import { appendFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
+import { afterEach, beforeEach, expect, test, vi } from "vitest";
+
 import { getRenameLogs, recursiveRename } from "./recursive-rename.js";
 import { RENAME_ERRORS } from "./recursive-rename.types.js";
 
@@ -174,7 +176,6 @@ test.each(SORTED_TESTS)(
 		logSpy.mockRestore();
 	},
 );
-
 test("testing recursiveRename for invalid path", async () => {
 	await expect(
 		recursiveRename("./invalid-path", { yes: true }),

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { dailyTemperatures } from "./daily-temperatures.js";
 
 test("testing dailyTemperatures against test 1", () => {

@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { campCleanup } from "./camp-cleanup.js";
 
 const INPUT = [
@@ -10,7 +12,6 @@ const INPUT = [
 ].join("\n");
 
 type TSolution = Awaited<ReturnType<typeof campCleanup>>;
-
 test("testing campCleanup against example input", async () => {
 	const response = await campCleanup(INPUT);
 	const solution: TSolution = {

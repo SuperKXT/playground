@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { letters } from "./letters.js";
 
 test("testing letters against test 1", () => {

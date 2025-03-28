@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { printBinaryTree } from "./print-binary-tree.js";
 
 test("testing printBinaryTree for invalid input", () => {

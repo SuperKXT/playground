@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { addOperators } from "./add-operators.js";
 
 test("testing addOperators against test 1", () => {

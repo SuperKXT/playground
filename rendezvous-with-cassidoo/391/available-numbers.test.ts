@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { availableNumbers } from "./available-numbers.js";
 
 test("testing availableNumbers against test 1", () => {

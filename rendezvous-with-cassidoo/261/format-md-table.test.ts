@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { formatMarkdownTable } from "./format-md-table.js";
 
 type TTest = {
@@ -73,7 +75,6 @@ const TESTS: TTest[] = [
 		output: "",
 	},
 ];
-
 test.each(TESTS)("testing formatMarkdownTable", ({ input, output }) => {
 	const formatted = formatMarkdownTable(input);
 	expect(formatted).toStrictEqual(output);

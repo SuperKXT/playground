@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { fromTo } from "./from-to.js";
 
 test("testing fromTo against test 1", () => {

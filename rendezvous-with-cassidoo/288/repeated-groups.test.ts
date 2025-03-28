@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { repeatedGroups } from "./repeated-groups.js";
 
 type TTest = {
@@ -17,7 +19,6 @@ const TESTS: TTest[] = [
 		],
 	},
 ];
-
 test.each(TESTS)("testing repeatedGroups", ({ input, output }) => {
 	expect(repeatedGroups(input)).toStrictEqual(output);
 });

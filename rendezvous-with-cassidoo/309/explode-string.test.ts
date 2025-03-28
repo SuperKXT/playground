@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { explodeString } from "./explode-string.js";
 
 test("testing explodeString against test 1", () => {

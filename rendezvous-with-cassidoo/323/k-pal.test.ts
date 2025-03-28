@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { kPal } from "./k-pal.js";
 
 test("testing kPal against test 1", () => {
@@ -6,7 +8,6 @@ test("testing kPal against test 1", () => {
 	expect(result).toStrictEqual(expected);
 	assertType<typeof result>(expected);
 });
-
 test("testing kPal against test 2", () => {
 	const result = kPal("acxcb", 1); // cSpell: disable-line
 	const expected = false;

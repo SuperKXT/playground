@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { maxPointsOnLine } from "./max-line-points.js";
 
 type TTest = {
@@ -36,7 +38,6 @@ const tests: TTest[] = [
 		output: 5,
 	},
 ];
-
 test.each(tests)(
 	"should return the maximum points in a straight line",
 	({ input, output }) => {

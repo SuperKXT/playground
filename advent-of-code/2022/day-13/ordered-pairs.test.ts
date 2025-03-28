@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { orderedPairs } from "./ordered-pairs.js";
 
 import { config } from "../../../config.js";
@@ -30,7 +32,6 @@ const EXAMPLE = `[1,1,3,1,1]
 [1,[2,[3,[4,[5,6,0]]]],8,9]`;
 
 type TSolution = ReturnType<typeof orderedPairs>;
-
 test("testing orderedPairs against example input", () => {
 	const response = orderedPairs(EXAMPLE);
 	const solution: TSolution = {

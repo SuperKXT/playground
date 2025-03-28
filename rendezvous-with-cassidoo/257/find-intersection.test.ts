@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { findIntersection } from "./find-intersection.js";
 
 import { arrayToLinkedList } from "../../helpers/linked-list.helpers.js";
@@ -10,7 +12,6 @@ const LIST_A = arrayToLinkedList(ARRAY_A);
 const LIST_B = arrayToLinkedList(ARRAY_B);
 const LIST_C = arrayToLinkedList(ARRAY_C);
 const SOLUTION_NODE = LIST_A.head?.next;
-
 test("array test case 1 for findIntersection", () => {
 	const intersection = findIntersection(ARRAY_A, ARRAY_B);
 	expect(intersection).toStrictEqual([1, 2]);

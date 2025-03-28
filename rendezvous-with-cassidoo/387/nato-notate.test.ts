@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { natoNotate } from "./nato-notate.js";
 
 test("testing natoNotate 1", () => {

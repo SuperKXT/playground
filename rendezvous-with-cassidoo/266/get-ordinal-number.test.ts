@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { getOrdinalNumber } from "./get-ordinal-number.js";
 
 import type { TOrdinalNumber } from "./get-ordinal-number.js";
@@ -21,7 +23,6 @@ const TESTS: TTest[] = [
 	{ input: 423, output: "423rd" },
 	{ input: 1049, output: "1049th" },
 ];
-
 test.each(TESTS)("testing getOrdinalNumber", ({ input, output }) => {
 	const response = getOrdinalNumber(input);
 	expect(response).toStrictEqual(output);

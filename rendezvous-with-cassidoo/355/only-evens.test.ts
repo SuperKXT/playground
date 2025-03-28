@@ -1,5 +1,7 @@
 // cSpell: disable
 
+import { assertType, expect, test } from "vitest";
+
 import { onlyEvens } from "./only-evens.js";
 
 test("testing onlyEvens against test 1", () => {

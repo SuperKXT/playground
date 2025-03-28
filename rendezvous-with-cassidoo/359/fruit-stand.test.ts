@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { FruitStand } from "./fruit-stand.js";
 
 test("testing FruitStand", () => {

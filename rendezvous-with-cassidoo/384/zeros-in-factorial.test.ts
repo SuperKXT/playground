@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { zerosInFactorial } from "./zeros-in-factorial.js";
 
 test("testing zerosInFactorial 1", () => {

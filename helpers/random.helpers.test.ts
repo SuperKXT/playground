@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { getRandomInteger } from "./random.helpers.js";
 
 test("testing getRandomInteger helper", () => {

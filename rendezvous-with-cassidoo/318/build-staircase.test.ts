@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { buildStaircase } from "./build-staircase.js";
 
 test("testing buildStaircase against test 1", () => {

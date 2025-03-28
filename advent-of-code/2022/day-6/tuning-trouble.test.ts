@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { tuningTrouble } from "./tuning-trouble.js";
 
 import { config } from "../../../config.js";
@@ -61,7 +63,6 @@ test.each(TESTS)(
 		expect(tuningTrouble(input)).toStrictEqual(output);
 	},
 );
-
 test("testing turningTrouble against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
 	const response = tuningTrouble(input);

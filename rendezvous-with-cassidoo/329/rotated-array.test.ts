@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { rotatedArray } from "./rotated-array.js";
 
 test("testing rotatedArray against test 1", () => {

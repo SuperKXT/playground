@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { oddSquareNumbers } from "./odd-square-sum.js";
 
 type TTest = {
@@ -27,7 +29,6 @@ const tests: TTest[] = [
 		output: 0,
 	},
 ];
-
 test.each(tests)(
 	"should return the sum of odd squares",
 	({ input, output }) => {

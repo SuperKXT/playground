@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { removeZeroes } from "./remove-zeroes.js";
 
 type TTest = {

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { caloriesCost } from "./calories-cost.js";
 
 test("testing caloriesCost against test 1", () => {

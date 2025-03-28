@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { isBitonic } from "./is-bitonic.js";
 
 test("testing isBitonic against test 1", () => {

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { findUnused } from "./squares.js";
 
 test("testing findUnused against test 1", () => {

@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { signalStrength } from "./signal-strength.js";
 
 import { config } from "../../../config.js";
@@ -154,7 +156,6 @@ noop
 noop`;
 
 type TSolution = ReturnType<typeof signalStrength>;
-
 test("testing signalStrength against example input", () => {
 	const response = signalStrength(EXAMPLE);
 	const solution: TSolution = {

@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { missingBits } from "./missing-bits.js";
 
 type TTest = {
@@ -27,7 +29,6 @@ const TESTS: TTest[] = [
 		output: "[-3,...,0,...,5]",
 	},
 ];
-
 test.each(TESTS)("testing missingBits", ({ input, output }) => {
 	expect(missingBits(input)).toBe(output);
 });

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { replaceString } from "./replace-string.helpers.js";
 
 test("test replaceString", () => {

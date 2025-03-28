@@ -1,12 +1,13 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { aoc2024Day2 } from "./aoc-2024-day-2.js";
 
 import { config } from "../../../config.js";
 
 const dirname = path.join(config.dirname, "advent-of-code", "2024", "day-2");
-
 test("testing aoc-2024-day-2", async () => {
 	const sample = await readFile(path.join(dirname, "sample.txt"), "utf-8");
 	const sampleRes = aoc2024Day2(sample);

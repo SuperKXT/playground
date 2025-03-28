@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { maxPairs } from "./max-pairs.js";
 
 test("testing maxPairs against test 1", () => {

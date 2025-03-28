@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { shieldBreak } from "./shield-break.js";
 
 test("testing shieldBreak against test 1", () => {

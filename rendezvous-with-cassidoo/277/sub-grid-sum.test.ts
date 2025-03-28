@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { SUB_GRID_SUM_ERROR, subGridSum } from "./sub-grid-sum.js";
 
 const GRID = [

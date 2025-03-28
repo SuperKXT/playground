@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { generateArrays } from "./generate-arrays.js";
 
 type TTest = {
@@ -23,7 +25,6 @@ const TESTS: TTest[] = [
 		output: [],
 	},
 ];
-
 test.each(TESTS)("testing generateArrays", ({ input, output }) => {
 	expect(generateArrays(input)).toStrictEqual(output);
 });

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { evaluatePostfix } from "./evaluate-postfix.js";
 
 test("testing evaluatePostfix against test 1", () => {

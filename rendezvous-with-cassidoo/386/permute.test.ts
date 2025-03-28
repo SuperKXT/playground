@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { permute } from "./permute.js";
 
 test("testing permute", () => {

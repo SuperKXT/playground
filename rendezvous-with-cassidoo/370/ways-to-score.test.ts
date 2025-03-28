@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { waysToScore } from "./ways-to-score.js";
 
 test("testing waysToScore against test 1", () => {

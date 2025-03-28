@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { scoreWordGame } from "./score-word-game.js";
 
 import type { TLetterScores } from "./score-word-game.js";

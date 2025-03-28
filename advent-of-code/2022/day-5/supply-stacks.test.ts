@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { supplyStacks } from "./supply-stacks.js";
 
 import { config } from "../../../config.js";
@@ -18,7 +20,6 @@ const INPUT = [
 ].join("\n");
 
 type TSolution = Awaited<ReturnType<typeof supplyStacks>>;
-
 test("testing supplyStacks against example input", () => {
 	const response = supplyStacks(INPUT);
 	const solution: TSolution = {

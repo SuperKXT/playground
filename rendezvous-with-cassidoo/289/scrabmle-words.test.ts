@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { scrambleWords } from "./scramble-words.js";
 
 const TESTS: string[] = [
@@ -6,7 +8,6 @@ const TESTS: string[] = [
 	"this is a multi-sentence string. this should work as well.",
 	"following the light of the sun, we left the old world.",
 ];
-
 test.each(TESTS)("should return the sentence with scrambled words", (input) => {
 	const output = scrambleWords(input);
 	const sortedInput = output
