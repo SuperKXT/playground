@@ -1,5 +1,7 @@
 // cSpell: disable
 
+import { assertType, expect, test } from "vitest";
+
 import { fixInvertedPunctuation } from "./fix-inverted-punctuation.js";
 
 test("testing fixInvertedPunctuation against test 1", () => {

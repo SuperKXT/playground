@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { raumdeuter } from "./raumdeuter.js";
 
 import { config } from "../../../config.js";
@@ -30,7 +32,6 @@ const EXAMPLE = [
 	"5626152 d.ext",
 	"7214296 k",
 ].join("\n");
-
 test("testing raumdeuter against example input", () => {
 	expect(raumdeuter(EXAMPLE)).toStrictEqual({
 		deletedSize: 24933642,

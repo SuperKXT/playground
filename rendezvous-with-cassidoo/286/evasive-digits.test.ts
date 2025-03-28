@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { evasiveDigits } from "./evasive-digits.js";
 
 test("testing evasiveDigits", () => {

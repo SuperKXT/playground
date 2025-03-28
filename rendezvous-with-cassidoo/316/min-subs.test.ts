@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { minSubs } from "./min-subs.js";
 
 test("testing minSubs against test 1", () => {

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { depthJson } from "./depth-json.js";
 
 test("testing depthJson against test 1", () => {

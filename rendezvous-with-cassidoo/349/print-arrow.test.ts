@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { printArrow } from "./print-arrow.js";
 
 test("testing printArrow against test 1", () => {

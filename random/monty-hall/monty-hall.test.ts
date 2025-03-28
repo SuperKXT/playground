@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { tryMontyHall } from "./monty-hall.js";
 
 test("testing tryMontyHall", () => {

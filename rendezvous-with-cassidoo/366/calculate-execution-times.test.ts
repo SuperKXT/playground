@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { calculateExecutionTimes } from "./calculate-execution-times.js";
 
 test("testing calculateExecutionTimes against test 1", () => {

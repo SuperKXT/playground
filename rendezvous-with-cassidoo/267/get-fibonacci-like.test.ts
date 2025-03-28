@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import {
 	ERRORS,
 	getFibonacciLike,
@@ -46,7 +48,6 @@ const CHECK_TESTS: TCheckTest[] = [
 	// @ts-expect-error intentional error check
 	{ input: [5, undefined, 15], output: false },
 ];
-
 test.each(GET_TESTS)(
 	"testing getFibonacciLike for good input",
 	({ input, output }) => {

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { typeMatchup } from "./type-matchup.js";
 
 test("testing typeMatchup against test 1", async () => {

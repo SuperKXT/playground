@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { canPlantFlowers } from "./can-plant-flowers.js";
 
 test("testing canPlantFlowers against test 1", () => {

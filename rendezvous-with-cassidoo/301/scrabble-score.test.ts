@@ -1,4 +1,6 @@
 /** cSpell: disable */
+import { assertType, expect, test } from "vitest";
+
 import { scrabbleScore } from "./scrabble-score.js";
 
 test("should test scrabbleScore", () => {

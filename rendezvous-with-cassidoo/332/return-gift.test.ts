@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { returnGift } from "./return-gift.js";
 
 test("testing returnGift against test 1", () => {

@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { combineStrings, INVALID_ERROR } from "./combine-strings.js";
 
 type TTest = {
@@ -38,7 +40,6 @@ test.each(TESTS)(
 		expect(combineStrings(...input)).toStrictEqual(output);
 	},
 );
-
 test("testing combineStrings for invalid inputs", () => {
 	expect(() => combineStrings(["ab", "base", "gh"], 2)).toThrow(INVALID_ERROR);
 });

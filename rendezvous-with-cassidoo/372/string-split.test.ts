@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { stringSplit } from "./string-split.js";
 
 test("testing stringSplit", () => {

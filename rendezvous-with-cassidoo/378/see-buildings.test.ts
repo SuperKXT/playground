@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { seeBuildings } from "./see-buildings.js";
 
 test("testing seeBuildings 1", () => {

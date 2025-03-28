@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { parseNumber } from "./parse-number.js";
 
 test("testing parseNumber against test 1", () => {

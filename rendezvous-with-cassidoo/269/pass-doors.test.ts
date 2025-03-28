@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { passDoors } from "./pass-doors.js";
 
 type TTest = {
@@ -11,7 +13,6 @@ const TESTS: TTest[] = [
 	{ input: [2, 0], output: 0 },
 	{ input: [3, 1], output: 3 },
 ];
-
 test.each(TESTS)("testing passDoors", ({ input, output }) => {
 	const response = passDoors(...input);
 	expect(response).toStrictEqual(output);

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { isIsomorphic } from "./is-isomorphic.js";
 
 test("testing isIsomorphic against test 1", () => {

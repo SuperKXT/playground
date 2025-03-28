@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { fractionMath } from "./fraction-math.js";
 
 type TTest = {
@@ -39,7 +41,6 @@ const TESTS: TTest[] = [
 		output: "1/8",
 	},
 ];
-
 test.each(TESTS)(
 	"should return the resulting fraction in the simplest form",
 	({ args, output }) => {

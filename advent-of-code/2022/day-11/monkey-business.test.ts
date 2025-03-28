@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { monkeyBusiness } from "./monkey-business.js";
 
 import { config } from "../../../config.js";
@@ -34,7 +36,6 @@ Monkey 3:
     If false: throw to monkey 1`;
 
 type TSolution = ReturnType<typeof monkeyBusiness>;
-
 test("testing monkeyBusiness against example input", () => {
 	const response = monkeyBusiness(EXAMPLE);
 	const solution: TSolution = {

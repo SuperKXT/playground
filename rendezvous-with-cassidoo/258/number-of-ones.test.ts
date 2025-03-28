@@ -1,9 +1,10 @@
+import { expect, test } from "vitest";
+
 import { numberOfOnes } from "./number-of-ones.js";
 
 const TEST_1 = { answer: 7, number: 14 };
 const TEST_2 = { answer: 55, number: 121 };
 const TEST_3 = { answer: 0, number: 0 };
-
 test("should find 7 digits for number 14", () => {
 	const oneCount = numberOfOnes(TEST_1.number);
 	expect(oneCount).toStrictEqual(TEST_1.answer);

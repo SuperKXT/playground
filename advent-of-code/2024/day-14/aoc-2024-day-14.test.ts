@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { aoc2024Day14, day14Path } from "./aoc-2024-day-14.js";
 
 test("testing aoc-2024-day-14 with sample ", async () => {

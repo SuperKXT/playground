@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { isValidMove } from "./check-chess-move.js";
 import { CHESS_ERRORS } from "./check-chess-move.types.js";
 
@@ -61,7 +63,6 @@ const TESTS: TTest[] = [
 		},
 	},
 ];
-
 test.each(TESTS)("testing isValidMove", ({ input, response }) => {
 	expect(isValidMove(input)).toStrictEqual(response);
 });

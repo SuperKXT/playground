@@ -1,4 +1,6 @@
 /** cSpell: disable */
+import { assertType, expect, test } from "vitest";
+
 import { mmmPie } from "./mmm-pie.js";
 
 test("should test mmmPie", () => {

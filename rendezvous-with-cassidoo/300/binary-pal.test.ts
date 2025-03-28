@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { binaryPal } from "./binary-pal.js";
 
 test("should check if the binary of given number is palindrome", () => {

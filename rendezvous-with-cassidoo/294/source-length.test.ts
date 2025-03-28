@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { getSourceLength } from "./source-length.js";
 
 test("sourceLength should return the number of characters in its source code", async () => {

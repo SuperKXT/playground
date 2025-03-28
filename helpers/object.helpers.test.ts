@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import {
 	deepMerge,
 	objectEntries,

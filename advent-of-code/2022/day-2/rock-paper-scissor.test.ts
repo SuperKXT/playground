@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { rockPaperScissors } from "./rock-paper-scissor.js";
 
 test("testing rockPaperScissors", async () => {

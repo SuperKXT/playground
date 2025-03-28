@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 /** cSpell: disable */
 
+import { expect, test } from "vitest";
+
 import { pluralize } from "./pluralize.helpers.js";
 
 test("testing pluralize with simple number quantifier", () => {

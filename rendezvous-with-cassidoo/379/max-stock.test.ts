@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { maxStock } from "./max-stock.js";
 
 test("testing maxStock 1", () => {

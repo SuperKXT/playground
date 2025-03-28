@@ -1,4 +1,6 @@
 /** cSpell: disable */
+import { assertType, expect, test } from "vitest";
+
 import { trimArray } from "./trim-array.js";
 
 test("testing trimArray against test 1", () => {

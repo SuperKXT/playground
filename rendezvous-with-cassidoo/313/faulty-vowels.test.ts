@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { faultyVowels } from "./faulty-vowels.js";
 
 test("testing faultyVowels against test 1", () => {

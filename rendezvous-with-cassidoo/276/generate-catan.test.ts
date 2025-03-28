@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { assertValidCatanBoard, generateCatanBoard } from "./generate-catan.js";
 import { CATAN_ERRORS } from "./generate-catan.types.js";
 
@@ -47,7 +49,6 @@ test.each(INVALID_BOARDS)(
 		}).toThrow(error);
 	},
 );
-
 test("testing generateCatanBoard", () => {
 	expect(() => {
 		[...new Array<unknown>(1000)].forEach(() => {

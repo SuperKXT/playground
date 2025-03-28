@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { longestSubsequence } from "./longest-sub-sequence.js";
 
 test("testing longestSubsequence 1", () => {

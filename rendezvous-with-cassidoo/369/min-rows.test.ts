@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { minRows } from "./min-rows.js";
 
 test("testing minRows against test 1", () => {

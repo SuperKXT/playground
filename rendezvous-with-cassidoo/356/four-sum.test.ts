@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { fourSum } from "./four-sum.js";
 
 test("testing fourSum against test 1", () => {

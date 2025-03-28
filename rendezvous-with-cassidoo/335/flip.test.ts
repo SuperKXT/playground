@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { flip } from "./flip.js";
 
 test("testing flip against test 1", () => {

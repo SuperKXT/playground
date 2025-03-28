@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { majority } from "./majority.js";
 
 test("testing majority against test 1", () => {

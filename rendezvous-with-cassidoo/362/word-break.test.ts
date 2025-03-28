@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { wordBreak } from "./word-break.js";
 
 test("testing wordBreak against test 1", () => {

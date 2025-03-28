@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { hills, valleys } from "./hills-valleys.js";
 
 test("testing hills and valleys against test 1", () => {

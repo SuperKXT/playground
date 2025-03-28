@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { minimumPairs } from "./minimum-pairs.js";
 
 import type { TPair } from "./minimum-pairs.js";
@@ -21,7 +23,6 @@ const TESTS: TTest[] = [
 		solution: ["2 4", "7 9"],
 	},
 ];
-
 test.each(TESTS)("testing minimumPairs", ({ input, solution }) => {
 	const response = minimumPairs(input);
 	expect(response).toStrictEqual(solution);

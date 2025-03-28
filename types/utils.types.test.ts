@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+import { assertType, test } from "vitest";
+
 import type { Utils } from "./utils.types.js";
 
 type TTrueTuple<T extends true[]> = T[number] extends true ? true : false;
 type TFalseTuple<T extends false[]> = T[number] extends false ? true : false;
-
 test("test prettify type util", () => {
 	type TTests = TTrueTuple<
 		[

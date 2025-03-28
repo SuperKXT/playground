@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { expect, test } from "vitest";
+
 import { ropeBridge } from "./rope-bridge.js";
 
 import { config } from "../../../config.js";
@@ -21,7 +23,6 @@ const EXAMPLE_2 = [
 ].join("\n");
 
 type TSolution = ReturnType<typeof ropeBridge>;
-
 test("testing ropeBridge against example input", () => {
 	const response = ropeBridge(EXAMPLE, {
 		col: 0,

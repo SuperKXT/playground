@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { sortNames } from "./sort-names.js";
 
 test("testing sortNames against test 1", () => {

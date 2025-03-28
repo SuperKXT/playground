@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { uniqueSubstring } from "./unique-substring.js";
 
 test("testing uniqueSubstring against test 1", () => {

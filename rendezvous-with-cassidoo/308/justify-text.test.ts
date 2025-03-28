@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { justifyText } from "./justify-text.js";
 
 test("testing justifyText against test 1", () => {

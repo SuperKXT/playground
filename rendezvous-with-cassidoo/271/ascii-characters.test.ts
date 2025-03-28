@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { printAscii } from "./ascii-characters.js";
 
 test("testing printAscii", () => {

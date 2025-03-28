@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { lexoNext } from "./lexo-next.js";
 
 test("testing lexoNext against test 1", () => {

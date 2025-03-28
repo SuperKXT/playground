@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { doWork } from "./do-tasks.js";
 
 test("testing doWork against test 1", () => {

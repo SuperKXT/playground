@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { rollDice } from "./roll-dice.js";
 
 const TESTS = [
@@ -34,7 +36,6 @@ test.each(TESTS)(
 		}
 	},
 );
-
 test("roll dice should throw an error for incorrect dice notation", () => {
 	// @ts-expect-error type error
 	expect(() => rollDice("2d")).toThrow("bad dice notation!");

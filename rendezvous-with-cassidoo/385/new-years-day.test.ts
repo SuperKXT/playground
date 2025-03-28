@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { newYearsDay } from "./new-years-day.js";
 
 test("testing newYearsDay 1", () => {

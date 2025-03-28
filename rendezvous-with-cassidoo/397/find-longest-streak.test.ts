@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { findLongestStreak } from "./find-longest-streak.js";
 
 test("testing shieldBreak against test 1", () => {

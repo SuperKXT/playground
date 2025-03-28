@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { capitalAfterVowel } from "./capital-after-vowel.js";
 
 type TTest = {
@@ -11,7 +13,6 @@ const TESTS: TTest[] = [
 	{ input: "xaabeuekadii", output: "xaaBeueKaDii" },
 	{ input: "ab", output: "aB" },
 ];
-
 test.each(TESTS)("testing capitalAfterVowel", ({ input, output }) => {
 	expect(capitalAfterVowel(input)).toStrictEqual({
 		withRegex: output,

@@ -1,3 +1,5 @@
+import { assertType, expect, test } from "vitest";
+
 import { rollCall } from "./roll-call.js";
 
 test("testing rollCall 1", () => {

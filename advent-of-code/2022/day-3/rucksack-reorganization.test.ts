@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { rucksackReorganization } from "./rucksack-reorganization.js";
 
 const INPUT = [
@@ -12,7 +14,6 @@ const INPUT = [
 ].join("\n");
 
 type TSolution = Awaited<ReturnType<typeof rucksackReorganization>>;
-
 test("testing rucksackReorganization against example input", async () => {
 	const response = await rucksackReorganization(INPUT);
 	const solution: TSolution = {
