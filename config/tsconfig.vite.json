@@ -21,7 +21,6 @@
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"resolveJsonModule": true,
-		"types": ["vitest/globals"],
 
 		// emit
 		"downlevelIteration": true,

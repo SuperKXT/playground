@@ -22,7 +22,6 @@
 		"moduleResolution": "Bundler",
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
-		"types": ["vitest/globals"],
 
 		// emit
 		"downlevelIteration": true,
