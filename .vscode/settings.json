@@ -5,6 +5,7 @@
 		"**/node_modules": true,
 		"**/bower_components": true,
 		"**/*.code-search": true,
-		"coverage": true
+		"coverage": true,
+		"pnpm-lock.yaml": true
 	}
 }
