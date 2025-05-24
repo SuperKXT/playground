@@ -2,36 +2,34 @@ import { assertType, expect, test } from "vitest";
 
 import { towerOfHanoi } from "./tower-of-hanoi.js";
 
-import type { TStep } from "./tower-of-hanoi.js";
-
 test("testing towerOfHanoi against test 1", () => {
 	const result = towerOfHanoi(0);
-	const expected: TStep[] = [];
+	const expected = [] as const;
 	expect(result).toStrictEqual(expected);
-	assertType<Readonly<typeof result>>(expected);
+	assertType<Readonly<typeof expected>>(result);
 });
 
 test("testing towerOfHanoi against test 2", () => {
 	const result = towerOfHanoi(1);
-	const expected: TStep[] = [["A", "B"]];
+	const expected = [["A", "B"]] as const;
 	expect(result).toStrictEqual(expected);
-	assertType<Readonly<typeof result>>(expected);
+	assertType<Readonly<typeof expected>>(result);
 });
 
 test("testing compress against test 3", () => {
 	const result = towerOfHanoi(2);
-	const expected: TStep[] = [
+	const expected = [
 		["A", "C"],
 		["A", "B"],
 		["C", "B"],
-	];
+	] as const;
 	expect(result).toStrictEqual(expected);
-	assertType<Readonly<typeof result>>(expected);
+	assertType<Readonly<typeof expected>>(result);
 });
 
 test("testing compress against test 4", () => {
 	const result = towerOfHanoi(3);
-	const expected: TStep[] = [
+	const expected = [
 		["A", "B"],
 		["A", "C"],
 		["B", "C"],
@@ -39,14 +37,14 @@ test("testing compress against test 4", () => {
 		["C", "A"],
 		["C", "B"],
 		["A", "B"],
-	];
+	] as const;
 	expect(result).toStrictEqual(expected);
-	assertType<Readonly<typeof result>>(expected);
+	assertType<Readonly<typeof expected>>(result);
 });
 
 test("testing compress against test 5", () => {
 	const result = towerOfHanoi(5);
-	const expected: TStep[] = [
+	const expected = [
 		["A", "B"],
 		["A", "C"],
 		["B", "C"],
@@ -78,7 +76,8 @@ test("testing compress against test 5", () => {
 		["C", "A"],
 		["C", "B"],
 		["A", "B"],
-	];
+	] as const;
+
 	expect(result).toStrictEqual(expected);
-	assertType<Readonly<typeof result>>(expected);
+	assertType<Readonly<typeof expected>>(result);
 });
