@@ -7,7 +7,7 @@ const towerMap = {
 
 type TTowerMap = typeof towerMap;
 
-export type TStep = [TTower, TTower];
+type TStep = [TTower, TTower];
 
 const getPadded = (val: string, rings: number) => {
 	const pad = (rings - val.length) / 2;
