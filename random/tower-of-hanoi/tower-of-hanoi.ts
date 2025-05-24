@@ -42,7 +42,99 @@ const _getTowerString = (rings: number, towers: Record<TTower, string[]>) => {
 	return `${str}\n`;
 };
 
-export const towerOfHanoi = (rings: number): TStep[] => {
+type TFillString<
+	Size extends number,
+	T extends string,
+	res extends string = "",
+	idx extends 1[] = [],
+> = idx["length"] extends Size
+	? res
+	: TFillString<Size, T, `${res}${T}`, [...idx, 1]>;
+
+type TCreateRings<
+	Rings extends number,
+	res extends string[] = [],
+> = res["length"] extends Rings
+	? res
+	: TCreateRings<Rings, [...res, TFillString<[...res, 1]["length"], "-">]>;
+
+type TIsOdd<T extends number> = `${T}` extends `${string}${1 | 3 | 5 | 7 | 9}`
+	? true
+	: false;
+
+type TMoveTowers<
+	towers extends Record<TTower, string[]>,
+	from extends TTower,
+	to extends TTower,
+> = towers[from] extends [
+	infer ring extends string,
+	...infer updatedFrom extends string[],
+]
+	? {
+			[k in keyof towers]: k extends from
+				? updatedFrom
+				: k extends to
+					? [ring, ...towers[k]]
+					: towers[k];
+		}
+	: towers;
+
+type TFromAndTo<
+	towers extends Record<TTower, string[]>,
+	smallest extends TTower,
+	tower1 extends TTower = smallest extends "A" ? "B" : "A",
+	tower2 extends TTower = Exclude<TTower, smallest | tower1>,
+> = [towers[tower1][0]] extends [undefined]
+	? { from: tower2; to: tower1 }
+	: towers[tower1][0] extends `${towers[tower2][0]}${string}`
+		? { from: tower2; to: tower1 }
+		: { from: tower1; to: tower2 };
+
+type TTowerOfHanoi<
+	Rings extends number,
+	direction extends "left" | "right" = TIsOdd<Rings> extends true
+		? "left"
+		: "right",
+	smallest extends TTower = "A",
+	move extends "smallest" | "other" = "smallest",
+	towers extends Record<TTower, string[]> = {
+		A: TCreateRings<Rings>;
+		C: [];
+		B: [];
+	},
+	steps extends TStep[] = [],
+> = steps["length"] extends 999
+	? []
+	: towers["B"]["length"] extends Rings
+		? steps
+		: move extends "smallest"
+			? TTowerMap[smallest][direction] extends infer next extends TTower
+				? TTowerOfHanoi<
+						Rings,
+						direction,
+						next,
+						"other",
+						TMoveTowers<towers, smallest, next>,
+						[...steps, [smallest, next]]
+					>
+				: never
+			: TFromAndTo<towers, smallest> extends {
+						from: infer from extends TTower;
+						to: infer to extends TTower;
+				  }
+				? TTowerOfHanoi<
+						Rings,
+						direction,
+						smallest,
+						"smallest",
+						TMoveTowers<towers, from, to>,
+						[...steps, [from, to]]
+					>
+				: never;
+
+export const towerOfHanoi = <Rings extends number>(
+	rings: Rings,
+): TTowerOfHanoi<Rings> => {
 	const direction = rings % 2 === 0 ? "right" : "left";
 	let smallest = "A" as TTower;
 	let move: "smallest" | "other" = "smallest";
@@ -61,7 +153,7 @@ export const towerOfHanoi = (rings: number): TStep[] => {
 			smallest = next;
 			move = "other";
 		} else {
-			const tower1 = smallest === "A" ? "B" : smallest === "B" ? "A" : "A";
+			const tower1 = smallest === "A" ? "B" : "A";
 			const tower2 = smallest === "A" ? "C" : smallest === "B" ? "C" : "B";
 			const ring1 = towers[tower1][0];
 			const ring2 = towers[tower2][0] as string;
@@ -72,5 +164,5 @@ export const towerOfHanoi = (rings: number): TStep[] => {
 			move = "smallest";
 		}
 	}
-	return steps;
+	return steps as never;
 };
