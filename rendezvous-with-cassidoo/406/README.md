@@ -17,4 +17,4 @@ oddSum([2, 4, 6, 8], [10, 12, 14]);
 
 ---
 
-[Solution Playground](https://tsplay.dev/NVDE5W)
+[Solution Playground](https://tsplay.dev/NljROW)
