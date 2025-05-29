@@ -4,7 +4,7 @@ import path from "node:path";
 import chalk from "chalk";
 import argumentParser from "minimist-lite";
 import prompt from "prompt";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 import { RENAME_ERRORS } from "./recursive-rename.types.js";
 
