@@ -6,6 +6,7 @@ import type { Utils } from "./utils.types.js";
 
 type TTrueTuple<T extends true[]> = T[number] extends true ? true : false;
 type TFalseTuple<T extends false[]> = T[number] extends false ? true : false;
+
 test("test prettify type util", () => {
 	type TTests = TTrueTuple<
 		[
@@ -383,7 +384,12 @@ test("test unionToTuples type util", () => {
 test("test nonNullableKeys type util", () => {
 	type TTests = TTrueTuple<
 		[
-			Utils.equal<Utils.nonNullableKeys<{ foo: 1 | null }>, { foo: 1 }>,
+			Utils.equal<
+				Utils.nonNullableKeys<
+					{ foo: 1 | null } | { foo: 2 | null } | { foo?: 3 | null }
+				>,
+				{ foo: 1 } | { foo: 2 } | { foo?: 3 }
+			>,
 			Utils.equal<
 				Utils.nonNullableKeys<
 					{ foo: 1 | null | undefined; bar: 2 | null },
@@ -399,6 +405,13 @@ test("test nonNullableKeys type util", () => {
 				}>,
 				{ foo: 1; bar?: 2 | 3; baz: never }
 			>,
+			Utils.equal<
+				Utils.nonNullableKeys<
+					{ foo: 1 | null } | { bar: 2 | null } | { baz?: 3 },
+					"foo" | "bar"
+				>,
+				{ foo: 1 } | { bar: 2 } | { baz?: 3 }
+			>,
 		]
 	>;
 	assertType<TTests>(true);
@@ -407,7 +420,10 @@ test("test nonNullableKeys type util", () => {
 test("test nullableKeys type util", () => {
 	type TTests = TTrueTuple<
 		[
-			Utils.equal<Utils.nullableKeys<{ foo: 1 }>, { foo: 1 | null }>,
+			Utils.equal<
+				Utils.nullableKeys<{ foo: 1 } | { foo: 2 | null } | { foo?: 3 }>,
+				{ foo: 1 | null } | { foo: 2 | null } | { foo?: 3 | null }
+			>,
 			Utils.equal<
 				Utils.nullableKeys<{ foo: 1; bar: 2 }, "foo">,
 				{ foo: 1 | null; bar: 2 }
@@ -415,6 +431,13 @@ test("test nullableKeys type util", () => {
 			Utils.equal<
 				Utils.nullableKeys<{ foo: 1; bar?: 2 | 3; baz: 4 | null }>,
 				{ foo: 1 | null; bar?: 2 | 3 | null; baz: 4 | null }
+			>,
+			Utils.equal<
+				Utils.nullableKeys<
+					{ foo: 1 } | { bar: 2 | null } | { baz?: 3 },
+					"foo" | "bar"
+				>,
+				{ foo: 1 | null } | { bar: 2 | null } | { baz?: 3 }
 			>,
 		]
 	>;
@@ -424,7 +447,10 @@ test("test nullableKeys type util", () => {
 test("test optionalKeys type util", () => {
 	type TTests = TTrueTuple<
 		[
-			Utils.equal<Utils.optionalKeys<{ foo: 1 }>, { foo?: 1 }>,
+			Utils.equal<
+				Utils.optionalKeys<{ foo: 1 } | { foo: 2 | null } | { foo?: 3 }>,
+				{ foo?: 1 } | { foo?: 2 | null } | { foo?: 3 }
+			>,
 			Utils.equal<
 				Utils.optionalKeys<{ foo: 1; bar: 2 }, "foo">,
 				{ foo?: 1; bar: 2 }
@@ -432,6 +458,13 @@ test("test optionalKeys type util", () => {
 			Utils.equal<
 				Utils.optionalKeys<{ foo: 1; bar?: 2 | 3; baz: 4 | null }>,
 				{ foo?: 1; bar?: 2 | 3; baz?: 4 | null }
+			>,
+			Utils.equal<
+				Utils.optionalKeys<
+					{ foo: 1 } | { bar: 2 | null } | { baz: 3 },
+					"foo" | "bar"
+				>,
+				{ foo?: 1 } | { bar?: 2 | null } | { baz: 3 }
 			>,
 		]
 	>;
@@ -441,7 +474,10 @@ test("test optionalKeys type util", () => {
 test("test requiredKeys type util", () => {
 	type TTests = TTrueTuple<
 		[
-			Utils.equal<Utils.requiredKeys<{ foo?: 1 }>, { foo: 1 }>,
+			Utils.equal<
+				Utils.requiredKeys<{ foo?: 1 } | { foo: 2 | null } | { foo?: 3 }>,
+				{ foo: 1 } | { foo: 2 | null } | { foo: 3 }
+			>,
 			Utils.equal<
 				Utils.requiredKeys<{ foo?: 1; bar: 2 }, "foo">,
 				{ foo: 1; bar: 2 }
@@ -449,6 +485,13 @@ test("test requiredKeys type util", () => {
 			Utils.equal<
 				Utils.requiredKeys<{ foo?: 1; bar?: 2 | 3; baz: 4 | null | undefined }>,
 				{ foo: 1; bar: 2 | 3; baz: 4 | null | undefined }
+			>,
+			Utils.equal<
+				Utils.requiredKeys<
+					{ foo?: 1 } | { bar?: 2 | null } | { baz?: 3 },
+					"foo" | "bar"
+				>,
+				{ foo: 1 } | { bar: 2 | null } | { baz?: 3 }
 			>,
 		]
 	>;
@@ -506,6 +549,20 @@ test("test isUnion type util", () => {
 			Utils.equal<Utils.isUnion<string | any>, false>,
 			Utils.equal<Utils.isUnion<string | "a">, false>,
 			Utils.equal<Utils.isUnion<never>, false>,
+		]
+	>;
+	assertType<TTests>(true);
+});
+
+test("test atLeast type util", () => {
+	type TTests = TTrueTuple<
+		[
+			Utils.equal<Utils.atLeast<string, 2>, [string, string, ...string[]]>,
+			Utils.equal<
+				Utils.atLeast<string, 1 | 2>,
+				[string, ...string[]] | [string, string, ...string[]]
+			>,
+			Utils.equal<Utils.atLeast<string, number>, string[]>,
 		]
 	>;
 	assertType<TTests>(true);

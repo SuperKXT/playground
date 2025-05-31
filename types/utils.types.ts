@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+
 type _repeatString<
 	S extends string,
 	N extends number,
@@ -8,6 +9,12 @@ type _repeatString<
 type _tuple<N extends number, T, R extends readonly T[]> = R["length"] extends N
 	? R
 	: _tuple<N, T, [T, ...R]>;
+
+type _atLeast<
+	T,
+	N extends number,
+	Res extends readonly T[] = [],
+> = Res["length"] extends N ? [...Res, ...T[]] : _atLeast<T, N, [...Res, T]>;
 
 type _equal<T, U> =
 	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
@@ -179,32 +186,45 @@ export declare namespace Utils {
 			: [];
 
 	/** make the given keys (all if second arg is omitted) of an object non-nullable (null and undefined are removed) */
-	type nonNullableKeys<obj, keys extends keyof obj = keyof obj> = {
+	type nonNullableKeys<
+		obj,
+		keys extends allUnionKeys<obj> = allUnionKeys<obj>,
+	> = {
 		[k in keyof obj]: k extends keys ? NonNullable<obj[k]> : obj[k];
 	};
 
 	/** make the given keys (all if second arg is omitted) of an object nullable */
-	type nullableKeys<obj, keys extends keyof obj = keyof obj> = {
+	type nullableKeys<obj, keys extends allUnionKeys<obj> = allUnionKeys<obj>> = {
 		[k in keyof obj]: k extends keys ? obj[k] | null : obj[k];
 	};
 
 	/** make the given keys (all if second arg is omitted) of an object optional */
-	type optionalKeys<obj, keys extends keyof obj = keyof obj> = prettify<
-		{
-			[k in keyof obj as k extends keys ? never : k]: obj[k];
-		} & {
-			[k in keyof obj as k extends keys ? k : never]?: obj[k];
-		}
-	>;
+	type optionalKeys<
+		obj,
+		keys extends allUnionKeys<obj> = allUnionKeys<obj>,
+	> = obj extends obj
+		? prettify<
+				{
+					[k in keyof obj as k extends keys ? never : k]: obj[k];
+				} & {
+					[k in keyof obj as k extends keys ? k : never]?: obj[k];
+				}
+			>
+		: never;
 
 	/** make the given keys (all if second arg is omitted) of an object required */
-	type requiredKeys<obj, keys extends keyof obj = keyof obj> = prettify<
-		{
-			[k in keyof obj as k extends keys ? never : k]: obj[k];
-		} & {
-			[k in keyof obj as k extends keys ? k : never]-?: obj[k];
-		}
-	>;
+	type requiredKeys<
+		obj,
+		keys extends allUnionKeys<obj> = allUnionKeys<obj>,
+	> = obj extends obj
+		? prettify<
+				{
+					[k in keyof obj as k extends keys ? never : k]: obj[k];
+				} & {
+					[k in keyof obj as k extends keys ? k : never]-?: obj[k];
+				}
+			>
+		: never;
 
 	/** extract the properties of a class */
 	type extractClassProps<T> = {
@@ -229,4 +249,11 @@ export declare namespace Utils {
 	) extends true
 		? false
 		: true;
+
+	/** Returns a tuple of given type with at least `N` elements. */
+	type atLeast<T, N extends number> = N extends N
+		? number extends N
+			? T[]
+			: _atLeast<T, N>
+		: never;
 }
