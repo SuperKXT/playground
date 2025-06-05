@@ -567,3 +567,65 @@ test("test atLeast type util", () => {
 	>;
 	assertType<TTests>(true);
 });
+
+test("test deepReadonly type util", () => {
+	type T1 = {
+		a: () => 22;
+		b: string;
+		c: {
+			d: boolean;
+			e: {
+				g: {
+					h: {
+						i: true;
+						j: "string";
+					};
+					k: "hello";
+				};
+				l: [
+					"hi",
+					{
+						m: ["hey"];
+					},
+				];
+			};
+		};
+	};
+
+	type T2 = { a: string } | { b: number; foo: () => string };
+
+	type TExpected1 = {
+		readonly a: () => 22;
+		readonly b: string;
+		readonly c: {
+			readonly d: boolean;
+			readonly e: {
+				readonly g: {
+					readonly h: {
+						readonly i: true;
+						readonly j: "string";
+					};
+					readonly k: "hello";
+				};
+				readonly l: readonly [
+					"hi",
+					{
+						readonly m: readonly ["hey"];
+					},
+				];
+			};
+		};
+	};
+
+	type TExpected2 =
+		| { readonly a: string }
+		| { readonly b: number; readonly foo: () => string };
+
+	type TTests = TTrueTuple<
+		[
+			Utils.equal<Utils.deepReadonly<T1>, TExpected1>,
+			Utils.equal<Utils.deepReadonly<T2>, TExpected2>,
+		]
+	>;
+	assertType<TTests>(true);
+});

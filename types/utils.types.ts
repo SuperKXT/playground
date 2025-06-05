@@ -256,4 +256,8 @@ export declare namespace Utils {
 			? T[]
 			: _atLeast<T, N>
 		: never;
+
+	type deepReadonly<T> = {
+		readonly [K in keyof T]: deepReadonly<T[K]>;
+	};
 }
