@@ -17,4 +17,4 @@ nestArray([1]);
 
 ---
 
-[Solution Playground](https://tsplay.dev/NljROW)
+[Solution Playground](https://tsplay.dev/wE9ZOw)
