@@ -48,6 +48,12 @@ export declare namespace Utils {
 		? _equal<_recursivePrettify<T>, _recursivePrettify<U>>
 		: _equal<T, U>;
 
+	type not<T extends boolean> = T extends true ? false : true;
+
+	type notEqual<T, U> = equal<T, U> extends true ? false : true;
+
+	type trueTuple<T extends true[]> = T[number] extends true ? true : false;
+
 	/** checks if the first type satisfies the second */
 	type satisfies<T extends U, U> = T;
 
