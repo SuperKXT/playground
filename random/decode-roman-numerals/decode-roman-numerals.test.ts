@@ -57,3 +57,10 @@ test("testing decodeRomanNumerals for test 8", () => {
 	expect(result).toStrictEqual(expected);
 	assertType<typeof expected>(result);
 });
+
+test("testing decodeRomanNumerals for test 9", () => {
+	const result = decodeRomanNumerals("MMXXV" as string); // cSpell: disable-line
+	const expected = 2025 as number;
+	expect(result).toStrictEqual(expected);
+	assertType<typeof expected>(result);
+});

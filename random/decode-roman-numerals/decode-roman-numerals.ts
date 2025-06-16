@@ -22,23 +22,25 @@ const subtractiveNumerals = {
 type TDecodeRomanNumerals<
 	Str extends string,
 	res extends number = 0,
-> = Str extends `${infer first}${infer second}${infer rest}`
-	? `${first}${second}` extends infer key extends
-			keyof typeof subtractiveNumerals
-		? TDecodeRomanNumerals<rest, Sum<res, (typeof subtractiveNumerals)[key]>>
-		: first extends infer key extends keyof typeof numerals
-			? TDecodeRomanNumerals<
-					`${second}${rest}`,
-					Sum<res, (typeof numerals)[key]>
-				>
-			: never
-	: Str extends `${infer first}${infer rest}`
-		? first extends infer key extends keyof typeof numerals
-			? TDecodeRomanNumerals<rest, Sum<res, (typeof numerals)[key]>>
-			: never
-		: Str extends ""
-			? res
-			: never;
+> = string extends Str
+	? number
+	: Str extends `${infer first}${infer second}${infer rest}`
+		? `${first}${second}` extends infer key extends
+				keyof typeof subtractiveNumerals
+			? TDecodeRomanNumerals<rest, Sum<res, (typeof subtractiveNumerals)[key]>>
+			: first extends infer key extends keyof typeof numerals
+				? TDecodeRomanNumerals<
+						`${second}${rest}`,
+						Sum<res, (typeof numerals)[key]>
+					>
+				: never
+		: Str extends `${infer first}${infer rest}`
+			? first extends infer key extends keyof typeof numerals
+				? TDecodeRomanNumerals<rest, Sum<res, (typeof numerals)[key]>>
+				: never
+			: Str extends ""
+				? res
+				: never;
 
 export const decodeRomanNumerals = <Str extends string>(
 	val: Str,
