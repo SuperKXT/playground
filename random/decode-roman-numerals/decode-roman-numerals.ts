@@ -1,4 +1,6 @@
-const numerals: Record<string, number> = {
+import type { Sum } from "../../type-challenges/extreme/6-sum.js";
+
+const numerals = {
 	I: 1,
 	V: 5,
 	X: 10,
@@ -6,32 +8,60 @@ const numerals: Record<string, number> = {
 	C: 100,
 	D: 500,
 	M: 1000,
-};
+} as const;
 
-const subtractiveNumerals: Record<string, number> = {
+const subtractiveNumerals = {
 	IV: 4,
 	IX: 9,
 	XL: 40,
 	XC: 90,
 	CD: 400,
 	CM: 900,
-};
+} as const;
 
-export const decodeRomanNumerals = (val: string): number => {
+type TDecodeRomanNumerals<
+	Str extends string,
+	res extends number = 0,
+> = Str extends `${infer first}${infer second}${infer rest}`
+	? `${first}${second}` extends infer key extends
+			keyof typeof subtractiveNumerals
+		? TDecodeRomanNumerals<rest, Sum<res, (typeof subtractiveNumerals)[key]>>
+		: first extends infer key extends keyof typeof numerals
+			? TDecodeRomanNumerals<
+					`${second}${rest}`,
+					Sum<res, (typeof numerals)[key]>
+				>
+			: never
+	: Str extends `${infer first}${infer rest}`
+		? first extends infer key extends keyof typeof numerals
+			? TDecodeRomanNumerals<rest, Sum<res, (typeof numerals)[key]>>
+			: never
+		: Str extends ""
+			? res
+			: never;
+
+export const decodeRomanNumerals = <Str extends string>(
+	val: Str,
+): TDecodeRomanNumerals<Str> => {
 	let res: number = 0;
 
-	let currStr = val;
+	let currStr = val as string;
 	while (currStr !== "") {
 		const firstTwo = currStr.slice(0, 2);
+		const firstTwoVal = (subtractiveNumerals as Record<string, number>)[
+			firstTwo
+		];
 		const first = currStr.slice(0, 1);
-		if (subtractiveNumerals[firstTwo]) {
+		const firstVal = (numerals as Record<string, number>)[first];
+
+		if (firstTwoVal) {
 			currStr = currStr.slice(2);
-			res += subtractiveNumerals[firstTwo];
-		} else if (numerals[first]) {
+			res += firstTwoVal;
+		} else if (firstVal) {
 			currStr = currStr.slice(1);
-			res += numerals[first];
+			res += firstVal;
 		} else throw new Error(`Invalid input`);
 	}
 
-	return res;
+	return res as never;
 };

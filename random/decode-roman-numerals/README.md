@@ -15,4 +15,4 @@ const listA = [4, 3, 2 ,1];
 
 ---
 
-[Solution Playground](https://tsplay.dev/we3PVm)
+[Solution Playground](https://tsplay.dev/NB9nxw)
