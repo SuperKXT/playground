@@ -23,8 +23,10 @@ export const objectValues = <T extends object>(object: T): T[keyof T][] => {
 
 export const omit = <Type extends object, ToOmit extends keyof Type>(
 	obj: Type,
-	...keys: ToOmit[]
+	first: ToOmit,
+	...rest: ToOmit[]
 ): Utils.prettify<Utils.distributiveOmit<Type, ToOmit>> => {
+	const keys = [first, ...rest];
 	const omitted = {} as Record<string, unknown>;
 	for (const key in obj) {
 		if (!Object.hasOwn(obj, key) || keys.includes(key as never)) continue;
@@ -35,11 +37,50 @@ export const omit = <Type extends object, ToOmit extends keyof Type>(
 
 export const pick = <Type extends object, ToPick extends keyof Type>(
 	obj: Type,
-	...keys: ToPick[]
+	first: ToPick,
+	...rest: ToPick[]
 ): Utils.prettify<Pick<Type, ToPick>> => {
 	const picked = {} as Utils.prettify<Pick<Type, ToPick>>;
-	for (const key of keys) if (key in obj) picked[key] = obj[key];
+	const keys = [first, ...rest];
+	for (const key of keys) {
+		if (Object.hasOwn(obj, key)) picked[key] = obj[key];
+	}
 	return picked;
+};
+
+export const pickAndOmit = <
+	Type extends object,
+	Method extends "pick" | "omit",
+	Keys extends keyof Type,
+>(opts: {
+	obj: Type;
+	method: Method;
+	keys: [Keys, ...Keys[]];
+}): {
+	picked: Utils.prettify<
+		Method extends "pick"
+			? Pick<Type, Keys>
+			: Utils.distributiveOmit<Type, Keys>
+	>;
+	omitted: Utils.prettify<
+		Method extends "pick"
+			? Utils.distributiveOmit<Type, Keys>
+			: Pick<Type, Keys>
+	>;
+} => {
+	const { obj, method, keys } = opts;
+	const picked = {} as Record<string, unknown>;
+	const omitted = {} as Record<string, unknown>;
+	for (const key in obj) {
+		if (!Object.hasOwn(obj, key)) continue;
+		const shouldPick =
+			method === "pick"
+				? keys.includes(key as never)
+				: !keys.includes(key as never);
+		if (shouldPick) picked[key] = obj[key];
+		else omitted[key] = obj[key];
+	}
+	return { picked, omitted } as never;
 };
 
 export const deepMerge = <T extends object, U extends object>(
@@ -89,10 +130,40 @@ export const objectToFormData = (obj: object): FormData => {
 };
 
 /** Useful for React Native. Use `URLSearchParams` in Node and Browser environments */
-export const objectToSearchParams = (obj: Record<string, string>) => {
-	return Object.entries(obj)
-		.map(
-			([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`,
-		)
-		.join("&");
+export const searchParamsToObject = (url: string) => {
+	const param = url.replace(/[^?]*\?/u, "");
+	const arr = param.split("&");
+	const params: Record<string, string> = {};
+	for (const curr of arr) {
+		const [key, val] = curr.split("=");
+		if (!key) continue;
+		params[key] = val ?? "";
+	}
+	return params;
+};
+
+/** Useful for React Native. Use `URLSearchParams` in Node and Browser environments */
+export const objectToSearchParams = (
+	obj: Record<string, string | number | null | undefined>,
+) => {
+	const entries: string[] = [];
+	for (const key in obj) {
+		if (!Object.hasOwn(obj, key)) continue;
+		const val = obj[key];
+		if (val === null || val === undefined) continue;
+		entries.push(`${encodeURIComponent(key)}=${encodeURIComponent(val)}`);
+	}
+	return entries.join("&");
+};
+
+export const swapKeysAndValues = <T extends Record<string, string>>(
+	obj: T,
+): { [k in keyof T as T[k]]: k } => {
+	const res: Record<string, unknown> = {};
+	for (const key in obj) {
+		if (!Object.hasOwn(obj, key)) continue;
+		const val = obj[key] as string;
+		res[val] = key;
+	}
+	return res as never;
 };
