@@ -9,6 +9,9 @@ import {
 	objectValues,
 	omit,
 	pick,
+	pickAndOmit,
+	searchParamsToObject,
+	swapKeysAndValues,
 } from "./object.helpers.js";
 
 test("testing objectEntries", () => {
@@ -35,36 +38,59 @@ test("testing objectValues", () => {
 	assertType<(1 | 2)[]>(values);
 });
 
-test("testing omit with a single key", () => {
-	const omitted = { first: 1 } as { first: 1 } | { zero: 0 };
-	const object = { ...omitted, second: 2 };
-	const result = omit(object, "second");
-	expect(result).toStrictEqual(omitted);
-	assertType<typeof omitted>(result);
+test("testing omit", () => {
+	const omitted1 = { first: 1 } as { first: 1 } | { zero: 0 };
+	const object1 = { ...omitted1, second: 2, third: 3 };
+	const result1 = omit(object1, "second", "third");
+	expect(result1).toStrictEqual(omitted1);
+	assertType<typeof omitted1>(result1);
+
+	const omitted2 = { first: 1 } as { first: 1 } | { zero: 0 };
+	const object2 = { ...omitted2, second: 2 };
+	const result2 = omit(object2, "second");
+	expect(result2).toStrictEqual(omitted2);
+	assertType<typeof omitted2>(result2);
 });
 
-test("testing omit with multiple keys", () => {
-	const omitted = { first: 1 } as { first: 1 } | { zero: 0 };
-	const object = { ...omitted, second: 2, third: 3 };
-	const result = omit(object, "second", "third");
-	expect(result).toStrictEqual(omitted);
-	assertType<typeof omitted>(result);
+test("testing pick", () => {
+	const picked1 = { a: 1 };
+	const object1 = { ...picked1, b: 2 } as typeof picked1 &
+		({ b: 2 } | { c: 3 });
+	const result1 = pick(object1, "a");
+	expect(result1).toStrictEqual(picked1);
+	assertType<typeof picked1>(result1);
+
+	const picked2 = { a: 1, b: 2 };
+	const object2 = { ...picked2, c: 3 };
+	const result2 = pick(object2, "a", "b");
+	expect(result2).toStrictEqual(picked2);
+	assertType<typeof picked2>(result2);
 });
 
-test("testing pick with a single key", () => {
-	const picked = { a: 1 };
-	const object = { ...picked, b: 2 };
-	const result = pick(object, "a");
-	expect(result).toStrictEqual(picked);
-	assertType<typeof picked>(result);
-});
+test("testing pickAndOmit", () => {
+	const picked1 = { a: 1 };
+	const omitted1 = { b: 2 } as { b: 2 } | { c: 3 };
+	const expected1 = { picked: picked1, omitted: omitted1 };
+	const object1 = { ...picked1, ...omitted1 };
+	const result1 = pickAndOmit({
+		obj: object1,
+		method: "pick",
+		keys: ["a"],
+	});
+	expect(result1).toStrictEqual(expected1);
+	assertType<typeof result1>(expected1);
 
-test("testing pick with multiple keys", () => {
-	const picked = { a: 1, b: 2 };
-	const object = { ...picked, c: 3 };
-	const result = pick(object, "a", "b");
-	expect(result).toStrictEqual(picked);
-	assertType<typeof picked>(result);
+	const picked2 = { a: 1 };
+	const omitted2 = { b: 2, c: 3 };
+	const expected2 = { picked: picked2, omitted: omitted2 };
+	const object2 = { ...picked2, ...omitted2 };
+	const result2 = pickAndOmit({
+		obj: object2,
+		method: "omit",
+		keys: ["b", "c"],
+	});
+	expect(result2).toStrictEqual(expected2);
+	assertType<typeof result2>(expected2);
 });
 
 test("testing deepMerge", () => {
@@ -94,9 +120,43 @@ test("testing objectToFormData", () => {
 	expect(result.get("d")).toBe("true");
 });
 
+test("testing searchParamsToObject", () => {
+	const val1 = "AppName://redirect/subpart/?token=123&refreshToken=123&other";
+	const result1 = searchParamsToObject(val1);
+	assertType<Record<string, string>>(result1);
+	expect(result1).toStrictEqual({
+		token: "123",
+		refreshToken: "123",
+		other: "",
+	});
+
+	const val2 = "AppName://redirect/subpart/?";
+	const result2 = searchParamsToObject(val2);
+	assertType<Record<string, string>>(result2);
+	expect(result2).toStrictEqual({});
+
+	const val3 = "foo=";
+	const result3 = searchParamsToObject(val3);
+	assertType<Record<string, string>>(result3);
+	expect(result3).toStrictEqual({ foo: "" });
+});
+
 test("testing objectToSearchParams", () => {
-	const val = { a: "1", b: "old", c: "3", d: "new" };
-	const result = objectToSearchParams(val);
-	assertType<string>(result);
-	expect(result).toBe("a=1&b=old&c=3&d=new");
+	const val1 = { a: "1", b: "old", c: "3", d: "new", e: null, f: undefined };
+	const result1 = objectToSearchParams(val1);
+	assertType<string>(result1);
+	expect(result1).toBe("a=1&b=old&c=3&d=new");
+
+	const val2 = {};
+	const result2 = objectToSearchParams(val2);
+	assertType<string>(result2);
+	expect(result2).toBe("");
+});
+
+test("testing swapKeysAndValues", () => {
+	const val = { a: "1", b: "old", c: "3", d: "new" } as const;
+	const result = swapKeysAndValues(val);
+	const expected = { "1": "a", old: "b", "3": "c", new: "d" } as const;
+	assertType<typeof expected>(result);
+	expect(result).toStrictEqual(expected);
 });
