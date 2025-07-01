@@ -11,3 +11,7 @@ Examples:
 > nonRepeat('candy canes do taste yummy');
 > 'u'
 ```
+
+---
+
+[Solution Playground](https://tsplay.dev/mqnZdW)
