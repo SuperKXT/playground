@@ -15,7 +15,7 @@ export const rotateString = <S extends string, Goal extends string>(
 	goal: Goal,
 ): TRotateString<S, Goal> => {
 	if (s.length !== goal.length) return false as never;
-	if (s === goal) return true as never;
+	if ((s as string) === goal) return true as never;
 	for (let i = s.length - 1; i > 0; i--) {
 		const curr = s.slice(i) + s.slice(0, i);
 		if (curr === goal) return true as never;
