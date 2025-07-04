@@ -204,6 +204,11 @@ export declare namespace Utils {
 		[k in keyof obj]: k extends keys ? obj[k] | null : obj[k];
 	};
 
+	/** make the given keys (all if second arg is omitted) of an object optional and nullable */
+	type nullishKeys<obj, keys extends allUnionKeys<obj> = allUnionKeys<obj>> = {
+		[k in keyof obj]: k extends keys ? obj[k] | null | undefined : obj[k];
+	};
+
 	/** make the given keys (all if second arg is omitted) of an object optional */
 	type optionalKeys<
 		obj,

@@ -435,6 +435,41 @@ test("test nullableKeys type util", () => {
 	assertType<TTests>(true);
 });
 
+test("test nullishKeys type util", () => {
+	type TTests = Utils.trueTuple<
+		[
+			Utils.equal<
+				Utils.nullishKeys<{ foo: 1 } | { foo: 2 | null } | { foo?: 3 }>,
+				| { foo: 1 | null | undefined }
+				| { foo: 2 | null | undefined }
+				| { foo?: 3 | null | undefined }
+			>,
+			Utils.equal<
+				Utils.nullishKeys<{ foo: 1; bar: 2 }, "foo">,
+				{ foo: 1 | null | undefined; bar: 2 }
+			>,
+			Utils.equal<
+				Utils.nullishKeys<{ foo: 1; bar?: 2 | 3; baz: 4 | null }>,
+				{
+					foo: 1 | null | undefined;
+					bar?: 2 | 3 | null | undefined;
+					baz: 4 | null | undefined;
+				}
+			>,
+			Utils.equal<
+				Utils.nullishKeys<
+					{ foo: 1 } | { bar: 2 | null } | { baz?: 3 },
+					"foo" | "bar"
+				>,
+				| { foo: 1 | null | undefined }
+				| { bar: 2 | null | undefined }
+				| { baz?: 3 }
+			>,
+		]
+	>;
+	assertType<TTests>(true);
+});
+
 test("test optionalKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
