@@ -2,7 +2,7 @@
 import { default as dayjs } from "dayjs";
 import duration from "dayjs/plugin/duration.js";
 import utc from "dayjs/plugin/utc.js";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 import { safeObjAccess } from "./object.helpers.js";
 import { pluralize } from "./pluralize.helpers.js";

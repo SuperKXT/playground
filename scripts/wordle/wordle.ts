@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import argumentParser from "minimist-lite";
-import { z } from "zod/v4";
+import { z } from "zod";
 
 import { WORDLE_WORDS } from "./word-list.js";
 
