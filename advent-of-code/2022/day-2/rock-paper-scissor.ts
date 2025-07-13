@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
-import { z } from "zod/v4";
+import { z } from "zod";
 
 import { config } from "../../../config.js";
 

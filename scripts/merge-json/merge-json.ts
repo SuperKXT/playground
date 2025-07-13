@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 
-import { z } from "zod/v4";
+import { z } from "zod";
 
 import { stringifyError } from "../../helpers/error.helpers.js";
 
