@@ -23,4 +23,4 @@ canFormHexagon([2, 2, 2, 2, 2, 2, 2]);
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/mqnZdW) -->
+[Solution Playground](https://tsplay.dev/NBOPpm)
