@@ -19,3 +19,9 @@ test("testing two-sum for test 3", () => {
 	const expected = [0, 1];
 	expect(result).toStrictEqual(expected);
 });
+
+test("testing two-sum for test 4", () => {
+	expect(() => {
+		twoSum([3, 2], 6);
+	}).toThrow("No match found!");
+});
