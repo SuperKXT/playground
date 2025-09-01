@@ -6,7 +6,7 @@ import type { Utils } from "../../../types/utils.types.js";
 
 test("testing palindromeNumber for test 1", () => {
 	const result = palindromeNumber(121);
-	const expected = true as boolean;
+	const expected = true;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -14,7 +14,7 @@ test("testing palindromeNumber for test 1", () => {
 
 test("testing palindromeNumber for test 2", () => {
 	const result = palindromeNumber(-121);
-	const expected = false as boolean;
+	const expected = false;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -22,7 +22,7 @@ test("testing palindromeNumber for test 2", () => {
 
 test("testing palindromeNumber for test 3", () => {
 	const result = palindromeNumber(10);
-	const expected = false as boolean;
+	const expected = false;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
