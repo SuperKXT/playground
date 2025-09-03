@@ -1,40 +1,32 @@
-const stackMap = {
-	"(": ")",
-	"[": "]",
-	"{": "}",
-} as const;
+type _TLongestCommonPrefix<
+	first extends string,
+	rest extends string[],
+	prefix extends string = "",
+> = first extends `${infer char}${infer newFirst}`
+	? rest[number] extends `${prefix}${char}${string}`
+		? _TLongestCommonPrefix<newFirst, rest, `${prefix}${char}`>
+		: prefix
+	: prefix;
 
-type TStackMap = typeof stackMap;
+type TLongestCommonPrefix<arr extends readonly string[]> =
+	arr extends readonly [
+		infer first extends string,
+		...infer rest extends string[],
+	]
+		? _TLongestCommonPrefix<first, rest>
+		: "";
 
-type TValidParenthesis<
-	Str extends string,
-	stack extends unknown[] = [],
-> = Str extends `${infer first}${infer rest}`
-	? first extends "(" | "[" | "{"
-		? TValidParenthesis<rest, [first, ...stack]>
-		: first extends ")" | "]" | "}"
-			? stack extends [infer top extends keyof TStackMap, ...infer newStack]
-				? (typeof stackMap)[top] extends first
-					? TValidParenthesis<rest, newStack>
-					: false
-				: false
-			: TValidParenthesis<rest, stack>
-	: stack["length"] extends 0
-		? true
-		: false;
+export const longestCommonPrefix = <const Arr extends readonly string[]>(
+	arr: Arr,
+): TLongestCommonPrefix<Arr> => {
+	const [first, ...rest] = arr;
+	if (!first) return "" as never;
 
-export const validParenthesis = <const Str extends string>(
-	str: Str,
-): TValidParenthesis<Str> => {
-	const stack: string[] = [];
-	for (const char of str) {
-		if (char === "(" || char === "[" || char === "{") {
-			stack.push(char);
-		} else if (char === ")" || char === "]" || char === "}") {
-			const top = stack.pop();
-			if (stackMap[top as keyof TStackMap] !== char) return false as never;
-		}
+	let prefix = "";
+	for (const char of first) {
+		const newPrefix = `${prefix}${char}`;
+		if (rest.some((str) => !str.startsWith(newPrefix))) return prefix as never;
+		prefix = newPrefix;
 	}
-	if (stack.length > 0) return false as never;
-	return true as never;
+	return prefix as never;
 };
