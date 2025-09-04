@@ -6,7 +6,7 @@ import type { Utils } from "../../../types/utils.types.js";
 
 test("testing lengthOfLastWord for test 1", () => {
 	const result = lengthOfLastWord("Hello World");
-	const expected = 5 as number;
+	const expected = 5;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -14,7 +14,7 @@ test("testing lengthOfLastWord for test 1", () => {
 
 test("testing lengthOfLastWord for test 2", () => {
 	const result = lengthOfLastWord("   fly me   to   the moon  ");
-	const expected = 4 as number;
+	const expected = 4;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -22,7 +22,7 @@ test("testing lengthOfLastWord for test 2", () => {
 
 test("testing lengthOfLastWord for test 3", () => {
 	const result = lengthOfLastWord("luffy is still joyboy"); // cSpell: disable-line
-	const expected = 6 as number;
+	const expected = 6;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
