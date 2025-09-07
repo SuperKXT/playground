@@ -8,15 +8,14 @@ export type TRemoveDuplicates<
 export const removeDuplicates = <const Arr extends readonly unknown[]>(
 	arr: Arr,
 ): TRemoveDuplicates<Arr> => {
-	const set = new Set<unknown>();
+	let curr: undefined | number = undefined;
 	for (let idx = 0; idx < arr.length; idx++) {
 		const num = arr[idx] as number;
-		if (set.has(num)) {
+		if (curr === num) {
 			(arr as unknown as unknown[]).splice(idx, 1);
 			idx--;
-		} else {
-			set.add(num);
 		}
+		curr = num;
 	}
 	return arr.length as never;
 };
