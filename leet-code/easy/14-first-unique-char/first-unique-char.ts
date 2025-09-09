@@ -1,20 +1,25 @@
 type TFirstUniqueChar<
 	Str extends string,
 	idx extends 1[] = [],
+	visited extends string = never,
 > = Str extends `${infer first}${infer rest}`
-	? rest extends `${infer before}${first}${infer after}`
-		? TFirstUniqueChar<`${before}${after}`, [...idx, 1]>
-		: idx["length"]
+	? rest extends `${string}${first}${string}`
+		? TFirstUniqueChar<rest, [...idx, 1], visited | first>
+		: first extends visited
+			? TFirstUniqueChar<rest, [...idx, 1], visited>
+			: idx["length"]
 	: -1;
 
 export const firstUniqueChar = <const Str extends string>(
 	str: Str,
 ): TFirstUniqueChar<Str> => {
-	const set = new Map<string, number>();
+	const set = new Set<string>();
+	const map = new Map<string, number>();
 	for (let idx = 0; idx < str.length; idx++) {
 		const char = str[idx] as string;
-		if (set.has(char)) set.delete(char);
-		else set.set(char, idx);
+		if (set.has(char)) map.delete(char);
+		else map.set(char, idx);
+		set.add(char);
 	}
-	return (set.values().next().value ?? -1) as never;
+	return (map.values().next().value ?? -1) as never;
 };
