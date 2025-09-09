@@ -1,20 +1,13 @@
 type TSingleNumber<
 	Nums extends number[],
-	counts extends { val: number; count: 0 | 1 } = never,
+	visited extends number = never,
 > = Nums extends [infer first extends number, ...infer rest extends number[]]
-	? TSingleNumber<
-			rest,
-			| Exclude<counts, { val: first }>
-			| {
-					val: first;
-					count: Extract<counts, { val: first }> extends never ? 0 : 1;
-			  }
-		>
-	: Extract<counts, { count: 0 }>["val"] extends infer res
-		? [res] extends [never]
-			? null
-			: res
-		: null;
+	? first extends visited
+		? TSingleNumber<rest, visited | first>
+		: first extends rest[number]
+			? TSingleNumber<rest, visited | first>
+			: first
+	: null;
 
 export const singleNumber = <const Nums extends number[]>(
 	nums: Nums,
