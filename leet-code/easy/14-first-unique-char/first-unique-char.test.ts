@@ -27,3 +27,19 @@ test("testing firstUniqueChar for test 3", () => {
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
+
+test("testing firstUniqueChar for test 4", () => {
+	const result = firstUniqueChar("aadadaadz"); // cSpell: disable-line
+	const expected = 8;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
+});
+
+test("testing firstUniqueChar for test 5", () => {
+	const result = firstUniqueChar("aadadaad"); // cSpell: disable-line
+	const expected = -1;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
+});
