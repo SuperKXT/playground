@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/first-unique-character-in-a-string/
+
 type TFirstUniqueChar<
 	Str extends string,
 	idx extends 1[] = [],

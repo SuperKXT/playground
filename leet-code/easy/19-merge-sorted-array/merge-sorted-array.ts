@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/merge-sorted-array
+
 export const mergeSortedArrays = (nums1: number[], nums2: number[]): void => {
 	if (!nums2.length) return;
 	let idx = 0;

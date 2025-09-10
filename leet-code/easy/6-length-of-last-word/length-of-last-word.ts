@@ -1,3 +1,5 @@
+// 	https://leetcode.com/problems/length-of-last-word
+
 type TReverseString<Str extends string> =
 	Str extends `${infer first}${infer rest}`
 		? `${TReverseString<rest>}${first}`

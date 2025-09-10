@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/single-number
+
 type TSingleNumber<
 	Nums extends number[],
 	visited extends number = never,

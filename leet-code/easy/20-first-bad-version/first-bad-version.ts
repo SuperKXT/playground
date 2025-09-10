@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/first-bad-version
+
 export const firstBadVersion = (isBadVersion: (n: number) => boolean) => {
 	return (n: number): number => {
 		let start = 0;

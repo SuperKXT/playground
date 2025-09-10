@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/plus-one/description
+
 type TDigitMap = {
 	0: 1;
 	1: 2;
