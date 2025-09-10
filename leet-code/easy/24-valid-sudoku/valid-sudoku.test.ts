@@ -1,11 +1,11 @@
 import { assertType, expect, test } from "vitest";
 
-import { containsDuplicate } from "./valid-sudoku.js";
+import { isValidSudoku } from "./valid-sudoku.js";
 
 import type { Utils } from "../../../types/utils.types.js";
 
-test("testing containsDuplicate for test 1", () => {
-	const result = containsDuplicate([
+test("testing isValidSudoku for test 1", () => {
+	const result = isValidSudoku([
 		["5", "3", ".", ".", "7", ".", ".", ".", "."],
 		["6", ".", ".", "1", "9", "5", ".", ".", "."],
 		[".", "9", "8", ".", ".", ".", ".", "6", "."],
@@ -16,14 +16,14 @@ test("testing containsDuplicate for test 1", () => {
 		[".", ".", ".", "4", "1", "9", ".", ".", "5"],
 		[".", ".", ".", ".", "8", ".", ".", "7", "9"],
 	]);
-	const expected = true as boolean;
+	const expected = true;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
 
-test("testing containsDuplicate for test 2", () => {
-	const result = containsDuplicate([
+test("testing isValidSudoku for test 2", () => {
+	const result = isValidSudoku([
 		["8", "3", ".", ".", "7", ".", ".", ".", "."],
 		["6", ".", ".", "1", "9", "5", ".", ".", "."],
 		[".", "9", "8", ".", ".", ".", ".", "6", "."],
@@ -34,7 +34,7 @@ test("testing containsDuplicate for test 2", () => {
 		[".", ".", ".", "4", "1", "9", ".", ".", "5"],
 		[".", ".", ".", ".", "8", ".", ".", "7", "9"],
 	]);
-	const expected = false as boolean;
+	const expected = false;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
