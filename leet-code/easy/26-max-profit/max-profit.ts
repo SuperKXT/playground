@@ -5,9 +5,11 @@ export const maxProfit = (prices: number[]): number => {
 		const curr = prices[idx] as number;
 		const next = prices[idx + 1] ?? -Infinity;
 		if (next < curr) {
-			if (start) profit += curr - start;
+			if (start !== undefined) {
+				profit += curr - start;
+			}
 			start = undefined;
-		} else if (!start) {
+		} else if (start === undefined) {
 			start = curr;
 		}
 	}
