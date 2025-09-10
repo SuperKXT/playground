@@ -20,9 +20,25 @@ test("testing maxProfit for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing maxProfit for test 2", () => {
+test("testing maxProfit for test 3", () => {
 	const result = maxProfit([7, 6, 5, 4, 3, 1]);
 	const expected = 0 as number;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
+});
+
+test("testing maxProfit for test 4", () => {
+	const result = maxProfit([2, 1, 2, 0, 1]);
+	const expected = 2 as number;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
+});
+
+test("testing maxProfit for test 5", () => {
+	const result = maxProfit([2, 1, 2, 1, 0, 1, 2]);
+	const expected = 3 as number;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
