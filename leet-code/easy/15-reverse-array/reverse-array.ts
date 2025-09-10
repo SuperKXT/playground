@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/reverse-string
+
 export const reverseArray = (arr: unknown[]): void => {
 	for (let idx = 0; idx < arr.length / 2; idx++) {
 		const temp = arr[idx];

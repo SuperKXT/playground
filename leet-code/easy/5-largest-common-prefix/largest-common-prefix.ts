@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/longest-common-prefix
+
 type _TLongestCommonPrefix<
 	first extends string,
 	rest extends string[],

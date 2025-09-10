@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/palindrome-number
+
 type TReverse<Str extends string> = Str extends `${infer first}${infer rest}`
 	? `${TReverse<rest>}${first}`
 	: "";

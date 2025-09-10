@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/valid-anagram
+
 type TIsAnagram<
 	A extends string,
 	B extends string,

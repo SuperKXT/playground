@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/group-anagrams
+
 export const groupAnagrams = (arr: string[]): string[][] => {
 	const groups = new Map<string, string[]>();
 	for (const str of arr) {

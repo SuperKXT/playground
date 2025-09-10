@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/contains-duplicate
+
 type TContainsDuplicate<Nums extends unknown[]> = Nums extends [
 	infer first,
 	...infer rest,

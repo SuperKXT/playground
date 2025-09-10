@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/delete-node-in-a-linked-list
+
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
 
 export const deleteNode = (node: TLinkedListNode): void => {

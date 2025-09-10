@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/two-sum
+
 export const twoSum = (nums: number[], target: number): [number, number] => {
 	for (let i = 0; i < nums.length; i++) {
 		const curr = nums[i] as number;
