@@ -35,19 +35,34 @@ export type TPlusOne<
 // 	return [...rest, last + 1] as never;
 // };
 
+// export const plusOne = <const Nums extends number[]>(
+// 	digits: Nums,
+// 	idx: number = digits.length - 1,
+// ): TPlusOne<Nums> => {
+// 	const curr = digits[idx];
+// 	if (curr === undefined) {
+// 		digits.unshift(1);
+// 		return digits as never;
+// 	}
+// 	if (curr === 9) {
+// 		digits[idx] = 0;
+// 		return plusOne(digits, idx - 1) as never;
+// 	}
+// 	digits[idx] = curr + 1;
+// 	return digits as never;
+// };
+
 export const plusOne = <const Nums extends number[]>(
 	digits: Nums,
-	idx: number = digits.length - 1,
 ): TPlusOne<Nums> => {
-	const curr = digits[idx];
-	if (curr === undefined) {
-		digits.unshift(1);
-		return digits as never;
+	for (let i = digits.length - 1; i >= 0; i--) {
+		const curr = digits[i] as number;
+		if (curr < 9) {
+			digits[i] = curr + 1;
+			return digits as never;
+		}
+		digits[i] = 0;
 	}
-	if (curr === 9) {
-		digits[idx] = 0;
-		return plusOne(digits, idx - 1) as never;
-	}
-	digits[idx] = curr + 1;
+	digits.unshift(1);
 	return digits as never;
 };
