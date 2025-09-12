@@ -11,11 +11,28 @@ type TIsAnagram<
 		? true
 		: false;
 
+// export const isAnagram = <const A extends string, const B extends string>(
+// 	a: A,
+// 	b: B,
+// ): TIsAnagram<A, B> => {
+// 	const aSorted = a.split("").sort().join("");
+// 	const bSorted = b.split("").sort().join("");
+// 	return (aSorted === bSorted) as never;
+// };
+
 export const isAnagram = <const A extends string, const B extends string>(
 	a: A,
 	b: B,
 ): TIsAnagram<A, B> => {
-	const aSorted = a.split("").sort().join("");
-	const bSorted = b.split("").sort().join("");
-	return (aSorted === bSorted) as never;
+	const counts = new Map<string, number>();
+	for (const char of a) {
+		counts.set(char, (counts.get(char) ?? 0) + 1);
+	}
+	for (const char of b) {
+		counts.set(char, (counts.get(char) ?? 0) - 1);
+	}
+	for (const count of counts.values()) {
+		if (count !== 0) return false as never;
+	}
+	return true as never;
 };
