@@ -1,7 +1,7 @@
 import type { Utils } from "../types/utils.types.js";
 
 export type TLinkedListNode<Type = unknown> = {
-	value: Type;
+	val: Type;
 	next: TLinkedListNode<Type>;
 } | null;
 
@@ -13,16 +13,16 @@ type TInsertToNode<
 	Node extends NonNullable<TLinkedListNode>,
 	Val,
 > = Utils.prettify<{
-	value: Node["value"];
+	val: Node["val"];
 	next: Node["next"] extends NonNullable<TLinkedListNode>
 		? TInsertToNode<Node["next"], Val>
-		: { value: Val; next: null };
+		: { val: Val; next: null };
 }>;
 
 type TInsertNode<List extends TLinkedList<unknown>, Val> = Utils.prettify<{
 	head: List["head"] extends NonNullable<TLinkedListNode>
 		? TInsertToNode<List["head"], Val>
-		: { value: Val; next: null };
+		: { val: Val; next: null };
 }>;
 
 type TArrayToLinkedList<
@@ -45,7 +45,7 @@ export const arrayToLinkedList = <const Arr extends readonly unknown[]>(
 	for (const item of array) {
 		const node: TLinkedListNode = {
 			next: null,
-			value: item,
+			val: item,
 		};
 
 		if (!list.head) {
@@ -65,9 +65,9 @@ export const insertToLinkedList = <
 	const Val,
 >(
 	list: List,
-	value: Val,
+	val: Val,
 ): TInsertNode<List, Val> => {
-	const newNode = { value, next: null };
+	const newNode = { val, next: null };
 	if (!list.head) {
 		list.head = newNode;
 	} else {
