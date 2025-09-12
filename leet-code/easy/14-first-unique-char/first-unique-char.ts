@@ -12,16 +12,32 @@ type TFirstUniqueChar<
 			: idx["length"]
 	: -1;
 
+// export const firstUniqueChar = <const Str extends string>(
+// 	str: Str,
+// ): TFirstUniqueChar<Str> => {
+// 	const set = new Set<string>();
+// 	const map = new Map<string, number>();
+// 	for (let idx = 0; idx < str.length; idx++) {
+// 		const char = str[idx] as string;
+// 		if (set.has(char)) map.delete(char);
+// 		else map.set(char, idx);
+// 		set.add(char);
+// 	}
+// 	return (map.values().next().value ?? -1) as never;
+// };
+
 export const firstUniqueChar = <const Str extends string>(
 	str: Str,
 ): TFirstUniqueChar<Str> => {
-	const set = new Set<string>();
-	const map = new Map<string, number>();
+	const map = new Map<string, number[]>();
 	for (let idx = 0; idx < str.length; idx++) {
 		const char = str[idx] as string;
-		if (set.has(char)) map.delete(char);
-		else map.set(char, idx);
-		set.add(char);
+		const existing = map.get(char);
+		if (!existing) map.set(char, [idx]);
+		else existing.push(idx);
 	}
-	return (map.values().next().value ?? -1) as never;
+	for (const indexes of map.values()) {
+		if (indexes.length === 1) return indexes[0] as never;
+	}
+	return -1 as never;
 };
