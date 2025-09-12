@@ -14,8 +14,8 @@ export const areArraysEqual = <Type extends unknown[]>(
 
 type _TLinkedListToArray<T extends NonNullable<TLinkedListNode>> =
 	T["next"] extends NonNullable<TLinkedListNode>
-		? [T["value"], ..._TLinkedListToArray<T["next"]>]
-		: [T["value"]];
+		? [T["val"], ..._TLinkedListToArray<T["next"]>]
+		: [T["val"]];
 
 type TLinkedListToArray<T extends TLinkedList<unknown>> =
 	T["head"] extends NonNullable<TLinkedListNode>
@@ -28,7 +28,7 @@ export const linkedListToArray = <const List extends TLinkedList<unknown>>(
 	const array = [];
 	let node = list.head;
 	while (node) {
-		array.push(node.value);
+		array.push(node.val);
 		node = node.next;
 	}
 	return array as TLinkedListToArray<List>;

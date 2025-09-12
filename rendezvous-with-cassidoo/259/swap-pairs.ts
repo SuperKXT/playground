@@ -30,10 +30,10 @@ export const swapLinkedListPairs = (
 ): TLinkedList<number> => {
 	const swapped = { ...list };
 	let node = swapped.head;
-	while (node?.value && node.next?.value !== undefined) {
-		const current = node.next.value;
-		node.next.value = node.value;
-		node.value = current;
+	while (node?.val && node.next?.val !== undefined) {
+		const current = node.next.val;
+		node.next.val = node.val;
+		node.val = current;
 		node = node.next.next;
 	}
 	return swapped;

@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/add-two-numbers
+// https://leetcode.com/problems/rotate-image
 
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
 
