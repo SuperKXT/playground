@@ -1,17 +1,23 @@
-import { expect, test } from "vitest";
+import { assertType, expect, test } from "vitest";
 
 import { addBinary } from "./add-binary.js";
+
+import type { Utils } from "../../../types/utils.types.js";
 
 test("testing addBinary for test 1", () => {
 	const result = addBinary("11", "1");
 	const expected = "100";
 	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
 });
 
 test("testing addBinary for test 2", () => {
 	const result = addBinary("1010", "1011");
 	const expected = "10101";
 	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
 });
 
 test("testing addBinary for test 3", () => {
@@ -22,4 +28,6 @@ test("testing addBinary for test 3", () => {
 	const expected =
 		"110111101100010011000101110110100000011101000101011001000011011000001100011110011010010011000000000";
 	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
 });
