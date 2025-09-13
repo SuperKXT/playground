@@ -9,7 +9,7 @@ test("testing arrayToLinkedList helper", () => {
 	const test1 = {
 		response: arrayToLinkedList([1, 2, 3]),
 		expected: {
-			head: { value: 1, next: { value: 2, next: { value: 3, next: null } } },
+			head: { val: 1, next: { val: 2, next: { val: 3, next: null } } },
 		} as const,
 	};
 	expect(test1.response).toStrictEqual(test1.expected);
@@ -26,12 +26,12 @@ test("testing arrayToLinkedList helper", () => {
 test("testing insertToLinkedList helper", () => {
 	const test1 = {
 		list: {
-			head: { value: 1, next: { value: 2, next: { value: 3, next: null } } },
+			head: { val: 1, next: { val: 2, next: { val: 3, next: null } } },
 		} as const,
 		expected: {
 			head: {
-				value: 1,
-				next: { value: 2, next: { value: 3, next: { value: 4, next: null } } },
+				val: 1,
+				next: { val: 2, next: { val: 3, next: { val: 4, next: null } } },
 			},
 		} as const,
 	};
@@ -41,7 +41,7 @@ test("testing insertToLinkedList helper", () => {
 
 	const test2 = {
 		list: { head: null } as const,
-		expected: { head: { value: 1, next: null } } as const,
+		expected: { head: { val: 1, next: null } } as const,
 	};
 	const response2 = insertToLinkedList(test2.list, 1);
 	expect(response2).toStrictEqual(test2.expected);
