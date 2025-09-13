@@ -2,10 +2,21 @@
 
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
 
-export const deleteDuplicateNodes = (
-	head: TLinkedListNode<number>,
-): TLinkedListNode<number> => {
-	if (!head) return head;
+type TDeleteDuplicateNodes<Node extends TLinkedListNode> =
+	Node extends Exclude<Node, null>
+		? {
+				val: Node["val"];
+				next: Node["next"] extends Exclude<Node["next"], null>
+					? Node["val"] extends Node["next"]["val"]
+						? TDeleteDuplicateNodes<Node["next"]["next"]>
+						: TDeleteDuplicateNodes<Node["next"]>
+					: null;
+			}
+		: null;
+
+export const deleteDuplicateNodes = <Head extends TLinkedListNode<number>>(
+	head: Head,
+): TDeleteDuplicateNodes<Head> => {
 	let curr: TLinkedListNode<number> = head;
 	while (curr) {
 		if (curr.next?.val === curr.val) {
@@ -14,5 +25,5 @@ export const deleteDuplicateNodes = (
 			curr = curr.next;
 		}
 	}
-	return head;
+	return head as never;
 };
