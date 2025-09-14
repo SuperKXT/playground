@@ -2,6 +2,7 @@ import { assertType, expect, test } from "vitest";
 
 import {
 	arrayToLinkedList,
+	insertNodeToLinkedList,
 	insertToLinkedList,
 } from "./linked-list.helpers.js";
 
@@ -46,4 +47,23 @@ test("testing insertToLinkedList helper", () => {
 	const response2 = insertToLinkedList(test2.list, 1);
 	expect(response2).toStrictEqual(test2.expected);
 	assertType<typeof response2>(test2.expected);
+});
+
+test("testing insertNodeToLinkedList helper", () => {
+	const test1 = {
+		list: arrayToLinkedList([1, 2, 3] as number[]),
+		expected: arrayToLinkedList([1, 2, 3, 2] as number[]),
+	};
+	const response1 = insertNodeToLinkedList(test1.list, { val: 2, next: null });
+	expect(response1).toStrictEqual(test1.expected);
+	assertType<typeof response1>(test1.expected);
+
+	const list2 = arrayToLinkedList([1, 2, 3] as number[]);
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+	const response2 = insertNodeToLinkedList(list2, list2.head!.next);
+	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+	list2.head!.next!.next!.next = list2.head!.next;
+
+	expect(response2).toStrictEqual(list2);
+	assertType<typeof response2>(list2);
 });
