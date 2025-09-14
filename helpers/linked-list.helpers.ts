@@ -79,3 +79,17 @@ export const insertToLinkedList = <
 	}
 	return list as TInsertNode<List, Val>;
 };
+
+export const insertNodeToLinkedList = <Val>(
+	list: NonNullable<TLinkedList<Val>>,
+	val: TLinkedListNode<Val>,
+): NonNullable<TLinkedList<Val>> => {
+	let curr = list.head;
+	if (!curr) {
+		list.head = val;
+		return list;
+	}
+	while (curr.next) curr = curr.next;
+	curr.next = val;
+	return list;
+};
