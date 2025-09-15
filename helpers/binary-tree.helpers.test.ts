@@ -22,4 +22,15 @@ test("testing arrayToBinaryTree helper", () => {
 	};
 	expect(test2.response).toStrictEqual(test2.expected);
 	assertType<(typeof test2)["response"]>(test2.expected);
+
+	const test3 = {
+		response: arrayToBinaryTree([1, null, 2, null, null, 3]),
+		expected: {
+			val: 1,
+			left: null,
+			right: { val: 2, left: { val: 3, left: null, right: null }, right: null },
+		} as TBinaryTreeNode<number>,
+	};
+	expect(test3.response).toStrictEqual(test3.expected);
+	assertType<(typeof test3)["response"]>(test3.expected);
 });
