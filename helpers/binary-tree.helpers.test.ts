@@ -33,4 +33,48 @@ test("testing arrayToBinaryTree helper", () => {
 	};
 	expect(test3.response).toStrictEqual(test3.expected);
 	assertType<(typeof test3)["response"]>(test3.expected);
+
+	const arr = arrayToBinaryTree([
+		1,
+		2,
+		3,
+		4,
+		5,
+		null,
+		8,
+		null,
+		null,
+		6,
+		7,
+		null,
+		null,
+		9,
+	]);
+	console.log(JSON.stringify(arr));
+	const test4 = {
+		response: arr,
+		expected: {
+			val: 1,
+			left: {
+				val: 2,
+				left: { val: 4, left: null, right: null },
+				right: {
+					val: 5,
+					left: { val: 6, left: null, right: null },
+					right: { val: 7, left: null, right: null },
+				},
+			},
+			right: {
+				val: 3,
+				left: null,
+				right: {
+					val: 8,
+					left: { val: 9, left: null, right: null },
+					right: null,
+				},
+			},
+		} as TBinaryTreeNode<number>,
+	};
+	expect(test4.response).toStrictEqual(test4.expected);
+	assertType<(typeof test4)["response"]>(test4.expected);
 });
