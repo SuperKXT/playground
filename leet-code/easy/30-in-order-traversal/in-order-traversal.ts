@@ -2,6 +2,10 @@
 
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 
+// !----------------
+// !RECURSIVE SOLUTION
+// !----------------
+
 // export const inOrderTraversal = (node: TBinaryTreeNode<number>): number[] => {
 // 	if (!node) return [];
 // 	return [
@@ -10,6 +14,10 @@ import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 // 		...inOrderTraversal(node.right),
 // 	];
 // };
+
+// !----------------
+// !ITERATIVE SOLUTION
+// !----------------
 
 // export const inOrderTraversal = (node: TBinaryTreeNode<number>): number[] => {
 // 	if (!node) return [];

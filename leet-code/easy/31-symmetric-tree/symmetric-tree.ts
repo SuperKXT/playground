@@ -2,6 +2,10 @@
 
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 
+// !----------------
+// !RECURSIVE SOLUTION
+// !----------------
+
 const compareNodes = (
 	a: TBinaryTreeNode<number>,
 	b: TBinaryTreeNode<number>,
