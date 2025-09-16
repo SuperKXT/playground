@@ -14,7 +14,7 @@ test("testing maxDepth for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing maxDepth for test 3", () => {
+test("testing maxDepth for test 2", () => {
 	const result = maxDepth(arrayToBinaryTree([1, null, 2]));
 	const expected = 2 as number;
 	expect(result).toStrictEqual(expected);
