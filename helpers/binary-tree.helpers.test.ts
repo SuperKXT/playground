@@ -50,7 +50,6 @@ test("testing arrayToBinaryTree helper", () => {
 		null,
 		9,
 	]);
-	console.log(JSON.stringify(arr));
 	const test4 = {
 		response: arr,
 		expected: {
