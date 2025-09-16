@@ -2,8 +2,10 @@ import { expect, test } from "vitest";
 
 import { deleteNode } from "./delete-node.js";
 
-import { linkedListToArray } from "../../../helpers/array.helpers.js";
-import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+import {
+	arrayToLinkedList,
+	linkedListToArray,
+} from "../../../helpers/linked-list.helpers.js";
 
 test("testing arrayToLinkedList for test 1", () => {
 	const list = arrayToLinkedList([4, 5, 1, 9]);
