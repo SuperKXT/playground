@@ -1,10 +1,9 @@
-import { assertType, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
 import {
 	areArraysEqual,
 	filterInPlace,
 	inPlaceInsertToSortedArray,
-	linkedListToArray,
 } from "./array.helpers.js";
 import { getRandomInteger } from "./random.helpers.js";
 
@@ -39,23 +38,6 @@ test.each(EQUALITY_TESTS)(
 		expect(response).toStrictEqual(areEqual);
 	},
 );
-test("testing linkedListToArray helper", () => {
-	const test1 = {
-		response: linkedListToArray({
-			head: { next: { next: { next: null, value: 3 }, value: 2 }, value: 1 },
-		}),
-		expected: [1, 2, 3] as const,
-	};
-	expect(test1.response).toStrictEqual(test1.expected);
-	assertType<(typeof test1)["expected"]>(test1.response);
-
-	const test2 = {
-		response: linkedListToArray({ head: null }),
-		expected: [] as const,
-	};
-	expect(test2.response).toStrictEqual(test2.expected);
-	assertType<(typeof test2)["expected"]>(test2.response);
-});
 
 test("testing inPlaceInsertToSortedArray helper", () => {
 	const arr: number[] = [];

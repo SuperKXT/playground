@@ -93,3 +93,25 @@ export const insertNodeToLinkedList = <Val>(
 	curr.next = val;
 	return list;
 };
+
+type _TLinkedListToArray<T extends NonNullable<TLinkedListNode>> =
+	T["next"] extends NonNullable<TLinkedListNode>
+		? [T["val"], ..._TLinkedListToArray<T["next"]>]
+		: [T["val"]];
+
+type TLinkedListToArray<T extends TLinkedList<unknown>> =
+	T["head"] extends NonNullable<TLinkedListNode>
+		? _TLinkedListToArray<T["head"]>
+		: [];
+
+export const linkedListToArray = <const List extends TLinkedList<unknown>>(
+	list: List,
+): TLinkedListToArray<List> => {
+	const array = [];
+	let node = list.head;
+	while (node) {
+		array.push(node.val);
+		node = node.next;
+	}
+	return array as TLinkedListToArray<List>;
+};
