@@ -25,14 +25,16 @@ export const arrayIntersection = <
 	nums1: Nums1,
 	nums2: Nums2,
 ): TArrayIntersection<Nums1, Nums2> => {
-	const set2 = new Map<number, number>();
-	for (const num of nums2) set2.set(num, (set2.get(num) ?? 0) + 1);
+	const map2 = new Map<number, number>();
+	for (const num of nums2) {
+		map2.set(num, (map2.get(num) ?? 0) + 1);
+	}
 	const res: number[] = [];
 	for (const num of nums1) {
-		const existing = set2.get(num);
+		const existing = map2.get(num);
 		if (existing && existing > 0) {
 			res.push(num);
-			set2.set(num, existing - 1);
+			map2.set(num, existing - 1);
 		}
 	}
 	return res as never;
