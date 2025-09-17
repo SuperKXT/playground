@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/intersection-of-two-linked-lists
+// https://leetcode.com/problems/happy-number
 
 export const happyNumber = (num: number): boolean => {
 	const set = new Set<number>();
