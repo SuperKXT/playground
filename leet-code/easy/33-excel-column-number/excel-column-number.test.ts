@@ -29,7 +29,7 @@ test("testing excelColumnNumber for test 3", () => {
 });
 
 test("testing excelColumnNumber for test 4", () => {
-	const result = excelColumnNumber("FXSHRXW");
+	const result = excelColumnNumber("FXSHRXW"); // cSpell: disable-line
 	const expected = 2147483647 as number;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
