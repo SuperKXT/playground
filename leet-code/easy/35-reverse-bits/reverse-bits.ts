@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/excel-sheet-column-title
+// https://leetcode.com/problems/reverse-bits
 
 export const reverseBits = (num: number): number => {
 	const str = num.toString(2).padStart(32, "0");
