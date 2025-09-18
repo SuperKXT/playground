@@ -1,6 +1,6 @@
 import { assertType, expect, test } from "vitest";
 
-import { invertTree } from "./invert-binary-tree.js";
+import { invertTree } from "./invert-tree.js";
 
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
 
