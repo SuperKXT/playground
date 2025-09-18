@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/ugly-number
+// https://leetcode.com/problems/reverse-linked-list
 
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
 
