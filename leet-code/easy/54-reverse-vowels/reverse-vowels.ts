@@ -1,12 +1,32 @@
 // https://leetcode.com/problems/counting-bits
 
 const vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"] as const;
-type TVowels = typeof vowels;
+type TVowels = (typeof vowels)[number];
 const vowelSet = new Set<string>(vowels);
 
-type TReverseVowels<S extends string> = never;
+type TStringTuple<S extends string> = S extends `${infer first}${infer rest}`
+	? [first, ...TStringTuple<rest>]
+	: [];
 
-// export const reverseVowels = (s: string): string => {
+type TReverseVowels<
+	S extends string,
+	tuple extends string[] = TStringTuple<S>,
+	left extends string = "",
+	right extends string = "",
+	toReplace extends string | undefined = undefined,
+> = toReplace extends string
+	? tuple extends [...infer rest extends string[], infer last extends string]
+		? last extends TVowels
+			? TReverseVowels<never, rest, `${left}${last}`, `${toReplace}${right}`>
+			: TReverseVowels<never, rest, left, `${last}${right}`, toReplace>
+		: `${left}${right}`
+	: tuple extends [infer first extends string, ...infer rest extends string[]]
+		? first extends TVowels
+			? TReverseVowels<never, rest, left, right, first>
+			: TReverseVowels<never, rest, `${left}${first}`, right>
+		: `${left}${right}`;
+
+// export const reverseVowels = <S extends string>(s: S): TReverseVowels<S> => {
 // 	let start = 0;
 // 	let end = s.length - 1;
 // 	let toReplace: string | undefined = undefined;
@@ -30,10 +50,10 @@ type TReverseVowels<S extends string> = never;
 // 			}
 // 		}
 // 	}
-// 	return res.join("");
+// 	return res.join("") as never;
 // };
 
-export const reverseVowels = (s: string): string => {
+export const reverseVowels = <S extends string>(s: S): TReverseVowels<S> => {
 	let start = 0;
 	let end = s.length - 1;
 	let toReplace: string | undefined = undefined;
@@ -62,5 +82,5 @@ export const reverseVowels = (s: string): string => {
 		}
 	}
 	left += s[start] as string;
-	return `${left}${right}`;
+	return `${left}${right}` as never;
 };
