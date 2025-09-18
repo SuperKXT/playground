@@ -113,4 +113,45 @@ test("testing binaryTreeToArray helper", () => {
 	};
 	expect(test4.response).toStrictEqual(test4.expected);
 	assertType<(typeof test4)["response"]>(test4.expected);
+
+	const arr5 = [
+		2,
+		null,
+		3,
+		null,
+		null,
+		null,
+		4,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		5,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		6,
+	];
+	const tree5 = arrayToBinaryTree(arr5);
+	const test5 = {
+		response: binaryTreeToArray(tree5),
+		expected: arr5,
+	};
+	expect(test5.response).toStrictEqual(test5.expected);
+	assertType<(typeof test5)["response"]>(test5.expected);
 });
