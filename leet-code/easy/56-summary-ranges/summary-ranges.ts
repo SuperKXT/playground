@@ -60,9 +60,6 @@ type TSummaryRanges<
 		? [...ranges, TRangeString<curr>]
 		: ranges;
 
-type _ = TPlusOne<[0, 1, 2, 4, 5, 7]>;
-//   ^?
-
 export const summaryRanges = <const Nums extends number[]>(
 	nums: Nums,
 ): TSummaryRanges<Nums> => {
