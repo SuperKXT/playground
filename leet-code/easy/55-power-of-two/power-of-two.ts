@@ -10,6 +10,13 @@
 // 	return false;
 // };
 
+// export const powerOfTwo = (n: number): boolean => {
+// 	if (n < 1) return false;
+// 	return Number.isInteger(Math.log2(n));
+// };
+
 export const powerOfTwo = (n: number): boolean => {
-	return Number.isInteger(Math.log2(n));
+	if (n < 1) return false;
+	const base2 = n.toString(2);
+	return /^10*$/u.test(base2);
 };

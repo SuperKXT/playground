@@ -12,7 +12,7 @@ test("testing powerOfTwo for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reverseVowels for test 2", () => {
+test("testing powerOfTwo for test 2", () => {
 	const result = powerOfTwo(1);
 	const expected = true as boolean;
 	expect(result).toStrictEqual(expected);
@@ -20,7 +20,7 @@ test("testing reverseVowels for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reverseVowels for test 3", () => {
+test("testing powerOfTwo for test 3", () => {
 	const result = powerOfTwo(16);
 	const expected = true as boolean;
 	expect(result).toStrictEqual(expected);
@@ -28,7 +28,7 @@ test("testing reverseVowels for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reverseVowels for test 4", () => {
+test("testing powerOfTwo for test 4", () => {
 	const result = powerOfTwo(3);
 	const expected = false as boolean;
 	expect(result).toStrictEqual(expected);
