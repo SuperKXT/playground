@@ -1,5 +1,26 @@
 // https://leetcode.com/problems/repeated-substring-pattern
 
+type TCheckSubstring<
+	Substring extends string,
+	Remaining extends string,
+> = Remaining extends ""
+	? true
+	: Remaining extends `${Substring}${infer rest}`
+		? TCheckSubstring<Substring, rest>
+		: false;
+
+type TRepeatedSubstringPattern<
+	S extends string,
+	substring extends string = "",
+> = S extends `${infer first}${infer rest}`
+	? rest extends ""
+		? false
+		: TCheckSubstring<`${substring}${first}`, rest> extends true
+			? true
+			: TRepeatedSubstringPattern<rest, `${substring}${first}`>
+	: false;
+
+// ! Too slow
 // export const repeatedSubstringPattern = (s: string): boolean => {
 // 	let substring = "";
 // 	for (const char of s) {
@@ -12,7 +33,9 @@
 // 	return false as boolean;
 // };
 
-export const repeatedSubstringPattern = (s: string): boolean => {
+export const repeatedSubstringPattern = <S extends string>(
+	s: S,
+): TRepeatedSubstringPattern<S> => {
 	let substring = "";
 	for (const char of s) {
 		substring += char;
@@ -21,7 +44,7 @@ export const repeatedSubstringPattern = (s: string): boolean => {
 		while (remaining.startsWith(substring)) {
 			remaining = remaining.slice(substring.length);
 		}
-		if (!remaining) return true as boolean;
+		if (!remaining) return true as never;
 	}
-	return false as boolean;
+	return false as never;
 };
