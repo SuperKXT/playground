@@ -4,7 +4,7 @@ import { arrayIntersection } from "./array-intersection.js";
 
 import type { Utils } from "../../../types/utils.types.js";
 
-test("testing perfectSquare for test 1", () => {
+test("testing arrayIntersection for test 1", () => {
 	const result = arrayIntersection([1, 2, 2, 1], [2, 2]);
 	const expected = [2] as const;
 	expect(result).toStrictEqual(expected);
@@ -12,7 +12,7 @@ test("testing perfectSquare for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing perfectSquare for test 2", () => {
+test("testing arrayIntersection for test 2", () => {
 	const result = arrayIntersection([4, 9, 5], [9, 4, 9, 8, 4]);
 	const expected = [9, 4] as const;
 	expect(result).toStrictEqual(expected);
