@@ -1,20 +1,20 @@
 import { assertType, expect, test } from "vitest";
 
-import { base7 } from "./base-7.js";
+import { nextGreaterElement } from "./next-greater-element-i.js";
 
 import type { Utils } from "../../../types/utils.types.js";
 
-test("testing base7 for test 1", () => {
-	const result = base7(100);
-	const expected = "202" as string;
+test("testing nextGreaterElement for test 1", () => {
+	const result = nextGreaterElement([4, 1, 2], [1, 3, 4, 2]);
+	const expected = [-1, 3, -1] as number[];
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
-test("testing base7 for test 2", () => {
-	const result = base7(-7);
-	const expected = "-10" as string;
+test("testing nextGreaterElement for test 2", () => {
+	const result = nextGreaterElement([2, 4], [1, 2, 3, 4]);
+	const expected = [3, -1] as number[];
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
