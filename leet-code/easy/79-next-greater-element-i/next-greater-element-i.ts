@@ -14,9 +14,5 @@ export const nextGreaterElement = (
 		}
 		remaining.add(num);
 	}
-	const res: number[] = [];
-	for (const num of nums1) {
-		res.push(map.get(num) ?? -1);
-	}
-	return res;
+	return nums1.map((num) => map.get(num) ?? -1);
 };
