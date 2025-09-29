@@ -1,10 +1,26 @@
 // https://leetcode.com/problems/max-consecutive-ones
 
-export const maxConsecutiveOnes = (nums: number[]): number => {
+type TMaxConsecutiveOnes<
+	Nums extends number[],
+	max extends 1[] = [],
+	curr extends 1[] = [],
+> = Nums extends [infer first, ...infer rest extends number[]]
+	? first extends 1
+		? TMaxConsecutiveOnes<
+				rest,
+				curr["length"] extends max["length"] ? [...max, 1] : max,
+				[...curr, 1]
+			>
+		: TMaxConsecutiveOnes<rest, max>
+	: max["length"];
+
+export const maxConsecutiveOnes = <const Nums extends number[]>(
+	nums: Nums,
+): TMaxConsecutiveOnes<Nums> => {
 	let max = 0;
 	let curr = 0;
-	for (const char of nums) {
-		if (char === 1) curr++;
+	for (const num of nums) {
+		if (num === 1) curr++;
 		else curr = 0;
 		if (curr > max) max = curr;
 	}
