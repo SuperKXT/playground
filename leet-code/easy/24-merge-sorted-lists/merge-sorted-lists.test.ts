@@ -1,8 +1,10 @@
-import { expect, test } from "vitest";
+import { assertType, expect, test } from "vitest";
 
 import { mergeSortedLists } from "./merge-sorted-lists.js";
 
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import type { Utils } from "../../../types/utils.types.js";
 
 test("testing mergeSortedLists for test 1", () => {
 	const result = mergeSortedLists(
@@ -11,6 +13,8 @@ test("testing mergeSortedLists for test 1", () => {
 	);
 	const expected = arrayToLinkedList([1, 1, 2, 3, 4, 4]).head;
 	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof result, typeof expected>;
+	assertType<TTrue>(true);
 });
 
 test("testing mergeSortedLists for test 2", () => {
@@ -20,6 +24,8 @@ test("testing mergeSortedLists for test 2", () => {
 	);
 	const expected = arrayToLinkedList([]).head;
 	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof result, typeof expected>;
+	assertType<TTrue>(true);
 });
 
 test("testing mergeSortedLists for test 2", () => {
@@ -29,4 +35,6 @@ test("testing mergeSortedLists for test 2", () => {
 	);
 	const expected = arrayToLinkedList([0]).head;
 	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof result, typeof expected>;
+	assertType<TTrue>(true);
 });
