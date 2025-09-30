@@ -45,8 +45,8 @@ test("testing fibonacciNumber for test 5", () => {
 });
 
 test("testing fibonacciNumber for test 5", () => {
-	const result = fibonacciNumber(55);
-	const expected = 3 as number;
+	const result = fibonacciNumber(10);
+	const expected = 55 as number;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
