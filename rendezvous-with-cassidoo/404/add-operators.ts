@@ -4,7 +4,7 @@ const getCombinations = (
 ): string[] => {
 	if (first === undefined) return [];
 	if (rest[0] === undefined) return [`${curr}+${first}`, `${curr}*${first}`];
-	if (!curr) return getCombinations(rest, String(first));
+	if (!curr) return getCombinations(rest, first);
 	return [
 		...getCombinations(rest, `${curr}+${first}`),
 		...getCombinations(rest, `${curr}*${first}`),

@@ -32,7 +32,7 @@ const eqSchema = z.object({
 	resolved: z.boolean().default(false),
 });
 
-type TEq = typeof eqSchema._output;
+type TEq = z.output<typeof eqSchema>;
 
 const declareRegex = /(?<name>.*):\s*(?<val>0|1)/u;
 
