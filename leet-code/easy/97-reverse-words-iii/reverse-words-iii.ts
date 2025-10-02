@@ -1,6 +1,18 @@
 // https://leetcode.com/problems/reverse-words-iii
 
-export const reverseWords = (s: string): string => {
+type TReverseWords<
+	S extends string,
+	word extends string = "",
+	res extends string = "",
+> = S extends `${infer char}${infer rest}`
+	? TReverseWords<
+			rest,
+			char extends " " ? "" : `${char}${word}`,
+			char extends " " ? `${res}${word} ` : res
+		>
+	: `${res}${word}`;
+
+export const reverseWords = <S extends string>(s: S): TReverseWords<S> => {
 	let word = "";
 	let result = "";
 	for (const char of s) {
@@ -11,6 +23,5 @@ export const reverseWords = (s: string): string => {
 			word = `${char}${word}`;
 		}
 	}
-	if (word) result += word;
-	return result as never;
+	return `${result}${word}` as never;
 };
