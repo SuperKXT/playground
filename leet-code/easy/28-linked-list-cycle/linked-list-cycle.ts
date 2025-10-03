@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/same-tree
+// https://leetcode.com/problems/linked-list-cycleLink
 
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
 
