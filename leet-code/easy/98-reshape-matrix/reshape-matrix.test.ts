@@ -13,9 +13,9 @@ test("testing reshapeMatrix for test 1", () => {
 		1,
 		4,
 	);
-	const expected = [[1, 2, 3, 4]];
+	const expected = [[1, 2, 3, 4]] as const;
 	expect(result).toStrictEqual(expected);
-	type TTrue = Utils.equal<typeof result, typeof expected>;
+	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
 
@@ -31,8 +31,23 @@ test("testing reshapeMatrix for test 2", () => {
 	const expected = [
 		[1, 2],
 		[3, 4],
-	];
+	] as const;
 	expect(result).toStrictEqual(expected);
-	type TTrue = Utils.equal<typeof result, typeof expected>;
+	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
+	assertType<TTrue>(true);
+});
+
+test("testing reshapeMatrix for test 2", () => {
+	const result = reshapeMatrix(
+		[
+			[1, 2],
+			[3, 4],
+		],
+		4,
+		1,
+	);
+	const expected = [[1], [2], [3], [4]] as const;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
