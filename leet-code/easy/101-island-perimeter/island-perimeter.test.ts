@@ -4,30 +4,38 @@ import { islandPerimeter } from "./island-perimeter.js";
 
 import type { Utils } from "../../../types/utils.types.js";
 
-test("testing constructRectangle for test 1", () => {
+test("testing islandPerimeter for test 1", () => {
 	const result = islandPerimeter([
 		[0, 1, 0, 0],
 		[1, 1, 1, 0],
 		[0, 1, 0, 0],
 		[1, 1, 0, 0],
 	]);
-	const expected = 16 as number;
+	const expected = 16;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
-test("testing constructRectangle for test 2", () => {
+test("testing islandPerimeter for test 2", () => {
 	const result = islandPerimeter([[1]]);
-	const expected = 4 as number;
+	const expected = 4;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
-test("testing constructRectangle for test 3", () => {
+test("testing islandPerimeter for test 3", () => {
 	const result = islandPerimeter([[1, 0]]);
-	const expected = 4 as number;
+	const expected = 4;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof result, typeof expected>;
+	assertType<TTrue>(true);
+});
+
+test("testing islandPerimeter for test 4", () => {
+	const result = islandPerimeter([]);
+	const expected = 0;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);

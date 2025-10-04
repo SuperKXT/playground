@@ -1,6 +1,65 @@
 // https://leetcode.com/problems/island-perimeter
 
-export const islandPerimeter = (grid: number[][]): number => {
+type TRemoveOne<Arr extends unknown[]> = Arr extends [unknown, ...infer rest]
+	? rest["length"]
+	: 0;
+
+type TPerimeter<
+	Grid extends number[][],
+	X extends 1[] = [],
+	Y extends 1[] = [],
+	Res extends 1[] = [],
+	options extends [number, number][] = [
+		[X extends [] ? -1 : TRemoveOne<X>, Y["length"]],
+		[[...X, 1]["length"], Y["length"]],
+		[X["length"], Y extends [] ? -1 : TRemoveOne<Y>],
+		[X["length"], [...Y, 1]["length"]],
+	],
+> = options extends [
+	infer first extends [number, number],
+	...infer rest extends [number, number][],
+]
+	? TPerimeter<
+			Grid,
+			X,
+			Y,
+			-1 extends first[number]
+				? [...Res, 1]
+				: Grid[first[0]][first[1]] extends 1
+					? Res
+					: [...Res, 1],
+			rest
+		>
+	: Res;
+
+type _TIslandPerimeter<
+	Grid extends number[][],
+	Cols extends number,
+	x extends 1[] = [],
+	y extends 1[] = [],
+	res extends 1[] = [],
+> = y["length"] extends Cols
+	? x["length"] extends Grid["length"]
+		? res["length"]
+		: _TIslandPerimeter<Grid, Cols, [...x, 1], [], res>
+	: _TIslandPerimeter<
+			Grid,
+			Cols,
+			x,
+			[...y, 1],
+			Grid[x["length"]][y["length"]] extends 1
+				? TPerimeter<Grid, x, y, res>
+				: res
+		>;
+
+type TIslandPerimeter<Grid extends number[][]> =
+	Grid[0]["length"] extends infer Cols extends number
+		? _TIslandPerimeter<Grid, Cols>
+		: 0;
+
+export const islandPerimeter = <const Grid extends number[][]>(
+	grid: Grid,
+): TIslandPerimeter<Grid> => {
 	let res = 0;
 	for (let i = 0; i < grid.length; i++) {
 		for (let j = 0; j < (grid[0] as number[]).length; j++) {
@@ -11,5 +70,5 @@ export const islandPerimeter = (grid: number[][]): number => {
 			if (grid[i]?.[j + 1] !== 1) res += 1;
 		}
 	}
-	return res;
+	return res as never;
 };
