@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/same-tree
+// https://leetcode.com/problems/binary-tree-inorder-traversal
 
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 
