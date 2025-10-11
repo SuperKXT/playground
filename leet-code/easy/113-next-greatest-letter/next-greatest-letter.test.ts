@@ -4,7 +4,7 @@ import { nextGreatestLetter } from "./next-greatest-letter.js";
 
 import type { Utils } from "../../../types/utils.types.js";
 
-test("testing pivotIndex for test 1", () => {
+test("testing nextGreatestLetter for test 1", () => {
 	const result = nextGreatestLetter(["c", "f", "j"], "a");
 	const expected = "c";
 	expect(result).toStrictEqual(expected);
@@ -12,7 +12,7 @@ test("testing pivotIndex for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing pivotIndex for test 2", () => {
+test("testing nextGreatestLetter for test 2", () => {
 	const result = nextGreatestLetter(["c", "f", "j"], "c");
 	const expected = "f";
 	expect(result).toStrictEqual(expected);
@@ -20,7 +20,7 @@ test("testing pivotIndex for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing pivotIndex for test 3", () => {
+test("testing nextGreatestLetter for test 3", () => {
 	const result = nextGreatestLetter(["x", "x", "y", "y"], "z");
 	const expected = "x";
 	expect(result).toStrictEqual(expected);
