@@ -29,7 +29,7 @@
 		"@total-typescript/ts-reset": "^0.6.1",
 		"@type-challenges/utils": "^0.1.1",
 		"@types/eslint": "^8.56.11",
-		"@types/node": "^24.7.1",
+		"@types/node": "^24.7.2",
 		"@types/prompt": "^1.1.9",
 		"@typescript-eslint/eslint-plugin": "^8.46.0",
 		"@typescript-eslint/parser": "^8.46.0",
