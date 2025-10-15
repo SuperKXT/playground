@@ -9,7 +9,7 @@ test("testing groupChangelog against test 1", () => {
 		'name,age,city\n"Ryu, Mi-yeong",30,"Seoul"\nZoey,24,"Burbank"', // cSpell: disable-line
 	);
 	// cSpell: disable
-	const expected: string = `
+	const expected = `
 - Ryu, Mi-yeong, age 30, from Seoul
 - Zoey, age 24, from Burbank
 `;
