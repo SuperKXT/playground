@@ -9,7 +9,7 @@ test("testing mostCommonWord for test 1", () => {
 		"Bob hit a ball, the hit BALL flew far after it was hit.",
 		["hit"],
 	);
-	const expected = "ball" as string;
+	const expected = "ball";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -17,7 +17,7 @@ test("testing mostCommonWord for test 1", () => {
 
 test("testing mostCommonWord for test 2", () => {
 	const result = mostCommonWord("a.", []);
-	const expected = "a" as string;
+	const expected = "a";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -25,7 +25,7 @@ test("testing mostCommonWord for test 2", () => {
 
 test("testing mostCommonWord for test 3", () => {
 	const result = mostCommonWord("a b.b", []);
-	const expected = "b" as string;
+	const expected = "b";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -33,7 +33,7 @@ test("testing mostCommonWord for test 3", () => {
 
 test("testing mostCommonWord for test 4", () => {
 	const result = mostCommonWord("Bob. hIt, baLl", ["bob", "hit"]);
-	const expected = "ball" as string;
+	const expected = "ball";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
