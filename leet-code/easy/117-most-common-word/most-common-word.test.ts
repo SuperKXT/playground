@@ -1,20 +1,23 @@
 import { assertType, expect, test } from "vitest";
 
-import { arrayDegree } from "./array-degree.js";
+import { mostCommonWord } from "./most-common-word.js";
 
 import type { Utils } from "../../../types/utils.types.js";
 
-test("testing arrayDegree for test 1", () => {
-	const result = arrayDegree([1, 2, 2, 3, 1]);
-	const expected = 2 as number;
+test("testing mostCommonWord for test 1", () => {
+	const result = mostCommonWord(
+		"Bob hit a ball, the hit BALL flew far after it was hit.",
+		["hit"],
+	);
+	const expected = "ball" as string;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
-test("testing arrayDegree for test 2", () => {
-	const result = arrayDegree([1, 2, 2, 3, 1, 4, 2]);
-	const expected = 6 as number;
+test("testing mostCommonWord for test 2", () => {
+	const result = mostCommonWord("a.", []);
+	const expected = "a" as string;
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
