@@ -37,7 +37,11 @@ export const mostCommonWord = (paragraph: string, banned: string[]): string => {
 	const max = { count: 0, word: "" };
 	let word = "";
 	for (const char of paragraph) {
-		if (char === " ") {
+		const code = char.charCodeAt(0);
+		if (code >= 97 && code <= 122) word += char;
+		else if (code >= 65 && code <= 90) word += char.toLowerCase();
+		else {
+			if (word === "") continue;
 			if (bannedSet.has(word)) {
 				word = "";
 				continue;
@@ -46,10 +50,6 @@ export const mostCommonWord = (paragraph: string, banned: string[]): string => {
 			word = "";
 			continue;
 		}
-
-		const code = char.charCodeAt(0);
-		if (code >= 97 && code <= 122) word += char;
-		else if (code >= 65 && code <= 90) word += char.toLowerCase();
 	}
 	checkWord(word, max, map);
 	return max.word;
