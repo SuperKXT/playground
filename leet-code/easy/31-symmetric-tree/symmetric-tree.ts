@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/symmetric-tree/
+// https://leetcode.com/problems/symmetric-tree
 
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 
