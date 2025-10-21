@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/maximum-depth-of-binary-tree//
+// https://leetcode.com/problems/maximum-depth-of-binary-tree
 
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 
