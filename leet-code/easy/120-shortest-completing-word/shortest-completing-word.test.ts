@@ -11,7 +11,7 @@ test("testing shortestCompletingWord for test 1", () => {
 		"stripe",
 		"steeple",
 	]);
-	const expected = "steps" as string;
+	const expected = "steps";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -24,7 +24,7 @@ test("testing shortestCompletingWord for test 2", () => {
 		"stew",
 		"show",
 	]);
-	const expected = "pest" as string;
+	const expected = "pest";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
@@ -44,7 +44,7 @@ test("testing shortestCompletingWord for test 3", () => {
 		"thought",
 		"use",
 	]);
-	const expected = "simple" as string;
+	const expected = "simple";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
