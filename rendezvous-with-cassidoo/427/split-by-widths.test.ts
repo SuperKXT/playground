@@ -15,9 +15,9 @@ test("testing splitByWidths against test 1", () => {
 		"pial",
 		"idoc",
 		"ious",
-	];
+	] as const;
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
-	type TTrue = Utils.equal<typeof result, typeof expected>;
+	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
