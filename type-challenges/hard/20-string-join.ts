@@ -46,7 +46,7 @@ declare function join<D extends string>(
 ): <T extends string[]>(...parts: T) => Join<T, D>;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 // Edge cases

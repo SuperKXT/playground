@@ -66,7 +66,7 @@ declare function DynamicParamsCurrying<Params extends unknown[], Return>(
 ): Curry<Params, Return>;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 const curried1 = DynamicParamsCurrying(

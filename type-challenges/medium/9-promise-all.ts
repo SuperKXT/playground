@@ -32,7 +32,7 @@ declare function promiseAll<T extends unknown[]>(
 }>;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 const promiseAllTest1 = promiseAll([1, 2, 3] as const);

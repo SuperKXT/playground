@@ -36,7 +36,7 @@ type MyAwaited<T extends Promise<unknown> | Thenable<unknown>> =
 			: never;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type X = Promise<string>;

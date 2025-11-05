@@ -60,7 +60,7 @@ type UnionToTuple<T, U = LastInUnion<T>> = [U] extends [never]
 	: [U, ...UnionToTuple<Exclude<T, U>>];
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type ExtractValuesOfTuple<T extends unknown[]> = T[keyof T & number];

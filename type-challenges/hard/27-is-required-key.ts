@@ -29,7 +29,7 @@ type IsRequiredKey<T, K extends keyof T> = T[K] extends Req<T>[K]
 	: false;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type _cases = [

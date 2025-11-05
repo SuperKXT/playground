@@ -90,7 +90,7 @@ declare function VueBasicProps<
 ): any;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Debug, Equal, Expect, IsAny } from "@type-challenges/utils";
 
 const alert = (_: any) => {

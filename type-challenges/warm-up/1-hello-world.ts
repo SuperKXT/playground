@@ -31,7 +31,7 @@
 type HelloWorld = string; // expected to be a string
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect, NotAny } from "@type-challenges/utils";
 
 type _cases = [Expect<NotAny<HelloWorld>>, Expect<Equal<HelloWorld, string>>];

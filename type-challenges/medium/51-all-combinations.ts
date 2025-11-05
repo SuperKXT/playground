@@ -44,7 +44,7 @@ type _AllCombinations<S extends string, T extends string = StringToUnion<S>> = [
 			  }[T];
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type _cases = [

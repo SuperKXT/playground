@@ -41,7 +41,7 @@ type _ = ObjectKeyPaths<{ a: number; b: [{ c: 1 }] }>;
 //   ^?
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect, ExpectExtends } from "@type-challenges/utils";
 
 const ref = {

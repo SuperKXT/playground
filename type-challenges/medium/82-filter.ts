@@ -19,7 +19,7 @@ type Filter<T extends unknown[], P> = T extends [infer First, ...infer Rest]
 	: [];
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type Falsy = false | 0 | "" | null | undefined;

@@ -22,7 +22,7 @@ type _Integer<T extends number> = `${T}` extends `${bigint}` ? T : never;
 type __Integer<T extends number> = T extends T & 1 ? T : never;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 // eslint-disable-next-line prefer-const
