@@ -28,7 +28,7 @@ type NumberRange<
 		: NumberRange<L, H, [...Idx, 1], [...A, Idx["length"]]>;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type Result1 = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;

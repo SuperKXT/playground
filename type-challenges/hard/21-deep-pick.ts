@@ -1,4 +1,4 @@
-/* eslint-disable import/first */
+/* eslint-disable import-x/first */
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 /*
   956 - DeepPick

@@ -43,7 +43,7 @@ type InOrderTraversal<T extends TreeNode | null> = [T] extends [TreeNode]
 	: [];
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 const tree1 = {

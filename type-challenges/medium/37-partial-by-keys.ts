@@ -39,7 +39,7 @@ type PartialByKeys<T extends object, K extends keyof T = keyof T> = Flat<
 >;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type User = {

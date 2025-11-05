@@ -44,7 +44,7 @@ type DeepObjectToUniq<O extends object, B extends unknown[] = [O]> = {
 } & Record<symbol, B>;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, IsFalse, IsTrue } from "@type-challenges/utils";
 
 type Quz = { quz: 4 };

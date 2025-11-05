@@ -28,7 +28,7 @@ type TupleToObject<T extends readonly PropertyKey[]> =
 		: T;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 const tuple = ["tesla", "model 3", "model X", "model Y"] as const;

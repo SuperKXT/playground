@@ -38,7 +38,7 @@ type Curry<T> = T extends (...args: infer A) => infer R
 declare function Currying<T>(fn: T): Curry<T>;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 const curried1 = Currying((a: string, b: number, c: boolean) => true);

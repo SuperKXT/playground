@@ -38,7 +38,7 @@ type Format<T extends string> = T extends `${string}%${infer R}${infer S}`
 	: string;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type _cases = [

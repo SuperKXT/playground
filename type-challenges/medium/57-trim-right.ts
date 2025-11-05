@@ -23,7 +23,7 @@ type TrimRight<S extends string> = S extends `${infer L}${" " | "\n" | "\t"}`
 	: S;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type _cases = [

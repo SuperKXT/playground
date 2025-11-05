@@ -30,7 +30,7 @@ type Mutable<T extends Readonly<object>> = {
 };
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type Todo1 = {

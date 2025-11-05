@@ -181,7 +181,7 @@ type _Subtract<M extends number, S extends number> =
 	Tuple<M> extends [...Tuple<S>, ...infer Rest] ? Rest["length"] : never;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type _cases = [

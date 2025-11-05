@@ -62,7 +62,7 @@ type Enum<
 };
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 const OperatingSystem = ["macOS", "Windows", "Linux"] as const;

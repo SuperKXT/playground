@@ -1,5 +1,5 @@
 /* eslint-disable no-multi-assign */
-/* eslint-disable import/first */
+/* eslint-disable import-x/first */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /*
   697 - Tag

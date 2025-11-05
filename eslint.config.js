@@ -1,7 +1,8 @@
 import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
-import importPlugin from "eslint-plugin-import";
+import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
+import { importX } from "eslint-plugin-import-x";
 import node from "eslint-plugin-n";
 import "eslint-plugin-only-warn";
 import unusedImports from "eslint-plugin-unused-imports";
@@ -21,7 +22,7 @@ export default defineConfig([
 			vitest,
 		},
 		settings: {
-			"import/resolver": { typescript: true },
+			"import-x/resolver-next": [createTypeScriptImportResolver()],
 			vitest: { typecheck: true },
 		},
 		languageOptions: {
@@ -54,7 +55,10 @@ export default defineConfig([
 	js.configs.recommended,
 	tseslint.configs.strictTypeChecked,
 	tseslint.configs.stylisticTypeChecked,
-	importPlugin.flatConfigs.recommended,
+	// @ts-expect-error https://github.com/typescript-eslint/typescript-eslint/issues/11543
+	importX.flatConfigs.recommended,
+	// @ts-expect-error https://github.com/typescript-eslint/typescript-eslint/issues/11543
+	importX.flatConfigs.typescript,
 	node.configs["flat/recommended-module"],
 
 	{
@@ -160,19 +164,20 @@ export default defineConfig([
 			"n/no-unpublished-import": "off",
 			"n/prefer-node-protocol": "warn",
 			"n/no-missing-import": "off",
-			"import/consistent-type-specifier-style": ["warn", "prefer-top-level"],
-			"import/first": "warn",
-			"import/newline-after-import": "warn",
-			"import/no-commonjs": "warn",
-			"import/no-default-export": "warn",
-			"import/no-deprecated": "off",
-			"import/namespace": "off",
-			"import/no-duplicates": "warn",
-			"import/export": "off",
-			"import/no-empty-named-blocks": "warn",
-			"import/no-self-import": "warn",
-			"import/no-useless-path-segments": "warn",
-			"import/order": [
+			"import-x/no-named-as-default-member": "off",
+			"import-x/consistent-type-specifier-style": ["warn", "prefer-top-level"],
+			"import-x/first": "warn",
+			"import-x/newline-after-import": "warn",
+			"import-x/no-commonjs": "warn",
+			"import-x/no-default-export": "warn",
+			"import-x/no-deprecated": "off",
+			"import-x/namespace": "off",
+			"import-x/no-duplicates": "warn",
+			"import-x/export": "off",
+			"import-x/no-empty-named-blocks": "warn",
+			"import-x/no-self-import": "warn",
+			"import-x/no-useless-path-segments": "warn",
+			"import-x/order": [
 				"warn",
 				{
 					groups: [
@@ -310,9 +315,9 @@ export default defineConfig([
 		rules: {
 			"no-restricted-globals": "off",
 			"@typescript-eslint/no-require-imports": "off",
-			"import/no-nodejs-modules": "off",
-			"import/no-default-export": "off",
-			"import/no-commonjs": "off",
+			"import-x/no-nodejs-modules": "off",
+			"import-x/no-default-export": "off",
+			"import-x/no-commonjs": "off",
 		},
 	},
 
@@ -320,7 +325,7 @@ export default defineConfig([
 		name: "cjs",
 		files: ["**/*.cjs"],
 		rules: {
-			"import/no-commonjs": "off",
+			"import-x/no-commonjs": "off",
 		},
 	},
 

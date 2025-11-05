@@ -39,7 +39,7 @@ type Unique<T extends unknown[]> = T extends [...infer R, infer L]
 	: T;
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type _cases = [

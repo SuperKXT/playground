@@ -61,7 +61,7 @@ type DeepMutable<T extends object> = T extends (...args: any[]) => unknown
 		};
 
 /* _____________ Test Cases _____________ */
-// eslint-disable-next-line import/first
+// eslint-disable-next-line import-x/first
 import type { Equal, Expect } from "@type-challenges/utils";
 
 type Test1 = {
