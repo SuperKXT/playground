@@ -40,7 +40,7 @@ const getLanding = (
 	col: number = SOURCE.col,
 ): Coord | null => {
 	const mapRow = map[row];
-	if (!mapRow || mapRow[col] !== "." || !map[row + 1]) return null;
+	if (mapRow?.[col] !== "." || !map[row + 1]) return null;
 
 	const colOffset = [0, -1, 1].find(
 		(offset) => map[row + 1]?.[col + offset] === ".",

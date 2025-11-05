@@ -4,7 +4,7 @@ const getRle = (prev: string): string => {
 	let res = "";
 	let curr: undefined | { digit: string; count: number } = undefined;
 	for (const char of prev) {
-		if (!curr || curr.digit !== char) {
+		if (curr?.digit !== char) {
 			if (curr) res += `${curr.count}${curr.digit}`;
 			curr = { digit: char, count: 0 };
 		}
