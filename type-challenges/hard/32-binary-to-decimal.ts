@@ -26,8 +26,8 @@ type ReverseString<
 type BinaryToDecimal<
 	S extends string,
 	RS extends string = ReverseString<S>,
-	B extends 1[] = [1],
-	R extends 1[] = [],
+	B extends Array<1> = [1],
+	R extends Array<1> = [],
 > = RS extends `${infer F}${infer L}`
 	? BinaryToDecimal<never, L, [...B, ...B], F extends "1" ? [...R, ...B] : R>
 	: R["length"];

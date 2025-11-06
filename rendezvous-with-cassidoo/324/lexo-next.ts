@@ -2,7 +2,7 @@ type TDigit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 type TTuple<
 	size extends number,
-	tup extends 1[] = [],
+	tup extends Array<1> = [],
 > = tup["length"] extends size ? tup : TTuple<size, [...tup, 1]>;
 
 type TNumToTuple<num extends number> = `${num}` extends `${infer first extends

@@ -29,8 +29,8 @@
 type FizzBuzz<
 	Size extends number,
 	Result extends string[] = [],
-	ToThree extends 1[] = [],
-	ToFive extends 1[] = [],
+	ToThree extends Array<1> = [],
+	ToFive extends Array<1> = [],
 > = Result["length"] extends Size
 	? Result
 	: ToThree["length"] extends 2

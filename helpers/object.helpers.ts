@@ -9,15 +9,17 @@ export const safeObjAccess = (obj: object, key: string): unknown => {
 
 export const objectEntries = <T extends object>(
 	object: T,
-): [keyof T, T[keyof T]][] => {
+): Array<[keyof T, T[keyof T]]> => {
 	return Object.entries(object) as never;
 };
 
-export const objectKeys = <T extends object>(object: T): (keyof T)[] => {
-	return Object.keys(object) as (keyof T)[];
+export const objectKeys = <T extends object>(object: T): Array<keyof T> => {
+	return Object.keys(object) as Array<keyof T>;
 };
 
-export const objectValues = <T extends object>(object: T): T[keyof T][] => {
+export const objectValues = <T extends object>(
+	object: T,
+): Array<T[keyof T]> => {
 	return Object.values(object) as never;
 };
 

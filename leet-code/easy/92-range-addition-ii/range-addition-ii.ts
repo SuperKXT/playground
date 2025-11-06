@@ -31,7 +31,7 @@
 export const rangeAddition = (
 	m: number,
 	n: number,
-	ops: [number, number][],
+	ops: Array<[number, number]>,
 ): number => {
 	const curr = [m, n] as [number, number];
 	for (const op of ops) {

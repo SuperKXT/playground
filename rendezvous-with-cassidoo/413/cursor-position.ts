@@ -30,8 +30,8 @@ export type TCursorPosition<
 	Input extends string,
 	Commands extends string,
 	grid extends string[][] = TStringGrid<Input>,
-	row extends 1[] = [],
-	col extends 1[] = [],
+	row extends Array<1> = [],
+	col extends Array<1> = [],
 > = Commands extends `${infer first}${infer rest}`
 	? TCursorPosition<
 			never,

@@ -36,7 +36,7 @@ test("test equal type util", () => {
 				TInt2 & { z: { a: 3; b: 4 } },
 				{ x: 1; y: 2; z: { a: 3 } & { b: 4 } }
 			>,
-			Utils.equal<TInt2[] | TInt2, { x: 1; y: 2 }[] | { x: 1; y: 2 }>,
+			Utils.equal<TInt2[] | TInt2, Array<{ x: 1; y: 2 }> | { x: 1; y: 2 }>,
 			Utils.equal<Record<string, unknown>, Record<string, unknown>>,
 
 			Utils.notEqual<any, unknown>,
@@ -121,8 +121,14 @@ test("test trim type util", () => {
 test("test distributedArray type util", () => {
 	type TTests = Utils.trueTuple<
 		[
-			Utils.equal<Utils.distributedArray<1 | 2 | 3>, 1[] | 2[] | 3[]>,
-			Utils.equal<Utils.distributedArray<{ foo: 1 | 2 }>, { foo: 1 | 2 }[]>,
+			Utils.equal<
+				Utils.distributedArray<1 | 2 | 3>,
+				Array<1> | Array<2> | Array<3>
+			>,
+			Utils.equal<
+				Utils.distributedArray<{ foo: 1 | 2 }>,
+				Array<{ foo: 1 | 2 }>
+			>,
 		]
 	>;
 	assertType<TTests>(true);
@@ -566,6 +572,7 @@ test("test isUnion type util", () => {
 			Utils.equal<Utils.isUnion<boolean>, true>,
 			Utils.equal<Utils.isUnion<string | number>, true>,
 			Utils.equal<Utils.isUnion<"a" | "b" | "c" | "d">, true>,
+			// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 			Utils.equal<Utils.isUnion<undefined | null | void | "">, true>,
 			Utils.equal<Utils.isUnion<{ a: string } | { a: number }>, true>,
 			Utils.equal<Utils.isUnion<{ a: string | number }>, false>,

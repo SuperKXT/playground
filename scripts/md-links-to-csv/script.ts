@@ -15,7 +15,7 @@ const generateTable = async () => {
 			tag = trimmed.replace(/\s*-\s*(.+)\s*/u, (_, name: string) => name);
 			continue;
 		}
-		const match = line.match(/\s*\[(.+)\]\((.+)\)\s*/u);
+		const match = /\s*\[(.+)\]\((.+)\)\s*/u.exec(line);
 		if (!match) continue;
 		csv.push(
 			`"${(match[1] as string).replace(
@@ -24,7 +24,7 @@ const generateTable = async () => {
 			)}","Not Started","${tag}","${match[2] as string}"`,
 		);
 	}
-	writeFile(path.join(__dirname, "output.csv"), csv.join("\n"));
+	await writeFile(path.join(__dirname, "output.csv"), csv.join("\n"));
 };
 
-generateTable();
+await generateTable();

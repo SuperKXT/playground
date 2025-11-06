@@ -40,7 +40,7 @@ type TLicenseKey<
 	K extends number,
 	reversed extends string = TReverse<S>,
 	curr extends string = "",
-	len extends 1[] = [1],
+	len extends Array<1> = [1],
 	res extends string = "",
 > = reversed extends `${infer first}${infer rest}`
 	? first extends TDigit | TLowercase | TUppercase

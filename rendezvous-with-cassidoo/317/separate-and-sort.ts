@@ -1,8 +1,9 @@
-type TTuple<T extends number, tup extends 1[] = []> = tup["length"] extends T
-	? tup
-	: TTuple<T, [...tup, 1]>;
+type TTuple<
+	T extends number,
+	tup extends Array<1> = [],
+> = tup["length"] extends T ? tup : TTuple<T, [...tup, 1]>;
 
-type TSmallest<T extends number[], curr extends 1[] = []> = T extends [
+type TSmallest<T extends number[], curr extends Array<1> = []> = T extends [
 	infer first extends number,
 	...infer rest extends number[],
 ]
@@ -35,8 +36,8 @@ type TSort<T extends number[], sorted extends number[] = []> = T extends [
 
 type TIsEven<
 	T extends number,
-	tup extends 1[] = TTuple<T>,
-	idx extends 1[] = [],
+	tup extends Array<1> = TTuple<T>,
+	idx extends Array<1> = [],
 > = tup extends [...idx, ...idx]
 	? true
 	: tup extends [...idx, ...idx, 1]

@@ -42,7 +42,7 @@ type TUnsigned<T extends number> = `${T}` extends `-${infer U extends number}`
 
 type TNumberToArray<
 	T extends number,
-	A extends 1[] = [],
+	A extends Array<1> = [],
 > = A["length"] extends T ? A : TNumberToArray<T, [...A, 1]>;
 
 type _TCases = [

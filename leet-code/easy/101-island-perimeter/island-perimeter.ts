@@ -6,10 +6,10 @@ type TRemoveOne<Arr extends unknown[]> = Arr extends [unknown, ...infer rest]
 
 type TPerimeter<
 	Grid extends number[][],
-	X extends 1[] = [],
-	Y extends 1[] = [],
-	Res extends 1[] = [],
-	options extends [number, number][] = [
+	X extends Array<1> = [],
+	Y extends Array<1> = [],
+	Res extends Array<1> = [],
+	options extends Array<[number, number]> = [
 		[X extends [] ? -1 : TRemoveOne<X>, Y["length"]],
 		[[...X, 1]["length"], Y["length"]],
 		[X["length"], Y extends [] ? -1 : TRemoveOne<Y>],
@@ -17,7 +17,7 @@ type TPerimeter<
 	],
 > = options extends [
 	infer first extends [number, number],
-	...infer rest extends [number, number][],
+	...infer rest extends Array<[number, number]>,
 ]
 	? TPerimeter<
 			Grid,
@@ -35,9 +35,9 @@ type TPerimeter<
 type _TIslandPerimeter<
 	Grid extends number[][],
 	Cols extends number,
-	x extends 1[] = [],
-	y extends 1[] = [],
-	res extends 1[] = [],
+	x extends Array<1> = [],
+	y extends Array<1> = [],
+	res extends Array<1> = [],
 > = y["length"] extends Cols
 	? x["length"] extends Grid["length"]
 		? res["length"]

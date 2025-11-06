@@ -1,7 +1,7 @@
 type TExcludeFromTuple<
 	tuple extends unknown[],
 	idx extends number,
-	count extends 1[] = [],
+	count extends Array<1> = [],
 > = tuple extends [infer first, ...infer rest]
 	? [
 			...(count["length"] extends idx ? [] : [first]),
@@ -12,7 +12,7 @@ type TExcludeFromTuple<
 type _TLetters<
 	input extends string[],
 	prefix extends string = "",
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = idx["length"] extends input["length"]
 	? []
 	: [

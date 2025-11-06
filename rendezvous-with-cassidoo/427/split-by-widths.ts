@@ -2,9 +2,9 @@ type TSplitByWidths<
 	Input extends string,
 	Widths extends number[],
 	res extends string[] = [],
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 	currStr extends string = "",
-	currSize extends 1[] = [],
+	currSize extends Array<1> = [],
 > = Input extends `${infer char}${infer rest}`
 	? [...currSize, 1]["length"] extends Widths[idx["length"]]
 		? TSplitByWidths<

@@ -50,7 +50,7 @@ type Combinations<
 type UnshiftBy<
 	T extends unknown[],
 	U extends number,
-	Idx extends 1[] = [],
+	Idx extends Array<1> = [],
 > = Idx["length"] extends U
 	? T
 	: T extends [unknown, ...infer R]

@@ -4,7 +4,7 @@ type TCanPlaceFlowers<
 	Flowerbed extends number[],
 	N extends number,
 	prev extends number = 0,
-	count extends 1[] = [],
+	count extends Array<1> = [],
 > = count["length"] extends N
 	? true
 	: Flowerbed extends [

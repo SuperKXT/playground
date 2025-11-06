@@ -10,12 +10,12 @@ type TIsAnagram<
 		: false;
 
 type TUpdateAnagramMap<
-	Map extends [string, string[]][],
+	Map extends Array<[string, string[]]>,
 	Word extends string,
 	_found extends boolean = false,
 > = Map extends [
 	infer curr extends [string, string[]],
-	...infer rest extends [string, string[]][],
+	...infer rest extends Array<[string, string[]]>,
 ]
 	? TIsAnagram<Word, curr[0]> extends true
 		? [[curr[0], [...curr[1], Word]], ...TUpdateAnagramMap<rest, Word, true>]
@@ -24,16 +24,16 @@ type TUpdateAnagramMap<
 		? [[Word, [Word]]]
 		: [];
 
-type TAnagramResult<Map extends [string, string[]][]> = Map extends [
+type TAnagramResult<Map extends Array<[string, string[]]>> = Map extends [
 	infer curr extends [string, string[]],
-	...infer rest extends [string, string[]][],
+	...infer rest extends Array<[string, string[]]>,
 ]
 	? [curr[1], ...TAnagramResult<rest>]
 	: [];
 
 type TGroupAnagrams<
 	Words extends string[],
-	_map extends [string, string[]][] = [],
+	_map extends Array<[string, string[]]> = [],
 > = Words extends [infer word extends string, ...infer rest extends string[]]
 	? TGroupAnagrams<rest, TUpdateAnagramMap<_map, word>>
 	: TAnagramResult<_map>;

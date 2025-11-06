@@ -2,8 +2,8 @@
 
 type TAttendance<
 	S extends string,
-	absents extends 1[] = [],
-	connectives extends 1[] = [],
+	absents extends Array<1> = [],
+	connectives extends Array<1> = [],
 > = absents["length"] extends 2
 	? false
 	: connectives["length"] extends 3

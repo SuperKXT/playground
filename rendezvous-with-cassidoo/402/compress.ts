@@ -1,7 +1,7 @@
 type TCompress<
 	Chars extends string[],
 	last extends string = never,
-	count extends 1[] = [],
+	count extends Array<1> = [],
 	res extends string[] = [],
 > = Chars extends [infer first extends string, ...infer rest extends string[]]
 	? first extends last

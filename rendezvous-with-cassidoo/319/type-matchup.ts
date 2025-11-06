@@ -8,8 +8,8 @@ export const typeMatchup = async (input: string): Promise<TTypeMatchupRes> => {
 	if (dataRes.status === 404) throw new Error(`Invalid Pokemon type: ${input}`);
 	const data = (await dataRes.json()) as {
 		damage_relations: {
-			double_damage_from: { name: string }[];
-			double_damage_to: { name: string }[];
+			double_damage_from: Array<{ name: string }>;
+			double_damage_to: Array<{ name: string }>;
 		};
 	};
 	return {

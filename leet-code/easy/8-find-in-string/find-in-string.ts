@@ -3,7 +3,7 @@
 type TFindInString<
 	Haystack extends string,
 	Needle extends string,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = Haystack extends `${Needle}${string}`
 	? idx["length"]
 	: Haystack extends `${string}${infer rest}`

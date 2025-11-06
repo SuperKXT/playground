@@ -5,23 +5,23 @@ type TReverseTuple<
 	? TReverseTuple<rest, [first, ...res]>
 	: res;
 
-type TMapReverse<T extends readonly (readonly unknown[])[]> =
+type TMapReverse<T extends ReadonlyArray<readonly unknown[]>> =
 	T extends readonly [
 		infer first extends readonly unknown[],
-		...infer rest extends readonly (readonly unknown[])[],
+		...infer rest extends ReadonlyArray<readonly unknown[]>,
 	]
 		? [Readonly<TReverseTuple<first>>, ...TMapReverse<rest>]
 		: [];
 
 type TFlip<
-	input extends readonly (readonly unknown[])[],
+	input extends ReadonlyArray<readonly unknown[]>,
 	direction extends "horizontal" | "vertical",
 > = Readonly<
 	direction extends "vertical" ? TReverseTuple<input> : TMapReverse<input>
 >;
 
 export const flip = <
-	const Input extends readonly (readonly unknown[])[],
+	const Input extends ReadonlyArray<readonly unknown[]>,
 	Direction extends "horizontal" | "vertical",
 >(
 	input: Input,

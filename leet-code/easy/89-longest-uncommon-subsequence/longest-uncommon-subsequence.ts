@@ -3,7 +3,7 @@
 type TBiggerStringLength<
 	A extends string,
 	B extends string,
-	len extends 1[] = [],
+	len extends Array<1> = [],
 > = A extends `${string}${infer aRest}`
 	? B extends `${string}${infer bRest}`
 		? TBiggerStringLength<aRest, bRest, [...len, 1]>

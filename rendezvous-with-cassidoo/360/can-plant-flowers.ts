@@ -1,6 +1,6 @@
 type TTuple<
 	size extends number,
-	res extends 1[] = [],
+	res extends Array<1> = [],
 > = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
 type TFlag = 0 | 1;

@@ -4,7 +4,9 @@ export type TBinaryTreeNode<Type = unknown> = {
 	right: TBinaryTreeNode<Type>;
 } | null;
 
-export const arrayToBinaryTree = <T>(arr: (T | null)[]): TBinaryTreeNode<T> => {
+export const arrayToBinaryTree = <T>(
+	arr: Array<T | null>,
+): TBinaryTreeNode<T> => {
 	if (!arr.length) return null;
 
 	const buildTree = (index: number): TBinaryTreeNode<T> => {

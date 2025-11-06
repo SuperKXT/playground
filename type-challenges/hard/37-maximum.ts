@@ -28,19 +28,23 @@
 
 /* _____________ Your Code Here _____________ */
 
-type CreateTuple<T extends number, A extends 1[] = []> = A["length"] extends T
-	? A
-	: CreateTuple<T, [...A, 1]>;
+type CreateTuple<
+	T extends number,
+	A extends Array<1> = [],
+> = A["length"] extends T ? A : CreateTuple<T, [...A, 1]>;
 
-type Unshift<T extends 1[]> = T extends [unknown, ...infer R extends 1[]]
+type Unshift<T extends Array<1>> = T extends [
+	unknown,
+	...infer R extends Array<1>,
+]
 	? R
 	: never;
 
 type Max<
 	A extends number,
 	B extends number,
-	AT extends 1[] = CreateTuple<A>,
-	BT extends 1[] = CreateTuple<B>,
+	AT extends Array<1> = CreateTuple<A>,
+	BT extends Array<1> = CreateTuple<B>,
 > = B extends A
 	? B
 	: AT[BT["length"]] extends undefined
@@ -59,7 +63,7 @@ type _Maximum<
 type Maximum<
 	T extends unknown[],
 	U = T[number],
-	N extends 1[] = [],
+	N extends Array<1> = [],
 > = T extends []
 	? never
 	: [U] extends [N["length"]]

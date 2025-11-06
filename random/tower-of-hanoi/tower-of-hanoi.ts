@@ -46,7 +46,7 @@ type TFillString<
 	Size extends number,
 	T extends string,
 	res extends string = "",
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = idx["length"] extends Size
 	? res
 	: TFillString<Size, T, `${res}${T}`, [...idx, 1]>;

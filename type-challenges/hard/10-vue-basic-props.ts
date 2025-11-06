@@ -54,7 +54,7 @@ type PropConstructor<T = any> =
 	| (new (...args: any[]) => T & object)
 	| (() => T);
 
-type PropType<T> = PropConstructor<T> | PropConstructor<T>[];
+type PropType<T> = PropConstructor<T> | Array<PropConstructor<T>>;
 type Prop<T = any> = PropType<T> | { type?: PropType<T> };
 
 type PropsType = Record<string, Prop>;

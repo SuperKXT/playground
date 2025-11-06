@@ -19,9 +19,10 @@
 
 /* _____________ Your Code Here _____________ */
 
-type CreateTuple<T extends number, R extends 1[] = []> = R["length"] extends T
-	? R
-	: CreateTuple<T, [...R, 1]>;
+type CreateTuple<
+	T extends number,
+	R extends Array<1> = [],
+> = R["length"] extends T ? R : CreateTuple<T, [...R, 1]>;
 
 type AddCheck<F extends number, S extends number, U extends number> = [
 	...CreateTuple<F>,

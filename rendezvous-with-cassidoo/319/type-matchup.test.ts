@@ -12,8 +12,8 @@ test("testing typeMatchup against test 1", async () => {
 	assertType<typeof result>(expected);
 });
 
-test("testing typeMatchup against test 2", () => {
-	expect(async () => {
+test("testing typeMatchup against test 2", async () => {
+	await expect(async () => {
 		return await typeMatchup("cassidy");
 	}).rejects.toThrow("Invalid Pokemon type: cassidy");
 });

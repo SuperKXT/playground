@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/distribute-candies
 
-type THalf<Arr extends unknown[], res extends 1[] = []> = Arr extends [
+type THalf<Arr extends unknown[], res extends Array<1> = []> = Arr extends [
 	unknown,
 	unknown,
 	...infer rest,
@@ -11,7 +11,7 @@ type THalf<Arr extends unknown[], res extends 1[] = []> = Arr extends [
 type TDistributeCandies<
 	CandyType extends unknown[],
 	max extends number = THalf<CandyType>,
-	size extends 1[] = [],
+	size extends Array<1> = [],
 	union = never,
 > = size["length"] extends max
 	? max

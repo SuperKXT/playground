@@ -1,14 +1,14 @@
-type TNextCurrent<current extends 1[], first> = first extends true
+type TNextCurrent<current extends Array<1>, first> = first extends true
 	? [...current, 1]
 	: [];
 
 type TFindLongestStreak<
 	Arr extends boolean[],
 	Minimum extends number,
-	current extends 1[] = [],
-	longest extends 1[] = [],
+	current extends Array<1> = [],
+	longest extends Array<1> = [],
 > = Arr extends [infer first, ...infer rest extends boolean[]]
-	? TNextCurrent<current, first> extends infer next extends 1[]
+	? TNextCurrent<current, first> extends infer next extends Array<1>
 		? TFindLongestStreak<
 				rest,
 				Minimum,

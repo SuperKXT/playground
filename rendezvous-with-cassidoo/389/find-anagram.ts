@@ -23,7 +23,7 @@ type TSlice<
 	Num extends string,
 	Start extends number,
 	End extends number,
-	Idx extends 1[] = [1],
+	Idx extends Array<1> = [1],
 > = Idx[End] extends 1
 	? ""
 	: Num extends `${infer first}${infer rest}`
@@ -34,7 +34,7 @@ type TSlice<
 
 type TStringLength<
 	T extends string,
-	Idx extends 1[] = [],
+	Idx extends Array<1> = [],
 > = T extends `${string}${infer rest}`
 	? TStringLength<rest, [...Idx, 1]>
 	: Idx["length"];
@@ -44,7 +44,7 @@ type TFindAnagrams<
 	ToCheck extends string,
 	ToCheckLength extends number = TStringLength<ToCheck>,
 	Res extends number[] = [],
-	Idx extends 1[] = [],
+	Idx extends Array<1> = [],
 > = Str extends `${string}${infer rest}`
 	? TFindAnagrams<
 			rest,

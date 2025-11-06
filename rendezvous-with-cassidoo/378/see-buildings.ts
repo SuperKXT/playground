@@ -45,8 +45,8 @@ type TGreaterThan<
 
 type TSeeBuildings<
 	Buildings extends number[],
-	count extends 1[] = [],
-	countWithCurr extends 1[] = [...count, 1],
+	count extends Array<1> = [],
+	countWithCurr extends Array<1> = [...count, 1],
 > = Buildings extends [
 	infer curr extends number,
 	infer next extends number,

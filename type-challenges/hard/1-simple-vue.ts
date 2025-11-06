@@ -55,6 +55,7 @@ declare function SimpleVue<
 	M extends Record<string, unknown>,
 >(
 	options: {
+		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 		data: (this: void) => D;
 		computed: C;
 		methods: M;

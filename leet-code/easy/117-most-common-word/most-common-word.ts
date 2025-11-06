@@ -23,21 +23,19 @@ type TIsLetter<T extends string> =
 
 type TState = {
 	curr: string;
-	map: Record<string, 1[]>;
-	max: { count: 1[]; word: string };
+	map: Record<string, Array<1>>;
+	max: { count: Array<1>; word: string };
 };
 
-type TAddOne<
-	curr extends string,
-	map extends Record<string, 1[]>,
-> = map[curr] extends 1[] ? [1, ...map[curr]] : [1];
+type TAddOne<curr extends string, map extends Record<string, Array<1>>> =
+	map[curr] extends Array<1> ? [1, ...map[curr]] : [1];
 
 type TCheckWord<
 	Banned extends string[],
 	State extends TState,
 > = State["curr"] extends "" | Banned[number]
 	? { curr: ""; map: State["map"]; max: State["max"] }
-	: TAddOne<State["curr"], State["map"]> extends infer count extends 1[]
+	: TAddOne<State["curr"], State["map"]> extends infer count extends Array<1>
 		? count[State["max"]["count"]["length"]] extends 1
 			? {
 					curr: "";

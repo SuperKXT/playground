@@ -1,7 +1,7 @@
 type TBuildStaircase<
 	T extends number,
-	idx extends 1[] = [1],
-	sum extends 1[] = [1],
+	idx extends Array<1> = [1],
+	sum extends Array<1> = [1],
 > = sum[T] extends 1
 	? idx extends [unknown, ...infer rest]
 		? rest["length"]

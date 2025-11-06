@@ -70,7 +70,7 @@ const getNext = (pos: TPos, direction: TDirection): TPos => {
 
 type TPath = Map<string, TDirection>;
 
-type TPathRes = { cost: number; path: TPath }[];
+type TPathRes = Array<{ cost: number; path: TPath }>;
 
 const getPaths = (
 	grid: TGrid,

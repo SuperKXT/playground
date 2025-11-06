@@ -11,7 +11,7 @@ type TTrimStart<Str extends string> = Str extends ` ${infer rest}`
 type TLengthOfLastWord<
 	Str extends string,
 	reversed extends string = TTrimStart<TReverseString<Str>>,
-	length extends 1[] = [],
+	length extends Array<1> = [],
 > = reversed extends `${infer first}${infer rest}`
 	? first extends " "
 		? length["length"]

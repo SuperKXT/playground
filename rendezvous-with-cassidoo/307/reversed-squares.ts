@@ -13,16 +13,16 @@ type TTuple<N extends number, T = 1> = N extends N
 type TMultiply<
 	T extends number,
 	U extends number,
-	idx extends 1[] = [],
-	result extends 1[] = [],
+	idx extends Array<1> = [],
+	result extends Array<1> = [],
 > = idx["length"] extends U
 	? result
 	: TMultiply<T, U, [...idx, 1], [...result, ...TTuple<T>]>;
 
 type TSqrt<
 	T extends number,
-	idx extends 1[] = [],
-	square extends 1[] = TMultiply<idx["length"], idx["length"]>,
+	idx extends Array<1> = [],
+	square extends Array<1> = TMultiply<idx["length"], idx["length"]>,
 > = square["length"] extends T
 	? idx["length"]
 	: square[T] extends 1

@@ -28,7 +28,7 @@ class Coord {
 	}
 }
 
-type TMapRow = ("." | "#" | "+" | "o")[];
+type TMapRow = Array<"." | "#" | "+" | "o">;
 type TMap = TMapRow[];
 
 const SOURCE = new Coord({ col: 500, row: 0 });

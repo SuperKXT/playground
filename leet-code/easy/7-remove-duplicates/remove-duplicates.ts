@@ -3,7 +3,7 @@
 export type TRemoveDuplicates<
 	Arr extends readonly unknown[],
 	prev = -1,
-	count extends 1[] = [],
+	count extends Array<1> = [],
 > = Arr extends readonly [infer first, ...infer rest]
 	? TRemoveDuplicates<rest, first, first extends prev ? count : [...count, 1]>
 	: count["length"];

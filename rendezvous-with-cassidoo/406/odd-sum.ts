@@ -31,7 +31,7 @@ export const oddSum = <const A extends number[], const B extends number[]>(
 	a: A,
 	b: B,
 ): TOddSum<A, B> => {
-	const pairs: [number, number][] = [];
+	const pairs: Array<[number, number]> = [];
 	const bCurrent = [...b];
 
 	outer: for (const x of a) {

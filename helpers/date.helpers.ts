@@ -171,9 +171,9 @@ export class TimeRange<
 
 	hasRangeArray<T extends object>(
 		input: T[],
-	): input is {
+	): input is Array<{
 		[k in keyof T]: k extends Start | End ? T[k] & Dayjs : T[k];
-	}[] {
+	}> {
 		return input.every((row) => this.hasRange(row));
 	}
 

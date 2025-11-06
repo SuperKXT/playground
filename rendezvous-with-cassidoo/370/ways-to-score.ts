@@ -173,7 +173,9 @@ type TGetCombinations<
 		: never
 	: never;
 
-type TCountUnionMembers<T, Count extends 1[] = [], U = T> = [U] extends [never]
+type TCountUnionMembers<T, Count extends Array<1> = [], U = T> = [U] extends [
+	never,
+]
 	? Count["length"]
 	: U extends U
 		? TCountUnionMembers<Exclude<T, U>, [...Count, 1]>

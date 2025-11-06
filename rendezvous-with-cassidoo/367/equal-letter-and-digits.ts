@@ -2,8 +2,8 @@ type TIsNum<Str extends string> = Str extends `${number}` ? true : false;
 
 type TIsEqual<
 	Str extends string,
-	NumCount extends 1[] = [],
-	CharCount extends 1[] = [],
+	NumCount extends Array<1> = [],
+	CharCount extends Array<1> = [],
 > = Str extends `${infer first}${infer rest}`
 	? TIsEqual<
 			rest,

@@ -92,7 +92,7 @@ type TLetterTup = [
 type TLetter = TLetterTup[number];
 
 type TGetNums<Alpha extends readonly TLetter[]> = {
-	-readonly [k in keyof Alpha as k extends keyof Array<unknown>
+	-readonly [k in keyof Alpha as k extends keyof unknown[]
 		? never
 		: Alpha[k] & string]: k extends `${infer num extends number}` ? num : never;
 };

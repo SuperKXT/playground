@@ -54,7 +54,7 @@ type AddTen<T extends Digit> = `1${T}` extends `${infer N extends SubNum}`
 	? N
 	: never;
 
-type Fill<T extends number, R extends 1[] = []> = T extends R["length"]
+type Fill<T extends number, R extends Array<1> = []> = T extends R["length"]
 	? R
 	: Fill<T, [...R, 1]>;
 
@@ -117,8 +117,8 @@ type SubtractDigit<
 	T extends SubNum,
 	U extends SubNum,
 	Lesser extends SubNum = LesserThanDigit<T, U> extends true ? T : U,
-	S extends 1[] = Fill<Lesser>,
-	R extends 1[] = [],
+	S extends Array<1> = Fill<Lesser>,
+	R extends Array<1> = [],
 > = T extends U
 	? 0
 	: [...R, ...S]["length"] extends Exclude<T | U, Lesser>
@@ -171,7 +171,7 @@ type Subtract<
 			: ArrToNumber<Result>;
 
 // BETTER!
-type Tuple<T, Res extends 1[] = []> = 0 extends 1
+type Tuple<T, Res extends Array<1> = []> = 0 extends 1
 	? never
 	: Res["length"] extends T
 		? Res

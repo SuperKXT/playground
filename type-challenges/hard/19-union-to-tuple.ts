@@ -71,6 +71,7 @@ type _cases = [
 	Expect<Equal<ExtractValuesOfTuple<UnionToTuple<"a">>, "a">>,
 	Expect<Equal<ExtractValuesOfTuple<UnionToTuple<unknown>>, unknown>>,
 	Expect<
+		// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 		Equal<ExtractValuesOfTuple<UnionToTuple<undefined | void | 1>>, void | 1>
 	>,
 

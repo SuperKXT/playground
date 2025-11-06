@@ -4,7 +4,12 @@ type TReverseString<
 	S extends string,
 	K extends number,
 	res extends string = "",
-	curr extends { reverse: string; rLen: 1[]; straight: string; sLen: 1[] } = {
+	curr extends {
+		reverse: string;
+		rLen: Array<1>;
+		straight: string;
+		sLen: Array<1>;
+	} = {
 		reverse: "";
 		rLen: [];
 		straight: "";

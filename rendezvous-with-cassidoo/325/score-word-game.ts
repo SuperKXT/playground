@@ -1,6 +1,6 @@
 type TTuple<
 	size extends number,
-	tup extends 1[] = [],
+	tup extends Array<1> = [],
 > = tup["length"] extends size ? tup : TTuple<size, [...tup, 1]>;
 
 type TShift<T extends number[]> = T extends [
@@ -50,16 +50,16 @@ type TStringToUnion<T extends string> = T extends `${infer first}${infer rest}`
 
 type TStrLength<
 	T extends string,
-	tup extends 1[] = [],
+	tup extends Array<1> = [],
 > = T extends `${string}${infer rest}`
 	? TStrLength<rest, [...tup, 1]>
 	: tup["length"];
 
 type TMultiply<
 	times extends number,
-	tup extends 1[],
-	res extends 1[] = [],
-	idx extends 1[] = [],
+	tup extends Array<1>,
+	res extends Array<1> = [],
+	idx extends Array<1> = [],
 > = idx["length"] extends times
 	? res["length"]
 	: TMultiply<times, tup, [...res, ...tup], [...idx, 1]>;
@@ -68,10 +68,10 @@ type TWordScore<
 	T extends string,
 	scores extends Record<TStringToUnion<T>, number>,
 	str extends string = T,
-	score extends 1[] = [],
+	score extends Array<1> = [],
 > = str extends `${infer first}${infer rest}`
 	? first extends keyof scores
-		? TTuple<scores[first]> extends infer newScore extends 1[]
+		? TTuple<scores[first]> extends infer newScore extends Array<1>
 			? TWordScore<T, scores, rest, [...score, ...newScore]>
 			: never
 		: never
@@ -127,7 +127,7 @@ type TOffset = TTuple<98>;
 export type TLetterScores<
 	tup extends string = TAlphabet,
 	map extends Record<string, number> = {},
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = tup extends `${infer first}${infer rest}`
 	? TLetterScores<
 			rest,

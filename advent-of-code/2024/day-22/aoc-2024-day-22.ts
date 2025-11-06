@@ -38,7 +38,7 @@ export const aoc2024Day22 = (input: string) => {
 	for (let j = 0; j < codes.length; j++) {
 		const visitedSequences = new Set<string>();
 		let code = codes[j] as bigint;
-		const prev4: { price: number; diff: number }[] = [];
+		const prev4: Array<{ price: number; diff: number }> = [];
 		for (let i = 0; i < 2000; i++) {
 			code = getNewSecret(code);
 

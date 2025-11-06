@@ -1,6 +1,6 @@
 type TMapSideLengths<
 	Parts extends readonly number[],
-	map extends Record<number, 1[]> = {},
+	map extends Record<number, Array<1>> = {},
 > = Parts extends readonly [
 	infer first extends number,
 	...infer rest extends number[],
@@ -10,7 +10,7 @@ type TMapSideLengths<
 			Omit<map, first> &
 				Record<
 					first,
-					map[first] extends infer curr extends 1[] ? [...curr, 1] : [1]
+					map[first] extends infer curr extends Array<1> ? [...curr, 1] : [1]
 				>
 		>
 	: map;

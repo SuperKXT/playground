@@ -6,11 +6,11 @@ type TStringToTuple<str extends string> =
 type TUniqueSubstring<
 	str extends string,
 	strTuple extends string[] = TStringToTuple<str>,
-	maxLength extends 1[] = [],
-	currStart extends 1[] = [],
-	currLength extends 1[] = [],
+	maxLength extends Array<1> = [],
+	currStart extends Array<1> = [],
+	currLength extends Array<1> = [],
 	uniqueChars extends string[] = [],
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 	curr extends string = strTuple[idx["length"]],
 > = idx["length"] extends strTuple["length"]
 	? maxLength["length"]

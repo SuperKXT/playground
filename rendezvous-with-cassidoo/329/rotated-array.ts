@@ -1,6 +1,6 @@
 type TTuple<
 	size extends number,
-	res extends 1[] = [],
+	res extends Array<1> = [],
 > = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
 type TShift<tup extends number[]> = tup extends [
@@ -46,8 +46,8 @@ type TGreaterThan<
 
 type TRotatedArray<
 	input extends number[],
-	idx extends 1[] = [],
-	rotated extends 1[] = [],
+	idx extends Array<1> = [],
+	rotated extends Array<1> = [],
 > = [...idx, 1]["length"] extends input["length"]
 	? rotated["length"]
 	: TGreaterThan<

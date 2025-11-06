@@ -3,7 +3,7 @@ type TPerson = {
 	num: number;
 };
 
-type TTuple<T extends number, R extends 1[] = []> = R["length"] extends T
+type TTuple<T extends number, R extends Array<1> = []> = R["length"] extends T
 	? R
 	: TTuple<T, [...R, 1]>;
 
@@ -15,7 +15,7 @@ type TRequiredPieces<
 	: result;
 
 type TMmmPie<
-	People extends readonly Readonly<TPerson>[],
+	People extends ReadonlyArray<Readonly<TPerson>>,
 	Pieces extends number,
 	PiecesTuple extends unknown[] = TTuple<Pieces>,
 	RequiredTuple extends unknown[] = TRequiredPieces<People>,

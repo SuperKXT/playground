@@ -6,7 +6,7 @@ type TDigit = (typeof digits)[number];
 
 type TSudokuCell = TDigit | ".";
 
-type TGridKey<idx extends 1[]> = idx[5] extends 1
+type TGridKey<idx extends Array<1>> = idx[5] extends 1
 	? 3
 	: idx[2] extends 1
 		? 2
@@ -31,8 +31,8 @@ type TGetVal<
 
 type TIsValidSudoku<
 	Board extends TSudokuCell[][],
-	x extends 1[] = [],
-	y extends 1[] = [],
+	x extends Array<1> = [],
+	y extends Array<1> = [],
 	sets extends Record<string, TSudokuCell> = {},
 	xKey extends string = `row-${x["length"]}`,
 	yKey extends string = `col-${y["length"]}`,

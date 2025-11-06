@@ -1,7 +1,7 @@
 /** cSpell: disable */
 type TTuple<
 	T extends number,
-	Result extends 1[] = [],
+	Result extends Array<1> = [],
 > = Result["length"] extends T ? Result : TTuple<T, [...Result, 1]>;
 
 type TScrabbleKey = {

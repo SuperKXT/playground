@@ -46,7 +46,7 @@ type TGreaterThan<
 type TCount<
 	from extends number,
 	to extends number,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 	count extends number[] = [],
 > = idx["length"] extends to
 	? count["length"]
@@ -61,7 +61,7 @@ type TMaxStock<
 	Prices extends number[],
 	low extends number = never,
 	high extends number = never,
-	count extends 1[] = [],
+	count extends Array<1> = [],
 > = Prices extends [infer curr extends number, ...infer rest extends number[]]
 	? TGreaterThan<low, curr> extends true
 		? TMaxStock<rest, curr, curr, [1]>

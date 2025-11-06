@@ -15,7 +15,7 @@
 type __FirstUniqueCharIndex<
 	T extends string,
 	A extends string = "",
-	Idx extends 1[] = [],
+	Idx extends Array<1> = [],
 > = T extends `${infer F}${infer O}`
 	? __FirstUniqueCharIndex<
 			O,

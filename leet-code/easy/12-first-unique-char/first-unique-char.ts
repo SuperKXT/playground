@@ -2,7 +2,7 @@
 
 type TFirstUniqueChar<
 	Str extends string,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 	visited extends string = never,
 > = Str extends `${infer first}${infer rest}`
 	? rest extends `${string}${first}${string}`
