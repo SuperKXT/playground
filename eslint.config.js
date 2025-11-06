@@ -15,7 +15,7 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig([
 	{
-		name: "global-config",
+		name: "plugin-registration",
 		plugins: {
 			"@typescript-eslint": tseslint.plugin,
 			"unused-imports": unusedImports,
@@ -25,16 +25,10 @@ export default defineConfig([
 			"import-x/resolver-next": [createTypeScriptImportResolver()],
 			vitest: { typecheck: true },
 		},
-		languageOptions: {
-			globals: { ...globals.es2025, ...globals.node },
-			parserOptions: {
-				projectService: true,
-				tsconfigRootDir: __dirname,
-			},
-		},
-		linterOptions: {
-			reportUnusedDisableDirectives: true,
-		},
+	},
+
+	{
+		name: "global-ignores",
 		ignores: [
 			"**/node_modules",
 			"**/build",
@@ -65,6 +59,16 @@ export default defineConfig([
 	{
 		name: "base",
 		files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
+		languageOptions: {
+			globals: { ...globals.es2025, ...globals.node },
+			parserOptions: {
+				projectService: true,
+				tsconfigRootDir: __dirname,
+			},
+		},
+		linterOptions: {
+			reportUnusedDisableDirectives: true,
+		},
 		rules: {
 			"array-callback-return": ["warn", { checkForEach: true }],
 			"default-case-last": "warn",
