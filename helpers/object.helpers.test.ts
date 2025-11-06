@@ -21,21 +21,21 @@ test("testing objectEntries", () => {
 		["first", 1],
 		["second", 2],
 	]);
-	assertType<["first" | "second", 1 | 2][]>(entries);
+	assertType<Array<["first" | "second", 1 | 2]>>(entries);
 });
 
 test("testing objectKeys", () => {
 	const object = { first: 1, second: 2 } as const;
 	const keys = objectKeys(object);
 	expect(keys).toStrictEqual(["first", "second"]);
-	assertType<("first" | "second")[]>(keys);
+	assertType<Array<"first" | "second">>(keys);
 });
 
 test("testing objectValues", () => {
 	const object = { first: 1, second: 2 } as const;
 	const values = objectValues(object);
 	expect(values).toStrictEqual([1, 2]);
-	assertType<(1 | 2)[]>(values);
+	assertType<Array<1 | 2>>(values);
 });
 
 test("testing omit", () => {

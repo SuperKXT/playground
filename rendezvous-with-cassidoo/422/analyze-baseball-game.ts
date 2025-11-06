@@ -6,7 +6,7 @@ type TRes = {
 	winner: "home" | "away";
 };
 
-export const analyzeBaseballGame = (nums: [number, number][]): TRes => {
+export const analyzeBaseballGame = (nums: Array<[number, number]>): TRes => {
 	const res: TRes = {
 		homeTotal: 0,
 		awayTotal: 0,

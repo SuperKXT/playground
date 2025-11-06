@@ -1,7 +1,9 @@
 import os from "node:os";
 import { Worker } from "node:worker_threads";
 
-export type TWorkerPoolRes<T> = (({ error: null } & T) | { error: string })[];
+export type TWorkerPoolRes<T> = Array<
+	({ error: null } & T) | { error: string }
+>;
 
 export class WorkerPool<TArgs, TReturn> {
 	private workerPath: string;
@@ -40,12 +42,12 @@ export class WorkerPool<TArgs, TReturn> {
 		const worker = new Worker(this.workerPath, { workerData: tasks });
 
 		worker.on("message", (result) => {
-			worker.terminate();
+			void worker.terminate();
 			resolve(result as never);
 		});
 
 		worker.on("error", (err) => {
-			worker.terminate();
+			void worker.terminate();
 			reject(err);
 		});
 

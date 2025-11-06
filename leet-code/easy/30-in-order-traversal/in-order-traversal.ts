@@ -47,7 +47,7 @@ import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
 export const inOrderTraversal = (node: TBinaryTreeNode<number>): number[] => {
 	if (!node) return [];
 	const res: number[] = [];
-	const stack: TBinaryTreeNode<number>[] = [];
+	const stack: Array<TBinaryTreeNode<number>> = [];
 	let curr: TBinaryTreeNode<number> = node;
 	while (curr || stack.length > 0) {
 		while (curr) {

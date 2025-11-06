@@ -3,13 +3,13 @@
  */
 export const pluralize = (
 	strings: TemplateStringsArray,
-	...inputExpressions: (
+	...inputExpressions: Array<
 		| number
 		| string
 		| [number]
 		| [number, null | string]
 		| [number, (arg: number) => null | string]
-	)[]
+	>
 ): string => {
 	const expressions = inputExpressions.map((value) => {
 		if (typeof value === "string") return value;
@@ -31,7 +31,9 @@ export const pluralize = (
 	});
 
 	const result: string[] = [];
-	const quantifiers = expressions.filter(Array.isArray) as [number, string][];
+	const quantifiers = expressions.filter(Array.isArray) as Array<
+		[number, string]
+	>;
 	let lastQuantifier = quantifiers[0];
 
 	const replaceQuantity = (input: string): string => {

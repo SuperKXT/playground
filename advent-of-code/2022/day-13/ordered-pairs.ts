@@ -3,7 +3,7 @@ type TSolution = {
 	part2: number;
 };
 
-type TPacket = (TPacket | number)[];
+type TPacket = Array<TPacket | number>;
 
 const checkPacketOrder = (
 	leftPacket: TPacket,

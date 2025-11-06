@@ -43,7 +43,7 @@ type MonthDayMap = {
 type LessThan<
 	T extends number,
 	U extends number,
-	A extends 1[] = [],
+	A extends Array<1> = [],
 > = A["length"] extends T
 	? true
 	: A["length"] extends U

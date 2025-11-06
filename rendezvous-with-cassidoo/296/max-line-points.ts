@@ -1,4 +1,4 @@
-export const maxPointsOnLine = (points: [number, number][]): number => {
+export const maxPointsOnLine = (points: Array<[number, number]>): number => {
 	let max = 0;
 	for (const [x1, y1] of points) {
 		const lines = new Map<number, number>();

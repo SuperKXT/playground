@@ -24,9 +24,9 @@ const getChecksum = (disk: string[]) => {
 export const aoc2024Day9 = (input: string) => {
 	const trimmed = input.trim();
 	const spacesToFill = new Set<number>();
-	const compactSpaces: { idx: number; size: number }[] = [];
-	const files: { id: number; idx: number }[] = [];
-	const compactFiles: { id: number; idx: number; size: number }[] = [];
+	const compactSpaces: Array<{ idx: number; size: number }> = [];
+	const files: Array<{ id: number; idx: number }> = [];
+	const compactFiles: Array<{ id: number; idx: number; size: number }> = [];
 	const disk: string[] = [];
 	let fileId = 0;
 	let idx = 0;

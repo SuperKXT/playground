@@ -18,7 +18,7 @@
 type RepeatString<
 	Length extends number,
 	Str extends string,
-	Count extends 1[] = [],
+	Count extends Array<1> = [],
 > = Count["length"] extends Length
 	? ""
 	: `${Str}${RepeatString<Length, Str, [...Count, 1]>}`;
@@ -27,7 +27,7 @@ namespace RLE {
 	export type Encode<
 		Str extends string,
 		Last extends string = "",
-		Count extends 1[] = [1],
+		Count extends Array<1> = [1],
 		Encoded extends string = "",
 	> = Str extends `${infer First}${infer Rest}`
 		? First extends Last

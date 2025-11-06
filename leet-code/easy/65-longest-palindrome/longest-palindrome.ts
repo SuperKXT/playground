@@ -2,7 +2,7 @@
 
 type TLongestPalindrome<
 	S extends string,
-	res extends 1[] = [],
+	res extends Array<1> = [],
 	spare extends boolean = false,
 > = S extends `${infer first}${infer rest}`
 	? rest extends `${infer before}${first}${infer after}`

@@ -3,7 +3,7 @@ type TTask = { name: string; duration: number };
 
 type TTuple<
 	size extends number,
-	tup extends 1[] = [],
+	tup extends Array<1> = [],
 > = tup["length"] extends size ? tup : TTuple<size, [...tup, 1]>;
 
 type TNumberToTuple<
@@ -17,7 +17,7 @@ type TNumberToTuple<
 type TRemoveFromTuple<
 	tup extends unknown[],
 	toRemove extends number,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = idx["length"] extends toRemove
 	? tup
 	: tup extends [unknown, ...infer rest]
@@ -95,7 +95,7 @@ type TSortNames<
 type TDoWork<
 	tasks extends readonly TTask[],
 	time extends number,
-	timeTup extends 1[] = TTuple<time>,
+	timeTup extends Array<1> = TTuple<time>,
 	names extends string[] = [],
 	minTask extends TTask | undefined = TMinDurationTask<tasks, names>,
 > = timeTup extends []

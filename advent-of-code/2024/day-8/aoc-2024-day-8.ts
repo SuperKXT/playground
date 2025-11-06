@@ -15,7 +15,7 @@ export const aoc2024Day8 = (input: string) => {
 	const rows = rowStrings.length;
 	const cols = rowStrings[0]?.length ?? 0;
 	if (!rows || !cols) throw new Error("Invalid input");
-	const nodes = new Map<string, [number, number][]>();
+	const nodes = new Map<string, Array<[number, number]>>();
 	const grid: string[][] = [];
 	for (let x = 0; x < rows; x++) {
 		const rowStr = rowStrings[x];

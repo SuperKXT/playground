@@ -21,7 +21,7 @@ const updateGrid = ({
 	grid: number[][];
 	rows: number;
 	cols: number;
-	robots: { p: { x: number; y: number }; v: { x: number; y: number } }[];
+	robots: Array<{ p: { x: number; y: number }; v: { x: number; y: number } }>;
 }) => {
 	for (const r of robots) {
 		const prevX = r.p.x;

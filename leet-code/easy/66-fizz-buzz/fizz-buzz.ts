@@ -1,9 +1,9 @@
 // https://leetcode.com/problems/fizz-buzz
 
 type TFizzBuzzStr<
-	idx extends 1[],
-	counter3 extends 1[],
-	counter5 extends 1[],
+	idx extends Array<1>,
+	counter3 extends Array<1>,
+	counter5 extends Array<1>,
 	str extends
 		string = `${counter3["length"] extends 3 ? "Fizz" : ""}${counter5["length"] extends 5 ? "Buzz" : ""}`,
 > = str extends "" ? `${[...idx, 1]["length"]}` : str;
@@ -11,9 +11,9 @@ type TFizzBuzzStr<
 type TFizzBuzz<
 	N extends number,
 	res extends string[] = [],
-	idx extends 1[] = [],
-	counter3 extends 1[] = [1],
-	counter5 extends 1[] = [1],
+	idx extends Array<1> = [],
+	counter3 extends Array<1> = [1],
+	counter5 extends Array<1> = [1],
 > = idx["length"] extends N
 	? res
 	: TFizzBuzz<

@@ -2,8 +2,8 @@
 
 type TWordCount<
 	Sentence extends string,
-	Max extends 1[],
-	Curr extends 1[] = [1],
+	Max extends Array<1>,
+	Curr extends Array<1> = [1],
 > = Sentence extends `${infer first}${infer rest}`
 	? first extends " "
 		? TWordCount<
@@ -16,7 +16,7 @@ type TWordCount<
 
 type TMaxWords<
 	Sentences extends string[],
-	Max extends 1[] = [1],
+	Max extends Array<1> = [1],
 > = Sentences extends [
 	infer first extends string,
 	...infer rest extends string[],

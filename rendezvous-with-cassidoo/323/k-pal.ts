@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 type TTuple<
 	Len extends number,
-	tup extends 1[] = [],
+	tup extends Array<1> = [],
 > = tup["length"] extends Len ? tup : TTuple<Len, [...tup, 1]>;
 
 type TStringToTuple<T extends string> = T extends `${infer first}${infer rest}`
@@ -16,7 +16,7 @@ export type TKPal<
 	str extends string,
 	canRemove extends number,
 	strTup extends string[] = TStringToTuple<str>,
-	removeTup extends 1[] = TTuple<canRemove>,
+	removeTup extends Array<1> = TTuple<canRemove>,
 > = strTup extends [
 	infer first extends string,
 	...infer rest extends string[],

@@ -2,7 +2,7 @@
 
 type TStringSegments<
 	S extends string,
-	count extends 1[] = [],
+	count extends Array<1> = [],
 	hasNonSpace extends boolean = false,
 > = S extends `${infer first}${infer rest}`
 	? first extends " "

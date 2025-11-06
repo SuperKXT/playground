@@ -35,7 +35,7 @@ type TSay<char extends string, count extends number[]> = `${TWords[[
 type TCountAndSay<
 	T extends string,
 	str extends string[] = [],
-	count extends 1[] = [],
+	count extends Array<1> = [],
 > = T extends `${infer first}${infer next}${infer rest}`
 	? first extends next
 		? TCountAndSay<`${next}${rest}`, str, [...count, 1]>

@@ -1,4 +1,4 @@
-type TTuple<T extends number, A extends 1[] = []> = A["length"] extends T
+type TTuple<T extends number, A extends Array<1> = []> = A["length"] extends T
 	? A
 	: TTuple<T, [...A, 1]>;
 
@@ -53,7 +53,7 @@ type TIsBitonic<
 	input extends number[],
 	increased extends boolean = false,
 	peak extends number = never,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 	curr extends number = input[idx["length"]],
 	next extends number = input[[...idx, 1]["length"]],
 > = next extends undefined

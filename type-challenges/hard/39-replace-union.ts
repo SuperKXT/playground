@@ -13,9 +13,9 @@
 
 /* _____________ Your Code Here _____________ */
 
-type UnionReplace<T, U extends readonly [unknown, unknown][]> = U extends [
+type UnionReplace<T, U extends ReadonlyArray<[unknown, unknown]>> = U extends [
 	infer F extends [unknown, unknown],
-	...infer Rest extends [unknown, unknown][],
+	...infer Rest extends Array<[unknown, unknown]>,
 ]
 	? UnionReplace<F[0] extends T ? Exclude<T, F[0]> | F[1] : T, Rest>
 	: T;

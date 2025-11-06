@@ -64,7 +64,7 @@ type TCompareNumbers<
 type TInsertPosition<
 	nums extends number[],
 	target extends number,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = nums extends [infer first extends number, ...infer rest extends number[]]
 	? TCompareNumbers<target, first> extends "greater"
 		? TInsertPosition<rest, target, [...idx, 1]>

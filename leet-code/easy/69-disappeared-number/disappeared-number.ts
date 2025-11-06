@@ -2,7 +2,7 @@
 
 type TDisappearedNumbers<
 	Nums extends number[],
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 	missing extends number[] = [],
 	curr extends number = [...idx, 1]["length"],
 > = idx["length"] extends Nums["length"]

@@ -33,7 +33,7 @@ enum Comparison {
 
 type CreateTuple<
 	T extends number,
-	Arr extends 1[] = [],
+	Arr extends Array<1> = [],
 > = Arr["length"] extends T ? Arr : CreateTuple<T, [...Arr, 1]>;
 
 type Unshift<T extends number[]> = T extends [

@@ -4,7 +4,7 @@ type TMissingNumber<
 	Nums extends number[],
 	size extends number = Nums["length"],
 	union extends number = Nums[number],
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = idx["length"] extends size
 	? idx["length"]
 	: idx["length"] extends union

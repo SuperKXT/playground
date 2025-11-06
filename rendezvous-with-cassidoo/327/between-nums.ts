@@ -1,30 +1,30 @@
 type TTuple<
 	num extends number,
-	tup extends 1[] = [],
+	tup extends Array<1> = [],
 > = tup["length"] extends num ? tup : TTuple<num, [...tup, 1]>;
 
 type TRemoveN<
-	tup extends 1[],
+	tup extends Array<1>,
 	n extends number,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = idx["length"] extends n
 	? tup
-	: tup extends [1, ...infer rest extends 1[]]
+	: tup extends [1, ...infer rest extends Array<1>]
 		? TRemoveN<rest, n, [...idx, 1]>
 		: [];
 
 type TDivisible<
 	num extends number,
 	by extends number,
-	tup extends 1[] = TTuple<num>,
-	idx extends 1[] = [],
+	tup extends Array<1> = TTuple<num>,
+	idx extends Array<1> = [],
 > = tup extends []
 	? true
 	: [...tup, 1][by] extends undefined
 		? false
 		: TDivisible<never, by, TRemoveN<tup, by>, [...idx, 1]>;
 
-type TIsPrime<num extends number, idx extends 1[] = [1, 1]> = num extends 0
+type TIsPrime<num extends number, idx extends Array<1> = [1, 1]> = num extends 0
 	? false
 	: num extends 1
 		? true
@@ -58,15 +58,15 @@ type TBetweenNums<
 	first extends number,
 	second extends number,
 	check extends "even" | "odd" | "prime",
-	firstTup extends 1[] = TTuple<first>,
-	secondTup extends 1[] = TTuple<second>,
-	start extends 1[] = firstTup[secondTup["length"]] extends 1
+	firstTup extends Array<1> = TTuple<first>,
+	secondTup extends Array<1> = TTuple<second>,
+	start extends Array<1> = firstTup[secondTup["length"]] extends 1
 		? secondTup
 		: firstTup,
-	end extends 1[] = firstTup[secondTup["length"]] extends 1
+	end extends Array<1> = firstTup[secondTup["length"]] extends 1
 		? firstTup
 		: secondTup,
-	idx extends 1[] = [1],
+	idx extends Array<1> = [1],
 	result extends number[] = [],
 	curr extends number = [...start, ...idx]["length"],
 > = curr extends end["length"]

@@ -34,7 +34,9 @@ const spin = async (
 	}
 	console.info(
 		chalk.red("INCORRECT!"),
-		chalk.blue(`Spin Result: ${spinResult}, Your Choice: ${String(choice)}`),
+		chalk.blue(
+			`Spin Result: ${spinResult}, Your Choice: ${JSON.stringify(choice)}`,
+		),
 	);
 	return 0;
 };

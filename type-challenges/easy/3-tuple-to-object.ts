@@ -21,7 +21,7 @@
 /* _____________ Your Code Here _____________ */
 
 type TupleToObject<T extends readonly PropertyKey[]> =
-	T extends readonly (infer U)[]
+	T extends ReadonlyArray<infer U>
 		? {
 				[K in U & PropertyKey]: K;
 			}

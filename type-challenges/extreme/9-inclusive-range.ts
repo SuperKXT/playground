@@ -18,14 +18,14 @@
 
 /* _____________ Your Code Here _____________ */
 
-type Tuple<T extends number, R extends 1[] = []> = R["length"] extends T
+type Tuple<T extends number, R extends Array<1> = []> = R["length"] extends T
 	? R
 	: Tuple<T, [...R, 1]>;
 
 type InclusiveRange<
 	Lower extends number,
 	Higher extends number,
-	Idx extends 1[] = Tuple<Lower>,
+	Idx extends Array<1> = Tuple<Lower>,
 	Result extends number[] = [],
 > = Idx[Higher] extends undefined
 	? InclusiveRange<Lower, Higher, [...Idx, 1], [...Result, Idx["length"]]>

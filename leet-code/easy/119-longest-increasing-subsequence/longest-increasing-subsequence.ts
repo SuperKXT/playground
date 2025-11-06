@@ -64,8 +64,8 @@ type TCompareNumbers<
 type _TLongestIncreasingSubsequence<
 	Nums extends number[],
 	last extends number,
-	curr extends 1[],
-	max extends 1[] = [],
+	curr extends Array<1>,
+	max extends Array<1> = [],
 > = Nums extends [infer first extends number, ...infer rest extends number[]]
 	? TCompareNumbers<last, first> extends "lesser"
 		? _TLongestIncreasingSubsequence<rest, first, [...curr, 1], max>

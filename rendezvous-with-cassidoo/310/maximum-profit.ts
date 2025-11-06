@@ -1,6 +1,6 @@
 type TTuple<
 	T extends number,
-	result extends 1[] = [],
+	result extends Array<1> = [],
 > = result["length"] extends T ? result : TTuple<T, [...result, 1]>;
 
 type TDigit = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0;

@@ -3,7 +3,7 @@
 type _repeatString<
 	S extends string,
 	N extends number,
-	T extends 1[] = [],
+	T extends Array<1> = [],
 > = T["length"] extends N ? "" : `${S}${_repeatString<S, N, [...T, 1]>}`;
 
 type _tuple<N extends number, T, R extends readonly T[]> = R["length"] extends N
@@ -52,7 +52,7 @@ export declare namespace Utils {
 
 	type notEqual<T, U> = equal<T, U> extends true ? false : true;
 
-	type trueTuple<T extends true[]> = T[number] extends true ? true : false;
+	type trueTuple<T extends Array<true>> = T[number] extends true ? true : false;
 
 	/** checks if the first type satisfies the second */
 	type satisfies<T extends U, U> = T;

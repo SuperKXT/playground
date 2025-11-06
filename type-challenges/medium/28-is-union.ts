@@ -35,6 +35,7 @@ type _cases = [
 	Expect<Equal<IsUnion<string>, false>>,
 	Expect<Equal<IsUnion<string | number>, true>>,
 	Expect<Equal<IsUnion<"a" | "b" | "c" | "d">, true>>,
+	// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 	Expect<Equal<IsUnion<undefined | null | void | "">, true>>,
 	Expect<Equal<IsUnion<{ a: string } | { a: number }>, true>>,
 	Expect<Equal<IsUnion<{ a: string | number }>, false>>,

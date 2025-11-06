@@ -7,7 +7,7 @@ type TItemKey<T extends TItem> =
 
 type TMinLaundryLoads<
 	Items extends TItem[],
-	Count extends 1[] = [],
+	Count extends Array<1> = [],
 	Existing extends Record<string, 1> = {},
 > = Items extends [infer first extends TItem, ...infer rest extends TItem[]]
 	? TItemKey<first> extends keyof Existing

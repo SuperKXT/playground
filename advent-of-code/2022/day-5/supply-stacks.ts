@@ -24,7 +24,7 @@ export const supplyStacks = (
 	const part2Stacks = structuredClone(stacks);
 
 	const moveRows = parts[1]?.split("\n").filter(Boolean) ?? [];
-	const moves = moveRows.reduce<[number, number, number][]>(
+	const moves = moveRows.reduce<Array<[number, number, number]>>(
 		(array, row) => [
 			...array,
 			row.match(/[0-9]+/gu)?.map(Number) as [number, number, number],

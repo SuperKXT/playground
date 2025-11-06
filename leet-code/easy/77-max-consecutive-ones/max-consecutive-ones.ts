@@ -2,8 +2,8 @@
 
 type TMaxConsecutiveOnes<
 	Nums extends number[],
-	max extends 1[] = [],
-	curr extends 1[] = [],
+	max extends Array<1> = [],
+	curr extends Array<1> = [],
 > = Nums extends [infer first, ...infer rest extends number[]]
 	? first extends 1
 		? TMaxConsecutiveOnes<

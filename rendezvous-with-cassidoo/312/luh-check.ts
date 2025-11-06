@@ -9,7 +9,7 @@ type TCardIdMap = typeof cardIdMap;
 
 type TTuple<
 	T extends number,
-	result extends 1[] = [],
+	result extends Array<1> = [],
 > = result["length"] extends T ? result : TTuple<T, [...result, 1]>;
 
 type TNumberToTuple<
@@ -34,7 +34,7 @@ type TSumDigit<
 type TSumPayload<
 	T extends number[],
 	double extends boolean = true,
-	sum extends 1[] = [],
+	sum extends Array<1> = [],
 > = T extends [...infer rest extends number[], infer last extends number]
 	? TSumPayload<
 			rest,
@@ -46,14 +46,14 @@ type TSumPayload<
 type TMod<
 	T extends number,
 	M extends number,
-	tTuple extends 1[] = TTuple<T>,
-	mTuple extends 1[] = TTuple<M>,
-> = tTuple extends [...mTuple, ...infer rest extends 1[]]
+	tTuple extends Array<1> = TTuple<T>,
+	mTuple extends Array<1> = TTuple<M>,
+> = tTuple extends [...mTuple, ...infer rest extends Array<1>]
 	? TMod<never, never, rest, mTuple>
 	: tTuple["length"];
 
 type TSubtract<T extends number, M extends number> =
-	TTuple<T> extends [...TTuple<M>, ...infer rest extends 1[]]
+	TTuple<T> extends [...TTuple<M>, ...infer rest extends Array<1>]
 		? rest["length"]
 		: 0;
 

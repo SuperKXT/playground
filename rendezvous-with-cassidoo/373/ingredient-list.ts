@@ -1,7 +1,7 @@
 type TIngredientList<
 	Recipe extends string[],
 	Pantry extends string[],
-	_Count extends 1[] = [],
+	_Count extends Array<1> = [],
 > = Recipe extends [infer ingredient, ...infer rest extends string[]]
 	? TIngredientList<
 			rest,

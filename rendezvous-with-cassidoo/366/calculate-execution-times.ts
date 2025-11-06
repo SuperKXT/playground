@@ -4,7 +4,7 @@ type TLog = {
 	event: "start" | "end";
 };
 
-type TTuple<T, Res extends 1[] = []> = 0 extends 1
+type TTuple<T, Res extends Array<1> = []> = 0 extends 1
 	? never
 	: Res["length"] extends T
 		? Res

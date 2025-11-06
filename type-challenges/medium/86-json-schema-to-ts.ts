@@ -56,7 +56,7 @@ type JSONSchema2TS<T extends JsonType> = T extends {
 			: Record<string, unknown>
 		: T extends { type: "array"; items?: infer I }
 			? I extends JsonType
-				? JSONSchema2TS<I>[]
+				? Array<JSONSchema2TS<I>>
 				: unknown[]
 			: T extends { type: "string" }
 				? string
@@ -156,7 +156,7 @@ type Type11 = JSONSchema2TS<{
 		type: "object";
 	};
 }>;
-type Expected11 = Record<string, unknown>[];
+type Expected11 = Array<Record<string, unknown>>;
 type Result11 = Expect<Equal<Type11, Expected11>>;
 // - Arrays
 
@@ -190,9 +190,9 @@ type Type13 = JSONSchema2TS<{
 		};
 	};
 }>;
-type Expected13 = {
+type Expected13 = Array<{
 	a?: string;
-}[];
+}>;
 type Result13 = Expect<Equal<Type13, Expected13>>;
 // - Mixed types
 

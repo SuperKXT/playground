@@ -1,6 +1,6 @@
 type TTuple<
 	size extends number,
-	res extends 1[] = [],
+	res extends Array<1> = [],
 > = res["length"] extends size ? res : TTuple<size, [...res, 1]>;
 
 type TIncrementMap<
@@ -26,10 +26,10 @@ type TIsEven<
 type TMajority<
 	input extends number[],
 	map extends Record<number, number> = {},
-	most extends 1[] = [],
+	most extends Array<1> = [],
 	winner extends number = never,
-	evens extends 1[] = [],
-	odds extends 1[] = [],
+	evens extends Array<1> = [],
+	odds extends Array<1> = [],
 > = input extends [infer first extends number, ...infer rest extends number[]]
 	? TIncrementMap<map, first> extends infer newMap extends Record<
 			number,

@@ -4,10 +4,10 @@ type TFindPair<T extends TShoe> = T extends `${infer foot}-${infer size}`
 
 type TMaxPairs<
 	Pairs extends TShoe[],
-	Found extends Record<TShoe, 1[]> = {},
-	Count extends 1[] = [],
+	Found extends Record<TShoe, Array<1>> = {},
+	Count extends Array<1> = [],
 > = Pairs extends [infer curr extends TShoe, ...infer rest extends TShoe[]]
-	? Found[TFindPair<curr>] extends [number, ...infer restPairs extends 1[]]
+	? Found[TFindPair<curr>] extends [number, ...infer restPairs extends Array<1>]
 		? TMaxPairs<
 				rest,
 				{
@@ -18,7 +18,7 @@ type TMaxPairs<
 		: TMaxPairs<
 				rest,
 				Omit<Found, curr> & {
-					[k in curr]: Found[k] extends 1[] ? [1, ...Found[k]] : [1];
+					[k in curr]: Found[k] extends Array<1> ? [1, ...Found[k]] : [1];
 				},
 				Count
 			>

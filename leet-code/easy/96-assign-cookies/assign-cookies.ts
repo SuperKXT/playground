@@ -65,7 +65,7 @@ type TSmallest<
 	Nums extends number[],
 	visited extends number,
 	smallest extends { idx: number; val: number } = never,
-	idx extends 1[] = [],
+	idx extends Array<1> = [],
 > = Nums extends [infer first extends number, ...infer rest extends number[]]
 	? TSmallest<
 			rest,
@@ -92,7 +92,7 @@ type TSort<
 type _TAssignCookies<
 	Children extends number[],
 	Cookies extends number[],
-	count extends 1[] = [],
+	count extends Array<1> = [],
 > = Cookies extends [
 	infer cookie extends number,
 	...infer restCookies extends number[],

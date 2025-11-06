@@ -5,7 +5,7 @@ const RGB_REGEX = /^rgb\(\d{1,3},\d{1,3},\d{1,3}\)$/u;
 const HSL_REGEX = /^hsl\(\d{1,3},\d{1,3},\d{1,3}\)$/u;
 
 const parseHex = (input: string): [number, number, number] => {
-	if (!input.match(HEX_REGEX)) throw new Error("invalid hex color!");
+	if (!HEX_REGEX.exec(input)) throw new Error("invalid hex color!");
 
 	return (input.slice(1).match(/.{2}/gu) as RegExpExecArray).map((row) =>
 		parseInt(`0x${row}`, 16),
@@ -13,7 +13,7 @@ const parseHex = (input: string): [number, number, number] => {
 };
 
 const parseHsl = (input: string): [number, number, number] => {
-	if (!input.match(HSL_REGEX)) throw new Error("invalid hsl color!");
+	if (!HSL_REGEX.exec(input)) throw new Error("invalid hsl color!");
 
 	return input
 		.slice(4, -1)
@@ -28,7 +28,7 @@ const parseHsl = (input: string): [number, number, number] => {
 };
 
 const parseRgb = (input: string): [number, number, number] => {
-	if (!input.match(RGB_REGEX)) throw new Error("invalid rgb color!");
+	if (!RGB_REGEX.exec(input)) throw new Error("invalid rgb color!");
 
 	return input
 		.slice(4, -1)

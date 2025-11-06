@@ -20,7 +20,7 @@
 
 type Without<
 	T extends unknown[],
-	U extends T[number] | T[number][],
+	U extends T[number] | Array<T[number]>,
 > = T extends [infer F, ...infer R]
 	? F extends (U extends unknown[] ? U[number] : U)
 		? Without<R, U>

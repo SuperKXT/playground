@@ -66,7 +66,7 @@ export const findUnused = <const Arr extends [string, ...string[]]>(
 ): TFindUnused<Arr> => {
 	const vars = new Map<string, string[]>();
 	for (const curr of arr) {
-		const log = curr.match(/log\((.*)\)/u);
+		const log = /log\((.*)\)/u.exec(curr);
 		if (log?.[1]) {
 			const varVal = log[1].trim();
 			deleteVar(vars, varVal);

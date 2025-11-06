@@ -7,14 +7,14 @@ type TIsLetter<T extends string> =
 
 type TBuildMap<
 	Char extends string,
-	Map extends Record<string, 1[]>,
+	Map extends Record<string, Array<1>>,
 > = Char extends keyof Map
 	? Utils.prettify<Omit<Map, Char> & Record<Char, [...Map[Char], 1]>>
 	: Map & Record<Char, [1]>;
 
 type TGetMap<
 	Str extends string,
-	map extends Record<string, 1[]> = {},
+	map extends Record<string, Array<1>> = {},
 > = Str extends `${infer first}${infer rest}`
 	? TIsLetter<first> extends true
 		? TGetMap<rest, TBuildMap<Lowercase<first>, map>>
@@ -32,8 +32,8 @@ type TIsSmaller<
 
 type TCheckWord<
 	Word extends string,
-	Map extends Record<string, 1[]>,
-	curr extends Record<string, 1[]> = {},
+	Map extends Record<string, Array<1>>,
+	curr extends Record<string, Array<1>> = {},
 > = [curr, Map] extends [Map, curr]
 	? true
 	: Word extends `${infer first}${infer rest}`
@@ -47,7 +47,7 @@ type TCheckWord<
 type TShortestCompletingWord<
 	LicensePlate extends string,
 	Words extends string[],
-	map extends Record<string, 1[]> = TGetMap<LicensePlate>,
+	map extends Record<string, Array<1>> = TGetMap<LicensePlate>,
 	smallest extends string = never,
 > = Words extends [infer first extends string, ...infer rest extends string[]]
 	? TCheckWord<first, map> extends true

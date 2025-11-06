@@ -6,9 +6,9 @@ type TShift<Tup extends unknown[]> = Tup extends [unknown, ...infer rest]
 
 type TNumberOfShips<
 	Grid extends readonly TCell[][],
-	x extends 1[] = [],
-	y extends 1[] = [],
-	ships extends 1[] = [],
+	x extends Array<1> = [],
+	y extends Array<1> = [],
+	ships extends Array<1> = [],
 	cell extends TCell = Grid[x["length"]][y["length"]],
 	prevRow extends TCell = x extends []
 		? "."

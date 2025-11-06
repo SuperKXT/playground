@@ -3,7 +3,7 @@ import { expect, test } from "vitest";
 import { maxPointsOnLine } from "./max-line-points.js";
 
 type TTest = {
-	input: [number, number][];
+	input: Array<[number, number]>;
 	output: number;
 };
 
