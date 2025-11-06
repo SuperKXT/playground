@@ -77,10 +77,9 @@ export default defineConfig([
 		rules: {
 			"array-callback-return": ["warn", { checkForEach: true }],
 			"default-case-last": "warn",
-			eqeqeq: "error",
+			eqeqeq: "warn",
 			"func-names": ["warn", "never"],
 			"guard-for-in": "warn",
-			indent: "off",
 			"logical-assignment-operators": "warn",
 			"max-depth": ["warn", { max: 7 }],
 			"max-params": ["warn", 5],
@@ -123,7 +122,7 @@ export default defineConfig([
 				},
 			],
 			"no-restricted-syntax": [
-				"error",
+				"warn",
 				{
 					message: "Don't declare enums. Use POJO with as const instead",
 					selector: "TSEnumDeclaration",
@@ -154,8 +153,8 @@ export default defineConfig([
 			"prefer-regex-literals": ["warn", { disallowRedundantWrapping: true }],
 			"prefer-template": "warn",
 			"require-unicode-regexp": "warn",
+			strict: ["warn", "global"],
 			yoda: "warn",
-			strict: ["error", "global"],
 
 			"n/no-process-env": "warn",
 			"n/no-unpublished-import": "off",
@@ -167,9 +166,7 @@ export default defineConfig([
 			"import-x/newline-after-import": "warn",
 			"import-x/no-commonjs": "warn",
 			"import-x/no-default-export": "warn",
-			"import-x/no-deprecated": "off",
 			"import-x/namespace": "off",
-			"import-x/no-duplicates": "warn",
 			"import-x/export": "off",
 			"import-x/no-empty-named-blocks": "warn",
 			"import-x/no-self-import": "warn",
@@ -211,14 +208,8 @@ export default defineConfig([
 				"warn",
 				{ ignoreRestArgs: true, fixToUnknown: true },
 			],
-			"@typescript-eslint/no-floating-promises": "off",
 			"@typescript-eslint/no-inferrable-types": "off",
 			"@typescript-eslint/no-loop-func": "warn",
-			"@typescript-eslint/no-misused-promises": [
-				"warn",
-				{ checksVoidReturn: false },
-			],
-			"@typescript-eslint/no-redundant-type-constituents": "warn",
 			"@typescript-eslint/no-shadow": "warn",
 			"no-constant-condition": "off",
 			"@typescript-eslint/no-unnecessary-condition": [
@@ -226,7 +217,7 @@ export default defineConfig([
 				{ allowConstantLoopConditions: true },
 			],
 			"@typescript-eslint/no-unused-expressions": [
-				"error",
+				"warn",
 				{
 					allowShortCircuit: true,
 					allowTernary: true,
@@ -237,8 +228,6 @@ export default defineConfig([
 			"@typescript-eslint/no-useless-empty-export": "warn",
 			"@typescript-eslint/non-nullable-type-assertion-style": "off",
 			"@typescript-eslint/prefer-nullish-coalescing": "off",
-			"@typescript-eslint/prefer-reduce-type-parameter": "off",
-			"@typescript-eslint/no-invalid-void-type": "off",
 			"@typescript-eslint/promise-function-async": "warn",
 			"@typescript-eslint/require-array-sort-compare": [
 				"warn",
@@ -276,7 +265,7 @@ export default defineConfig([
 				},
 			],
 			"@typescript-eslint/ban-ts-comment": [
-				"error",
+				"warn",
 				{ minimumDescriptionLength: 3 },
 			],
 			"@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
@@ -288,10 +277,8 @@ export default defineConfig([
 					prefix: ["T", "_T"],
 				},
 			],
-			"@typescript-eslint/array-type": "off",
-			"@typescript-eslint/prefer-regexp-exec": "off",
+			"@typescript-eslint/array-type": ["warn", { default: "array-simple" }],
 			"@typescript-eslint/no-empty-object-type": "off",
-			"@typescript-eslint/no-base-to-string": "off",
 		},
 	},
 
