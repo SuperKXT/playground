@@ -17,4 +17,4 @@ Example:
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/NlrlOW) -->
+[Solution Playground](https://tsplay.dev/wQavnw)
