@@ -10,15 +10,23 @@ Example:
 
 ```ts
 latinSquare(1);
-[[1]]
+[[1]];
 
 latinSquare(2);
-[[1, 2], [2, 1]]
+[
+	[1, 2],
+	[2, 1],
+];
 
 latinSquare(4);
-[[1, 2, 3, 4], [2, 1, 4, 3], [3, 4, 1, 2], [4, 3, 2, 1]]
+[
+	[1, 2, 3, 4],
+	[2, 1, 4, 3],
+	[3, 4, 1, 2],
+	[4, 3, 2, 1],
+];
 ```
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/wQavnw) -->
+[Solution Playground](https://tsplay.dev/Nnr2aN)
