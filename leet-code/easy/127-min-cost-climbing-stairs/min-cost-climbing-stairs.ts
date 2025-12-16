@@ -1,6 +1,6 @@
-// https://leetcode.com/problems/min-cost-climbing-stairs
+// https://leetcode.com/problems/reverse-only-letters
 
-export const minCostClimbingStairs = (
+export const reverseOnlyLetters = (
 	cost: number[],
 	idx: number = 0,
 	curr: number = 0,
@@ -9,10 +9,10 @@ export const minCostClimbingStairs = (
 	const second = cost[idx + 1];
 	return Math.min(
 		first !== undefined
-			? minCostClimbingStairs(cost, idx + 1, curr + first)
+			? reverseOnlyLetters(cost, idx + 1, curr + first)
 			: curr,
 		second !== undefined
-			? minCostClimbingStairs(cost, idx + 2, curr + second)
+			? reverseOnlyLetters(cost, idx + 2, curr + second)
 			: curr,
 	);
 };
