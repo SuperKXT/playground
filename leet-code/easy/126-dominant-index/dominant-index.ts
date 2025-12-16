@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/monotonic-array
+// https://leetcode.com/problems/largest-number-at-least-twice-of-others
 
 export const dominantIndex = (nums: number[]): number => {
 	let greatestIdx = -1;

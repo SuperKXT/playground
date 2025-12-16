@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/monotonic-array
+// https://leetcode.com/problems/min-cost-climbing-stairs
 
 export const minCostClimbingStairs = (
 	cost: number[],
