@@ -43,3 +43,11 @@ test("testing gcd for test 5", () => {
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
+
+test("testing gcd for test 6", () => {
+	const result = gcd([5, 3]);
+	const expected = 1 as number;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof result, typeof expected>;
+	assertType<TTrue>(true);
+});

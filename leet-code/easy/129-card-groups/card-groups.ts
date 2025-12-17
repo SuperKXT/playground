@@ -1,5 +1,17 @@
 // https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards
 
+const _gcd = (a: number, b: number): number => {
+	return b === 0 ? a : _gcd(b, a % b);
+};
+
+export const gcd = (nums: number[]): number => {
+	const [first, ...rest] = nums;
+	if (first === undefined) return 0;
+	let res = first;
+	for (const num of rest) res = _gcd(res, num);
+	return res;
+};
+
 export const cardGroups = (deck: number[]): boolean => {
 	const map = new Map<number, number>();
 	let max = 0;
@@ -8,9 +20,6 @@ export const cardGroups = (deck: number[]): boolean => {
 		max = Math.max(max, curr);
 		map.set(card, curr);
 	}
-	if (max === 1) return false;
-	for (const count of map.values()) {
-		if (count !== max) return false;
-	}
-	return true;
+	const val = gcd(Array.from(map.values()));
+	return val > 1;
 };

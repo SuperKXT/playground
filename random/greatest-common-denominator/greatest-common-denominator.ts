@@ -23,11 +23,6 @@ export const gcd = (nums: number[]): number => {
 	const [first, ...rest] = nums;
 	if (first === undefined) return 0;
 	let res = first;
-	if (rest.length > 1) {
-		for (const num of rest) {
-			const prev = res;
-			res = _gcd(res, num);
-		}
-	}
+	for (const num of rest) res = _gcd(res, num);
 	return res;
 };
