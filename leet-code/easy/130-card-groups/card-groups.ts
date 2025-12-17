@@ -4,7 +4,7 @@ const _gcd = (a: number, b: number): number => {
 	return b === 0 ? a : _gcd(b, a % b);
 };
 
-export const gcd = (nums: number[]): number => {
+const gcd = (nums: number[]): number => {
 	const [first, ...rest] = nums;
 	if (first === undefined) return 0;
 	let res = first;
