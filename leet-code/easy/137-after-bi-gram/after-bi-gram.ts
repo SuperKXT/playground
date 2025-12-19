@@ -36,16 +36,32 @@
 // 	return res;
 // };
 
-export const afterBiGram = (
-	text: string,
-	first: string,
-	second: string,
-): string[] => {
+type TAfterBiGram<
+	Text extends string,
+	First extends string,
+	Second extends string,
+> = Text extends `${infer before}${First} ${Second} ${infer word} ${infer rest}`
+	? before extends "" | `${string} `
+		? [word, ...TAfterBiGram<`${word} ${rest}`, First, Second>]
+		: TAfterBiGram<`${word} ${rest}`, First, Second>
+	: Text extends `${string}${First} ${Second} ${infer word}`
+		? [word]
+		: [];
+
+export const afterBiGram = <
+	Text extends string,
+	First extends string,
+	Second extends string,
+>(
+	text: Text,
+	first: First,
+	second: Second,
+): TAfterBiGram<Text, First, Second> => {
 	const res: string[] = [];
 	const words = text.split(" ");
 	for (let idx = 2; idx < words.length; idx++) {
 		if (words[idx - 2] === first && words[idx - 1] === second)
 			res.push(words[idx] as string);
 	}
-	return res;
+	return res as never;
 };
