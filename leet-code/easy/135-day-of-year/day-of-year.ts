@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/height-checker
+// https://leetcode.com/problems/day-of-the-year
 
 const dayMap: Record<string, number> = {
 	1: 31,
