@@ -48,6 +48,24 @@ type TAfterBiGram<
 		? [word]
 		: [];
 
+// export const afterBiGram = <
+// 	Text extends string,
+// 	First extends string,
+// 	Second extends string,
+// >(
+// 	text: Text,
+// 	first: First,
+// 	second: Second,
+// ): TAfterBiGram<Text, First, Second> => {
+// 	const res: string[] = [];
+// 	const words = text.split(" ");
+// 	for (let idx = 2; idx < words.length; idx++) {
+// 		if (words[idx - 2] === first && words[idx - 1] === second)
+// 			res.push(words[idx] as string);
+// 	}
+// 	return res as never;
+// };
+
 export const afterBiGram = <
 	Text extends string,
 	First extends string,
@@ -57,11 +75,9 @@ export const afterBiGram = <
 	first: First,
 	second: Second,
 ): TAfterBiGram<Text, First, Second> => {
-	const res: string[] = [];
-	const words = text.split(" ");
-	for (let idx = 2; idx < words.length; idx++) {
-		if (words[idx - 2] === first && words[idx - 1] === second)
-			res.push(words[idx] as string);
-	}
-	return res as never;
+	const regex = new RegExp(
+		`(?:(?<=^${first} ${second} )[^ ]+)|(?:(?<= ${first} ${second} )[^ ]+)`,
+		"gu",
+	);
+	return (text.match(regex) ?? []) as never;
 };
