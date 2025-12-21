@@ -8,6 +8,8 @@ export class RecentCounter {
 
 	ping(t: number): number {
 		this.requests.push(t);
-		return this.requests.filter((r) => r >= t - 3000).length;
+		// return this.requests.filter((r) => r >= t - 3000).length;
+		const lastIdx = this.requests.findLastIndex((r) => r < t - 3000);
+		return this.requests.length - (lastIdx + 1);
 	}
 }
