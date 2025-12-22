@@ -11,15 +11,15 @@ Given an array, return `true` if it is alternating.
 Example:
 
 ```ts
-[]             -> True
-[1]            -> True
-[1,1]          -> True
-[1,2,1]        -> True
-[10,5,10,5,10] -> True
-[2,2,3,3]      -> False
-[5,4,3,5,4,3]  -> False
+alternativeArray([]); // True
+alternativeArray([1]); // True
+alternativeArray([1, 1]); // True
+alternativeArray([1, 2, 1]); // True
+alternativeArray([10, 5, 10, 5, 10]); // True
+alternativeArray([2, 2, 3, 3]); // False
+alternativeArray([5, 4, 3, 5, 4, 3]); // False
 ```
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/Nnr2aN) -->
+[Solution Playground](https://tsplay.dev/wRqoYW)
