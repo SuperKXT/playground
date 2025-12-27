@@ -1,14 +1,5 @@
 // https://leetcode.com/problems/unique-email-addresses
 
-// export const uniqueEmails = (emails: string[]): number => {
-//     const set = new Set<string>();
-//     for (const email of emails) {
-//         const regex = /(\.|\+.*)(?=.*@)/gu;
-//         set.add(email.replace(regex, ''));
-//     }
-//     return set.size;
-// };
-
 type TStripLocal<Str extends string> = Str extends `${infer first}${infer rest}`
 	? first extends "+"
 		? ""
@@ -16,12 +7,10 @@ type TStripLocal<Str extends string> = Str extends `${infer first}${infer rest}`
 			? TStripLocal<rest>
 			: `${first}${TStripLocal<rest>}`
 	: "";
-type TStripEmail<
-	Email extends string,
-	res extends string = "",
-> = Email extends `${infer local}@${infer domain}`
-	? `${TStripLocal<local>}@${domain}`
-	: Email;
+type TStripEmail<Email extends string> =
+	Email extends `${infer local}@${infer domain}`
+		? `${TStripLocal<local>}@${domain}`
+		: Email;
 
 type _TUniqueEmails<
 	Emails extends string[],
@@ -39,7 +28,18 @@ type TUniqueEmails<Emails extends string[]> = string[] extends Emails
 	? number
 	: _TUniqueEmails<Emails>;
 
-export const uniqueEmails = <const Emails extends string[]>(
+export const uniqueEmailsRegex = <const Emails extends string[]>(
+	emails: Emails,
+): TUniqueEmails<Emails> => {
+	const set = new Set<string>();
+	for (const email of emails) {
+		const regex = /(\.|\+.*)(?=.*@)/gu;
+		set.add(email.replace(regex, ""));
+	}
+	return set.size as never;
+};
+
+export const uniqueEmailsManual = <const Emails extends string[]>(
 	emails: Emails,
 ): TUniqueEmails<Emails> => {
 	const set = new Set<string>();
@@ -56,4 +56,27 @@ export const uniqueEmails = <const Emails extends string[]>(
 		set.add(simple);
 	}
 	return set.size as never;
+};
+
+export const uniqueEmailsManualWithSlice = <const Emails extends string[]>(
+	emails: Emails,
+): TUniqueEmails<Emails> => {
+	const seen = new Set<string>();
+
+	for (const email of emails) {
+		let simple = "";
+		let ignore = false;
+		let i = 0;
+		for (; i < email.length; i++) {
+			const ch = email[i] as string;
+			if (ch === "@") break;
+			if (ignore) continue;
+			if (ch === "+") ignore = true;
+			else if (ch !== ".") simple += ch;
+		}
+		simple += email.slice(i);
+		seen.add(simple);
+	}
+
+	return seen.size as never;
 };
