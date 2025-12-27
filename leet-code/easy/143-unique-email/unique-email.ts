@@ -9,7 +9,39 @@
 //     return set.size;
 // };
 
-export const uniqueEmails = (emails: string[]): number => {
+type TStripLocal<Str extends string> = Str extends `${infer first}${infer rest}`
+	? first extends "+"
+		? ""
+		: first extends "."
+			? TStripLocal<rest>
+			: `${first}${TStripLocal<rest>}`
+	: "";
+type TStripEmail<
+	Email extends string,
+	res extends string = "",
+> = Email extends `${infer local}@${infer domain}`
+	? `${TStripLocal<local>}@${domain}`
+	: Email;
+
+type _TUniqueEmails<
+	Emails extends string[],
+	union extends string = never,
+	count extends Array<1> = [],
+> = Emails extends [infer first extends string, ...infer rest extends string[]]
+	? TStripEmail<first> extends infer stripped extends string
+		? stripped extends union
+			? _TUniqueEmails<rest, union, count>
+			: _TUniqueEmails<rest, union | stripped, [...count, 1]>
+		: _TUniqueEmails<rest, union, count>
+	: count["length"];
+
+type TUniqueEmails<Emails extends string[]> = string[] extends Emails
+	? number
+	: _TUniqueEmails<Emails>;
+
+export const uniqueEmails = <const Emails extends string[]>(
+	emails: Emails,
+): TUniqueEmails<Emails> => {
 	const set = new Set<string>();
 	for (const email of emails) {
 		let simple = "";
@@ -23,5 +55,5 @@ export const uniqueEmails = (emails: string[]): number => {
 		}
 		set.add(simple);
 	}
-	return set.size;
+	return set.size as never;
 };
