@@ -6,7 +6,7 @@ import type { Utils } from "../../types/utils.types.js";
 
 test("testing replaceRepeats against test 1", () => {
 	const result = replaceRepeats("1234500362000440", 0);
-	const expected = "1234523623441" as string;
+	const expected = "1234523623441";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
@@ -14,7 +14,7 @@ test("testing replaceRepeats against test 1", () => {
 
 test("testing replaceRepeats against test 2", () => {
 	const result = replaceRepeats("000000000000", 0);
-	const expected = "12" as string;
+	const expected = "12";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
@@ -22,7 +22,7 @@ test("testing replaceRepeats against test 2", () => {
 
 test("testing replaceRepeats against test 3", () => {
 	const result = replaceRepeats("123456789", 1);
-	const expected = "123456789" as string;
+	const expected = "123456789";
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);

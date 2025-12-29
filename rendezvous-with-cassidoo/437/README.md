@@ -20,4 +20,4 @@ Example:
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/wRqoYW) -->
+[Solution Playground](https://tsplay.dev/wXMaQN)
