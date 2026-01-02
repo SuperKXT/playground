@@ -5,8 +5,8 @@ import { goatLatin } from "./goat-latin.js";
 import type { Utils } from "../../../types/utils.types.js";
 
 test("testing sortArrayByParity for test 1", () => {
-	const result = goatLatin("I speak Goat Latin");
-	const expected = "Imaa peaksmaaa oatGmaaaa atinLmaaaaa"; // cSpell: disable-line
+	const result = goatLatin("I speak Goat Excellent Latin");
+	const expected = "Imaa peaksmaaa oatGmaaaa Excellentmaaaaa atinLmaaaaaa"; // cSpell: disable-line
 	expect(result).toStrictEqual(expected);
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);

@@ -5,8 +5,6 @@ type TVowel = (typeof vowels)[number];
 
 const vowelSet = new Set(vowels);
 
-type TIsVowel<T extends TVowel> = Lowercase<T> extends TVowel ? true : false;
-
 type TRepeatString<
 	Str extends string,
 	Count extends number,
@@ -19,7 +17,7 @@ type TToGoat<
 	Word extends string,
 	WordCount extends number,
 > = Word extends `${infer first}${infer rest}`
-	? first extends TVowel
+	? Lowercase<first> extends TVowel
 		? `${Word}ma${TRepeatString<"a", WordCount>}`
 		: `${rest}${first}ma${TRepeatString<"a", WordCount>}`
 	: "";
