@@ -5,6 +5,34 @@ type TVowel = (typeof vowels)[number];
 
 const vowelSet = new Set(vowels);
 
+type TIsVowel<T extends TVowel> = Lowercase<T> extends TVowel ? true : false;
+
+type TRepeatString<
+	Str extends string,
+	Count extends number,
+	idx extends Array<1> = [],
+> = idx["length"] extends Count
+	? ""
+	: `${Str}${TRepeatString<Str, Count, [...idx, 1]>}`;
+
+type TToGoat<
+	Word extends string,
+	WordCount extends number,
+> = Word extends `${infer first}${infer rest}`
+	? first extends TVowel
+		? `${Word}ma${TRepeatString<"a", WordCount>}`
+		: `${rest}${first}ma${TRepeatString<"a", WordCount>}`
+	: "";
+
+type TGoatLatin<
+	Str extends string,
+	Count extends Array<1> = [1],
+> = Str extends `${infer word} ${infer rest}`
+	? `${TToGoat<word, Count["length"]>} ${TGoatLatin<rest, [...Count, 1]>}`
+	: Str extends ""
+		? ""
+		: TToGoat<Str, Count["length"]>;
+
 // export const goatLatin = (sentence: string): string => {
 // 	const words = sentence.split(" ");
 // 	let res: string = "";
@@ -23,7 +51,9 @@ const vowelSet = new Set(vowels);
 // 	return res;
 // };
 
-export const goatLatin = (sentence: string): string => {
+export const goatLatin = <Sentence extends string>(
+	sentence: Sentence,
+): TGoatLatin<Sentence> => {
 	let first: string = "";
 	let word = "";
 	let wordCount = 1;
@@ -46,5 +76,5 @@ export const goatLatin = (sentence: string): string => {
 			word += char;
 		}
 	}
-	return res;
+	return res as never;
 };
