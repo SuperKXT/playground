@@ -96,28 +96,57 @@ const checkSquares = (
 	return checkSquares(board, next(pos), next);
 };
 
+// export const numRookCaptures = <const Board extends string[][]>(
+// 	board: Board,
+// ): TNumRookCaptures<Board> => {
+// 	let rookPos: [number, number] | null = null;
+// 	outer: for (let i = 0; i < board.length; i++) {
+// 		const row = board[i] as string[];
+// 		for (let j = 0; j < row.length; j++) {
+// 			const cell = row[j];
+// 			if (cell === "R") {
+// 				rookPos = [i, j];
+// 				break outer;
+// 			}
+// 		}
+// 	}
+
+// 	if (!rookPos) throw new Error("no rook found!");
+
+// 	const count =
+// 		checkSquares(board, rookPos, (curr) => [curr[0], curr[1] - 1]) +
+// 		checkSquares(board, rookPos, (curr) => [curr[0], curr[1] + 1]) +
+// 		checkSquares(board, rookPos, (curr) => [curr[0] - 1, curr[1]]) +
+// 		checkSquares(board, rookPos, (curr) => [curr[0] + 1, curr[1]]);
+
+// 	return count as never;
+// };
+
 export const numRookCaptures = <const Board extends string[][]>(
 	board: Board,
 ): TNumRookCaptures<Board> => {
-	let rookPos: [number, number] | null = null;
-	outer: for (let i = 0; i < board.length; i++) {
+	const rowMap = new Map<number, "p" | "B" | "R">();
+	const colMap = new Map<number, "p" | "B" | "R">();
+	let count = 0;
+	for (let i = 0; i < board.length; i++) {
 		const row = board[i] as string[];
 		for (let j = 0; j < row.length; j++) {
+			const rowVal = rowMap.get(i);
+			const colVal = colMap.get(j);
 			const cell = row[j];
+			if (cell === "p" || cell === "B" || cell === "R") {
+				rowMap.set(i, cell);
+				colMap.set(j, cell);
+			}
 			if (cell === "R") {
-				rookPos = [i, j];
-				break outer;
+				if (rowVal === "p") count++;
+				if (colVal === "p") count++;
+			} else if (cell === "p") {
+				if (rowVal === "R") count++;
+				if (colVal === "R") count++;
 			}
 		}
 	}
-
-	if (!rookPos) throw new Error("no rook found!");
-
-	const count =
-		checkSquares(board, rookPos, (curr) => [curr[0], curr[1] - 1]) +
-		checkSquares(board, rookPos, (curr) => [curr[0], curr[1] + 1]) +
-		checkSquares(board, rookPos, (curr) => [curr[0] - 1, curr[1]]) +
-		checkSquares(board, rookPos, (curr) => [curr[0] + 1, curr[1]]);
 
 	return count as never;
 };
