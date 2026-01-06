@@ -1,6 +1,28 @@
 // https://leetcode.com/problems/remove-outermost-parentheses
 
-export const removeOuterParentheses = (s: string): string => {
+type TPop<Arr extends unknown[]> = Arr extends [unknown, ...infer rest]
+	? rest
+	: Arr;
+
+type TRemoveOuterParens<
+	S extends string,
+	count extends Array<1> = [],
+	res extends string = "",
+> = S extends `${infer first}${infer rest}`
+	? TRemoveOuterParens<
+			rest,
+			first extends "("
+				? [...count, 1]
+				: first extends ")"
+					? TPop<count>
+					: count,
+			[first, count] extends ["(", []] | [")", [1]] ? res : `${res}${first}`
+		>
+	: res;
+
+export const removeOuterParentheses = <S extends string>(
+	s: S,
+): TRemoveOuterParens<S> => {
 	let level = 0;
 	let res = "";
 	for (const char of s) {
@@ -12,5 +34,5 @@ export const removeOuterParentheses = (s: string): string => {
 			level++;
 		} else res += char;
 	}
-	return res;
+	return res as never;
 };
