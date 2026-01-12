@@ -66,7 +66,7 @@ const TEST_CASES: TTest[] = [
 
 			known: "loc",
 			pattern: "(l)o(o)(co)*",
-			repeat: false,
+			distinct: true,
 		},
 		results: [],
 	},
@@ -74,7 +74,7 @@ const TEST_CASES: TTest[] = [
 		args: {
 			/* cspell: disable-next-line */
 			available: "qwtypafghjkzxvbm",
-			repeat: false,
+			distinct: true,
 		},
 		/* cspell: disable-next-line */
 		results: ["bawty", "thawy", "pawky", "mawky", "gawky", "vampy"],

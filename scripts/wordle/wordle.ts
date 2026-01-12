@@ -12,34 +12,18 @@ const DUPLICATE_CHARACTER_REGEX = /(.).*\1/iu;
 /* cspell: disable-next-line */
 const ALPHABETS = "abcdefghijklmnopqrstuvxwyz";
 
-export const DEFAULT_ARGS: TArguments = {
-	a: ALPHABETS,
-	available: ALPHABETS,
-	k: "",
-	known: "",
-	p: "*****",
-	pattern: "*****",
-	repeat: true,
-	u: "",
-	unavailable: "",
-};
-
-const ARGUMENT_SCHEMA = z.strictObject({
-	"--": z.string().array().length(0).optional(),
-	_: z.string().array().length(0).optional(),
-	a: z.string().regex(/^[a-z]{0,26}$/iu),
+const ARGUMENT_SCHEMA = z.object({
 	available: z.string().regex(/^[a-z]{0,26}$/iu),
-	k: z.string().regex(/^[a-z]{0,5}$/iu),
 	known: z.string().regex(/^[a-z]{0,5}$/iu),
-	p: z.string().regex(VALID_WORD_PATTERN),
 	pattern: z.string().regex(VALID_WORD_PATTERN),
-	repeat: z.boolean(),
-	u: z.string().regex(/^[a-z]{0,26}$/iu),
+	distinct: z.boolean(),
 	unavailable: z.string().regex(/^[a-z]{0,26}$/iu),
 });
 
+export type TArguments = z.infer<typeof ARGUMENT_SCHEMA>;
+
 export const findWordle = (parameters: TArguments): string[] => {
-	const { available, unavailable, pattern, known, repeat } =
+	const { available, unavailable, pattern, known, distinct } =
 		ARGUMENT_SCHEMA.parse(parameters);
 
 	const availableCharacters = unavailable
@@ -59,7 +43,7 @@ export const findWordle = (parameters: TArguments): string[] => {
 
 	const matches = WORDLE_WORDS.filter(
 		(word) =>
-			(repeat || !DUPLICATE_CHARACTER_REGEX.test(word)) &&
+			(!distinct || !DUPLICATE_CHARACTER_REGEX.test(word)) &&
 			known.split("").every((character) => word.includes(character)) &&
 			regex.test(word),
 	);
@@ -77,7 +61,13 @@ export const findWordle = (parameters: TArguments): string[] => {
 	return matches;
 };
 
-export type TArguments = z.infer<typeof ARGUMENT_SCHEMA>;
+export const DEFAULT_ARGS: TArguments = {
+	available: ALPHABETS,
+	known: "",
+	pattern: "*****",
+	distinct: false,
+	unavailable: "",
+};
 
 if (!config.isTest) {
 	const args = argumentParser<TArguments>(process.argv.slice(2), {
@@ -86,6 +76,7 @@ if (!config.isTest) {
 			known: "k",
 			pattern: "p",
 			unavailable: "u",
+			distinct: "d",
 		},
 		default: DEFAULT_ARGS,
 	});
