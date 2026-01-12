@@ -1,12 +1,12 @@
 import { expect, test } from "vitest";
 
-import { DEFAULT_ARGS, findWordle } from "./wordle.js";
+import { findWordle } from "./wordle.js";
 
 import type { TWordleWord } from "./word-list.js";
 import type { TArguments } from "./wordle.js";
 
 type TTest = {
-	args: Partial<TArguments>;
+	args: TArguments;
 	results: TWordleWord[];
 };
 
@@ -92,9 +92,6 @@ const TEST_CASES: TTest[] = [
 ];
 
 test.each(TEST_CASES)("testing findWordle", ({ args, results }) => {
-	const response = findWordle({
-		...DEFAULT_ARGS,
-		...args,
-	} as typeof DEFAULT_ARGS);
+	const response = findWordle(args);
 	expect(response).toStrictEqual(results);
 });

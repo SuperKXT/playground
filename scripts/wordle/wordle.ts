@@ -6,25 +6,30 @@ import { WORDLE_WORDS } from "./word-list.js";
 
 import { config } from "../../config.js";
 
-const EXCLUDE_CHARACTERS_REGEX = /\(([a-z]+)\)/giu;
-const VALID_WORD_PATTERN = /((\([a-z]+\))|[a-z*]){5}/iu;
-const DUPLICATE_CHARACTER_REGEX = /(.).*\1/iu;
-/* cspell: disable-next-line */
-const ALPHABETS = "abcdefghijklmnopqrstuvxwyz";
+const REGEX = {
+	available: /^[a-z]{0,26}$/iu,
+	known: /^[a-z]{0,5}$/iu,
+	pattern: /((\([a-z]+\))|[a-z*]){5}/iu,
+	unavailable: /^[a-z]{0,26}$/iu,
+	exclude: /\(([a-z]+)\)/giu,
+	duplicate: /(.).*\1/iu,
+};
+const ALPHABETS = "abcdefghijklmnopqrstuvxwyz"; // cSpell: disable-line
 
 const ARGUMENT_SCHEMA = z.object({
-	available: z.string().regex(/^[a-z]{0,26}$/iu),
-	known: z.string().regex(/^[a-z]{0,5}$/iu),
-	pattern: z.string().regex(VALID_WORD_PATTERN),
-	distinct: z.boolean(),
-	unavailable: z.string().regex(/^[a-z]{0,26}$/iu),
+	available: z.string().regex(REGEX.available).default(ALPHABETS),
+	known: z.string().regex(REGEX.known).default(""),
+	pattern: z.string().regex(REGEX.pattern).default("*****"),
+	distinct: z.boolean().default(false),
+	unavailable: z.string().regex(REGEX.unavailable).default(""),
 });
 
-export type TArguments = z.infer<typeof ARGUMENT_SCHEMA>;
+export type TArguments = z.input<typeof ARGUMENT_SCHEMA>;
 
 export const findWordle = (parameters: TArguments): string[] => {
-	const { available, unavailable, pattern, known, distinct } =
-		ARGUMENT_SCHEMA.parse(parameters);
+	const parse = ARGUMENT_SCHEMA.safeParse(parameters);
+	if (!parse.success) throw new Error(z.prettifyError(parse.error));
+	const { available, unavailable, pattern, known, distinct } = parse.data;
 
 	const availableCharacters = unavailable
 		? available.replace(new RegExp(`[${unavailable}]`, "giu"), "")
@@ -34,7 +39,7 @@ export const findWordle = (parameters: TArguments): string[] => {
 		pattern
 			.replace(/\*/gu, `[${availableCharacters}]`)
 			.replace(
-				EXCLUDE_CHARACTERS_REGEX,
+				REGEX.exclude,
 				(_, p1: string) =>
 					`[${availableCharacters.replace(new RegExp(`[${p1}]`, "giu"), "")}]`,
 			),
@@ -43,7 +48,7 @@ export const findWordle = (parameters: TArguments): string[] => {
 
 	const matches = WORDLE_WORDS.filter(
 		(word) =>
-			(!distinct || !DUPLICATE_CHARACTER_REGEX.test(word)) &&
+			(!distinct || !REGEX.duplicate.test(word)) &&
 			known.split("").every((character) => word.includes(character)) &&
 			regex.test(word),
 	);
@@ -61,14 +66,6 @@ export const findWordle = (parameters: TArguments): string[] => {
 	return matches;
 };
 
-export const DEFAULT_ARGS: TArguments = {
-	available: ALPHABETS,
-	known: "",
-	pattern: "*****",
-	distinct: false,
-	unavailable: "",
-};
-
 if (!config.isTest) {
 	const args = argumentParser<TArguments>(process.argv.slice(2), {
 		alias: {
@@ -78,7 +75,6 @@ if (!config.isTest) {
 			unavailable: "u",
 			distinct: "d",
 		},
-		default: DEFAULT_ARGS,
 	});
 	findWordle(args);
 }
