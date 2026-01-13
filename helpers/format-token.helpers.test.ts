@@ -13,6 +13,7 @@ test("test formatToken against the 1st test string", () => {
 		kebab: "this-is-some-test-string",
 		constant: "THIS_IS_SOME_TEST_STRING",
 		human: "this is some test string",
+		nonLiteral: "thisIsSomeTestString" as string,
 	} as const;
 	const response = {
 		camel: formatToken(input, "camel"),
@@ -21,6 +22,7 @@ test("test formatToken against the 1st test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
+		nonLiteral: formatToken(input as string, "camel"),
 	};
 
 	expect(expected.camel).toStrictEqual(response.camel);
@@ -40,6 +42,9 @@ test("test formatToken against the 1st test string", () => {
 
 	expect(expected.human).toStrictEqual(response.human);
 	assertType<typeof response.human>(expected.human);
+
+	expect(expected.nonLiteral).toStrictEqual(response.nonLiteral);
+	assertType<typeof response.nonLiteral>(expected.nonLiteral);
 });
 
 test("test formatToken against the 2nd test string", () => {
@@ -82,14 +87,14 @@ test("test formatToken against the 2nd test string", () => {
 });
 
 test("test formatToken against the 3rd test string", () => {
-	const input = "----SaleOrderID----";
+	const input = "----WorkOrderID----";
 	const expected = {
-		camel: "saleOrderId",
-		pascal: "SaleOrderId",
-		snake: "sale_order_id",
-		kebab: "sale-order-id",
-		constant: "SALE_ORDER_ID",
-		human: "sale order id",
+		camel: "workOrderId",
+		pascal: "WorkOrderId",
+		snake: "work_order_id",
+		kebab: "work-order-id",
+		constant: "WORK_ORDER_ID",
+		human: "work order id",
 	} as const;
 	const response = {
 		camel: formatToken(input, "camel"),

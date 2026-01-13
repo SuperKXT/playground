@@ -75,7 +75,11 @@ type _TFormatToken<
 export type TFormatToken<
 	str extends string,
 	strategy extends TStrategy,
-> = str extends str ? _TFormatToken<Utils.trim<str>, strategy> : never;
+> = string extends str
+	? string
+	: str extends str
+		? _TFormatToken<Utils.trim<str>, strategy>
+		: never;
 
 /**
  * Takes a token name, and format strategy and returns the converted token name
