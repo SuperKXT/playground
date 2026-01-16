@@ -10,9 +10,10 @@ export const areArraysEqual = <Type extends unknown[]>(
 	return true;
 };
 
-export const inPlaceInsertToSortedArray = (
-	arr: number[],
-	value: number,
+export const inPlaceInsertToSortedArray = <T>(
+	arr: T[],
+	value: NoInfer<T>,
+	compareFn: (a: NoInfer<T>, b: NoInfer<T>) => number,
 ): void => {
 	let low = 0;
 	let high = arr.length - 1;
@@ -23,18 +24,24 @@ export const inPlaceInsertToSortedArray = (
 			break;
 		}
 		const mid = Math.floor((low + high) / 2);
-		const midVal = arr[mid] as number;
-		if (midVal === value) {
+		const midVal = arr[mid] as T;
+		const comp = compareFn(midVal, value);
+		if (comp === 0) {
 			idx = mid;
 			break;
-		} else if (midVal < value) {
+		} else if (comp < 0) {
 			low = mid + 1;
 		} else {
 			high = mid - 1;
 		}
 	}
-	const idxVal = arr[idx] as number;
-	arr.splice(idxVal > value ? idx : idx + 1, 0, value);
+	arr.splice(
+		idx < 0 || idx >= arr.length || compareFn(arr[idx] as T, value) > 0
+			? Math.max(idx, 0)
+			: idx + 1,
+		0,
+		value,
+	);
 };
 
 export const filterInPlace = <T>(

@@ -9,8 +9,8 @@ export const aoc2024Day1 = (input: string) => {
 		const left = Number(split[0]);
 		const right = Number(split[1]);
 		if (!left || !right) continue;
-		inPlaceInsertToSortedArray(leftArr, left);
-		inPlaceInsertToSortedArray(rightArr, right);
+		inPlaceInsertToSortedArray(leftArr, left, (a, b) => a - b);
+		inPlaceInsertToSortedArray(rightArr, right, (a, b) => a - b);
 		rightCountMap.set(right, (rightCountMap.get(right) ?? 0) + 1);
 	}
 	let distance = 0;

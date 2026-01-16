@@ -39,17 +39,56 @@ test.each(EQUALITY_TESTS)(
 	},
 );
 
-test("testing inPlaceInsertToSortedArray helper", () => {
-	const arr: number[] = [];
+test("testing inPlaceInsertToSortedArray helper for number values", () => {
+	const arr1: number[] = [];
 	const sourceArr = [];
 	for (let i = 0; i < 100_000; i++) {
 		sourceArr.push(getRandomInteger(0, 100_000));
 	}
-	const sorted = sourceArr.toSorted((a, b) => a - b);
+	const sorted1 = sourceArr.toSorted((a, b) => a - b);
 	for (const value of sourceArr) {
-		inPlaceInsertToSortedArray(arr, value);
+		inPlaceInsertToSortedArray(arr1, value, (a, b) => a - b);
 	}
-	expect(arr).toStrictEqual(sorted);
+	expect(arr1).toStrictEqual(sorted1);
+});
+
+test("testing inPlaceInsertToSortedArray helper for string values", () => {
+	const originalArr = ["a", "b", "c", "d", "e"];
+	const arr = [...originalArr];
+
+	inPlaceInsertToSortedArray(arr, "f", (a, b) => a.localeCompare(b));
+	const expected1 = [...originalArr, "f"];
+	expect(arr).toStrictEqual(expected1);
+
+	inPlaceInsertToSortedArray(arr, "z", (a, b) => a.localeCompare(b));
+	const expected2 = [...originalArr, "f", "z"];
+	expect(arr).toStrictEqual(expected2);
+
+	inPlaceInsertToSortedArray(arr, "h", (a, b) => a.localeCompare(b));
+	const expected3 = [...originalArr, "f", "h", "z"];
+	expect(arr).toStrictEqual(expected3);
+});
+
+test("testing inPlaceInsertToSortedArray helper for object values", () => {
+	const arr: Array<{ foo: string }> = [];
+
+	inPlaceInsertToSortedArray(arr, { foo: "z" }, (a, b) =>
+		a.foo.localeCompare(b.foo),
+	);
+	const expected1 = [{ foo: "z" }];
+	expect(arr).toStrictEqual(expected1);
+
+	inPlaceInsertToSortedArray(arr, { foo: "f" }, (a, b) =>
+		a.foo.localeCompare(b.foo),
+	);
+	const expected2 = [{ foo: "f" }, { foo: "z" }];
+	expect(arr).toStrictEqual(expected2);
+
+	inPlaceInsertToSortedArray(arr, { foo: "h" }, (a, b) =>
+		a.foo.localeCompare(b.foo),
+	);
+	const expected3 = [{ foo: "f" }, { foo: "h" }, { foo: "z" }];
+	expect(arr).toStrictEqual(expected3);
 });
 
 test("testing filterInPlace helper", () => {
