@@ -198,6 +198,7 @@ export default defineConfig([
 			"@typescript-eslint/consistent-type-definitions": "off",
 			"@typescript-eslint/default-param-last": "warn",
 			"no-dupe-class-members": "off",
+			"@typescript-eslint/no-base-to-string": "off",
 			"@typescript-eslint/no-dupe-class-members": "warn",
 			"@typescript-eslint/no-explicit-any": [
 				"warn",
