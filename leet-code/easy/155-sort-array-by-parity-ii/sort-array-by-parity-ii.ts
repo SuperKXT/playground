@@ -60,7 +60,7 @@
 export const sortArrayByParityII = (nums: number[]): number[] => {
 	let evenIdx = 0;
 	let oddIdx = 1;
-	while (evenIdx <= nums.length && oddIdx <= nums.length) {
+	while (evenIdx < nums.length && oddIdx < nums.length) {
 		const even = nums[evenIdx] as number;
 		const odd = nums[oddIdx] as number;
 		if (even % 2 === 0) evenIdx += 2;
