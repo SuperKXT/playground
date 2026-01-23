@@ -5,7 +5,7 @@ import { formatToken } from "./format-token.helpers.js";
 import type { Utils } from "../types/utils.types.js";
 
 test("test formatToken against the 1st test string", () => {
-	const input = "thisIsSomeTestString";
+	const input = "ThisIsSomeTestString";
 	const expected = {
 		camel: "thisIsSomeTestString",
 		pascal: "ThisIsSomeTestString",
