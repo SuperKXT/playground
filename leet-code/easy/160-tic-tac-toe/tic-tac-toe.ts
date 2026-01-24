@@ -3,14 +3,10 @@
 type TMove = "A" | "B";
 type TMapKey = `${"row" | "col" | "diag"}-${number}`;
 
-const getMapKeys = (
-	map: Map<TMapKey, number>,
-	y: number,
-	x: number,
-): TMapKey[] => {
+const getMapKeys = (y: number, x: number): TMapKey[] => {
 	const keys: TMapKey[] = [`row-${y}`, `col-${x}`];
-	if (y - x === 0) keys.push(`diag-1`);
-	if (y + x === 2) keys.push(`diag-2`);
+	if (y - x === 0) keys.push("diag-1");
+	if (y + x === 2) keys.push("diag-2");
 	return keys;
 };
 
@@ -24,7 +20,7 @@ export const ticTacToe = (
 	};
 	for (const [y, x] of moves) {
 		const map = maps[move];
-		const keys = getMapKeys(map, y, x);
+		const keys = getMapKeys(y, x);
 		for (const key of keys) {
 			const existing = map.get(key) ?? 0;
 			if (existing === 2) return move;
