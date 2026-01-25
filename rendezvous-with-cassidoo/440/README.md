@@ -21,4 +21,4 @@ konamiMapping("sduwahoda22ii0d0dbn"); // cSpell: disable-line
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/wXMaQN) -->
+[Solution Playground](https://tsplay.dev/WJJ4rW)

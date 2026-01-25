@@ -1,8 +1,5 @@
 import type { Utils } from "../../types/utils.types.js";
 
-const regex =
-	/(?<U>.)(?:\1)(?!\1)(?<D>.)(?:\2)(?!\1|\2)((?<L>.)(?!\1|\2|\4)(?<R>.)){2}(?!\1|\2|\4|\5)(?<B>.)(?!\1|\2|\4|\5|\6)(?<A>.)/u;
-
 type TKonamiMap<Str extends string> = Str extends `${infer U}${infer rest_1}`
 	? rest_1 extends `${U}${infer D}${infer rest_2}`
 		? rest_2 extends `${D}${infer L}${infer R}${infer rest_3}`
@@ -31,7 +28,10 @@ type TKonamiMapping<Str extends string> =
 			: TKonamiMapping<rest>
 		: never;
 
-export const konamiMapping = <Str extends string>(
+const regex =
+	/(?<U>.)(?:\1)(?!\1)(?<D>.)(?:\2)(?!\1|\2)((?<L>.)(?!\1|\2|\4)(?<R>.)){2}(?!\1|\2|\4|\5)(?<B>.)(?!\1|\2|\4|\5|\6)(?<A>.)/u;
+
+export const konamiMappingRegex = <Str extends string>(
 	str: Str,
 ): TKonamiMapping<Str> => {
 	const match = regex.exec(str);
@@ -41,4 +41,41 @@ export const konamiMapping = <Str extends string>(
 		map[value] = key;
 	}
 	return map as never;
+};
+
+const tryMap = (str: string): null | Record<string, string> => {
+	const u = str[0] as string;
+	if (u !== str[1]) return null;
+	const map = {} as Record<string, string>;
+	map[u] = "U";
+	const d = str[2] as string;
+	if (d in map || d !== str[3]) return null;
+	map[d] = "D";
+	const l = str[4] as string;
+	const r = str[5] as string;
+	if (l === r || l in map || r in map || l !== str[6] || r !== str[7])
+		return null;
+	map[l] = "L";
+	map[r] = "R";
+	const b = str[8] as string;
+	const a = str[9] as string;
+	if (b === a || b in map || a in map) return null;
+	map[b] = "B";
+	map[a] = "A";
+	return map;
+};
+
+export const konamiMappingNonRegex = <Str extends string>(
+	str: Str,
+): TKonamiMapping<Str> => {
+	if (str.length < 10) throw new Error("Konami code not found!");
+	let curr = "";
+	for (let i = str.length - 1; i >= 0; i--) {
+		curr = `${str[i] as string}${curr}`;
+		if (curr.length >= 10) {
+			const map = tryMap(curr);
+			if (map) return map as never;
+		}
+	}
+	throw new Error("Konami code not found!");
 };
