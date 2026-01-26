@@ -29,3 +29,11 @@ test("testing countNodes for test 3", () => {
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
+
+test("testing countNodes for test 4", () => {
+	const result = countNodes(arrayToBinaryTree([1, 2, 3, 4, 5, 6, 7]));
+	const expected = 7 as number;
+	expect(result).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof result, typeof expected>;
+	assertType<TTrue>(true);
+});
