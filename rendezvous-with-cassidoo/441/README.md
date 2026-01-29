@@ -20,4 +20,4 @@ flipWords("banana healthy");
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/WJJ4rW) -->
+[Solution Playground](https://tsplay.dev/N9ry9m)
