@@ -30,3 +30,21 @@ test("testing findPeakElement for test 3", () => {
 	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
 	assertType<TTrue>(true);
 });
+
+test("testing findPeakElement for test 3", () => {
+	const result = findPeakElement([1]);
+	const expected = [0] as const;
+	expect(result).toBeOneOf(expected as never);
+
+	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
+	assertType<TTrue>(true);
+});
+
+test("testing findPeakElement for test 3", () => {
+	const result = findPeakElement([3, 2, 1]);
+	const expected = [0] as const;
+	expect(result).toBeOneOf(expected as never);
+
+	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
+	assertType<TTrue>(true);
+});

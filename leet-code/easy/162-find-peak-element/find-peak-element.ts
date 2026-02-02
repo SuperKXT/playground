@@ -87,24 +87,33 @@ type TFindPeakElement<
 				| TFindPeakElement<rest, [...idx, 1], first>
 		: never;
 
-// export const findPeakElement = (nums: number[]): number => {
+// export const findPeakElement = <const Nums extends number[]>(
+// 	nums: Nums,
+// ): TFindPeakElement<Nums> => {
 // 	for (let i = 0; i < nums.length; i++) {
-// 		if (nums[i]! > nums[i - 1]! && nums[i]! > nums[i + 1]!) return i;
+// 		if (
+// 			nums[i]! > (nums[i - 1] ?? -Infinity) &&
+// 			nums[i]! > (nums[i + 1] ?? -Infinity)
+// 		)
+// 			return i as never;
 // 	}
-// 	return -1;
+// 	return -1 as never;
 // };
 
 export const findPeakElement = <const Nums extends number[]>(
 	nums: Nums,
 ): TFindPeakElement<Nums> => {
 	let left = 0;
-	const right = nums.length - 1;
+	let right = nums.length - 1;
 	while (left <= right) {
 		const mid = Math.floor((right + left) / 2);
-		if (nums[mid]! > nums[mid - 1]! && nums[mid]! > nums[mid + 1]!) {
+		const leftVal = nums[mid - 1] ?? -Infinity;
+		const rightVal = nums[mid + 1] ?? -Infinity;
+		if (nums[mid]! > leftVal && nums[mid]! > rightVal) {
 			return mid as never;
 		}
-		left = mid + 1;
+		if (leftVal > rightVal) right = mid - 1;
+		else left = mid + 1;
 	}
 	return -1 as never;
 };
