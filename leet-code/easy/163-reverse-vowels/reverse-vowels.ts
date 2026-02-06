@@ -5,7 +5,26 @@ const vowelSet = new Set([...vowels, ...vowels.map((r) => r.toUpperCase())]);
 
 type TVowel = (typeof vowels)[number];
 
-// export const reverseVowels = (s: string): string => {
+type TStrToTuple<S extends string> = S extends `${infer first}${infer rest}`
+	? [first, ...TStrToTuple<rest>]
+	: [];
+
+type TReverseVowels<
+	S extends string,
+	Tup extends string[] = TStrToTuple<S>,
+> = Tup extends [
+	infer first extends string,
+	...infer rest extends string[],
+	infer last extends string,
+]
+	? Lowercase<first | last> extends TVowel
+		? `${last}${TReverseVowels<never, rest>}${first}`
+		: `${Lowercase<first> extends TVowel ? "" : first}${TReverseVowels<never, [...(Lowercase<first> extends TVowel ? [first] : []), ...rest, ...(Lowercase<last> extends TVowel ? [last] : [])]>}${Lowercase<last> extends TVowel ? "" : last}`
+	: Tup[0] extends string
+		? Tup[0]
+		: "";
+
+// export const reverseVowels = <S extends string>(s: S): TReverseVowels<S> => {
 //     let direction: 'left' | 'right' = 'left';
 //     let leftVowel = '';
 //     let str = {
@@ -44,10 +63,10 @@ type TVowel = (typeof vowels)[number];
 //         }
 //     }
 
-//     return str.left + leftVowel + str.right;
+//     return (str.left + leftVowel + str.right) as never;
 // };
 
-export const reverseVowels = (s: string): string => {
+export const reverseVowels = <S extends string>(s: S): TReverseVowels<S> => {
 	const str = {
 		left: "",
 		right: "",
@@ -79,5 +98,5 @@ export const reverseVowels = (s: string): string => {
 		}
 	}
 
-	return str.left + str.right;
+	return (str.left + str.right) as never;
 };

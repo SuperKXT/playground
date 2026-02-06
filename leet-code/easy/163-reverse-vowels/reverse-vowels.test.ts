@@ -9,7 +9,7 @@ test("testing reverseVowels for test 1", () => {
 	const expected = "AceCreIm";
 	expect(result).toBe(expected);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
+	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
@@ -18,7 +18,7 @@ test("testing reverseVowels for test 2", () => {
 	const expected = "leotcede"; // cSpell: disable-line
 	expect(result).toBe(expected);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
+	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
@@ -27,7 +27,7 @@ test("testing reverseVowels for test 2", () => {
 	const expected = "a.";
 	expect(result).toBe(expected);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
+	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
 
@@ -36,6 +36,6 @@ test("testing reverseVowels for test 2", () => {
 	const expected = " ";
 	expect(result).toBe(expected);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
+	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
