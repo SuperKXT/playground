@@ -12,7 +12,7 @@ test("testing flipWords against test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing konamiMappingRegex against test 2", () => {
+test("testing flipWords against test 2", () => {
 	const result = flipWords("banana healthy"); // cSpell: disable-line
 	const expected = "banana healthy";
 	expect(result).toStrictEqual(expected);
@@ -20,7 +20,7 @@ test("testing konamiMappingRegex against test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing konamiMappingRegex against test 2", () => {
+test("testing flipWords against test 2", () => {
 	const result = flipWords("cat and mice and ants or bees"); // cSpell: disable-line
 	const expected = "cat dna mice dna stna ro bees"; // cSpell: disable-line
 	expect(result).toStrictEqual(expected);
