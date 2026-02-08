@@ -22,7 +22,7 @@ test("testing reverseVowels for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reverseVowels for test 2", () => {
+test("testing reverseVowels for test 3", () => {
 	const result = reverseVowels("a.");
 	const expected = "a.";
 	expect(result).toBe(expected);
@@ -31,7 +31,7 @@ test("testing reverseVowels for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reverseVowels for test 2", () => {
+test("testing reverseVowels for test 4", () => {
 	const result = reverseVowels(" ");
 	const expected = " ";
 	expect(result).toBe(expected);
