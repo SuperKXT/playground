@@ -1,4 +1,4 @@
-# flipWords
+# perfectMonth
 
 [issue #442 of rendezvous with cassidoo.](https://buttondown.com/cassidoo/archive/the-ability-to-observe-without-evaluating-is-the/)
 
