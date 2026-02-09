@@ -16,4 +16,4 @@ moveNums([0,2,0,3,10], 0);
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/N9ry9m) -->
+[Solution Playground](https://tsplay.dev/WyKq2N)

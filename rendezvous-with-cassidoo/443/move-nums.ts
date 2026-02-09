@@ -1,4 +1,19 @@
-export const moveNumsImmutable = (nums: number[], n: number): number[] => {
+type TMoveNums<Nums extends number[], N extends number> = Nums extends [
+	infer first,
+	...infer rest extends number[],
+]
+	? first extends N
+		? [...TMoveNums<rest, N>, first]
+		: [first, ...TMoveNums<rest, N>]
+	: [];
+
+export const moveNumsImmutable = <
+	const Nums extends number[],
+	N extends number,
+>(
+	nums: Nums,
+	n: N,
+): TMoveNums<Nums, N> => {
 	const res: number[] = [];
 	let nCount = 0;
 	for (const num of nums) {
@@ -6,10 +21,13 @@ export const moveNumsImmutable = (nums: number[], n: number): number[] => {
 		else res.push(num);
 	}
 	for (let i = 0; i < nCount; i++) res.push(n);
-	return res;
+	return res as never;
 };
 
-export const moveNumsInPlace = (nums: number[], n: number): number[] => {
+export const moveNumsInPlace = <const Nums extends number[], N extends number>(
+	nums: Nums,
+	n: N,
+): TMoveNums<Nums, N> => {
 	let size = nums.length;
 	for (let i = 0; i < size; i++) {
 		const num = nums[i] as number;
@@ -19,5 +37,5 @@ export const moveNumsInPlace = (nums: number[], n: number): number[] => {
 		size--;
 		i--;
 	}
-	return nums;
+	return nums as never;
 };
