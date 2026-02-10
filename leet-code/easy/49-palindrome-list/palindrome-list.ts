@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/count-complete-tree-nodes
+// https://leetcode.com/problems/palindrome-linked-list/
 
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
 
