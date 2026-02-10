@@ -24,10 +24,7 @@ export const moveNumsImmutable = <
 	return res as never;
 };
 
-export const moveNumsInPlace = <const Nums extends number[], N extends number>(
-	nums: Nums,
-	n: N,
-): TMoveNums<Nums, N> => {
+export function moveNumsInPlace(nums: number[], n: number) {
 	let size = nums.length;
 	for (let i = 0; i < size; i++) {
 		const num = nums[i] as number;
@@ -37,5 +34,4 @@ export const moveNumsInPlace = <const Nums extends number[], N extends number>(
 		size--;
 		i--;
 	}
-	return nums as never;
-};
+}

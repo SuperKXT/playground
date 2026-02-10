@@ -13,9 +13,10 @@ test("testing moveNumsImmutable against test 1", () => {
 });
 
 test("testing moveNumsInPlace against test 1", () => {
-	const result = moveNumsInPlace([0, 2, 0, 3, 10], 0);
-	const expected = [2, 3, 10, 0, 0] as const;
-	expect(result).toStrictEqual(expected);
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
+	const arr = [0, 2, 0, 3, 10];
+	moveNumsInPlace(arr, 0);
+	const expected = [2, 3, 10, 0, 0];
+	expect(arr).toStrictEqual(expected);
+	type TTrue = Utils.equal<typeof arr, typeof expected>;
 	assertType<TTrue>(true);
 });
