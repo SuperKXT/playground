@@ -37,4 +37,4 @@ zoom([[1],[2]], 3);
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/WyKq2N) -->
+[Solution Playground](https://tsplay.dev/N7rqEw)
