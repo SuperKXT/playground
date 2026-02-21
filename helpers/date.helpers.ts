@@ -99,9 +99,8 @@ export type TDayName = (typeof dayNames)[number];
 export class DateRange<
 	Start extends string = "start",
 	End extends string = "end",
-	Range extends Utils.prettify<
-		Record<Start, Dayjs> & Record<End, Dayjs>
-	> = Utils.prettify<Record<Start, Dayjs> & Record<End, Dayjs>>,
+	Range extends Utils.prettify<Record<Start, Dayjs> & Record<End, Dayjs>> =
+		Utils.prettify<Record<Start, Dayjs> & Record<End, Dayjs>>,
 > {
 	constructor(
 		private start: Start = "start" as Start,

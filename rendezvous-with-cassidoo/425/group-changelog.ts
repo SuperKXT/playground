@@ -24,11 +24,10 @@ export const groupChangelog = (
 			a.component.localeCompare(b.component) ||
 			a.timestamp.localeCompare(b.timestamp),
 	);
-	let group: undefined | TGroupedChangeLog = undefined;
+	let group = undefined as undefined | TGroupedChangeLog;
 	for (const edit of edits) {
 		if (
-			group === undefined ||
-			edit.component !== group.component ||
+			edit.component !== group?.component ||
 			edit.timestamp > addTenMinutes(group.start)
 		) {
 			group = {

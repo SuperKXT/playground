@@ -11,7 +11,7 @@ const compareNodes = (
 	b: TBinaryTreeNode<number>,
 ): boolean => {
 	if (!a && !b) return true;
-	if (!a || !b || a.val !== b.val) return false;
+	if (!a || a.val !== b?.val) return false;
 	return compareNodes(a.left, b.right) && compareNodes(a.right, b.left);
 };
 

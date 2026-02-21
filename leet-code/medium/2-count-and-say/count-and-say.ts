@@ -2,7 +2,7 @@
 
 const getRle = (prev: string): string => {
 	let res = "";
-	let curr: undefined | { digit: string; count: number } = undefined;
+	let curr = undefined as undefined | { digit: string; count: number };
 	for (const char of prev) {
 		if (curr?.digit !== char) {
 			if (curr) res += `${curr.count}${curr.digit}`;

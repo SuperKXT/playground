@@ -4,8 +4,8 @@ type TFizzBuzzStr<
 	idx extends Array<1>,
 	counter3 extends Array<1>,
 	counter5 extends Array<1>,
-	str extends
-		string = `${counter3["length"] extends 3 ? "Fizz" : ""}${counter5["length"] extends 5 ? "Buzz" : ""}`,
+	str extends string =
+		`${counter3["length"] extends 3 ? "Fizz" : ""}${counter5["length"] extends 5 ? "Buzz" : ""}`,
 > = str extends "" ? `${[...idx, 1]["length"]}` : str;
 
 type TFizzBuzz<
