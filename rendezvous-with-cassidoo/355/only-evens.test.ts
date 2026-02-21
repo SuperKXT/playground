@@ -1,6 +1,6 @@
 // cSpell: disable
 
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { onlyEvens } from "./only-evens.js";
 
@@ -10,7 +10,7 @@ test("testing onlyEvens against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing onlyEvens against test 2", () => {
@@ -19,7 +19,7 @@ test("testing onlyEvens against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing onlyEvens against test 3", () => {
@@ -28,5 +28,5 @@ test("testing onlyEvens against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

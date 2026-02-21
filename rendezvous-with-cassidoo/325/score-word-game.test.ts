@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { scoreWordGame } from "./score-word-game.js";
 
@@ -16,9 +16,9 @@ test("testing scoreWordGame against test 1", () => {
 	) as TLetterScores;
 
 	const result = scoreWordGame(wordList, letterScores);
-	const expected = "cherry";
+	const expected = "cherry" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

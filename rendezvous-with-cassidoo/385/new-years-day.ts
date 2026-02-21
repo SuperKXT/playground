@@ -8,7 +8,7 @@ const dayMap = {
 	0: "Sunday",
 } as const;
 
-type TDay = (typeof dayMap)[keyof typeof dayMap];
+export type TDay = (typeof dayMap)[keyof typeof dayMap];
 
 export const newYearsDay = (year: number): TDay => {
 	const day = new Date(year, 0, 1).getDay();

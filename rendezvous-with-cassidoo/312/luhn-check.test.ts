@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { luhnCheck } from "./luh-check.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing luhnCheck against test 1", () => {
 	const result = luhnCheck(123456789);
@@ -8,7 +10,9 @@ test("testing luhnCheck against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing luhnCheck against test 2", () => {
@@ -17,5 +21,7 @@ test("testing luhnCheck against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

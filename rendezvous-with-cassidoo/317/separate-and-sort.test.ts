@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { separateAndSort } from "./separate-and-sort.js";
 
@@ -11,7 +11,7 @@ test("testing separateAndSort against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing separateAndSort against test 2", () => {
@@ -20,5 +20,5 @@ test("testing separateAndSort against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

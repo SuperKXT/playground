@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { evaluatePostfix } from "./evaluate-postfix.js";
 
@@ -8,7 +8,7 @@ test("testing evaluatePostfix against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing evaluatePostfix against test 2", () => {
@@ -17,5 +17,5 @@ test("testing evaluatePostfix against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

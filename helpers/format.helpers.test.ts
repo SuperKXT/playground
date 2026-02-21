@@ -1,5 +1,5 @@
 /* eslint-disable vitest/max-expects */
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { numberToWords } from "./format.helpers.js";
 
@@ -11,7 +11,7 @@ test("should test numberToWords", () => {
 
 	expect(test1.response).toStrictEqual(test1.expected);
 
-	assertType<(typeof test1)["response"]>(test1.expected);
+	expectTypeOf(test1.response).toEqualTypeOf(test1.expected);
 
 	const test2 = {
 		response: numberToWords(1),
@@ -20,7 +20,7 @@ test("should test numberToWords", () => {
 
 	expect(test2.response).toStrictEqual(test2.expected);
 
-	assertType<(typeof test2)["response"]>(test2.expected);
+	expectTypeOf(test2.response).toEqualTypeOf(test2.expected);
 
 	const test3 = {
 		response: numberToWords(2),
@@ -29,7 +29,7 @@ test("should test numberToWords", () => {
 
 	expect(test3.response).toStrictEqual(test3.expected);
 
-	assertType<(typeof test3)["response"]>(test3.expected);
+	expectTypeOf(test3.response).toEqualTypeOf(test3.expected);
 
 	const test4 = {
 		response: numberToWords(3),
@@ -38,7 +38,7 @@ test("should test numberToWords", () => {
 
 	expect(test4.response).toStrictEqual(test4.expected);
 
-	assertType<(typeof test4)["response"]>(test4.expected);
+	expectTypeOf(test4.response).toEqualTypeOf(test4.expected);
 
 	const test5 = {
 		response: numberToWords(4),
@@ -47,7 +47,7 @@ test("should test numberToWords", () => {
 
 	expect(test5.response).toStrictEqual(test5.expected);
 
-	assertType<(typeof test5)["response"]>(test5.expected);
+	expectTypeOf(test5.response).toEqualTypeOf(test5.expected);
 
 	const test6 = {
 		response: numberToWords(5),
@@ -56,7 +56,7 @@ test("should test numberToWords", () => {
 
 	expect(test6.response).toStrictEqual(test6.expected);
 
-	assertType<(typeof test6)["response"]>(test6.expected);
+	expectTypeOf(test6.response).toEqualTypeOf(test6.expected);
 
 	const test7 = {
 		response: numberToWords(6),
@@ -65,7 +65,7 @@ test("should test numberToWords", () => {
 
 	expect(test7.response).toStrictEqual(test7.expected);
 
-	assertType<(typeof test7)["response"]>(test7.expected);
+	expectTypeOf(test7.response).toEqualTypeOf(test7.expected);
 
 	const test8 = {
 		response: numberToWords(7),
@@ -74,7 +74,7 @@ test("should test numberToWords", () => {
 
 	expect(test8.response).toStrictEqual(test8.expected);
 
-	assertType<(typeof test8)["response"]>(test8.expected);
+	expectTypeOf(test8.response).toEqualTypeOf(test8.expected);
 
 	const test9 = {
 		response: numberToWords(8),
@@ -83,7 +83,7 @@ test("should test numberToWords", () => {
 
 	expect(test9.response).toStrictEqual(test9.expected);
 
-	assertType<(typeof test9)["response"]>(test9.expected);
+	expectTypeOf(test9.response).toEqualTypeOf(test9.expected);
 
 	const test10 = {
 		response: numberToWords(9),
@@ -92,7 +92,7 @@ test("should test numberToWords", () => {
 
 	expect(test10.response).toStrictEqual(test10.expected);
 
-	assertType<(typeof test10)["response"]>(test10.expected);
+	expectTypeOf(test10.response).toEqualTypeOf(test10.expected);
 
 	const test11 = {
 		response: numberToWords(10),
@@ -101,7 +101,7 @@ test("should test numberToWords", () => {
 
 	expect(test11.response).toStrictEqual(test11.expected);
 
-	assertType<(typeof test11)["response"]>(test11.expected);
+	expectTypeOf(test11.response).toEqualTypeOf(test11.expected);
 
 	const test12 = {
 		response: numberToWords(11),
@@ -110,7 +110,7 @@ test("should test numberToWords", () => {
 
 	expect(test12.response).toStrictEqual(test12.expected);
 
-	assertType<(typeof test12)["response"]>(test12.expected);
+	expectTypeOf(test12.response).toEqualTypeOf(test12.expected);
 
 	const test13 = {
 		response: numberToWords(12),
@@ -119,7 +119,7 @@ test("should test numberToWords", () => {
 
 	expect(test13.response).toStrictEqual(test13.expected);
 
-	assertType<(typeof test13)["response"]>(test13.expected);
+	expectTypeOf(test13.response).toEqualTypeOf(test13.expected);
 
 	const test14 = {
 		response: numberToWords(13),
@@ -128,7 +128,7 @@ test("should test numberToWords", () => {
 
 	expect(test14.response).toStrictEqual(test14.expected);
 
-	assertType<(typeof test14)["response"]>(test14.expected);
+	expectTypeOf(test14.response).toEqualTypeOf(test14.expected);
 
 	const test15 = {
 		response: numberToWords(14),
@@ -137,7 +137,7 @@ test("should test numberToWords", () => {
 
 	expect(test15.response).toStrictEqual(test15.expected);
 
-	assertType<(typeof test15)["response"]>(test15.expected);
+	expectTypeOf(test15.response).toEqualTypeOf(test15.expected);
 
 	const test16 = {
 		response: numberToWords(15),
@@ -146,7 +146,7 @@ test("should test numberToWords", () => {
 
 	expect(test16.response).toStrictEqual(test16.expected);
 
-	assertType<(typeof test16)["response"]>(test16.expected);
+	expectTypeOf(test16.response).toEqualTypeOf(test16.expected);
 
 	const test17 = {
 		response: numberToWords(16),
@@ -155,7 +155,7 @@ test("should test numberToWords", () => {
 
 	expect(test17.response).toStrictEqual(test17.expected);
 
-	assertType<(typeof test17)["response"]>(test17.expected);
+	expectTypeOf(test17.response).toEqualTypeOf(test17.expected);
 
 	const test18 = {
 		response: numberToWords(17),
@@ -164,7 +164,7 @@ test("should test numberToWords", () => {
 
 	expect(test18.response).toStrictEqual(test18.expected);
 
-	assertType<(typeof test18)["response"]>(test18.expected);
+	expectTypeOf(test18.response).toEqualTypeOf(test18.expected);
 
 	const test19 = {
 		response: numberToWords(18),
@@ -173,7 +173,7 @@ test("should test numberToWords", () => {
 
 	expect(test19.response).toStrictEqual(test19.expected);
 
-	assertType<(typeof test19)["response"]>(test19.expected);
+	expectTypeOf(test19.response).toEqualTypeOf(test19.expected);
 
 	const test20 = {
 		response: numberToWords(19),
@@ -182,7 +182,7 @@ test("should test numberToWords", () => {
 
 	expect(test20.response).toStrictEqual(test20.expected);
 
-	assertType<(typeof test20)["response"]>(test20.expected);
+	expectTypeOf(test20.response).toEqualTypeOf(test20.expected);
 
 	const test21 = {
 		response: numberToWords(20),
@@ -191,7 +191,7 @@ test("should test numberToWords", () => {
 
 	expect(test21.response).toStrictEqual(test21.expected);
 
-	assertType<(typeof test21)["response"]>(test21.expected);
+	expectTypeOf(test21.response).toEqualTypeOf(test21.expected);
 
 	const test22 = {
 		response: numberToWords(123_456_789),
@@ -201,7 +201,7 @@ test("should test numberToWords", () => {
 
 	expect(test22.response).toStrictEqual(test22.expected);
 
-	assertType<(typeof test22)["response"]>(test22.expected);
+	expectTypeOf(test22.response).toEqualTypeOf(test22.expected);
 
 	const test23 = {
 		response: numberToWords(100_000),
@@ -210,7 +210,7 @@ test("should test numberToWords", () => {
 
 	expect(test23.response).toStrictEqual(test23.expected);
 
-	assertType<(typeof test23)["response"]>(test23.expected);
+	expectTypeOf(test23.response).toEqualTypeOf(test23.expected);
 
 	const test24 = {
 		response: numberToWords(-1_234_567_890),
@@ -220,7 +220,7 @@ test("should test numberToWords", () => {
 
 	expect(test24.response).toStrictEqual(test24.expected);
 
-	assertType<(typeof test24)["response"]>(test24.expected);
+	expectTypeOf(test24.response).toEqualTypeOf(test24.expected);
 
 	const test25 = {
 		response: numberToWords(420),
@@ -229,7 +229,7 @@ test("should test numberToWords", () => {
 
 	expect(test25.response).toStrictEqual(test25.expected);
 
-	assertType<(typeof test25)["response"]>(test25.expected);
+	expectTypeOf(test25.response).toEqualTypeOf(test25.expected);
 
 	const test26 = {
 		response: numberToWords(10_423.2978),
@@ -239,16 +239,16 @@ test("should test numberToWords", () => {
 
 	expect(test26.response).toStrictEqual(test26.expected);
 
-	assertType<(typeof test26)["response"]>(test26.expected);
+	expectTypeOf(test26.response).toEqualTypeOf(test26.expected);
 
 	const test27 = {
 		response: numberToWords(43000 as number),
-		expected: "forty three thousand",
+		expected: "forty three thousand" as string,
 	} as const;
 
 	expect(test27.response).toStrictEqual(test27.expected);
 
-	assertType<(typeof test27)["response"]>(test27.expected);
+	expectTypeOf(test27.response).toEqualTypeOf(test27.expected);
 
 	const test28 = {
 		response: numberToWords(-1_234_567_890_123_456),
@@ -258,5 +258,5 @@ test("should test numberToWords", () => {
 
 	expect(test28.response).toStrictEqual(test28.expected);
 
-	assertType<(typeof test28)["response"]>(test28.expected);
+	expectTypeOf(test28.response).toEqualTypeOf(test28.expected);
 });

@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { FruitStand } from "./fruit-stand.js";
 
@@ -18,5 +18,5 @@ test("testing FruitStand", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

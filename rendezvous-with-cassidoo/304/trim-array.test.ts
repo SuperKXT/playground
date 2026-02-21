@@ -1,7 +1,9 @@
 /** cSpell: disable */
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { trimArray } from "./trim-array.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing trimArray against test 1", () => {
 	const response = trimArray([1, 2, 3, 4, 5, 6], 2, 1);
@@ -9,7 +11,9 @@ test("testing trimArray against test 1", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing trimArray against test 2", () => {
@@ -18,7 +22,9 @@ test("testing trimArray against test 2", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing trimArray against test 3", () => {
@@ -27,5 +33,7 @@ test("testing trimArray against test 3", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });

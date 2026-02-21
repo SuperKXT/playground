@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { findLongestTimeGap } from "./find-longest-time-gap.js";
 
@@ -8,7 +8,7 @@ test("testing findLongestTimeGap against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing findLongestTimeGap against test 2", () => {
@@ -17,7 +17,7 @@ test("testing findLongestTimeGap against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing findLongestTimeGap against test 3", () => {
@@ -26,7 +26,7 @@ test("testing findLongestTimeGap against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing findLongestTimeGap against test 4", () => {
@@ -35,5 +35,5 @@ test("testing findLongestTimeGap against test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

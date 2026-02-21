@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { oddSum } from "./odd-sum.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing addOperators against test 1", () => {
 	const result = oddSum([9, 14, 6, 2, 11], [8, 4, 7, 20]);
@@ -12,7 +14,9 @@ test("testing addOperators against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof expected>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing addOperators against test 2", () => {
@@ -21,5 +25,7 @@ test("testing addOperators against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof expected>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

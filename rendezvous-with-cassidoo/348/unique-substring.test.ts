@@ -1,39 +1,39 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { uniqueSubstring } from "./unique-substring.js";
 
 test("testing uniqueSubstring against test 1", () => {
 	const result = uniqueSubstring("eceba"); // cSpell: disable-line
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing uniqueSubstring against test 2", () => {
 	const result = uniqueSubstring("ccaabbb"); // cSpell: disable-line
-	const expected = 5;
+	const expected = 5 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing uniqueSubstring against test 3", () => {
 	const result = uniqueSubstring("abcabcabc"); // cSpell: disable-line
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing uniqueSubstring against test 4", () => {
 	const result = uniqueSubstring("aebebebe"); // cSpell: disable-line
-	const expected = 7;
+	const expected = 7 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

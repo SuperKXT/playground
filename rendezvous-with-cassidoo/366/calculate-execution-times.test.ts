@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { calculateExecutionTimes } from "./calculate-execution-times.js";
 
@@ -19,5 +19,5 @@ test("testing calculateExecutionTimes against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

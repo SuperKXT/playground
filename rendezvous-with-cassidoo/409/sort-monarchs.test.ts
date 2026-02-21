@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { sortMonarchs } from "./sort-monarchs.js";
 
@@ -13,7 +13,7 @@ test("testing sortMonarchs against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof expected>(result);
+	expectTypeOf(expected).toEqualTypeOf(result);
 });
 
 test("testing sortMonarchs against test 2", () => {
@@ -27,5 +27,5 @@ test("testing sortMonarchs against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof expected>(result);
+	expectTypeOf(expected).toEqualTypeOf(result);
 });

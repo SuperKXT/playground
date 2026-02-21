@@ -1,48 +1,48 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { equalLetterAndDigits } from "./equal-letter-and-digits.js";
 
 test("testing equalLetterAndDigits against test 1", () => {
 	const result = equalLetterAndDigits("abc12345");
-	const expected = "abc123";
+	const expected = "abc123" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing equalLetterAndDigits against test 2", () => {
 	const result = equalLetterAndDigits("a123b4c");
-	const expected = "3b4c";
+	const expected = "3b4c" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing equalLetterAndDigits against test 3", () => {
 	const result = equalLetterAndDigits("a123b4");
-	const expected = "b4";
+	const expected = "b4" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing equalLetterAndDigits against test 4", () => {
 	const result = equalLetterAndDigits("12");
-	const expected = "";
+	const expected = "" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing equalLetterAndDigits against test 5", () => {
 	const result = equalLetterAndDigits("a12bc34");
-	const expected = "a12bc3";
+	const expected = "a12bc3" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

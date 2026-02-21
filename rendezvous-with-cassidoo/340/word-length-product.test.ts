@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { wordLengthProduct } from "./word-length-product.js";
 
@@ -11,18 +11,18 @@ test("testing wordLengthProduct against test 1", () => {
 		"cake",
 		"abcdef",
 	]);
-	const expected = 16;
+	const expected = 16 as const;
 
 	expect(result).toBe(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing wordLengthProduct against test 2", () => {
 	const result = wordLengthProduct(["a", "aa", "aaa", "aaaa"]);
-	const expected = 0;
+	const expected = 0 as const;
 
 	expect(result).toBe(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

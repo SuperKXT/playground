@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, test, expectTypeOf } from "vitest";
 
 import { nestArray } from "./nest-array.js";
 
@@ -10,7 +10,7 @@ test("testing nestArray against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Utils.deepReadonly<typeof result>>(expected);
+	expectTypeOf(expected).toEqualTypeOf<Utils.deepReadonly<typeof result>>();
 });
 
 test("testing nestArray against test 2", () => {
@@ -19,5 +19,5 @@ test("testing nestArray against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Utils.deepReadonly<typeof result>>(expected);
+	expectTypeOf(expected).toEqualTypeOf<Utils.deepReadonly<typeof result>>();
 });

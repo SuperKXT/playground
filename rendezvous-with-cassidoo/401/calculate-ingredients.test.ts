@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { calculateIngredients } from "./calculate-ingredients.js";
 
@@ -18,5 +18,5 @@ test("testing calculateIngredients against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { betweenNums } from "./between-nums.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing betweenNums against test 1", () => {
 	const result = betweenNums(3, 11, "even");
@@ -8,7 +10,9 @@ test("testing betweenNums against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing betweenNums against test 2", () => {
@@ -17,5 +21,7 @@ test("testing betweenNums against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

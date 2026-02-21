@@ -1,4 +1,4 @@
-import { assertType, expect, expectTypeOf, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { formatToken } from "./format-token.helpers.js";
 
@@ -29,7 +29,7 @@ test("formatToken against the 1st test string", () => {
 
 	expect(expected.nonLiteral).toStrictEqual(response.nonLiteral);
 
-	assertType<typeof response.nonLiteral>(expected.nonLiteral);
+	expectTypeOf(response.nonLiteral).toEqualTypeOf(expected.nonLiteral);
 });
 
 test("formatToken against the 2nd test string", () => {

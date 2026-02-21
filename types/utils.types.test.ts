@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-import { assertType, test } from "vitest";
+import { expectTypeOf, test } from "vitest";
 
 import type { Utils } from "./utils.types.js";
 
@@ -13,7 +13,8 @@ test("prettify type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("equal type util", () => {
@@ -23,7 +24,7 @@ test("equal type util", () => {
 	interface TInt2 extends TInt1 {
 		y: 2;
 	}
-	type TTrueTests = Utils.trueTuple<
+	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<1, 1>,
 			Utils.equal<1 | 2 | 3, 1 | 2 | 3>,
@@ -52,7 +53,8 @@ test("equal type util", () => {
 			Utils.notEqual<object, Record<string, unknown>>,
 		]
 	>;
-	assertType<TTrueTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 // eslint-disable-next-line vitest/expect-expect
@@ -80,7 +82,8 @@ test("dropFirst type util", () => {
 			Utils.equal<Utils.dropFirst<readonly string[]>, readonly string[]>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("tuple type util", () => {
@@ -92,7 +95,8 @@ test("tuple type util", () => {
 			Utils.equal<Utils.tuple<1, string | { foo: 1 }>, [string | { foo: 1 }]>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("repeatString type util", () => {
@@ -104,7 +108,8 @@ test("repeatString type util", () => {
 			Utils.equal<Utils.repeatString<"foo" | "bar", 2>, "foofoo" | "barbar">, // cSpell: disable-line,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("trim type util", () => {
@@ -116,7 +121,8 @@ test("trim type util", () => {
 			Utils.equal<Utils.trim<"foo  " | " bar" | "baz">, "foo" | "bar" | "baz">,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("distributedArray type util", () => {
@@ -132,7 +138,8 @@ test("distributedArray type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("assertFunction type util", () => {
@@ -140,17 +147,23 @@ test("assertFunction type util", () => {
 		return undefined;
 	};
 	const val1 = {} as unknown;
-	assertType<unknown>(val1);
+
+	expectTypeOf(val1).toEqualTypeOf<unknown>();
+
 	func1(val1);
-	assertType<string>(val1);
+
+	expectTypeOf(val1).toEqualTypeOf<string>();
 
 	const func2: Utils.assertFunction<{ foo: 1 }> = () => {
 		return undefined;
 	};
 	const val2 = {} as unknown;
-	assertType<unknown>(val2);
+
+	expectTypeOf(val2).toEqualTypeOf<unknown>();
+
 	func2(val2);
-	assertType<{ foo: 1 }>(val2);
+
+	expectTypeOf(val2).toEqualTypeOf<{ foo: 1 }>();
 });
 
 test("keysOfType type util", () => {
@@ -169,7 +182,8 @@ test("keysOfType type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("allUnionKeys type util", () => {
@@ -180,7 +194,8 @@ test("allUnionKeys type util", () => {
 			Utils.equal<Utils.allUnionKeys<never>, never>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("includeUnionKeys type util", () => {
@@ -193,7 +208,8 @@ test("includeUnionKeys type util", () => {
 			Utils.equal<Utils.includeUnionKeys<{ x: 1 }>, { x: 1 }>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("noUndefinedKeys type util", () => {
@@ -209,7 +225,8 @@ test("noUndefinedKeys type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("strictly type util", () => {
@@ -221,7 +238,8 @@ test("strictly type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("allOrNone type util", () => {
@@ -236,7 +254,8 @@ test("allOrNone type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("allOrNullable type util", () => {
@@ -251,7 +270,8 @@ test("allOrNullable type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("makeUndefinedOptional type util", () => {
@@ -264,7 +284,8 @@ test("makeUndefinedOptional type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("removeIndexSignature type util", () => {
@@ -277,7 +298,8 @@ test("removeIndexSignature type util", () => {
 			Utils.equal<Utils.removeIndexSignature<{ x: 1 }>, { x: 1 }>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("distributiveOmit type util", () => {
@@ -289,7 +311,8 @@ test("distributiveOmit type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("stringToUnion type util", () => {
@@ -303,7 +326,8 @@ test("stringToUnion type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("unionToIntersection type util", () => {
@@ -319,7 +343,8 @@ test("unionToIntersection type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("takeOneFromUnion type util", () => {
@@ -332,7 +357,8 @@ test("takeOneFromUnion type util", () => {
 			Utils.isUnion<TMember> extends true ? false : true,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("unionToSingleTuple type util", () => {
@@ -348,7 +374,8 @@ test("unionToSingleTuple type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("deepMerge type util", () => {
@@ -363,7 +390,8 @@ test("deepMerge type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("unionToTuples type util", () => {
@@ -376,7 +404,8 @@ test("unionToTuples type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("nonNullableKeys type util", () => {
@@ -412,7 +441,8 @@ test("nonNullableKeys type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("nullableKeys type util", () => {
@@ -439,7 +469,8 @@ test("nullableKeys type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("nullishKeys type util", () => {
@@ -474,7 +505,8 @@ test("nullishKeys type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("optionalKeys type util", () => {
@@ -501,7 +533,8 @@ test("optionalKeys type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("requiredKeys type util", () => {
@@ -528,7 +561,8 @@ test("requiredKeys type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("extractClassProps type util", () => {
@@ -547,7 +581,8 @@ test("extractClassProps type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("numberEnumFromTuple type util", () => {
@@ -563,7 +598,8 @@ test("numberEnumFromTuple type util", () => {
 			>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("isUnion type util", () => {
@@ -585,7 +621,8 @@ test("isUnion type util", () => {
 			Utils.equal<Utils.isUnion<never>, false>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("atLeast type util", () => {
@@ -599,7 +636,8 @@ test("atLeast type util", () => {
 			Utils.equal<Utils.atLeast<string, number>, string[]>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });
 
 test("deepReadonly type util", () => {
@@ -661,5 +699,6 @@ test("deepReadonly type util", () => {
 			Utils.equal<Utils.deepReadonly<T2>, TExpected2>,
 		]
 	>;
-	assertType<TTests>(true);
+
+	expectTypeOf<true>().toEqualTypeOf<TTests>();
 });

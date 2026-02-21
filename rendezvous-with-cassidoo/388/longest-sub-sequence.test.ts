@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { longestSubsequence } from "./longest-sub-sequence.js";
 
@@ -8,7 +8,7 @@ test("testing longestSubsequence 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing longestSubsequence 2", () => {
@@ -17,7 +17,7 @@ test("testing longestSubsequence 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing longestSubsequence 3", () => {
@@ -26,5 +26,5 @@ test("testing longestSubsequence 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

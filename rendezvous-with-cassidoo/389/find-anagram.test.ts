@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { findAnagrams } from "./find-anagram.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing findAnagram against test 1", () => {
 	const result = findAnagrams("cbaebabacd", "abc"); // cSpell: disable-line;
@@ -8,7 +10,9 @@ test("testing findAnagram against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing findAnagram against test 2", () => {
@@ -17,7 +21,9 @@ test("testing findAnagram against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing findAnagram against test 3", () => {
@@ -26,5 +32,7 @@ test("testing findAnagram against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

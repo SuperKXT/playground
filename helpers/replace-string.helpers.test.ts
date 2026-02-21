@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { replaceString } from "./replace-string.helpers.js";
 
@@ -10,7 +10,7 @@ test("replaceString", () => {
 
 	expect(first.response).toBe(first.expected);
 
-	assertType<typeof first.response>(first.expected);
+	expectTypeOf(first.response).toEqualTypeOf(first.expected);
 
 	const second = {
 		response: replaceString("example_string_value", " ", "-"),
@@ -19,5 +19,5 @@ test("replaceString", () => {
 
 	expect(second.response).toBe(second.expected);
 
-	assertType<typeof second.response>(second.expected);
+	expectTypeOf(second.response).toEqualTypeOf(second.expected);
 });

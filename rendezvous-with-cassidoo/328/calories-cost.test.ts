@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { caloriesCost } from "./calories-cost.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing caloriesCost against test 1", () => {
 	const calories = [200, 400, 600, 800];
@@ -12,5 +14,7 @@ test("testing caloriesCost against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

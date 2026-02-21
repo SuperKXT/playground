@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { reversedSquare } from "./reversed-squares.js";
 
@@ -7,7 +7,7 @@ test("testing reversedSquares against test 1", () => {
 
 	expect(result).toBe(true);
 
-	assertType<true>(result);
+	expectTypeOf(result).toEqualTypeOf<true>();
 });
 
 test("testing reversedSquares against test 2", () => {
@@ -15,7 +15,7 @@ test("testing reversedSquares against test 2", () => {
 
 	expect(result).toBe(false);
 
-	assertType<false>(result);
+	expectTypeOf(result).toEqualTypeOf<false>();
 });
 
 test("testing reversedSquares against test 3", () => {
@@ -23,7 +23,7 @@ test("testing reversedSquares against test 3", () => {
 
 	expect(result).toBe(true);
 
-	assertType<true>(result);
+	expectTypeOf(result).toEqualTypeOf<true>();
 });
 
 test("testing reversedSquares against test 4", () => {
@@ -31,5 +31,5 @@ test("testing reversedSquares against test 4", () => {
 
 	expect(result).toBe(false);
 
-	assertType<false>(result);
+	expectTypeOf(result).toEqualTypeOf<false>();
 });

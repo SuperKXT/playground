@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { permute } from "./permute.js";
 
@@ -8,5 +8,5 @@ test("testing permute", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

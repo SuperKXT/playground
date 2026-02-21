@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { fourSum } from "./four-sum.js";
 
@@ -15,7 +15,7 @@ test("testing fourSum against test 1", () => {
 
 	expect(matched).toBe(true);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing fourSum against test 2", () => {
@@ -24,7 +24,7 @@ test("testing fourSum against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing fourSum against test 3", () => {
@@ -36,7 +36,7 @@ test("testing fourSum against test 3", () => {
 
 	expect(matched).toBe(true);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing fourSum against test 4", () => {
@@ -48,7 +48,7 @@ test("testing fourSum against test 4", () => {
 
 	expect(matched).toBe(true);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing fourSum against test 5", () => {
@@ -60,7 +60,7 @@ test("testing fourSum against test 5", () => {
 
 	expect(matched).toBe(true);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing fourSum against test 6", () => {
@@ -72,5 +72,5 @@ test("testing fourSum against test 6", () => {
 
 	expect(matched).toBe(true);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

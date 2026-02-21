@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { minLaundryLoads } from "./min-laundry-loads.js";
 
@@ -9,11 +9,11 @@ test("testing waysToScore against test 1", () => {
 		["red", "delicate"],
 		["blue", "heavy"],
 	]);
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing waysToScore against test 2", () => {
@@ -23,9 +23,9 @@ test("testing waysToScore against test 2", () => {
 		["white", "normal"],
 		["white", "heavy"],
 	]);
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

@@ -1,30 +1,30 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { countAndSay } from "./count-and-say.js";
 
 test("testing countAndSay against test 1", () => {
 	const result = countAndSay(112222555);
-	const expected = "two 1s, then four 2s, then three 5s";
+	const expected = "two 1s, then four 2s, then three 5s" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing countAndSay against test 2", () => {
 	const result = countAndSay(3333333333);
-	const expected = "ten 3s";
+	const expected = "ten 3s" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing countAndSay against test 3", () => {
 	const result = countAndSay(3333333333333333);
-	const expected = "sixteen 3s";
+	const expected = "sixteen 3s" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { maxProduct } from "./max-product.js";
 
@@ -8,7 +8,7 @@ test("testing maxProduct against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 2", () => {
@@ -17,7 +17,7 @@ test("testing maxProduct against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 3", () => {
@@ -26,7 +26,7 @@ test("testing maxProduct against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 4", () => {
@@ -35,7 +35,7 @@ test("testing maxProduct against test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 5", () => {
@@ -44,7 +44,7 @@ test("testing maxProduct against test 5", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 6", () => {
@@ -53,7 +53,7 @@ test("testing maxProduct against test 6", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 7", () => {
@@ -62,7 +62,7 @@ test("testing maxProduct against test 7", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxProduct against test 8", () => {
@@ -71,5 +71,5 @@ test("testing maxProduct against test 8", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

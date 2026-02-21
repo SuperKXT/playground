@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { addOperators } from "./add-operators.js";
 
@@ -8,7 +8,7 @@ test("testing addOperators against test 1", () => {
 
 	expect(result.sort()).toStrictEqual(expected.sort());
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing addOperators against test 2", () => {
@@ -17,5 +17,5 @@ test("testing addOperators against test 2", () => {
 
 	expect(result.sort()).toStrictEqual(expected.sort());
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

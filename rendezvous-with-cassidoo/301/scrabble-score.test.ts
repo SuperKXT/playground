@@ -1,5 +1,5 @@
 /** cSpell: disable */
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { scrabbleScore } from "./scrabble-score.js";
 
@@ -8,11 +8,11 @@ test("should test scrabbleScore", () => {
 
 	expect(response1).toBe(49);
 
-	assertType<49>(response1);
+	expectTypeOf(response1).toEqualTypeOf<49>();
 
 	const response2 = scrabbleScore("EDBFKJQ");
 
 	expect(response2).toBe(33);
 
-	assertType<33>(response2);
+	expectTypeOf(response2).toEqualTypeOf<33>();
 });

@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { typeMatchup } from "./type-matchup.js";
 
@@ -11,7 +11,7 @@ test("testing typeMatchup against test 1", async () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing typeMatchup against test 2", async () => {

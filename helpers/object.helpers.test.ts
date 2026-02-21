@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import {
 	deepMerge,
@@ -23,7 +23,7 @@ test("testing objectEntries", () => {
 		["second", 2],
 	]);
 
-	assertType<Array<["first" | "second", 1 | 2]>>(entries);
+	expectTypeOf(entries).toEqualTypeOf<Array<[keyof typeof object, 1 | 2]>>();
 });
 
 test("testing objectKeys", () => {
@@ -32,7 +32,7 @@ test("testing objectKeys", () => {
 
 	expect(keys).toStrictEqual(["first", "second"]);
 
-	assertType<Array<"first" | "second">>(keys);
+	expectTypeOf(keys).toEqualTypeOf<Array<keyof typeof object>>();
 });
 
 test("testing objectValues", () => {
@@ -41,7 +41,7 @@ test("testing objectValues", () => {
 
 	expect(values).toStrictEqual([1, 2]);
 
-	assertType<Array<1 | 2>>(values);
+	expectTypeOf(values).toEqualTypeOf<Array<1 | 2>>();
 });
 
 test("testing omit", () => {
@@ -51,7 +51,7 @@ test("testing omit", () => {
 
 	expect(result1).toStrictEqual(omitted1);
 
-	assertType<typeof omitted1>(result1);
+	expectTypeOf(omitted1).toEqualTypeOf(result1);
 
 	const omitted2 = { first: 1 } as { first: 1 } | { zero: 0 };
 	const object2 = { ...omitted2, second: 2 };
@@ -59,7 +59,7 @@ test("testing omit", () => {
 
 	expect(result2).toStrictEqual(omitted2);
 
-	assertType<typeof omitted2>(result2);
+	expectTypeOf(omitted2).toEqualTypeOf(result2);
 });
 
 test("testing pick", () => {
@@ -70,7 +70,7 @@ test("testing pick", () => {
 
 	expect(result1).toStrictEqual(picked1);
 
-	assertType<typeof picked1>(result1);
+	expectTypeOf(picked1).toEqualTypeOf(result1);
 
 	const picked2 = { a: 1, b: 2 };
 	const object2 = { ...picked2, c: 3 };
@@ -78,7 +78,7 @@ test("testing pick", () => {
 
 	expect(result2).toStrictEqual(picked2);
 
-	assertType<typeof picked2>(result2);
+	expectTypeOf(picked2).toEqualTypeOf(result2);
 });
 
 test("testing pickAndOmit", () => {
@@ -94,7 +94,7 @@ test("testing pickAndOmit", () => {
 
 	expect(result1).toStrictEqual(expected1);
 
-	assertType<typeof result1>(expected1);
+	expectTypeOf(result1).toEqualTypeOf(expected1);
 
 	const picked2 = { a: 1 };
 	const omitted2 = { b: 2, c: 3 };
@@ -108,7 +108,7 @@ test("testing pickAndOmit", () => {
 
 	expect(result2).toStrictEqual(expected2);
 
-	assertType<typeof result2>(expected2);
+	expectTypeOf(result2).toEqualTypeOf(expected2);
 });
 
 test("testing deepMerge", () => {
@@ -124,7 +124,7 @@ test("testing deepMerge", () => {
 
 	expect(result).toStrictEqual(merged);
 
-	assertType<typeof merged>(result);
+	expectTypeOf(merged).toEqualTypeOf(result);
 });
 
 test("testing objectToFormData", () => {
@@ -138,7 +138,8 @@ test("testing objectToFormData", () => {
 
 	const second = { b: "new", c: 3, d: true };
 	const result = objectToFormData(second);
-	assertType<FormData>(result);
+
+	expectTypeOf(result).toEqualTypeOf<FormData>();
 
 	expect(result.get("b")).toBe("new");
 	expect(result.get("c")).toBe("3");
@@ -148,7 +149,8 @@ test("testing objectToFormData", () => {
 test("testing searchParamsToObject", () => {
 	const val1 = "AppName://redirect/subpart/?token=123&refreshToken=123&other";
 	const result1 = searchParamsToObject(val1);
-	assertType<Record<string, string>>(result1);
+
+	expectTypeOf(result1).toEqualTypeOf<Record<string, string>>();
 
 	expect(result1).toStrictEqual({
 		token: "123",
@@ -158,13 +160,15 @@ test("testing searchParamsToObject", () => {
 
 	const val2 = "AppName://redirect/subpart/?";
 	const result2 = searchParamsToObject(val2);
-	assertType<Record<string, string>>(result2);
+
+	expectTypeOf(result2).toEqualTypeOf<Record<string, string>>();
 
 	expect(result2).toStrictEqual({});
 
 	const val3 = "foo=";
 	const result3 = searchParamsToObject(val3);
-	assertType<Record<string, string>>(result3);
+
+	expectTypeOf(result3).toEqualTypeOf<Record<string, string>>();
 
 	expect(result3).toStrictEqual({ foo: "" });
 });
@@ -172,13 +176,15 @@ test("testing searchParamsToObject", () => {
 test("testing objectToSearchParams", () => {
 	const val1 = { a: "1", b: "old", c: "3", d: "new", e: null, f: undefined };
 	const result1 = objectToSearchParams(val1);
-	assertType<string>(result1);
+
+	expectTypeOf(result1).toEqualTypeOf<string>();
 
 	expect(result1).toBe("a=1&b=old&c=3&d=new");
 
 	const val2 = {};
 	const result2 = objectToSearchParams(val2);
-	assertType<string>(result2);
+
+	expectTypeOf(result2).toEqualTypeOf<string>();
 
 	expect(result2).toBe("");
 });
@@ -187,7 +193,8 @@ test("testing swapKeysAndValues", () => {
 	const val = { a: "1", b: "old", c: "3", d: "new" } as const;
 	const result = swapKeysAndValues(val);
 	const expected = { "1": "a", old: "b", "3": "c", new: "d" } as const;
-	assertType<typeof expected>(result);
+
+	expectTypeOf(expected).toEqualTypeOf(result);
 
 	expect(result).toStrictEqual(expected);
 });

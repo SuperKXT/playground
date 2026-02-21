@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { towerOfHanoi } from "./tower-of-hanoi.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing towerOfHanoi against test 1", () => {
 	const result = towerOfHanoi(0);
@@ -8,7 +10,9 @@ test("testing towerOfHanoi against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing towerOfHanoi against test 2", () => {
@@ -17,7 +21,9 @@ test("testing towerOfHanoi against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing compress against test 3", () => {
@@ -30,7 +36,9 @@ test("testing compress against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing compress against test 4", () => {
@@ -47,7 +55,9 @@ test("testing compress against test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing compress against test 5", () => {
@@ -88,5 +98,7 @@ test("testing compress against test 5", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

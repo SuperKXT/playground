@@ -1,5 +1,5 @@
 /** cSpell: disable */
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { mmmPie } from "./mmm-pie.js";
 
@@ -15,5 +15,5 @@ test("should test mmmPie", () => {
 
 	expect(response).toBe(2);
 
-	assertType<2>(response);
+	expectTypeOf(response).toEqualTypeOf<2>();
 });

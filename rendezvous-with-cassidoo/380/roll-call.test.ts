@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { rollCall } from "./roll-call.js";
 
@@ -10,7 +10,7 @@ test("testing rollCall 1", () => {
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing rollCall 2", () => {
@@ -41,7 +41,7 @@ test("testing rollCall 2", () => {
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing rollCall 3", () => {
@@ -50,5 +50,5 @@ test("testing rollCall 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof expected>>(result);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

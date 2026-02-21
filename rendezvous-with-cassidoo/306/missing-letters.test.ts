@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { missingLetters } from "./missing-letters.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing missingLetters against test 1", () => {
 	const response = missingLetters(["a", "b", "c", "d", "f"]);
@@ -8,7 +10,9 @@ test("testing missingLetters against test 1", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing missingLetters against test 2", () => {
@@ -41,7 +45,9 @@ test("testing missingLetters against test 2", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing missingLetters against test 3", () => {
@@ -50,7 +56,9 @@ test("testing missingLetters against test 3", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing missingLetters against test 4", () => {
@@ -59,5 +67,7 @@ test("testing missingLetters against test 4", () => {
 
 	expect(response).toStrictEqual(expected);
 
-	assertType<typeof expected>(response);
+	expectTypeOf<Utils.deepReadonly<typeof response>>(response).toEqualTypeOf(
+		expected,
+	);
 });

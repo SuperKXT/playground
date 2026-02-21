@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { shieldBreak } from "./shield-break.js";
 
@@ -8,7 +8,7 @@ test("testing shieldBreak against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing shieldBreak against test 2", () => {
@@ -17,7 +17,7 @@ test("testing shieldBreak against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing shieldBreak against test 3", () => {
@@ -26,5 +26,5 @@ test("testing shieldBreak against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

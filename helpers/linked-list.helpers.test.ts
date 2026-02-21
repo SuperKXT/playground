@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import {
 	arrayToLinkedList,
@@ -6,6 +6,8 @@ import {
 	insertToLinkedList,
 	linkedListToArray,
 } from "./linked-list.helpers.js";
+
+import type { Utils } from "../types/utils.types.js";
 
 test("testing arrayToLinkedList helper", () => {
 	const test1 = {
@@ -17,7 +19,9 @@ test("testing arrayToLinkedList helper", () => {
 
 	expect(test1.response).toStrictEqual(test1.expected);
 
-	assertType<(typeof test1)["response"]>(test1.expected);
+	expectTypeOf<Utils.deepReadonly<typeof test1.response>>(
+		test1.response,
+	).toEqualTypeOf(test1.expected);
 
 	const test2 = {
 		response: arrayToLinkedList([]),
@@ -26,7 +30,9 @@ test("testing arrayToLinkedList helper", () => {
 
 	expect(test2.response).toStrictEqual(test2.expected);
 
-	assertType<(typeof test2)["response"]>(test2.expected);
+	expectTypeOf<Utils.deepReadonly<typeof test2.response>>(
+		test2.response,
+	).toEqualTypeOf(test2.expected);
 });
 
 test("testing insertToLinkedList helper", () => {
@@ -45,7 +51,9 @@ test("testing insertToLinkedList helper", () => {
 
 	expect(response1).toStrictEqual(test1.expected);
 
-	assertType<typeof response1>(test1.expected);
+	expectTypeOf<Utils.deepReadonly<typeof response1>>(response1).toEqualTypeOf(
+		test1.expected,
+	);
 
 	const test2 = {
 		list: { head: null } as const,
@@ -55,7 +63,9 @@ test("testing insertToLinkedList helper", () => {
 
 	expect(response2).toStrictEqual(test2.expected);
 
-	assertType<typeof response2>(test2.expected);
+	expectTypeOf<Utils.deepReadonly<typeof response2>>(response2).toEqualTypeOf(
+		test2.expected,
+	);
 });
 
 test("testing insertNodeToLinkedList helper", () => {
@@ -67,7 +77,7 @@ test("testing insertNodeToLinkedList helper", () => {
 
 	expect(response1).toStrictEqual(test1.expected);
 
-	assertType<typeof response1>(test1.expected);
+	expectTypeOf(response1).toEqualTypeOf(test1.expected);
 
 	const list2 = arrayToLinkedList([1, 2, 3] as number[]);
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -77,7 +87,7 @@ test("testing insertNodeToLinkedList helper", () => {
 
 	expect(response2).toStrictEqual(list2);
 
-	assertType<typeof response2>(list2);
+	expectTypeOf(response2).toEqualTypeOf(list2);
 });
 
 test("testing linkedListToArray helper", () => {
@@ -90,7 +100,9 @@ test("testing linkedListToArray helper", () => {
 
 	expect(test1.response).toStrictEqual(test1.expected);
 
-	assertType<(typeof test1)["expected"]>(test1.response);
+	expectTypeOf<Utils.deepReadonly<typeof test1.response>>(
+		test1.response,
+	).toEqualTypeOf(test1.expected);
 
 	const test2 = {
 		response: linkedListToArray({ head: null }),
@@ -99,5 +111,7 @@ test("testing linkedListToArray helper", () => {
 
 	expect(test2.response).toStrictEqual(test2.expected);
 
-	assertType<(typeof test2)["expected"]>(test2.response);
+	expectTypeOf<Utils.deepReadonly<typeof test2.response>>(
+		test2.response,
+	).toEqualTypeOf(test2.expected);
 });

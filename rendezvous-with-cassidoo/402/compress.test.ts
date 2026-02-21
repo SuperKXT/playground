@@ -1,6 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { compress } from "./compress.js";
+
+import type { Utils } from "../../types/utils.types.js";
 
 test("testing compress against test 1", () => {
 	const result = compress(["a", "b", "b", "b", "c"]);
@@ -8,7 +10,9 @@ test("testing compress against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing compress against test 2", () => {
@@ -17,5 +21,7 @@ test("testing compress against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<Readonly<typeof result>>(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

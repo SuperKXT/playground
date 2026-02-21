@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { hills, valleys } from "./hills-valleys.js";
 
@@ -9,7 +9,7 @@ test("testing hills and valleys against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing hills and valleys against test 2", () => {
@@ -19,7 +19,7 @@ test("testing hills and valleys against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing hills and valleys against test 3", () => {
@@ -29,7 +29,7 @@ test("testing hills and valleys against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing hills and valleys against test 4", () => {
@@ -39,5 +39,5 @@ test("testing hills and valleys against test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	assertType<typeof result>(expected);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
