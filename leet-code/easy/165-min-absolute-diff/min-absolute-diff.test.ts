@@ -11,6 +11,7 @@ test("testing minAbsoluteDiff for test 1", () => {
 		[2, 3],
 		[3, 4],
 	];
+
 	expect(result).toStrictEqual(expected);
 
 	type TTrue = Utils.equal<typeof result, typeof expected>;
@@ -20,6 +21,7 @@ test("testing minAbsoluteDiff for test 1", () => {
 test("testing minAbsoluteDiff for test 2", () => {
 	const result = minAbsoluteDiff([1, 3, 6, 10, 15]);
 	const expected: Array<[number, number]> = [[1, 3]];
+
 	expect(result).toStrictEqual(expected);
 
 	type TTrue = Utils.equal<typeof result, typeof expected>;
@@ -33,6 +35,7 @@ test("testing minAbsoluteDiff for test 3", () => {
 		[19, 23],
 		[23, 27],
 	];
+
 	expect(result).toStrictEqual(expected);
 
 	type TTrue = Utils.equal<typeof result, typeof expected>;

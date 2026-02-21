@@ -12,19 +12,23 @@ const INPUT = [
 ].join("\n");
 
 type TSolution = Awaited<ReturnType<typeof campCleanup>>;
+
 test("testing campCleanup against example input", async () => {
 	const response = await campCleanup(INPUT);
 	const solution: TSolution = {
 		fullOverlap: 2,
 		overlap: 4,
 	};
+
 	expect(response).toStrictEqual(solution);
 });
+
 test("testing campCleanup against real input", async () => {
 	const response = await campCleanup();
 	const solution: TSolution = {
 		fullOverlap: 498,
 		overlap: 859,
 	};
+
 	expect(response).toStrictEqual(solution);
 });

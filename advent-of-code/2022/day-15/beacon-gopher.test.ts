@@ -19,8 +19,10 @@ Sensor at x=17, y=20: closest beacon is at x=21, y=22
 Sensor at x=16, y=7: closest beacon is at x=15, y=3
 Sensor at x=14, y=3: closest beacon is at x=15, y=3
 Sensor at x=20, y=1: closest beacon is at x=15, y=3`;
+
 test("testing beaconGopher1 against example input", () => {
 	const response = beaconGopher1(EXAMPLE, 10);
+
 	expect(response).toBe(26);
 });
 
@@ -34,6 +36,7 @@ test("testing beaconGopher1 against example input", () => {
 
 test("testing beaconGopher2 against example input", () => {
 	const response = beaconGopher2(EXAMPLE, 20);
+
 	expect(response).toBe(56000011);
 });
 

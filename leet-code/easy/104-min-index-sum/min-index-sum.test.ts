@@ -15,7 +15,9 @@ test("testing minIndexSum for test 1", () => {
 		],
 	);
 	const expected = ["Shogun"];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -26,7 +28,9 @@ test("testing minIndexSum for test 2", () => {
 		["KFC", "Shogun", "Burger King"],
 	);
 	const expected = ["Shogun"];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -37,7 +41,9 @@ test("testing minIndexSum for test 3", () => {
 		["sad", "happy", "good"],
 	);
 	const expected = ["happy", "sad"];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -53,7 +59,9 @@ test("testing minIndexSum for test 1", () => {
 		],
 	);
 	const expected = ["Piatti"]; // cSpell: disable-line
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

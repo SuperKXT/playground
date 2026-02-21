@@ -10,7 +10,9 @@ test("testing waysToScore against test 1", () => {
 		["blue", "heavy"],
 	]);
 	const expected = 3;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });
 
@@ -22,6 +24,8 @@ test("testing waysToScore against test 2", () => {
 		["white", "heavy"],
 	]);
 	const expected = 2;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });

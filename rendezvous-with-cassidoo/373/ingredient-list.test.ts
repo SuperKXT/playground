@@ -8,6 +8,8 @@ test("testing ingredientList", () => {
 		pantry: ["sugar", "butter", "milk"],
 	});
 	const expected1 = 2;
+
 	expect(result1).toStrictEqual(expected1);
+
 	assertType<Readonly<typeof result1>>(expected1);
 });

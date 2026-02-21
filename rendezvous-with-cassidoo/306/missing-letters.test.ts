@@ -5,7 +5,9 @@ import { missingLetters } from "./missing-letters.js";
 test("testing missingLetters against test 1", () => {
 	const response = missingLetters(["a", "b", "c", "d", "f"]);
 	const expected = ["e"] as const;
+
 	expect(response).toStrictEqual(expected);
+
 	assertType<typeof expected>(response);
 });
 
@@ -36,20 +38,26 @@ test("testing missingLetters against test 2", () => {
 		"z",
 	]);
 	const expected = ["f", "g", "v"] as const;
+
 	expect(response).toStrictEqual(expected);
+
 	assertType<typeof expected>(response);
 });
 
 test("testing missingLetters against test 3", () => {
 	const response = missingLetters(["a", "b"]);
 	const expected = [] as const;
+
 	expect(response).toStrictEqual(expected);
+
 	assertType<typeof expected>(response);
 });
 
 test("testing missingLetters against test 4", () => {
 	const response = missingLetters([]);
 	const expected = [] as const;
+
 	expect(response).toStrictEqual(expected);
+
 	assertType<typeof expected>(response);
 });

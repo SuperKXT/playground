@@ -38,7 +38,7 @@ const INVALID_BOARDS: TInvalidBoard[] = [
 test.each(VALID_BOARDS)("assertValidCatanBoard for valid input", (board) => {
 	expect(() => {
 		assertValidCatanBoard(board);
-	}).not.toThrow();
+	}).not.toThrowError();
 });
 
 test.each(INVALID_BOARDS)(
@@ -46,14 +46,15 @@ test.each(INVALID_BOARDS)(
 	({ board, error }) => {
 		expect(() => {
 			assertValidCatanBoard(board);
-		}).toThrow(error);
+		}).toThrowError(error);
 	},
 );
+
 test("testing generateCatanBoard", () => {
 	expect(() => {
 		[...new Array<unknown>(1000)].forEach(() => {
 			const board = generateCatanBoard();
 			assertValidCatanBoard(board);
 		});
-	}).not.toThrow();
+	}).not.toThrowError();
 });

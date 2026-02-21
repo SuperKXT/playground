@@ -29,10 +29,12 @@ const tests: TTest[] = [
 		output: 0,
 	},
 ];
+
 test.each(tests)(
 	"should return the sum of odd squares",
 	({ input, output }) => {
 		const response = oddSquareNumbers(input);
+
 		expect(response).toStrictEqual(output);
 	},
 );

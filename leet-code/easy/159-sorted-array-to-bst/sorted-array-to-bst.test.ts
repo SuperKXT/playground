@@ -12,6 +12,7 @@ test("testing sortedArrayToBST for test 1", () => {
 		left: { val: -3, left: { val: -10, left: null, right: null }, right: null },
 		right: { val: 9, left: { val: 5, left: null, right: null }, right: null },
 	} as TBinaryTreeNode<number>;
+
 	expect(result).toStrictEqual(expected);
 
 	type TTrue = Utils.equal<typeof result, typeof expected>;
@@ -25,6 +26,7 @@ test("testing sortedArrayToBST for test 2", () => {
 		left: { val: 1, left: null, right: null },
 		right: null,
 	} as TBinaryTreeNode<number>;
+
 	expect(result).toStrictEqual(expected);
 
 	type TTrue = Utils.equal<typeof result, typeof expected>;

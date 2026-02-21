@@ -20,6 +20,7 @@ const TESTS: TTest[] = [
 	{ input: 10, output: [3, 4, 7] },
 	{ input: 234, output: [4, 7, 12, 36, 52, 67, 156] },
 ];
+
 test.each(TESTS)("testing findAntiDivisors", ({ input, output }) => {
 	expect(findAntiDivisors(input)).toStrictEqual(output);
 });

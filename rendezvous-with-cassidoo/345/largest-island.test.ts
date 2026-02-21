@@ -11,6 +11,8 @@ test("testing largestIsland against test 1", () => {
 	];
 	const result = largestIsland(arr);
 	const expected = 7;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });

@@ -13,7 +13,9 @@ const TESTS: TTest[] = [
 	{ input: [2, 0], output: 0 },
 	{ input: [3, 1], output: 3 },
 ];
+
 test.each(TESTS)("testing passDoors", ({ input, output }) => {
 	const response = passDoors(...input);
+
 	expect(response).toStrictEqual(output);
 });

@@ -15,6 +15,7 @@ const TESTS: TTest[] = [
 	{ input: "", output: "" },
 	{ input: "33032420000", output: "33132424" },
 ];
+
 test.each(TESTS)("testing replaceZeros", ({ input, output }) => {
 	expect(replaceZeros(input)).toStrictEqual(output);
 });

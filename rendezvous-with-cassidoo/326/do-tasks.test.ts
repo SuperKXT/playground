@@ -14,6 +14,8 @@ test("testing doWork against test 1", () => {
 
 	const result = doWork(tasks, 6);
 	const expected = ["Task 2", "Task 5", "Task 6"] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof result>>(expected);
 });

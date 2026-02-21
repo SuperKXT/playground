@@ -40,7 +40,9 @@ test("testing hungryBearsImmutable against test 1", () => {
 	];
 	const result = hungryBearsImmutable(bears);
 	const expected = ["Chicago", "Winnie"];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -48,7 +50,9 @@ test("testing hungryBearsImmutable against test 1", () => {
 test("testing hungryBearsImmutable against test 2", () => {
 	const { testData, expected } = getTestCases();
 	const result = hungryBearsImmutable(testData);
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -63,7 +67,9 @@ test("testing hungryBearsMutable against test 1", () => {
 	];
 	const result = hungryBearsMutable(bears);
 	const expected = ["Chicago", "Winnie"];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -71,7 +77,9 @@ test("testing hungryBearsMutable against test 1", () => {
 test("testing hungryBearsMutable against test 2", () => {
 	const { testData, expected } = getTestCases();
 	const result = hungryBearsMutable(testData);
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

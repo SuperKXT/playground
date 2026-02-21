@@ -12,7 +12,9 @@ test("testing numberOfShips against test 1", () => {
 		[".", ".", ".", "."],
 	]);
 	const expected = 2;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -27,7 +29,9 @@ test("testing numberOfShips against test 2", () => {
 		["X", "X", "X", "X"],
 	]);
 	const expected = 4;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

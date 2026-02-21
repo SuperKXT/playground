@@ -13,7 +13,9 @@ test("testing assemblyTime against test 1", () => {
 		{ name: "case", arrivalDays: 3, assemblyHours: 2 },
 	]);
 	const expected = 77 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

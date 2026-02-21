@@ -16,6 +16,8 @@ test("testing calculateExecutionTimes against test 1", () => {
 		subTask1: 5 as const,
 		subTask2: 5 as const,
 	};
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });

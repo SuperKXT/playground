@@ -63,6 +63,7 @@ const TESTS: TTest[] = [
 		},
 	},
 ];
+
 test.each(TESTS)("testing isValidMove", ({ input, response }) => {
 	expect(isValidMove(input)).toStrictEqual(response);
 });

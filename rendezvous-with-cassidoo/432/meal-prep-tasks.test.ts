@@ -15,7 +15,9 @@ test("testing mealPrepTasks against test 1", () => {
 		count: 3,
 		chosen: ["Make Gravy", "Mash Potatoes", "Prep Salad"],
 	};
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

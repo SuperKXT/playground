@@ -19,7 +19,9 @@ test("testing intersectionNode for test 1", () => {
 
 	const result = intersectionNode(list1.head, list2.head);
 	const expected = intersected.head;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -33,7 +35,9 @@ test("testing intersectionNode for test 2", () => {
 
 	const result = intersectionNode(list1.head, list2.head);
 	const expected = intersected.head;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -44,7 +48,9 @@ test("testing intersectionNode for test 3", () => {
 
 	const result = intersectionNode(list1.head, list2.head);
 	const expected = null as TLinkedListNode<number>;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

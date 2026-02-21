@@ -16,7 +16,9 @@ test("testing numRookCaptures for test 1", () => {
 		[".", ".", ".", ".", ".", ".", ".", "."],
 	]);
 	const expected = 3;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -33,7 +35,9 @@ test("testing numRookCaptures for test 2", () => {
 		[".", ".", ".", ".", ".", ".", ".", "."],
 	]);
 	const expected = 0;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -50,7 +54,9 @@ test("testing numRookCaptures for test 3", () => {
 		[".", ".", ".", ".", ".", ".", ".", "."],
 	]);
 	const expected = 3;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

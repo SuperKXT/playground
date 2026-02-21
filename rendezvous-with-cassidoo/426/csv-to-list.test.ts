@@ -13,8 +13,10 @@ test("testing groupChangelog against test 1", () => {
 - Ryu, Mi-yeong, age 30, from Seoul
 - Zoey, age 24, from Burbank
 `;
+
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

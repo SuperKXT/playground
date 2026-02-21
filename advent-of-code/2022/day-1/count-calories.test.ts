@@ -12,5 +12,6 @@ test("testing countCalories", async () => {
 		topThreeCalories: 206780,
 		topThreeIndexes: [229, 178, 213],
 	};
+
 	expect(response).toStrictEqual(solution);
 });

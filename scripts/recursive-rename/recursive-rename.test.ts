@@ -176,11 +176,12 @@ test.each(SORTED_TESTS)(
 		logSpy.mockRestore();
 	},
 );
+
 test("testing recursiveRename for invalid path", async () => {
 	await expect(
 		recursiveRename("./invalid-path", { yes: true }),
-	).rejects.toThrow(RENAME_ERRORS.badPath);
+	).rejects.toThrowError(RENAME_ERRORS.badPath);
 	await expect(
 		recursiveRename(path.join(config.dirname, "README.md"), { yes: true }),
-	).rejects.toThrow(RENAME_ERRORS.badPath);
+	).rejects.toThrowError(RENAME_ERRORS.badPath);
 });

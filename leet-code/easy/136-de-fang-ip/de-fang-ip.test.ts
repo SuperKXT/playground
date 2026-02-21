@@ -7,7 +7,9 @@ import type { Utils } from "../../../types/utils.types.js";
 test("testing deFangIp for test 1", () => {
 	const result = deFangIp("1.1.1.1");
 	const expected = "1[.]1[.]1[.]1";
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -15,7 +17,9 @@ test("testing deFangIp for test 1", () => {
 test("testing deFangIp for test 2", () => {
 	const result = deFangIp("255.100.50.0");
 	const expected = "255[.]100[.]50[.]0";
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

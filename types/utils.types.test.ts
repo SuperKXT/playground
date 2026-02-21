@@ -4,7 +4,7 @@ import { assertType, test } from "vitest";
 
 import type { Utils } from "./utils.types.js";
 
-test("test prettify type util", () => {
+test("prettify type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -16,7 +16,7 @@ test("test prettify type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test equal type util", () => {
+test("equal type util", () => {
 	interface TInt1 {
 		x: 1;
 	}
@@ -55,7 +55,7 @@ test("test equal type util", () => {
 	assertType<TTrueTests>(true);
 });
 
-test("test satisfies type util", () => {
+test("satisfies type util", () => {
 	type _TTests = [
 		Utils.satisfies<1, 1>,
 		Utils.satisfies<1 | 2 | 3, number>,
@@ -71,7 +71,7 @@ test("test satisfies type util", () => {
 	];
 });
 
-test("test dropFirst type util", () => {
+test("dropFirst type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.dropFirst<[1, 2, 3]>, [2, 3]>,
@@ -82,7 +82,7 @@ test("test dropFirst type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test tuple type util", () => {
+test("tuple type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.tuple<5>, [1, 1, 1, 1, 1]>,
@@ -94,7 +94,7 @@ test("test tuple type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test repeatString type util", () => {
+test("repeatString type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.repeatString<"1", 5>, "11111">,
@@ -106,7 +106,7 @@ test("test repeatString type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test trim type util", () => {
+test("trim type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.trim<"  1   ">, "1">,
@@ -118,7 +118,7 @@ test("test trim type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test distributedArray type util", () => {
+test("distributedArray type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -134,7 +134,7 @@ test("test distributedArray type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test assertFunction type util", () => {
+test("assertFunction type util", () => {
 	const func1: Utils.assertFunction<string> = () => {
 		return undefined;
 	};
@@ -152,7 +152,7 @@ test("test assertFunction type util", () => {
 	assertType<{ foo: 1 }>(val2);
 });
 
-test("test keysOfType type util", () => {
+test("keysOfType type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.keysOfType<{ foo: 1; bar: 2 }, 1 | 2>, "foo" | "bar">,
@@ -171,7 +171,7 @@ test("test keysOfType type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test allUnionKeys type util", () => {
+test("allUnionKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.allUnionKeys<{ x: 1 } | { y: 2 }>, "x" | "y">,
@@ -182,7 +182,7 @@ test("test allUnionKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test includeUnionKeys type util", () => {
+test("includeUnionKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -195,7 +195,7 @@ test("test includeUnionKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test noUndefinedKeys type util", () => {
+test("noUndefinedKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -211,7 +211,7 @@ test("test noUndefinedKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test strictly type util", () => {
+test("strictly type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -223,7 +223,7 @@ test("test strictly type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test allOrNone type util", () => {
+test("allOrNone type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -238,7 +238,7 @@ test("test allOrNone type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test allOrNullable type util", () => {
+test("allOrNullable type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -253,7 +253,7 @@ test("test allOrNullable type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test makeUndefinedOptional type util", () => {
+test("makeUndefinedOptional type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.makeUndefinedOptional<{ x: 1 }>, { x: 1 }>,
@@ -266,7 +266,7 @@ test("test makeUndefinedOptional type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test removeIndexSignature type util", () => {
+test("removeIndexSignature type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -279,7 +279,7 @@ test("test removeIndexSignature type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test distributiveOmit type util", () => {
+test("distributiveOmit type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -291,7 +291,7 @@ test("test distributiveOmit type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test stringToUnion type util", () => {
+test("stringToUnion type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.stringToUnion<"1">, "1">,
@@ -305,7 +305,7 @@ test("test stringToUnion type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test unionToIntersection type util", () => {
+test("unionToIntersection type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -321,7 +321,7 @@ test("test unionToIntersection type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test takeOneFromUnion type util", () => {
+test("takeOneFromUnion type util", () => {
 	type TUnion = "foo" | 42 | true;
 	type TMember = Utils.takeOneFromUnion<"foo" | 42 | true>;
 
@@ -334,7 +334,7 @@ test("test takeOneFromUnion type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test unionToSingleTuple type util", () => {
+test("unionToSingleTuple type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -350,7 +350,7 @@ test("test unionToSingleTuple type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test deepMerge type util", () => {
+test("deepMerge type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -365,7 +365,7 @@ test("test deepMerge type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test unionToTuples type util", () => {
+test("unionToTuples type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.unionToTuples<never>, []>,
@@ -378,7 +378,7 @@ test("test unionToTuples type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test nonNullableKeys type util", () => {
+test("nonNullableKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -414,7 +414,7 @@ test("test nonNullableKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test nullableKeys type util", () => {
+test("nullableKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -441,7 +441,7 @@ test("test nullableKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test nullishKeys type util", () => {
+test("nullishKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -476,7 +476,7 @@ test("test nullishKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test optionalKeys type util", () => {
+test("optionalKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -503,7 +503,7 @@ test("test optionalKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test requiredKeys type util", () => {
+test("requiredKeys type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -530,7 +530,7 @@ test("test requiredKeys type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test extractClassProps type util", () => {
+test("extractClassProps type util", () => {
 	interface TTest {
 		foo: 1;
 		bar: 2;
@@ -549,7 +549,7 @@ test("test extractClassProps type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test numberEnumFromTuple type util", () => {
+test("numberEnumFromTuple type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<
@@ -565,7 +565,7 @@ test("test numberEnumFromTuple type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test isUnion type util", () => {
+test("isUnion type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.isUnion<string>, false>,
@@ -587,7 +587,7 @@ test("test isUnion type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test atLeast type util", () => {
+test("atLeast type util", () => {
 	type TTests = Utils.trueTuple<
 		[
 			Utils.equal<Utils.atLeast<string, 2>, [string, string, ...string[]]>,
@@ -601,7 +601,7 @@ test("test atLeast type util", () => {
 	assertType<TTests>(true);
 });
 
-test("test deepReadonly type util", () => {
+test("deepReadonly type util", () => {
 	type T1 = {
 		a: () => 22;
 		b: string;

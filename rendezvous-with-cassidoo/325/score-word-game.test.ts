@@ -17,6 +17,8 @@ test("testing scoreWordGame against test 1", () => {
 
 	const result = scoreWordGame(wordList, letterScores);
 	const expected = "cherry";
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });

@@ -156,6 +156,7 @@ noop
 noop`;
 
 type TSolution = ReturnType<typeof signalStrength>;
+
 test("testing signalStrength against example input", () => {
 	const response = signalStrength(EXAMPLE);
 	const solution: TSolution = {
@@ -169,6 +170,7 @@ test("testing signalStrength against example input", () => {
 		].join("\n"),
 		strength: 13140,
 	};
+
 	expect(response).toStrictEqual(solution);
 });
 
@@ -185,5 +187,6 @@ test("testing signalStrength against real input", async () => {
 		].join("\n"),
 		strength: 16060,
 	};
+
 	expect(signalStrength(input)).toStrictEqual(solution);
 });

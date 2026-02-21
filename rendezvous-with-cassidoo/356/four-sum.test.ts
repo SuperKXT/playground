@@ -12,14 +12,18 @@ test("testing fourSum against test 1", () => {
 	const matched = result.every((arr) =>
 		expected.some((row) => row.every((num) => arr.includes(num))),
 	);
-	expect(matched).toBeTruthy();
+
+	expect(matched).toBe(true);
+
 	assertType<typeof result>(expected);
 });
 
 test("testing fourSum against test 2", () => {
 	const result = fourSum([], 0);
 	const expected = [] as number[][];
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });
 
@@ -29,7 +33,9 @@ test("testing fourSum against test 3", () => {
 	const matched = result.every((arr) =>
 		expected.some((row) => row.every((num) => arr.includes(num))),
 	);
-	expect(matched).toBeTruthy();
+
+	expect(matched).toBe(true);
+
 	assertType<typeof result>(expected);
 });
 
@@ -39,7 +45,9 @@ test("testing fourSum against test 4", () => {
 	const matched = result.every((arr) =>
 		expected.some((row) => row.every((num) => arr.includes(num))),
 	);
-	expect(matched).toBeTruthy();
+
+	expect(matched).toBe(true);
+
 	assertType<typeof result>(expected);
 });
 
@@ -49,7 +57,9 @@ test("testing fourSum against test 5", () => {
 	const matched = result.every((arr) =>
 		expected.some((row) => row.every((num) => arr.includes(num))),
 	);
-	expect(matched).toBeTruthy();
+
+	expect(matched).toBe(true);
+
 	assertType<typeof result>(expected);
 });
 
@@ -59,6 +69,8 @@ test("testing fourSum against test 6", () => {
 	const matched = result.every((arr) =>
 		expected.some((row) => row.every((num) => arr.includes(num))),
 	);
-	expect(matched).toBeTruthy();
+
+	expect(matched).toBe(true);
+
 	assertType<typeof result>(expected);
 });

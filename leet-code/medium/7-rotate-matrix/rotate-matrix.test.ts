@@ -14,6 +14,7 @@ test("testing rotateMatrix for test 1", () => {
 		[8, 5, 2],
 		[9, 6, 3],
 	];
+
 	expect(arr).toStrictEqual(expected);
 });
 
@@ -31,6 +32,7 @@ test("testing rotateMatrix for test 2", () => {
 		[12, 6, 8, 9],
 		[16, 7, 10, 11],
 	];
+
 	expect(arr).toStrictEqual(expected);
 });
 
@@ -47,5 +49,6 @@ test("testing rotateMatrix for test 3", () => {
 		[11, 7, 3],
 		[12, 8, 4],
 	];
+
 	expect(arr).toStrictEqual(expected);
 });

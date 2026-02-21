@@ -20,12 +20,14 @@ const INPUT = [
 ].join("\n");
 
 type TSolution = Awaited<ReturnType<typeof supplyStacks>>;
+
 test("testing supplyStacks against example input", () => {
 	const response = supplyStacks(INPUT);
 	const solution: TSolution = {
 		part1: "CMZ",
 		part2: "MCD",
 	};
+
 	expect(response).toStrictEqual(solution);
 });
 
@@ -38,5 +40,6 @@ test("testing supplyStacks against real input", async () => {
 		/** cSpell: disable-next-line */
 		part2: "RBTWJWMCF",
 	};
+
 	expect(response).toStrictEqual(solution);
 });

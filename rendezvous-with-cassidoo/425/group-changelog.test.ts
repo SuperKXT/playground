@@ -30,7 +30,9 @@ test("testing groupChangelog against test 1", () => {
 			end: "2025-10-06T08:20:00Z",
 		},
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

@@ -9,13 +9,17 @@ test("testing addOperators against test 1", () => {
 		[14, 7],
 		[11, 4],
 	] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof expected>(result);
 });
 
 test("testing addOperators against test 2", () => {
 	const result = oddSum([2, 4, 6, 8], [10, 12, 14]);
 	const expected = [] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof expected>(result);
 });

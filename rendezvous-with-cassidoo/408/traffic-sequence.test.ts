@@ -11,20 +11,26 @@ test("testing isValidTrafficSequence against test 1", () => {
 		"green",
 	]);
 	const expected = true as const;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof expected>(result);
 });
 
 test("testing isValidTrafficSequence against test 2", () => {
 	const result = isValidTrafficSequence(["red", "yellow", "green"]);
 	const expected = false as const;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof expected>(result);
 });
 
 test("testing isValidTrafficSequence against test 3", () => {
 	const result = isValidTrafficSequence([]);
 	const expected = true as const;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof expected>(result);
 });

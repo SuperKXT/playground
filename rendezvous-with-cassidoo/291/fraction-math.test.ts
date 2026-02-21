@@ -41,10 +41,12 @@ const TESTS: TTest[] = [
 		output: "1/8",
 	},
 ];
+
 test.each(TESTS)(
 	"should return the resulting fraction in the simplest form",
 	({ args, output }) => {
 		const response = fractionMath(...args);
+
 		expect(response).toStrictEqual(output);
 	},
 );

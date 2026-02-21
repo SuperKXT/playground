@@ -14,6 +14,7 @@ const TESTS: TTest[] = [
 	{ max: 11_000, min: 10_080 },
 	{ max: 0, min: 1 },
 ];
+
 test.each(TESTS)("testing fromTo", ({ min, max }) => {
 	const generator = fromTo(min, max);
 	for (let index = min; index <= max; index++) expect(index).toBe(generator());

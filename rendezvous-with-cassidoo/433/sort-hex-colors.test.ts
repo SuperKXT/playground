@@ -41,7 +41,9 @@ test("testing sortHexColors against test 1", () => {
 		"FFFF00",
 		"FFFFFF",
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

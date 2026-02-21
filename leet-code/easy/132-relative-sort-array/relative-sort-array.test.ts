@@ -10,7 +10,9 @@ test("testing relativeSortArray for test 1", () => {
 		[2, 1, 4, 3, 9, 6],
 	);
 	const expected = [2, 2, 2, 1, 4, 3, 3, 9, 6, 7, 19];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -18,7 +20,9 @@ test("testing relativeSortArray for test 1", () => {
 test("testing relativeSortArray for test 2", () => {
 	const result = relativeSortArray([28, 6, 22, 8, 44, 17], [22, 28, 8, 6]);
 	const expected = [22, 28, 8, 6, 17, 44];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

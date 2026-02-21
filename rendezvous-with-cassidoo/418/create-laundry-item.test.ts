@@ -27,7 +27,9 @@ test("testing createLaundryItem against test 1", () => {
 		"done",
 		"done",
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

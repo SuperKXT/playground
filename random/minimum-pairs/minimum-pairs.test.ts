@@ -23,7 +23,9 @@ const TESTS: TTest[] = [
 		solution: ["2 4", "7 9"],
 	},
 ];
+
 test.each(TESTS)("testing minimumPairs", ({ input, solution }) => {
 	const response = minimumPairs(input);
+
 	expect(response).toStrictEqual(solution);
 });

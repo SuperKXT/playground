@@ -17,7 +17,9 @@ test("testing groupAnagrams for test 1", () => {
 		["nat", "tan"],
 		["ate", "eat", "tea"],
 	]);
+
 	expect(sortResults(result)).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -25,7 +27,9 @@ test("testing groupAnagrams for test 1", () => {
 test("testing groupAnagrams for test 2", () => {
 	const result = groupAnagrams([""]);
 	const expected = sortResults([[""]]);
+
 	expect(sortResults(result)).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -33,7 +37,9 @@ test("testing groupAnagrams for test 2", () => {
 test("testing groupAnagrams for test 3", () => {
 	const result = groupAnagrams(["a"]);
 	const expected = sortResults([["a"]]);
+
 	expect(sortResults(result)).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

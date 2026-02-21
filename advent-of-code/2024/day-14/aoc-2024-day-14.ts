@@ -65,7 +65,7 @@ export const aoc2024Day14 = (input: string, type: "sample" | "input") => {
 		});
 
 	let s = 0;
-	for (s = 0; s < 100; s++) {
+	for (; s < 100; s++) {
 		updateGrid({ grid, rows, cols, robots });
 	}
 
@@ -86,7 +86,7 @@ export const aoc2024Day14 = (input: string, type: "sample" | "input") => {
 
 	let christmasTree = 0;
 	if (type === "input") {
-		for (s; s < 25_000; s++) {
+		for (; s < 25_000; s++) {
 			updateGrid({ grid, rows, cols, robots });
 			const map = grid.map((row) => row.join("")).join("\n");
 			const rx = /[^0]{30,}/u;

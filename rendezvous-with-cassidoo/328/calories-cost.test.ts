@@ -9,6 +9,8 @@ test("testing caloriesCost against test 1", () => {
 
 	const result = caloriesCost(calories, prices, dailyGoal);
 	const expected = 160;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof result>>(expected);
 });

@@ -16,7 +16,9 @@ test("testing knightMoves against test 1", () => {
 		[6, 3],
 		[6, 5],
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -27,7 +29,9 @@ test("testing knightMoves against test 2", () => {
 		[1, 2],
 		[2, 1],
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -42,7 +46,9 @@ test("testing knightMoves against test 3", () => {
 		[3, 1],
 		[3, 3],
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

@@ -12,7 +12,9 @@ test("testing sameTree for test 1", () => {
 		arrayToBinaryTree([1, 2, 3]),
 	);
 	const expected = true as boolean;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -23,7 +25,9 @@ test("testing sameTree for test 2", () => {
 		arrayToBinaryTree([1, null, 2]),
 	);
 	const expected = false as boolean;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -34,7 +38,9 @@ test("testing sameTree for test 3", () => {
 		arrayToBinaryTree([1, 1, 2]),
 	);
 	const expected = false as boolean;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 
 import { stringifyError } from "./error.helpers.js";
 
-test("test stringifyError", () => {
+test("stringifyError", () => {
 	expect(stringifyError(new Error("test error"))).toBe("test error");
 	expect(stringifyError("test error")).toBe("test error");
 	expect(stringifyError(2)).toBe("2");

@@ -11,7 +11,9 @@ test("testing afterBiGram for test 1", () => {
 		"good",
 	);
 	const expected = ["girl", "student"] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -19,7 +21,9 @@ test("testing afterBiGram for test 1", () => {
 test("testing afterBiGram for test 2", () => {
 	const result = afterBiGram("we will we will rock you", "we", "will");
 	const expected = ["we", "rock"] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -31,7 +35,9 @@ test("testing afterBiGram for test 2", () => {
 		"good",
 	);
 	const expected = ["student"] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

@@ -48,21 +48,25 @@ const CHECK_TESTS: TCheckTest[] = [
 	// @ts-expect-error intentional error check
 	{ input: [5, undefined, 15], output: false },
 ];
+
 test.each(GET_TESTS)(
 	"testing getFibonacciLike for good input",
 	({ input, output }) => {
 		const response = getFibonacciLike(...input);
+
 		expect(response).toStrictEqual(output);
 	},
 );
+
 test.each(BAD_GET_TESTS)(
 	"testing getFibonacciLike for bad input",
 	({ input, error }) => {
-		expect(() => getFibonacciLike(...input)).toThrow(error);
+		expect(() => getFibonacciLike(...input)).toThrowError(error);
 	},
 );
 
 test.each(CHECK_TESTS)("testing isFibonacciLike", ({ input, output }) => {
 	const response = isFibonacciLike(input);
+
 	expect(response).toStrictEqual(output);
 });

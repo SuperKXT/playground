@@ -23,6 +23,7 @@ const EXAMPLE_2 = [
 ].join("\n");
 
 type TSolution = ReturnType<typeof ropeBridge>;
+
 test("testing ropeBridge against example input", () => {
 	const response = ropeBridge(EXAMPLE, {
 		col: 0,
@@ -32,6 +33,7 @@ test("testing ropeBridge against example input", () => {
 		firstTail: 13,
 		lastTail: 1,
 	};
+
 	expect(response).toStrictEqual(solution);
 });
 
@@ -40,6 +42,7 @@ test("testing ropeBridge against 2nd example input", () => {
 		firstTail: 88,
 		lastTail: 36,
 	};
+
 	expect(ropeBridge(EXAMPLE_2)).toStrictEqual(solution);
 });
 
@@ -49,5 +52,6 @@ test("testing ropeBridge against real input", async () => {
 		firstTail: 5902,
 		lastTail: 2445,
 	};
+
 	expect(ropeBridge(input)).toStrictEqual(solution);
 });

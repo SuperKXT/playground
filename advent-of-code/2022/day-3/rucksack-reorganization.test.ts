@@ -14,12 +14,14 @@ const INPUT = [
 ].join("\n");
 
 type TSolution = Awaited<ReturnType<typeof rucksackReorganization>>;
+
 test("testing rucksackReorganization against example input", async () => {
 	const response = await rucksackReorganization(INPUT);
 	const solution: TSolution = {
 		badgePriority: 70,
 		commonPriority: 157,
 	};
+
 	expect(response).toStrictEqual(solution);
 });
 
@@ -29,5 +31,6 @@ test("testing rucksackReorganization against actual input", async () => {
 		badgePriority: 2689,
 		commonPriority: 8176,
 	};
+
 	expect(response).toStrictEqual(solution);
 });

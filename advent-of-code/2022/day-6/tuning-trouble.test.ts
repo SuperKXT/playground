@@ -63,6 +63,7 @@ test.each(TESTS)(
 		expect(tuningTrouble(input)).toStrictEqual(output);
 	},
 );
+
 test("testing turningTrouble against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
 	const response = tuningTrouble(input);
@@ -70,5 +71,6 @@ test("testing turningTrouble against real input", async () => {
 		messageMarker: 3476,
 		packetMarker: 1210,
 	};
+
 	expect(response).toStrictEqual(solution);
 });

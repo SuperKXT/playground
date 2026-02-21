@@ -20,7 +20,9 @@ test("testing floodFill for test 1", () => {
 		[2, 2, 0],
 		[2, 0, 1],
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -39,7 +41,9 @@ test("testing floodFill for test 2", () => {
 		[0, 0, 0],
 		[0, 0, 0],
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -58,7 +62,9 @@ test("testing floodFill for test 3", () => {
 		[2, 2, 2],
 		[2, 2, 2],
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

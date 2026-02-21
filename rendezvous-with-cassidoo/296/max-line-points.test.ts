@@ -38,10 +38,12 @@ const tests: TTest[] = [
 		output: 5,
 	},
 ];
+
 test.each(tests)(
 	"should return the maximum points in a straight line",
 	({ input, output }) => {
 		const response = maxPointsOnLine(input);
+
 		expect(response).toBe(output);
 	},
 );

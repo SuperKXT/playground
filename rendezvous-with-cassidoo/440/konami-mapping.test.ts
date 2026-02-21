@@ -32,7 +32,9 @@ const tests = {
 test("testing konamiMappingRegex against test 1", () => {
 	const result = konamiMappingRegex(tests.first.str);
 	const expected = tests.first.expected;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -40,7 +42,9 @@ test("testing konamiMappingRegex against test 1", () => {
 test("testing konamiMappingRegex against test 2", () => {
 	const result = konamiMappingRegex(tests.second.str); // cSpell: disable-line
 	const expected = tests.second.expected;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -48,7 +52,9 @@ test("testing konamiMappingRegex against test 2", () => {
 test("testing konamiMappingNonRegex against test 1", () => {
 	const result = konamiMappingNonRegex(tests.first.str);
 	const expected = tests.first.expected;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -56,7 +62,9 @@ test("testing konamiMappingNonRegex against test 1", () => {
 test("testing konamiMappingNonRegex against test 2", () => {
 	const result = konamiMappingNonRegex(tests.second.str); // cSpell: disable-line
 	const expected = tests.second.expected;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

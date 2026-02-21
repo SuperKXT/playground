@@ -36,12 +36,14 @@ Monkey 3:
     If false: throw to monkey 1`;
 
 type TSolution = ReturnType<typeof monkeyBusiness>;
+
 test("testing monkeyBusiness against example input", () => {
 	const response = monkeyBusiness(EXAMPLE);
 	const solution: TSolution = {
 		bigMb: 2713310158,
 		monkeyBusiness: 10605,
 	};
+
 	expect(response).toStrictEqual(solution);
 });
 
@@ -51,5 +53,6 @@ test("testing monkeyBusiness against real input", async () => {
 		bigMb: 21816744824,
 		monkeyBusiness: 120056,
 	};
+
 	expect(monkeyBusiness(input)).toStrictEqual(solution);
 });

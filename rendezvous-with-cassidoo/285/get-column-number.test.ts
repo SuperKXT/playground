@@ -19,6 +19,7 @@ const TESTS: TTest[] = [
 	{ input: "DF", output: 110 },
 	{ input: "AAA", output: 703 },
 ];
+
 test.each(TESTS)("testing generateArrays", ({ input, output }) => {
 	expect(getColumnNumber(input)).toStrictEqual(output);
 });

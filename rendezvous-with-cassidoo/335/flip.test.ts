@@ -24,6 +24,8 @@ test("testing flip against test 1", () => {
 			[1, 2, 3],
 		] as const,
 	};
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof result>>(expected);
 });

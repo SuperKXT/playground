@@ -6,10 +6,13 @@ test("testing rollCall 1", () => {
 	// cSpell: disable
 	const result = rollCall(["yzneT", "ydissaC", "enimA"]);
 	const expected = ["Amine", "Cassidy", "Tenzy"];
+
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof expected>>(result);
 });
+
 test("testing rollCall 2", () => {
 	// cSpell: disable
 	const result = rollCall([
@@ -34,14 +37,18 @@ test("testing rollCall 2", () => {
 		"Rudolph",
 		"Vixen",
 	];
+
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof expected>>(result);
 });
 
 test("testing rollCall 3", () => {
 	const result = rollCall(["A", "B", "C"]);
 	const expected = ["A", "B", "C"];
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof expected>>(result);
 });

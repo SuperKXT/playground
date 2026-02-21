@@ -25,11 +25,13 @@ const TESTS: TTest[] = [
 		screenSize: [400, 200],
 	},
 ];
+
 test.each(TESTS)("testing cornerHit", (testCase) => {
 	const result = cornerHit(
 		testCase.boxSize,
 		testCase.initialPosition,
 		testCase.screenSize,
 	);
+
 	expect(result).toStrictEqual(testCase.result);
 });

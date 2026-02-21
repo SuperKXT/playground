@@ -14,6 +14,7 @@ const TESTS: TTest[] = [
 	{ input: 0, output: 0 },
 	{ input: -123.456, output: 12 },
 ];
+
 test.each(TESTS)("testing maxSubArray", ({ input, output }) => {
 	expect(addEventDigits(input)).toStrictEqual(output);
 	expect(addEventDigitsSinglePass(input)).toStrictEqual(output);

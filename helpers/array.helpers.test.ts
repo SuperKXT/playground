@@ -50,29 +50,35 @@ test.each(EQUALITY_TESTS)(
 	"testing areArraysEqual helper",
 	({ first, second, areEqual }) => {
 		const response = areArraysEqual(first, second);
+
 		expect(response).toStrictEqual(areEqual);
 	},
 );
 
-test("test getUniqueArray", () => {
+test("getUniqueArray", () => {
 	const array1 = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
 	const result1 = getUniqueArray(array1);
+
 	expect(result1).toStrictEqual([1, 2, 3, 4, 5]);
 
 	const array2 = ["a", "b", "c", "d", "e", "a", "b", "c", "d", "e"];
 	const result2 = getUniqueArray(array2);
+
 	expect(result2).toStrictEqual(["a", "b", "c", "d", "e"]);
 
 	const array3 = [true, false, true, false];
 	const result3 = getUniqueArray(array3);
+
 	expect(result3).toStrictEqual([true, false]);
 
 	const array4 = [{ a: 1 }, { b: 2 }, { c: 3 }, { a: 1 }, { b: 2 }, { c: 3 }];
 	const result4 = getUniqueArray(array4);
+
 	expect(result4).toStrictEqual([{ a: 1 }, { b: 2 }, { c: 3 }]);
 
 	const array5 = [[1], [2], [3], [1], [2], [3]];
 	const result5 = getUniqueArray(array5);
+
 	expect(result5).toStrictEqual([[1], [2], [3]]);
 });
 
@@ -103,8 +109,10 @@ test("testing groupArrayBy", () => {
 		[1, oneArray],
 		[2, twoArray],
 	]);
+
 	expect(result1).toStrictEqual(expected1);
-	expectTypeOf<typeof expected1>(result1);
+
+	expectTypeOf(result1).toEqualTypeOf<typeof expected1>();
 
 	const result2 = groupArrayBy(array1, "foo", "bar");
 	const expected2 = new Map([
@@ -114,8 +122,10 @@ test("testing groupArrayBy", () => {
 		["2-1", twoOneArray],
 		["2-2", towTwoArray],
 	]);
+
 	expect(result2).toStrictEqual(expected2);
-	expectTypeOf<typeof expected2>(result2);
+
+	expectTypeOf(result2).toEqualTypeOf<typeof expected2>();
 
 	const falseArray = [
 		{ foo: false, bar: 4 },
@@ -127,8 +137,10 @@ test("testing groupArrayBy", () => {
 		[false, falseArray],
 		[true, trueArray],
 	]);
+
 	expect(result3).toStrictEqual(expected3);
-	expectTypeOf<typeof expected3>(result3);
+
+	expectTypeOf(result3).toEqualTypeOf<typeof expected3>();
 
 	const nullArray = [
 		{ foo: null, bar: 4 },
@@ -143,11 +155,13 @@ test("testing groupArrayBy", () => {
 		[null, nullArray],
 		[undefined, undefinedArray],
 	]);
+
 	expect(result4).toStrictEqual(expected4);
-	expectTypeOf<typeof expected4>(result4);
+
+	expectTypeOf(result4).toEqualTypeOf<typeof expected4>();
 });
 
-test("test compareValuesForSorting", () => {
+test("compareValuesForSorting", () => {
 	expect(compareValuesForSorting(1, 2)).toBeLessThan(0);
 	expect(compareValuesForSorting(1, undefined)).toBeGreaterThan(0);
 	expect(compareValuesForSorting(undefined, 1)).toBeLessThan(0);
@@ -158,12 +172,14 @@ test("test compareValuesForSorting", () => {
 	expect(compareValuesForSorting(true, false)).toBeGreaterThan(0);
 	expect(compareValuesForSorting(true, true)).toBe(0);
 	expect(compareValuesForSorting(null, undefined)).toBe(0);
+
 	const d1 = new Date();
 	const d2 = new Date(d1.getTime() + 1000);
+
 	expect(compareValuesForSorting(d1, d2)).toBeLessThan(0);
 });
 
-test("test sortArrayBy", () => {
+test("sortArrayBy", () => {
 	const obj = [
 		{ a: 5, b: 10, c: 2 },
 		{ a: 5, b: 1, c: 2 },
@@ -175,6 +191,7 @@ test("test sortArrayBy", () => {
 		{ a: 1, b: 1, c: 40 },
 		{ a: 5, b: 10, c: 1 },
 	];
+
 	expect(sortArrayBy(obj, ["a", "b", (r) => r.c])).toStrictEqual([
 		{ a: 1, b: 1, c: 4 },
 		{ a: 1, b: 1, c: 40 },
@@ -197,119 +214,142 @@ class TestError extends Error {
 	}
 }
 
-test("test isMinArrayLength", () => {
+test("isMinArrayLength", () => {
 	const array1 = [1, 2, 3];
 	const check1 = isMinArrayLength(array1, 2);
-	expect(check1).toBeTruthy();
+
+	expect(check1).toBe(true);
+
 	// eslint-disable-next-line vitest/no-conditional-in-test
 	if (check1) {
-		expectTypeOf<[number, number, ...number[]]>(array1);
+		expectTypeOf(array1).toEqualTypeOf<[number, number, ...number[]]>();
 	} else {
-		expectTypeOf<number[]>(array1);
+		expectTypeOf(array1).toEqualTypeOf<number[]>();
 	}
 
 	const check2 = isMinArrayLength([], 1);
-	expect(check2).toBeFalsy();
+
+	expect(check2).toBe(false);
 });
 
-test("test assertMinArrayLength", () => {
+test("assertMinArrayLength", () => {
 	expect(() => {
 		const array = [1, 2, 3];
 		assertMinArrayLength(array, 2);
-		expectTypeOf<[number, number, ...number[]]>(array);
-	}).not.toThrow();
+
+		expectTypeOf(array).toEqualTypeOf<[number, number, ...number[]]>();
+	}).not.toThrowError();
 	expect(() => {
 		assertMinArrayLength([1], 2);
-	}).toThrow(`Expected Minimum Array Length: 2, Actual: 1`);
+	}).toThrowError(`Expected Minimum Array Length: 2, Actual: 1`);
 	expect(() => {
 		assertMinArrayLength([], 1, "Custom Error");
-	}).toThrow("Custom Error");
+	}).toThrowError("Custom Error");
+
 	const customError = new TestError("Test Error");
+
 	expect(() => {
 		assertMinArrayLength([], 1, () => customError);
-	}).toThrow(customError);
+	}).toThrowError(customError);
 });
 
-test("test isNonEmptyArrayLength", () => {
+test("isNonEmptyArrayLength", () => {
 	const array1 = [1, 2, 3];
 	const check1 = isNonEmptyArray(array1);
-	expect(check1).toBeTruthy();
+
+	expect(check1).toBe(true);
+
 	// eslint-disable-next-line vitest/no-conditional-in-test
 	if (check1) {
-		expectTypeOf<[number, ...number[]]>(array1);
+		expectTypeOf(array1).toEqualTypeOf<[number, ...number[]]>();
 	} else {
-		expectTypeOf<number[]>(array1);
+		expectTypeOf(array1).toEqualTypeOf<number[]>();
 	}
 
 	const check2 = isNonEmptyArray([]);
-	expect(check2).toBeFalsy();
+
+	expect(check2).toBe(false);
 });
 
-test("test assertNonEmptyArray", () => {
+test("assertNonEmptyArray", () => {
 	expect(() => {
 		const array = [1, 2, 3];
 		assertNonEmptyArray(array);
-		expectTypeOf<[number, ...number[]]>(array);
-	}).not.toThrow();
+
+		expectTypeOf(array).toEqualTypeOf<[number, ...number[]]>();
+	}).not.toThrowError();
 	expect(() => {
 		assertNonEmptyArray([]);
-	}).toThrow("Array is empty!");
+	}).toThrowError("Array is empty!");
 	expect(() => {
 		assertNonEmptyArray([], "Custom Error");
-	}).toThrow("Custom Error");
+	}).toThrowError("Custom Error");
+
 	const customError = new TestError("Test Error");
+
 	expect(() => {
 		assertNonEmptyArray([], () => customError);
-	}).toThrow(customError);
+	}).toThrowError(customError);
 });
 
-test("test isArrayLength", () => {
+test("isArrayLength", () => {
 	const array1 = [1, 2, 3];
 	const check1 = isArrayLength(array1, 3);
-	expect(check1).toBeTruthy();
+
+	expect(check1).toBe(true);
+
 	// eslint-disable-next-line vitest/no-conditional-in-test
 	if (check1) {
-		expectTypeOf<[number, ...number[]]>(array1);
+		expectTypeOf(array1).toEqualTypeOf<[number, ...number[]]>();
 	} else {
-		expectTypeOf<number[]>(array1);
+		expectTypeOf(array1).toEqualTypeOf<number[]>();
 	}
 
 	const check2 = isArrayLength([], 2);
-	expect(check2).toBeFalsy();
+
+	expect(check2).toBe(false);
 });
 
-test("test assertArrayLength", () => {
+test("assertArrayLength", () => {
 	expect(() => {
 		const array = [1, 2, 3];
 		assertArrayLength(array, 3);
-		expectTypeOf<[number, number, number]>(array);
-	}).not.toThrow();
+
+		expectTypeOf(array).toEqualTypeOf<[number, number, number]>();
+	}).not.toThrowError();
 	expect(() => {
 		assertArrayLength([1, 2], 3);
-	}).toThrow("Expected Array Length: 3, Actual: 2");
+	}).toThrowError("Expected Array Length: 3, Actual: 2");
 	expect(() => {
 		assertArrayLength([1, 2], 3, "Custom Error");
-	}).toThrow("Custom Error");
+	}).toThrowError("Custom Error");
+
 	const customError = new TestError("Test Error");
+
 	expect(() => {
 		assertArrayLength([], 2, () => customError);
-	}).toThrow(customError);
+	}).toThrowError(customError);
 });
 
-test("test range", () => {
+test("range", () => {
 	const result = range(1, 10);
+
 	expect(result).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
 	const result2 = range(5, 10);
+
 	expect(result2).toStrictEqual([5, 6, 7, 8, 9, 10]);
 
 	const result3 = range(10, 10);
+
 	expect(result3).toStrictEqual([10]);
 
 	const result4 = range(10, 5);
+
 	expect(result4).toStrictEqual([]);
 
 	const result5 = range(0, 0);
+
 	expect(result5).toStrictEqual([0]);
 });
 
@@ -323,6 +363,7 @@ test("testing inPlaceInsertToSortedArray helper for number values", () => {
 	for (const value of sourceArr) {
 		inPlaceInsertToSortedArray(arr1, value, (a, b) => a - b);
 	}
+
 	expect(arr1).toStrictEqual(sorted1);
 });
 
@@ -344,6 +385,7 @@ test("testing inPlaceInsertToSortedArray helper for string values", () => {
 	for (const value of source2) {
 		inPlaceInsertToSortedArray(res2, value);
 	}
+
 	expect(res2).toStrictEqual(sorted2);
 });
 
@@ -360,6 +402,7 @@ test("testing inPlaceInsertToSortedArray helper for object values", () => {
 	for (const value of source3) {
 		inPlaceInsertToSortedArray(res3, value, (a, b) => b.foo - a.foo);
 	}
+
 	expect(res3).toStrictEqual(sorted3);
 });
 
@@ -370,6 +413,7 @@ test("testing filterInPlace helper", () => {
 	}
 	const prev = [...sourceArr];
 	const removed = filterInPlace(sourceArr, (val) => val > 5_000);
+
 	expect(removed).toBe(5_000);
 	expect(sourceArr).toStrictEqual(prev.filter((r) => r > 5_000));
 });
@@ -379,13 +423,17 @@ test("testing getSubTuple helper", () => {
 
 	const result1 = getSubTuple(source, "bar", "after");
 	const expected1 = ["bar", "baz"] as const;
+
 	expect(result1).toStrictEqual(expected1);
-	type TTrue1 = Utils.equal<typeof result1, typeof expected1>;
-	expectTypeOf<TTrue1>(true);
+
+	expectTypeOf(expected1).toEqualTypeOf<typeof result1>();
 
 	const result2 = getSubTuple(source, "bar", "before");
 	const expected2 = ["foo", "bar"] as const;
+
 	expect(result2).toStrictEqual(expected2);
+
 	type TTrue2 = Utils.equal<typeof result2, typeof expected2>;
-	expectTypeOf<TTrue2>(true);
+
+	expectTypeOf(true).toEqualTypeOf<TTrue2>();
 });

@@ -18,7 +18,9 @@ test("testing zoom against test 1", () => {
 		[3, 3, 4, 4],
 		[3, 3, 4, 4],
 	] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -30,7 +32,9 @@ test("testing zoom against test 2", () => {
 		[7, 7, 7, 8, 8, 8, 9, 9, 9],
 		[7, 7, 7, 8, 8, 8, 9, 9, 9],
 	] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -45,7 +49,9 @@ test("testing zoom against test 3", () => {
 		[2, 2, 2],
 		[2, 2, 2],
 	] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -60,7 +66,9 @@ test("testing zoom against test 4", () => {
 		[2, 2, 2],
 		[2, 2, 2],
 	] as const;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

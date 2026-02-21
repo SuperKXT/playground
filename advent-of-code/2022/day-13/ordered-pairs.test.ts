@@ -32,12 +32,14 @@ const EXAMPLE = `[1,1,3,1,1]
 [1,[2,[3,[4,[5,6,0]]]],8,9]`;
 
 type TSolution = ReturnType<typeof orderedPairs>;
+
 test("testing orderedPairs against example input", () => {
 	const response = orderedPairs(EXAMPLE);
 	const solution: TSolution = {
 		indicesSum: 13,
 		part2: 140,
 	};
+
 	expect(response).toStrictEqual(solution);
 });
 
@@ -49,5 +51,6 @@ test("testing orderedPairs against real input", async () => {
 		indicesSum: 5013,
 		part2: 25038,
 	};
+
 	expect(orderedPairs(input)).toStrictEqual(solution);
 });

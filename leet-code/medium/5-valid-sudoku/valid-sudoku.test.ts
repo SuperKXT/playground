@@ -17,7 +17,9 @@ test("testing isValidSudoku for test 1", () => {
 		[".", ".", ".", ".", "8", ".", ".", "7", "9"],
 	]);
 	const expected = true;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -35,7 +37,9 @@ test("testing isValidSudoku for test 2", () => {
 		[".", ".", ".", ".", "8", ".", ".", "7", "9"],
 	]);
 	const expected = false;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

@@ -12,6 +12,8 @@ test("should test mmmPie", () => {
 		],
 		8,
 	);
+
 	expect(response).toBe(2);
+
 	assertType<2>(response);
 });

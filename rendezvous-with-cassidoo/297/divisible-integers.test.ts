@@ -16,6 +16,7 @@ const TESTS: TTest[] = [
 		outputs: [true, true, true, true, true, true, false, true, true],
 	},
 ];
+
 test.each(TESTS)(
 	"should return the if the number is divisible to given array digits",
 	({ input, outputs }) => {
@@ -24,6 +25,7 @@ test.each(TESTS)(
 				(idx + 1) as TDivisibleIntegerN,
 				input,
 			);
+
 			expect(response).toBe(outputs[idx]);
 		}
 	},

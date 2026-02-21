@@ -24,5 +24,6 @@ const tests: TTest[] = [
 
 test.each(tests)("should return the trimmed array", ({ input, output }) => {
 	const response = removeZeroes(input);
+
 	expect(response).toStrictEqual(output);
 });

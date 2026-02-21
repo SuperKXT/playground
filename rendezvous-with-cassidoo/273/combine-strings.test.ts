@@ -40,6 +40,7 @@ test.each(TESTS)(
 		expect(combineStrings(...input)).toStrictEqual(output);
 	},
 );
+
 test("testing combineStrings for invalid inputs", () => {
-	expect(() => combineStrings(["ab", "base", "gh"], 2)).toThrow(INVALID_ERROR);
+	expect(() => combineStrings(["ab", "base", "gh"], 2)).toThrowError(INVALID_ERROR);
 });

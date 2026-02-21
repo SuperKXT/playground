@@ -8,12 +8,14 @@ test("testing typeMatchup against test 1", async () => {
 		weakAgainst: ["flying", "psychic", "fairy"],
 		strongAgainst: ["normal", "rock", "steel", "ice", "dark"],
 	};
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });
 
 test("testing typeMatchup against test 2", async () => {
 	await expect(async () => {
 		return await typeMatchup("cassidy");
-	}).rejects.toThrow("Invalid Pokemon type: cassidy");
+	}).rejects.toThrowError("Invalid Pokemon type: cassidy");
 });

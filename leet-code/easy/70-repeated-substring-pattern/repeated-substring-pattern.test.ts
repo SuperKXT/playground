@@ -7,7 +7,9 @@ import type { Utils } from "../../../types/utils.types.js";
 test("testing repeatedSubstringPattern for test 1", () => {
 	const result = repeatedSubstringPattern("abab");
 	const expected = true;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -15,7 +17,9 @@ test("testing repeatedSubstringPattern for test 1", () => {
 test("testing repeatedSubstringPattern for test 2", () => {
 	const result = repeatedSubstringPattern("aba");
 	const expected = false;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -23,7 +27,9 @@ test("testing repeatedSubstringPattern for test 2", () => {
 test("testing repeatedSubstringPattern for test 2", () => {
 	const result = repeatedSubstringPattern("abcabcabcabc"); // cSpell: disable-line
 	const expected = true;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

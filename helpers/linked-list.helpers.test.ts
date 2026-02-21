@@ -14,14 +14,18 @@ test("testing arrayToLinkedList helper", () => {
 			head: { val: 1, next: { val: 2, next: { val: 3, next: null } } },
 		} as const,
 	};
+
 	expect(test1.response).toStrictEqual(test1.expected);
+
 	assertType<(typeof test1)["response"]>(test1.expected);
 
 	const test2 = {
 		response: arrayToLinkedList([]),
 		expected: { head: null } as const,
 	};
+
 	expect(test2.response).toStrictEqual(test2.expected);
+
 	assertType<(typeof test2)["response"]>(test2.expected);
 });
 
@@ -38,7 +42,9 @@ test("testing insertToLinkedList helper", () => {
 		} as const,
 	};
 	const response1 = insertToLinkedList(test1.list, 4);
+
 	expect(response1).toStrictEqual(test1.expected);
+
 	assertType<typeof response1>(test1.expected);
 
 	const test2 = {
@@ -46,7 +52,9 @@ test("testing insertToLinkedList helper", () => {
 		expected: { head: { val: 1, next: null } } as const,
 	};
 	const response2 = insertToLinkedList(test2.list, 1);
+
 	expect(response2).toStrictEqual(test2.expected);
+
 	assertType<typeof response2>(test2.expected);
 });
 
@@ -56,7 +64,9 @@ test("testing insertNodeToLinkedList helper", () => {
 		expected: arrayToLinkedList([1, 2, 3, 2] as number[]),
 	};
 	const response1 = insertNodeToLinkedList(test1.list, { val: 2, next: null });
+
 	expect(response1).toStrictEqual(test1.expected);
+
 	assertType<typeof response1>(test1.expected);
 
 	const list2 = arrayToLinkedList([1, 2, 3] as number[]);
@@ -66,6 +76,7 @@ test("testing insertNodeToLinkedList helper", () => {
 	list2.head!.next!.next!.next = list2.head!.next;
 
 	expect(response2).toStrictEqual(list2);
+
 	assertType<typeof response2>(list2);
 });
 
@@ -76,13 +87,17 @@ test("testing linkedListToArray helper", () => {
 		}),
 		expected: [1, 2, 3] as const,
 	};
+
 	expect(test1.response).toStrictEqual(test1.expected);
+
 	assertType<(typeof test1)["expected"]>(test1.response);
 
 	const test2 = {
 		response: linkedListToArray({ head: null }),
 		expected: [] as const,
 	};
+
 	expect(test2.response).toStrictEqual(test2.expected);
+
 	assertType<(typeof test2)["expected"]>(test2.response);
 });

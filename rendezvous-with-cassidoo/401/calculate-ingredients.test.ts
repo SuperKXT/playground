@@ -15,6 +15,8 @@ test("testing calculateIngredients against test 1", () => {
 		{ name: "sugar", amount: 300 },
 		{ name: "eggs", amount: 6 },
 	];
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<Readonly<typeof result>>(expected);
 });

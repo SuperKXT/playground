@@ -10,7 +10,9 @@ test("testing rangeAddition for test 1", () => {
 		[3, 3],
 	]);
 	const expected = 4 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -31,7 +33,9 @@ test("testing rangeAddition for test 2", () => {
 		[3, 3],
 	]);
 	const expected = 4 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -39,7 +43,9 @@ test("testing rangeAddition for test 2", () => {
 test("testing rangeAddition for test 3", () => {
 	const result = rangeAddition(3, 3, []);
 	const expected = 9 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

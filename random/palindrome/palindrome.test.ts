@@ -16,6 +16,7 @@ const TESTS: TTest[] = [
 	{ result: false, string: "palindrome" },
 	{ result: false, string: "tight fit" },
 ];
+
 test.each(TESTS)("testing canBePalindrome", ({ string, result }) => {
 	expect(canBePalindrome(string)).toBe(result);
 });

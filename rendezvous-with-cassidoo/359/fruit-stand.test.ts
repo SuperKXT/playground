@@ -15,6 +15,8 @@ test("testing FruitStand", () => {
 	// Calculate the total value of all fruits in the stand
 	const result = stand.totalValue();
 	const expected = 9;
+
 	expect(result).toStrictEqual(expected);
+
 	assertType<typeof result>(expected);
 });

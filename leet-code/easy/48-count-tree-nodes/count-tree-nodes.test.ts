@@ -9,7 +9,9 @@ import type { Utils } from "../../../types/utils.types.js";
 test("testing countNodes for test 1", () => {
 	const result = countNodes(arrayToBinaryTree([1, 2, 3, 4, 5, 6]));
 	const expected = 6 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -17,7 +19,9 @@ test("testing countNodes for test 1", () => {
 test("testing countNodes for test 2", () => {
 	const result = countNodes(arrayToBinaryTree([]));
 	const expected = 0 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -25,7 +29,9 @@ test("testing countNodes for test 2", () => {
 test("testing countNodes for test 3", () => {
 	const result = countNodes(arrayToBinaryTree([1]));
 	const expected = 1 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -33,7 +39,9 @@ test("testing countNodes for test 3", () => {
 test("testing countNodes for test 4", () => {
 	const result = countNodes(arrayToBinaryTree([1, 2, 3, 4, 5, 6, 7]));
 	const expected = 7 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

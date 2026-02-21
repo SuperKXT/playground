@@ -25,6 +25,7 @@ const TESTS: TTest[] = [
 		output: [],
 	},
 ];
+
 test.each(TESTS)("testing generateArrays", ({ input, output }) => {
 	expect(generateArrays(input)).toStrictEqual(output);
 });

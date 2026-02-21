@@ -12,7 +12,9 @@ test("testing mergeSortedLists for test 1", () => {
 		arrayToLinkedList([1, 3, 4]).head,
 	);
 	const expected = arrayToLinkedList([1, 1, 2, 3, 4, 4]).head;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -23,7 +25,9 @@ test("testing mergeSortedLists for test 2", () => {
 		arrayToLinkedList([]).head,
 	);
 	const expected = arrayToLinkedList([]).head;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -34,7 +38,9 @@ test("testing mergeSortedLists for test 2", () => {
 		arrayToLinkedList([0]).head,
 	);
 	const expected = arrayToLinkedList([0]).head;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

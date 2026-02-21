@@ -18,6 +18,7 @@ test("testing tryMontyHall", () => {
 			change: (result[3].change / iterations) * 100,
 		},
 	};
+
 	expect(Math.round(percentages[100].stay)).toBe(1);
 	expect(Math.round(percentages[100].change)).toBe(99);
 	expect([33, 34]).toContain(Math.round(percentages[3].stay));

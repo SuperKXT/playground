@@ -18,7 +18,9 @@ test("testing analyzeBaseballGame against test 1", () => {
 		awayLedInnings: [3],
 		winner: "home",
 	};
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

@@ -40,6 +40,7 @@ const getter = (arg: number) => {
 	const count = arg < 12 ? "less than a" : Math.floor(arg / 12);
 	return `${count} dozen`;
 };
+
 test("testing pluralize with providing the printing value for quantifier by getter", () => {
 	expect(pluralize`She has ${[1, getter]} eggs`).toBe(
 		"She has less than a dozen eggs",

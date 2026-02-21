@@ -75,7 +75,9 @@ const TESTS: TTest[] = [
 		output: "",
 	},
 ];
+
 test.each(TESTS)("testing formatMarkdownTable", ({ input, output }) => {
 	const formatted = formatMarkdownTable(input);
+
 	expect(formatted).toStrictEqual(output);
 });

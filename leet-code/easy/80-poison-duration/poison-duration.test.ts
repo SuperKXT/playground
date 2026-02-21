@@ -7,7 +7,9 @@ import type { Utils } from "../../../types/utils.types.js";
 test("testing poisonDuration for test 1", () => {
 	const result = poisonDuration([1, 4], 2);
 	const expected = 4 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -15,7 +17,9 @@ test("testing poisonDuration for test 1", () => {
 test("testing poisonDuration for test 2", () => {
 	const result = poisonDuration([1, 2], 2);
 	const expected = 3 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -60,7 +64,9 @@ test("testing poisonDuration for test 3", () => {
 		1,
 	);
 	const expected = 501 as number;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
 	assertType<TTrue>(true);
 });

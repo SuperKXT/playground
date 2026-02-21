@@ -13,6 +13,7 @@ const TESTS: TTest[] = [
 	{ input: "))()))))()", output: 6 },
 	{ input: ")))))", output: 5 },
 ];
+
 test.each(TESTS)("testing balanceParens", ({ input, output }) => {
 	expect(balanceParens(input)).toStrictEqual(output);
 });

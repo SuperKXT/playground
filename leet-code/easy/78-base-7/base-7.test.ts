@@ -7,7 +7,9 @@ import type { Utils } from "../../../types/utils.types.js";
 test("testing base7 for test 1", () => {
 	const result = base7(100);
 	const expected = "202" as string;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });
@@ -15,7 +17,9 @@ test("testing base7 for test 1", () => {
 test("testing base7 for test 2", () => {
 	const result = base7(-7);
 	const expected = "-10" as string;
+
 	expect(result).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result, typeof expected>;
 	assertType<TTrue>(true);
 });

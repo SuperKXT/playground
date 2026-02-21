@@ -32,6 +32,7 @@ const EXAMPLE = [
 	"5626152 d.ext",
 	"7214296 k",
 ].join("\n");
+
 test("testing raumdeuter against example input", () => {
 	expect(raumdeuter(EXAMPLE)).toStrictEqual({
 		deletedSize: 24933642,
@@ -41,6 +42,7 @@ test("testing raumdeuter against example input", () => {
 
 test("testing raumdeuter against real input", async () => {
 	const input = await readFile(path.join(config.dirname, "input.txt"), "utf-8");
+
 	expect(raumdeuter(input)).toStrictEqual({
 		deletedSize: 366028,
 		smallFiles: 1086293,

@@ -20,17 +20,23 @@ test("testing uniqueEmails for test 1", () => {
 
 	const result1 = uniqueEmailsRegex(emails);
 	const expected = 2;
+
 	expect(result1).toStrictEqual(expected);
+
 	type TTrue1 = Utils.equal<typeof result1, typeof expected>;
 	assertType<TTrue1>(true);
 
 	const result2 = uniqueEmailsManual(emails);
+
 	expect(result2).toStrictEqual(expected);
+
 	type TTrue2 = Utils.equal<typeof result2, typeof expected>;
 	assertType<TTrue2>(true);
 
 	const result3 = uniqueEmailsManualWithSlice(emails);
+
 	expect(result3).toStrictEqual(expected);
+
 	type TTrue3 = Utils.equal<typeof result3, typeof expected>;
 	assertType<TTrue3>(true);
 });
@@ -44,17 +50,23 @@ test("testing uniqueEmails for test 2", () => {
 
 	const result1 = uniqueEmailsRegex(emails);
 	const expected = 3;
+
 	expect(result1).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result1, typeof expected>;
 	assertType<TTrue>(true);
 
 	const result2 = uniqueEmailsManual(emails);
+
 	expect(result2).toStrictEqual(expected);
+
 	type TTrue2 = Utils.equal<typeof result2, typeof expected>;
 	assertType<TTrue2>(true);
 
 	const result3 = uniqueEmailsManualWithSlice(emails);
+
 	expect(result3).toStrictEqual(expected);
+
 	type TTrue3 = Utils.equal<typeof result3, typeof expected>;
 	assertType<TTrue3>(true);
 });
@@ -64,17 +76,23 @@ test("testing uniqueEmails for test 3", () => {
 
 	const result1 = uniqueEmailsRegex(emails);
 	const expected = 3 as number;
+
 	expect(result1).toStrictEqual(expected);
+
 	type TTrue = Utils.equal<typeof result1, typeof expected>;
 	assertType<TTrue>(true);
 
 	const result2 = uniqueEmailsManual(emails);
+
 	expect(result2).toStrictEqual(expected);
+
 	type TTrue2 = Utils.equal<typeof result2, typeof expected>;
 	assertType<TTrue2>(true);
 
 	const result3 = uniqueEmailsManualWithSlice(emails);
+
 	expect(result3).toStrictEqual(expected);
+
 	type TTrue3 = Utils.equal<typeof result3, typeof expected>;
 	assertType<TTrue3>(true);
 });

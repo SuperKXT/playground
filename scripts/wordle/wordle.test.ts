@@ -93,5 +93,6 @@ const TEST_CASES: TTest[] = [
 
 test.each(TEST_CASES)("testing findWordle", ({ args, results }) => {
 	const response = findWordle(args);
+
 	expect(response).toStrictEqual(results);
 });
