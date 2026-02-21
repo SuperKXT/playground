@@ -1,12 +1,12 @@
 import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
+import vitest from "@vitest/eslint-plugin";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import { importX } from "eslint-plugin-import-x";
 import node from "eslint-plugin-n";
 import "eslint-plugin-only-warn";
 import unusedImports from "eslint-plugin-unused-imports";
-import vitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -112,6 +112,11 @@ export default defineConfig([
 							name: "dayjs",
 							importNames: ["default"],
 							message: "Please import dayjsUtc helper from `~/helpers/date`.",
+						},
+						{
+							name: "vitest",
+							importNames: ["assertType"],
+							message: "Use expectTypeOf instead",
 						},
 					],
 				},
