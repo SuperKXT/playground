@@ -1,10 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { reverseLinkedList } from "./reverse-linked-list.js";
 
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing reverseLinkedList for test 1", () => {
 	const result = reverseLinkedList(arrayToLinkedList([1, 2, 3, 4, 5]).head);
@@ -12,8 +10,7 @@ test("testing reverseLinkedList for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing reverseLinkedList for test 2", () => {
@@ -22,6 +19,5 @@ test("testing reverseLinkedList for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

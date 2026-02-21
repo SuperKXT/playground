@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { moveNumsImmutable, moveNumsInPlace } from "./move-nums.js";
 
@@ -10,8 +10,9 @@ test("testing moveNumsImmutable against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing moveNumsInPlace against test 1", () => {
@@ -21,6 +22,5 @@ test("testing moveNumsInPlace against test 1", () => {
 
 	expect(arr).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof arr, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(arr).toEqualTypeOf(expected);
 });

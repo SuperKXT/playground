@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { groupAudioFiles } from "./group-audio-files.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing groupAudioFiles against test 1", () => {
 	const result = groupAudioFiles([120, 90, 60, 150, 80], 200);
@@ -10,8 +8,7 @@ test("testing groupAudioFiles against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing groupAudioFiles against test 2", () => {
@@ -20,6 +17,5 @@ test("testing groupAudioFiles against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

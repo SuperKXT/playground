@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { reverseBits } from "./reverse-bits.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing reverseBits for test 1", () => {
 	const result = reverseBits(43261596);
@@ -10,8 +8,7 @@ test("testing reverseBits for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing reverseBits for test 2", () => {
@@ -20,6 +17,5 @@ test("testing reverseBits for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

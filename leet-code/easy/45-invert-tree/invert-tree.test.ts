@@ -1,10 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { invertTree } from "./invert-tree.js";
 
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing invertTree for test 1", () => {
 	const result = invertTree(arrayToBinaryTree([4, 2, 7, 1, 3, 6, 9]));
@@ -12,8 +10,7 @@ test("testing invertTree for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing invertTree for test 2", () => {
@@ -22,6 +19,5 @@ test("testing invertTree for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

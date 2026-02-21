@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { majorityElement } from "./majority-element.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing majorityElement for test 1", () => {
 	const result = majorityElement([3, 2, 3]);
@@ -10,8 +8,7 @@ test("testing majorityElement for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing majorityElement for test 2", () => {
@@ -20,6 +17,5 @@ test("testing majorityElement for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

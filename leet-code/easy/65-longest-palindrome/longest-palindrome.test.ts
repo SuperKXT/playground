@@ -1,35 +1,30 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { longestPalindrome } from "./longest-palindrome.js";
 
-import type { Utils } from "../../../types/utils.types.js";
-
 test("testing longestPalindrome for test 1", () => {
 	const result = longestPalindrome("abccccdd"); // cSpell: disable-line
-	const expected = 7;
+	const expected = 7 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing longestPalindrome for test 2", () => {
 	const result = longestPalindrome("a");
-	const expected = 1;
+	const expected = 1 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing longestPalindrome for test 3", () => {
 	const result = longestPalindrome("ababdd"); // cSpell: disable-line
-	const expected = 6;
+	const expected = 6 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { reshapeMatrix } from "./reshape-matrix.js";
 
@@ -17,8 +17,9 @@ test("testing reshapeMatrix for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing reshapeMatrix for test 2", () => {
@@ -37,8 +38,9 @@ test("testing reshapeMatrix for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing reshapeMatrix for test 3", () => {
@@ -54,6 +56,7 @@ test("testing reshapeMatrix for test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

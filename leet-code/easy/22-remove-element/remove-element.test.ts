@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { removeElement } from "./remove-element.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing removeElement for test 1", () => {
 	const arr = [3, 2, 2, 3];
@@ -13,8 +11,7 @@ test("testing removeElement for test 1", () => {
 	expect(result).toStrictEqual(expected);
 	expect(removed).toStrictEqual(arr);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing removeElement for test 2", () => {
@@ -26,6 +23,5 @@ test("testing removeElement for test 2", () => {
 	expect(result).toStrictEqual(expected);
 	expect(removed).toStrictEqual(arr);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

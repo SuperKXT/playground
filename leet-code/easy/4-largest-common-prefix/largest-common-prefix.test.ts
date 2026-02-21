@@ -1,35 +1,30 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { longestCommonPrefix } from "./largest-common-prefix.js";
 
-import type { Utils } from "../../../types/utils.types.js";
-
 test("testing palindromeNumber for test 1", () => {
 	const result = longestCommonPrefix(["flower", "flow", "flight"]);
-	const expected = "fl";
+	const expected = "fl" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing longestCommonPrefix for test 2", () => {
 	const result = longestCommonPrefix(["dog", "race car", "car"]);
-	const expected = "";
+	const expected = "" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing longestCommonPrefix for test 3", () => {
 	const result = longestCommonPrefix([]);
-	const expected = "";
+	const expected = "" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

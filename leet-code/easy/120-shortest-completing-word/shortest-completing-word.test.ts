@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { shortestCompletingWord } from "./shortest-completing-word.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing shortestCompletingWord for test 1", () => {
 	const result = shortestCompletingWord("1s3 PSt", [
@@ -11,12 +9,11 @@ test("testing shortestCompletingWord for test 1", () => {
 		"stripe",
 		"steeple",
 	]);
-	const expected = "steps";
+	const expected = "steps" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing shortestCompletingWord for test 2", () => {
@@ -26,12 +23,11 @@ test("testing shortestCompletingWord for test 2", () => {
 		"stew",
 		"show",
 	]);
-	const expected = "pest";
+	const expected = "pest" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing shortestCompletingWord for test 3", () => {
@@ -48,10 +44,9 @@ test("testing shortestCompletingWord for test 3", () => {
 		"thought",
 		"use",
 	]);
-	const expected = "simple";
+	const expected = "simple" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

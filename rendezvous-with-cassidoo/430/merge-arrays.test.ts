@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { mergeArrays } from "./merge-arrays.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing mergeArrays against test 1", () => {
 	const a = [1, 3, 5, 0, 0, 0];
@@ -12,6 +10,5 @@ test("testing mergeArrays against test 1", () => {
 
 	expect(a).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof a, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(a).toEqualTypeOf(expected);
 });

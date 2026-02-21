@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { splitByWidths } from "./split-by-widths.js";
 
@@ -20,6 +20,7 @@ test("testing splitByWidths against test 1", () => {
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

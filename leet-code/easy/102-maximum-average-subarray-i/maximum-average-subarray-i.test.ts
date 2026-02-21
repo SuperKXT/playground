@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { maximumAverageSubarray } from "./maximum-average-subarray-i.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing maximumAverageSubarray for test 1", () => {
 	const result = maximumAverageSubarray([1, 12, -5, -6, 50, 3], 4);
@@ -10,8 +8,7 @@ test("testing maximumAverageSubarray for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maximumAverageSubarray for test 2", () => {
@@ -20,6 +17,5 @@ test("testing maximumAverageSubarray for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

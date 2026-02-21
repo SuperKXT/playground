@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { findPeakElement } from "./find-peak-element.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing findPeakElement for test 1", () => {
 	const result = findPeakElement([1, 2, 3, 1]);
@@ -10,8 +8,7 @@ test("testing findPeakElement for test 1", () => {
 
 	expect(result).toBeOneOf(expected as never);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf<(typeof expected)[number]>();
 });
 
 test("testing findPeakElement for test 2", () => {
@@ -20,8 +17,7 @@ test("testing findPeakElement for test 2", () => {
 
 	expect(result).toBeOneOf(expected as never);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf<(typeof expected)[number]>();
 });
 
 test("testing findPeakElement for test 3", () => {
@@ -30,8 +26,7 @@ test("testing findPeakElement for test 3", () => {
 
 	expect(result).toBeOneOf(expected as never);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf<(typeof expected)[number]>();
 });
 
 test("testing findPeakElement for test 4", () => {
@@ -40,8 +35,7 @@ test("testing findPeakElement for test 4", () => {
 
 	expect(result).toBeOneOf(expected as never);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf<(typeof expected)[number]>();
 });
 
 test("testing findPeakElement for test 5", () => {
@@ -50,6 +44,5 @@ test("testing findPeakElement for test 5", () => {
 
 	expect(result).toBeOneOf(expected as never);
 
-	type TTrue = Utils.equal<typeof result, (typeof expected)[number]>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf<(typeof expected)[number]>();
 });

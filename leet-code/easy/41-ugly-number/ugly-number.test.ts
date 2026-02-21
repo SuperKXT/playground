@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { uglyNumber } from "./ugly-number.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing uglyNumber for test 1", () => {
 	const result = uglyNumber(6);
@@ -10,8 +8,7 @@ test("testing uglyNumber for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing uglyNumber for test 2", () => {
@@ -20,8 +17,7 @@ test("testing uglyNumber for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing uglyNumber for test 3", () => {
@@ -30,8 +26,7 @@ test("testing uglyNumber for test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing uglyNumber for test 4", () => {
@@ -40,6 +35,5 @@ test("testing uglyNumber for test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

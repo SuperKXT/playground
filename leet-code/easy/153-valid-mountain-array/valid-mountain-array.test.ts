@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { validMountainArray } from "./valid-mountain-array.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing validMountainArray for test 1", () => {
 	const result = validMountainArray([2, 1]);
@@ -10,8 +8,7 @@ test("testing validMountainArray for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing validMountainArray for test 2", () => {
@@ -20,8 +17,7 @@ test("testing validMountainArray for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing validMountainArray for test 3", () => {
@@ -30,6 +26,5 @@ test("testing validMountainArray for test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

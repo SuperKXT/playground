@@ -1,8 +1,7 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { hungryBearsImmutable, hungryBearsMutable } from "./hungry-bears.js";
 
-import type { Utils } from "../../types/utils.types.js";
 import type { TBear } from "./hungry-bears.js";
 
 const randomString = (length: number = 8): string => {
@@ -43,8 +42,7 @@ test("testing hungryBearsImmutable against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing hungryBearsImmutable against test 2", () => {
@@ -53,8 +51,7 @@ test("testing hungryBearsImmutable against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing hungryBearsMutable against test 1", () => {
@@ -70,8 +67,7 @@ test("testing hungryBearsMutable against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing hungryBearsMutable against test 2", () => {
@@ -80,6 +76,5 @@ test("testing hungryBearsMutable against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

@@ -1,35 +1,30 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { stringSegments } from "./string-segments.js";
 
-import type { Utils } from "../../../types/utils.types.js";
-
 test("testing thirdMaxNumber for test 1", () => {
 	const result = stringSegments("Hello, my name is John");
-	const expected = 5;
+	const expected = 5 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing thirdMaxNumber for test 2", () => {
 	const result = stringSegments("Hello");
-	const expected = 1;
+	const expected = 1 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing thirdMaxNumber for test 3", () => {
 	const result = stringSegments("");
-	const expected = 0;
+	const expected = 0 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

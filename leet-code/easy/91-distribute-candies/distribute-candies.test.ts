@@ -1,45 +1,39 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { distributeCandies } from "./distribute-candies.js";
 
-import type { Utils } from "../../../types/utils.types.js";
-
 test("testing distributeCandies for test 1", () => {
 	const result = distributeCandies([1, 1, 2, 2, 3, 3]);
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing distributeCandies for test 2", () => {
 	const result = distributeCandies([1, 1, 2, 3]);
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing distributeCandies for test 3", () => {
 	const result = distributeCandies([6, 6, 6, 6]);
-	const expected = 1;
+	const expected = 1 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing distributeCandies for test 4", () => {
 	const result = distributeCandies([2, 1, 2, 3]);
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

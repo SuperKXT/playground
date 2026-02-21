@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { minIndexSum } from "./min-index-sum.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing minIndexSum for test 1", () => {
 	const result = minIndexSum(
@@ -18,8 +16,7 @@ test("testing minIndexSum for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing minIndexSum for test 2", () => {
@@ -31,8 +28,7 @@ test("testing minIndexSum for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing minIndexSum for test 3", () => {
@@ -44,8 +40,7 @@ test("testing minIndexSum for test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing minIndexSum for test 4", () => {
@@ -62,6 +57,5 @@ test("testing minIndexSum for test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

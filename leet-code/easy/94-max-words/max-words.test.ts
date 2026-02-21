@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { maxWords } from "./max-words.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing maxWords for test 1", () => {
 	const result = maxWords([
@@ -10,12 +8,11 @@ test("testing maxWords for test 1", () => {
 		"i think so too",
 		"this is great thanks very much",
 	]);
-	const expected = 6;
+	const expected = 6 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxWords for test 2", () => {
@@ -24,10 +21,9 @@ test("testing maxWords for test 2", () => {
 		"continue to fight",
 		"continue to win",
 	]);
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

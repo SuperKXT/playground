@@ -1,12 +1,10 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import {
 	uniqueEmailsManual,
 	uniqueEmailsManualWithSlice,
 	uniqueEmailsRegex,
 } from "./unique-emails.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 const createTypeSafeNonReadonlyArray = <const T extends unknown[]>(arr: T): T =>
 	arr;
@@ -19,26 +17,23 @@ test("testing uniqueEmails for test 1", () => {
 	]);
 
 	const result1 = uniqueEmailsRegex(emails);
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result1).toStrictEqual(expected);
 
-	type TTrue1 = Utils.equal<typeof result1, typeof expected>;
-	assertType<TTrue1>(true);
+	expectTypeOf(result1).toEqualTypeOf(expected);
 
 	const result2 = uniqueEmailsManual(emails);
 
 	expect(result2).toStrictEqual(expected);
 
-	type TTrue2 = Utils.equal<typeof result2, typeof expected>;
-	assertType<TTrue2>(true);
+	expectTypeOf(result2).toEqualTypeOf(expected);
 
 	const result3 = uniqueEmailsManualWithSlice(emails);
 
 	expect(result3).toStrictEqual(expected);
 
-	type TTrue3 = Utils.equal<typeof result3, typeof expected>;
-	assertType<TTrue3>(true);
+	expectTypeOf(result3).toEqualTypeOf(expected);
 });
 
 test("testing uniqueEmails for test 2", () => {
@@ -49,26 +44,23 @@ test("testing uniqueEmails for test 2", () => {
 	]);
 
 	const result1 = uniqueEmailsRegex(emails);
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result1).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result1, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result1).toEqualTypeOf(expected);
 
 	const result2 = uniqueEmailsManual(emails);
 
 	expect(result2).toStrictEqual(expected);
 
-	type TTrue2 = Utils.equal<typeof result2, typeof expected>;
-	assertType<TTrue2>(true);
+	expectTypeOf(result2).toEqualTypeOf(expected);
 
 	const result3 = uniqueEmailsManualWithSlice(emails);
 
 	expect(result3).toStrictEqual(expected);
 
-	type TTrue3 = Utils.equal<typeof result3, typeof expected>;
-	assertType<TTrue3>(true);
+	expectTypeOf(result3).toEqualTypeOf(expected);
 });
 
 test("testing uniqueEmails for test 3", () => {
@@ -79,20 +71,17 @@ test("testing uniqueEmails for test 3", () => {
 
 	expect(result1).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result1, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result1).toEqualTypeOf(expected);
 
 	const result2 = uniqueEmailsManual(emails);
 
 	expect(result2).toStrictEqual(expected);
 
-	type TTrue2 = Utils.equal<typeof result2, typeof expected>;
-	assertType<TTrue2>(true);
+	expectTypeOf(result2).toEqualTypeOf(expected);
 
 	const result3 = uniqueEmailsManualWithSlice(emails);
 
 	expect(result3).toStrictEqual(expected);
 
-	type TTrue3 = Utils.equal<typeof result3, typeof expected>;
-	assertType<TTrue3>(true);
+	expectTypeOf(result3).toEqualTypeOf(expected);
 });

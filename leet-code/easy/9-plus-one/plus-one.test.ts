@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { plusOne } from "./plus-one.js";
 
@@ -10,8 +10,9 @@ test("testing plusOne for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing plusOne for test 2", () => {
@@ -20,8 +21,9 @@ test("testing plusOne for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing plusOne for test 3", () => {
@@ -30,8 +32,9 @@ test("testing plusOne for test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing plusOne for test 4", () => {
@@ -40,8 +43,9 @@ test("testing plusOne for test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing plusOne for test 5", () => {
@@ -50,8 +54,9 @@ test("testing plusOne for test 5", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing plusOne for test 6", () => {
@@ -60,6 +65,7 @@ test("testing plusOne for test 6", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });

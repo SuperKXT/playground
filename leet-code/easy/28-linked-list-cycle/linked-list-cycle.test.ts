@@ -1,4 +1,4 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { linkedListCycle } from "./linked-list-cycle.js";
 
@@ -6,8 +6,6 @@ import {
 	arrayToLinkedList,
 	insertNodeToLinkedList,
 } from "../../../helpers/linked-list.helpers.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing linkedListCycle for test 1", () => {
 	const preList = arrayToLinkedList([3, 2, 0]);
@@ -17,8 +15,7 @@ test("testing linkedListCycle for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing linkedListCycle for test 2", () => {
@@ -29,8 +26,7 @@ test("testing linkedListCycle for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing linkedListCycle for test 3", () => {
@@ -39,6 +35,5 @@ test("testing linkedListCycle for test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

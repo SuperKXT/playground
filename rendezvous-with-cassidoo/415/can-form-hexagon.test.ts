@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { canFormHexagon } from "./can-form-hexagon.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing canFormHexagon against test 1", () => {
 	const result = canFormHexagon([2, 3, 8, 8, 2, 3]);
@@ -10,8 +8,7 @@ test("testing canFormHexagon against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing canFormHexagon against test 2", () => {
@@ -20,8 +17,7 @@ test("testing canFormHexagon against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing canFormHexagon against test 3", () => {
@@ -30,6 +26,5 @@ test("testing canFormHexagon against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

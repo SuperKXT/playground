@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { islandPerimeter } from "./island-perimeter.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing islandPerimeter for test 1", () => {
 	const result = islandPerimeter([
@@ -11,40 +9,36 @@ test("testing islandPerimeter for test 1", () => {
 		[0, 1, 0, 0],
 		[1, 1, 0, 0],
 	]);
-	const expected = 16;
+	const expected = 16 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing islandPerimeter for test 2", () => {
 	const result = islandPerimeter([[1]]);
-	const expected = 4;
+	const expected = 4 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing islandPerimeter for test 3", () => {
 	const result = islandPerimeter([[1, 0]]);
-	const expected = 4;
+	const expected = 4 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing islandPerimeter for test 4", () => {
 	const result = islandPerimeter([]);
-	const expected = 0;
+	const expected = 0 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

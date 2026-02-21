@@ -1,35 +1,30 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { insertPosition } from "./insert-position.js";
 
-import type { Utils } from "../../../types/utils.types.js";
-
 test("testing insertPosition for test 1", () => {
 	const result = insertPosition([1, 3, 5, 6], 5);
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing insertPosition for test 2", () => {
 	const result = insertPosition([1, 3, 5, 6], 2);
-	const expected = 1;
+	const expected = 1 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing insertPosition for test 3", () => {
 	const result = insertPosition([1, 3, 5, 6], 7);
-	const expected = 4;
+	const expected = 4 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Readonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { maxScoreWithOneReset } from "./replace-repeats.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing maxScoreWithOneReset against test 1", () => {
 	const result = maxScoreWithOneReset([2, -1, 2, -5, 2, 2]);
@@ -10,8 +8,7 @@ test("testing maxScoreWithOneReset against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxScoreWithOneReset against test 2", () => {
@@ -20,8 +17,7 @@ test("testing maxScoreWithOneReset against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxScoreWithOneReset against test 3", () => {
@@ -30,8 +26,7 @@ test("testing maxScoreWithOneReset against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing maxScoreWithOneReset against test 4", () => {
@@ -40,6 +35,5 @@ test("testing maxScoreWithOneReset against test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

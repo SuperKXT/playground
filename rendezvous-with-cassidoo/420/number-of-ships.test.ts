@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { numberOfShips } from "./number-of-ships.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing numberOfShips against test 1", () => {
 	const result = numberOfShips([
@@ -11,12 +9,11 @@ test("testing numberOfShips against test 1", () => {
 		[".", ".", ".", "X"],
 		[".", ".", ".", "."],
 	]);
-	const expected = 2;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing numberOfShips against test 2", () => {
@@ -28,10 +25,9 @@ test("testing numberOfShips against test 2", () => {
 		[".", ".", ".", "."],
 		["X", "X", "X", "X"],
 	]);
-	const expected = 4;
+	const expected = 4 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

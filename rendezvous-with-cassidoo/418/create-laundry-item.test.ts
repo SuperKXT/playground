@@ -1,8 +1,7 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { createLaundryItem } from "./create-laundry-item.js";
 
-import type { Utils } from "../../types/utils.types.js";
 import type { TLaundryStep } from "./create-laundry-item.js";
 
 test("testing createLaundryItem against test 1", () => {
@@ -30,6 +29,5 @@ test("testing createLaundryItem against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

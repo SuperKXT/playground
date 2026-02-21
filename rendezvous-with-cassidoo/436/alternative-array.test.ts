@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { alternativeArray } from "./alternative-array.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing alternativeArray against test 1", () => {
 	const result = alternativeArray([]);
@@ -10,8 +8,7 @@ test("testing alternativeArray against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing alternativeArray against test 2", () => {
@@ -20,8 +17,7 @@ test("testing alternativeArray against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing alternativeArray against test 3", () => {
@@ -30,8 +26,7 @@ test("testing alternativeArray against test 3", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing alternativeArray against test 4", () => {
@@ -40,8 +35,7 @@ test("testing alternativeArray against test 4", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing alternativeArray against test 5", () => {
@@ -50,8 +44,7 @@ test("testing alternativeArray against test 5", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing alternativeArray against test 6", () => {
@@ -60,8 +53,7 @@ test("testing alternativeArray against test 6", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing alternativeArray against test 7", () => {
@@ -70,6 +62,5 @@ test("testing alternativeArray against test 7", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

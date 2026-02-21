@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { countAndSay } from "./count-and-say.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing countAndSay for test 1", () => {
 	const result = countAndSay(1);
@@ -10,8 +8,7 @@ test("testing countAndSay for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing countAndSay for test 2", () => {
@@ -20,6 +17,5 @@ test("testing countAndSay for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

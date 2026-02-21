@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { numRookCaptures } from "./rook-captures.js";
-
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing numRookCaptures for test 1", () => {
 	const result = numRookCaptures([
@@ -15,12 +13,11 @@ test("testing numRookCaptures for test 1", () => {
 		[".", ".", ".", ".", ".", ".", ".", "."],
 		[".", ".", ".", ".", ".", ".", ".", "."],
 	]);
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing numRookCaptures for test 2", () => {
@@ -34,12 +31,11 @@ test("testing numRookCaptures for test 2", () => {
 		[".", ".", ".", ".", ".", ".", ".", "."],
 		[".", ".", ".", ".", ".", ".", ".", "."],
 	]);
-	const expected = 0;
+	const expected = 0 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing numRookCaptures for test 3", () => {
@@ -53,10 +49,9 @@ test("testing numRookCaptures for test 3", () => {
 		[".", ".", ".", "p", ".", ".", ".", "."],
 		[".", ".", ".", ".", ".", ".", ".", "."],
 	]);
-	const expected = 3;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<Utils.deepReadonly<typeof result>, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

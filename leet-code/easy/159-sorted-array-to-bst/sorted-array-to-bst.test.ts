@@ -1,9 +1,8 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { sortedArrayToBST } from "./sorted-array-to-bst.js";
 
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
-import type { Utils } from "../../../types/utils.types.js";
 
 test("testing sortedArrayToBST for test 1", () => {
 	const result = sortedArrayToBST([-10, -3, 0, 5, 9]);
@@ -15,8 +14,7 @@ test("testing sortedArrayToBST for test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing sortedArrayToBST for test 2", () => {
@@ -29,6 +27,5 @@ test("testing sortedArrayToBST for test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

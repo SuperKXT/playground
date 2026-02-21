@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { csvToList } from "./csv-to-list.js";
-
-import type { Utils } from "../../types/utils.types.js";
 
 test("testing groupChangelog against test 1", () => {
 	const result = csvToList(
@@ -12,11 +10,10 @@ test("testing groupChangelog against test 1", () => {
 	const expected = `
 - Ryu, Mi-yeong, age 30, from Seoul
 - Zoey, age 24, from Burbank
-`;
+` as const;
 
 	// cSpell: enable
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });

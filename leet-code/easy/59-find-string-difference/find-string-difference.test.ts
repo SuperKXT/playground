@@ -1,45 +1,39 @@
-import { assertType, expect, test } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { findStringDifference } from "./find-string-difference.js";
 
-import type { Utils } from "../../../types/utils.types.js";
-
 test("testing findStringDifference for test 1", () => {
 	const result = findStringDifference("abcd", "abcde");
-	const expected = "e";
+	const expected = "e" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing findStringDifference for test 2", () => {
 	const result = findStringDifference("", "y");
-	const expected = "y";
+	const expected = "y" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing findStringDifference for test 3", () => {
 	const result = findStringDifference("a", "aa");
-	const expected = "a";
+	const expected = "a" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
 
 test("testing findStringDifference for test 4", () => {
 	const result = findStringDifference("aa", "aab");
-	const expected = "b";
+	const expected = "b" as const;
 
 	expect(result).toStrictEqual(expected);
 
-	type TTrue = Utils.equal<typeof result, typeof expected>;
-	assertType<TTrue>(true);
+	expectTypeOf(result).toEqualTypeOf(expected);
 });
