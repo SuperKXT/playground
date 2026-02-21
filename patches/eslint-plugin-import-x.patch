@@ -1,0 +1,11 @@
+diff --git a/lib/utils/source-type.js b/lib/utils/source-type.js
+index b0d15d43ec4762bc96ba9293c74cc83956be701b..b60ceb7b9d2c34c6334b996a01ffd9e136236e33 100644
+--- a/lib/utils/source-type.js
++++ b/lib/utils/source-type.js
+@@ -1,5 +1,5 @@
+ export function sourceType(context) {
+-    if ('sourceType' in context.parserOptions) {
++    if (context.parserOptions && 'sourceType' in context.parserOptions) {
+         return context.parserOptions.sourceType;
+     }
+     if ('languageOptions' in context && context.languageOptions) {

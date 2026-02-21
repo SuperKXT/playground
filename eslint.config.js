@@ -6,7 +6,7 @@ import { importX } from "eslint-plugin-import-x";
 import node from "eslint-plugin-n";
 import "eslint-plugin-only-warn";
 import unusedImports from "eslint-plugin-unused-imports";
-import vitest from "eslint-plugin-vitest";
+import vitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";

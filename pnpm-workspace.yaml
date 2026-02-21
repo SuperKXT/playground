@@ -1,0 +1,2 @@
+patchedDependencies:
+  eslint-plugin-import-x: patches/eslint-plugin-import-x.patch
