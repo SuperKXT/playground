@@ -156,7 +156,7 @@ export const inPlaceInsertToSortedArray = <T>(
 ): void => {
 	let low = 0;
 	let high = arr.length - 1;
-	let idx = 0;
+	let idx;
 	while (true) {
 		if (low >= high) {
 			idx = high;

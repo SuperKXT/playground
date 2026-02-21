@@ -11,7 +11,7 @@ test("testing diceSum against test 1", () => {
 	assertType<typeof result>(expected);
 });
 
-test("testing diceSum against test 1", () => {
+test("testing diceSum against test 2", () => {
 	const result = diceSum(2, 6, 7);
 	const expected = 6;
 

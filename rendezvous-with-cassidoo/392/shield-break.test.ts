@@ -11,7 +11,7 @@ test("testing shieldBreak against test 1", () => {
 	assertType<Readonly<typeof result>>(expected);
 });
 
-test("testing shieldBreak against test 1", () => {
+test("testing shieldBreak against test 2", () => {
 	const result = shieldBreak([1, 2, 3, 4], 20);
 	const expected = -1;
 

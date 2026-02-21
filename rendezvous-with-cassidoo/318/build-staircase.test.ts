@@ -38,7 +38,7 @@ test("testing buildStaircase against test 4", () => {
 	assertType<typeof result>(expected);
 });
 
-test("testing buildStaircase against test 4", () => {
+test("testing buildStaircase against test 5", () => {
 	const result = buildStaircase(67);
 	const expected = 11;
 

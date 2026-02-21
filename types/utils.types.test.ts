@@ -55,6 +55,7 @@ test("equal type util", () => {
 	assertType<TTrueTests>(true);
 });
 
+// eslint-disable-next-line vitest/expect-expect
 test("satisfies type util", () => {
 	type _TTests = [
 		Utils.satisfies<1, 1>,

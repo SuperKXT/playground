@@ -20,7 +20,7 @@ test("convertColor: test # 3", () => {
 	expect(response).toBe("#EEF5A3");
 });
 
-test("convertColor: test # 2", () => {
+test("convertColor: test # 4", () => {
 	const response = convertColor("hex", "rgb", "#EEF5A3");
 
 	expect(response).toBe("rgb(238,245,163)");

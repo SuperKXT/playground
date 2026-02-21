@@ -12,7 +12,7 @@ const isPerfectMonth = (year: number): boolean => {
 
 export const perfectMonth = (year: number): { prev: string; next: string } => {
 	let prev: string = "";
-	let next: string = "";
+	let next: string;
 
 	let curr = year;
 	while (curr > 0) {

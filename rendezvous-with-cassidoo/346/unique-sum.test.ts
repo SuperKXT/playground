@@ -11,7 +11,7 @@ test("testing uniqueSum against test 1", () => {
 	assertType<typeof result>(expected);
 });
 
-test("testing uniqueSum against test 1", () => {
+test("testing uniqueSum against test 2", () => {
 	const result = uniqueSum([11, 22, 33]);
 	const expected = 0;
 

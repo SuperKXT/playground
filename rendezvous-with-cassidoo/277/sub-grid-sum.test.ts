@@ -16,7 +16,11 @@ test("testing subGridSum for valid input", () => {
 });
 
 test("testing subGridSum for invalid input", () => {
-	expect(() => subGridSum(GRID, [6, 10, 11, 12])).toThrowError(SUB_GRID_SUM_ERROR);
-	expect(() => subGridSum(GRID, [6, 6, -1, 9])).toThrowError(SUB_GRID_SUM_ERROR);
+	expect(() => subGridSum(GRID, [6, 10, 11, 12])).toThrowError(
+		SUB_GRID_SUM_ERROR,
+	);
+	expect(() => subGridSum(GRID, [6, 6, -1, 9])).toThrowError(
+		SUB_GRID_SUM_ERROR,
+	);
 	expect(() => subGridSum(GRID, [6, 6, 6, 6])).toThrowError(SUB_GRID_SUM_ERROR);
 });

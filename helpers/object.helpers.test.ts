@@ -132,7 +132,9 @@ test("testing objectToFormData", () => {
 
 	expect(() => {
 		objectToFormData(first);
-	}).toThrowError(`invalid value for 'nested': form data does not allow 'object'`);
+	}).toThrowError(
+		`invalid value for 'nested': form data does not allow 'object'`,
+	);
 
 	const second = { b: "new", c: 3, d: true };
 	const result = objectToFormData(second);

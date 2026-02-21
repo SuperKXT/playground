@@ -34,7 +34,7 @@ test("testing kindOfNumber against test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing kindOfNumber against test 3", () => {
+test("testing kindOfNumber against test 4", () => {
 	const result = hyperFactorial(7);
 	const expected = 3319766398771200000n as bigint;
 

@@ -56,7 +56,7 @@ test("testing isBitonic against test 6", () => {
 	assertType<Readonly<typeof result>>(expected);
 });
 
-test("testing isBitonic against test 6", () => {
+test("testing isBitonic against test 7", () => {
 	const result = isBitonic([1, 2, 3, 2, 3]);
 	const expected = false;
 

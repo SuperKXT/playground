@@ -24,7 +24,7 @@ test("testing flipWords against test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing flipWords against test 2", () => {
+test("testing flipWords against test 3", () => {
 	const result = flipWords("cat and mice and ants or bees"); // cSpell: disable-line
 	const expected = "cat dna mice dna stna ro bees"; // cSpell: disable-line
 

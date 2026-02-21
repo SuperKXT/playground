@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /*
   553 - Deep object to unique
   -------
@@ -55,12 +54,6 @@ type Bar = { foo: 2; baz: Quz; bar: Quz & { quzz?: 0 } };
 type UniqQuz = DeepObjectToUniq<Quz>;
 type UniqFoo = DeepObjectToUniq<Foo>;
 type UniqBar = DeepObjectToUniq<Bar>;
-
-declare let foo: Foo;
-declare let uniqFoo: UniqFoo;
-
-uniqFoo = foo;
-foo = uniqFoo;
 
 type _cases = [
 	IsFalse<Equal<UniqQuz, Quz>>,

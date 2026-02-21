@@ -42,5 +42,7 @@ test.each(TESTS)(
 );
 
 test("testing combineStrings for invalid inputs", () => {
-	expect(() => combineStrings(["ab", "base", "gh"], 2)).toThrowError(INVALID_ERROR);
+	expect(() => combineStrings(["ab", "base", "gh"], 2)).toThrowError(
+		INVALID_ERROR,
+	);
 });

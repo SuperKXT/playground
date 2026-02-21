@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-assignment */
 /* eslint-disable no-multi-assign */
 /* eslint-disable import-x/first */
 /* eslint-disable @typescript-eslint/ban-ts-comment */

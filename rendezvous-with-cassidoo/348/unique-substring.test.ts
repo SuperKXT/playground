@@ -11,7 +11,7 @@ test("testing uniqueSubstring against test 1", () => {
 	assertType<typeof result>(expected);
 });
 
-test("testing uniqueSubstring against test 1", () => {
+test("testing uniqueSubstring against test 2", () => {
 	const result = uniqueSubstring("ccaabbb"); // cSpell: disable-line
 	const expected = 5;
 
