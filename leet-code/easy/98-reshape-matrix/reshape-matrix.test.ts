@@ -41,7 +41,7 @@ test("testing reshapeMatrix for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reshapeMatrix for test 2", () => {
+test("testing reshapeMatrix for test 3", () => {
 	const result = reshapeMatrix(
 		[
 			[1, 2],

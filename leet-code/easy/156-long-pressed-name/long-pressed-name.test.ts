@@ -14,7 +14,7 @@ test("testing longPressedName for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing longPressedName for test 1", () => {
+test("testing longPressedName for test 2", () => {
 	const result = longPressedName("alex", "aaleexxxs"); // cSpell: disable-line
 	const expected = false;
 
@@ -24,7 +24,7 @@ test("testing longPressedName for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing longPressedName for test 2", () => {
+test("testing longPressedName for test 3", () => {
 	const result = longPressedName("saeed", "ssaaedd"); // cSpell: disable-line
 	const expected = false;
 

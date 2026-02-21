@@ -28,7 +28,7 @@ test("testing afterBiGram for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing afterBiGram for test 2", () => {
+test("testing afterBiGram for test 3", () => {
 	const result = afterBiGram(
 		"alice is aa good girl she is a good student",
 		"a",

@@ -32,7 +32,7 @@ test("testing mergeSortedLists for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing mergeSortedLists for test 2", () => {
+test("testing mergeSortedLists for test 3", () => {
 	const result = mergeSortedLists(
 		arrayToLinkedList([]).head,
 		arrayToLinkedList([0]).head,

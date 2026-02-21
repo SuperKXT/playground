@@ -34,7 +34,7 @@ test("testing maxWords for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing maxWords for test 2", () => {
+test("testing maxWords for test 4", () => {
 	const result = maxProduct([-10, -30, 5, 2, 20, 10, 1, 7]);
 	const expected = 6000 as number;
 

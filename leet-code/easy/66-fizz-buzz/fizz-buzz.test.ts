@@ -24,7 +24,7 @@ test("testing longestPalindrome for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing longestPalindrome for test 2", () => {
+test("testing longestPalindrome for test 3", () => {
 	const result = fizzBuzz(15);
 	const expected = [
 		"1",

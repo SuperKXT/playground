@@ -34,7 +34,7 @@ test("testing addStrings for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing addStrings for test 3", () => {
+test("testing addStrings for test 4", () => {
 	const result = addStrings("15654546454", "54645645415");
 	const expected = "70300191869";
 

@@ -24,7 +24,7 @@ test("testing longestPalindrome for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing longestPalindrome for test 2", () => {
+test("testing longestPalindrome for test 3", () => {
 	const result = longestPalindrome("ababdd"); // cSpell: disable-line
 	const expected = 6;
 

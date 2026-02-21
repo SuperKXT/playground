@@ -20,8 +20,6 @@ import {
 } from "./array.helpers.js";
 import { getRandomInteger } from "./random.helpers.js";
 
-import type { Utils } from "../types/utils.types.js";
-
 type TEqualityTest = {
 	first: unknown[];
 	second: unknown[];
@@ -300,7 +298,7 @@ test("isArrayLength", () => {
 
 	// eslint-disable-next-line vitest/no-conditional-in-test
 	if (check1) {
-		expectTypeOf(array1).toEqualTypeOf<[number, ...number[]]>();
+		expectTypeOf(array1).toEqualTypeOf<[number, number, number]>();
 	} else {
 		expectTypeOf(array1).toEqualTypeOf<number[]>();
 	}
@@ -433,7 +431,5 @@ test("testing getSubTuple helper", () => {
 
 	expect(result2).toStrictEqual(expected2);
 
-	type TTrue2 = Utils.equal<typeof result2, typeof expected2>;
-
-	expectTypeOf(true).toEqualTypeOf<TTrue2>();
+	expectTypeOf(result2).toEqualTypeOf<typeof expected2>();
 });

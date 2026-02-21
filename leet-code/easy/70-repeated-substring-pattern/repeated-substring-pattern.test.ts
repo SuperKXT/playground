@@ -24,7 +24,7 @@ test("testing repeatedSubstringPattern for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing repeatedSubstringPattern for test 2", () => {
+test("testing repeatedSubstringPattern for test 3", () => {
 	const result = repeatedSubstringPattern("abcabcabcabc"); // cSpell: disable-line
 	const expected = true;
 

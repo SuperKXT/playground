@@ -22,7 +22,7 @@ test("testing addTwoNumbers for test 2", () => {
 	expect(res).toStrictEqual(expected.head);
 });
 
-test("testing addTwoNumbers for test 2", () => {
+test("testing addTwoNumbers for test 3", () => {
 	const num1 = arrayToLinkedList([0]);
 	const num2 = arrayToLinkedList([0]);
 	const res = addTwoNumbers(num1.head, num2.head);

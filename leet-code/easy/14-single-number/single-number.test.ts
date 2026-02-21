@@ -34,7 +34,7 @@ test("testing singleNumber for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing singleNumber for test 3", () => {
+test("testing singleNumber for test 4", () => {
 	const result = singleNumber([1, 1]);
 	const expected = null;
 

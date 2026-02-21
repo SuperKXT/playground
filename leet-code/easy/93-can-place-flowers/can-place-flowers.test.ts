@@ -34,7 +34,7 @@ test("testing canPlaceFlowers for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing canPlaceFlowers for test 3", () => {
+test("testing canPlaceFlowers for test 4", () => {
 	const result = canPlaceFlowers([0, 1, 0, 1, 0, 1, 0, 0], 1);
 	const expected = true;
 

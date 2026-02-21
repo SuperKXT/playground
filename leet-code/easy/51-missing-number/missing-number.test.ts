@@ -24,7 +24,7 @@ test("testing missingNumber for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing missingNumber for test 2", () => {
+test("testing missingNumber for test 3", () => {
 	const result = missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1]);
 	const expected = 8;
 

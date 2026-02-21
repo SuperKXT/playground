@@ -1,4 +1,5 @@
-import { assertType, expect, test, assert } from "vitest";
+/* eslint-disable vitest/prefer-importing-vitest-globals */
+import { assertType, expect, test } from "vitest";
 
 import {
 	assert,

@@ -54,7 +54,7 @@ test("testing fibonacciNumber for test 5", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing fibonacciNumber for test 5", () => {
+test("testing fibonacciNumber for test 6", () => {
 	const result = fibonacciNumber(10);
 	const expected = 55 as number;
 

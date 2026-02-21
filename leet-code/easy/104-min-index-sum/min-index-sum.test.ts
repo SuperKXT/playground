@@ -48,7 +48,7 @@ test("testing minIndexSum for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing minIndexSum for test 1", () => {
+test("testing minIndexSum for test 4", () => {
 	const result = minIndexSum(
 		["Shogun", "Piatti", "Tapioca Express", "Burger King", "KFC"], // cSpell: disable-line
 		[

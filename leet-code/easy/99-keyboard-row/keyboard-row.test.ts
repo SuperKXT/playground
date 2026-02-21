@@ -24,7 +24,7 @@ test("testing reshapeMatrix for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing reshapeMatrix for test 2", () => {
+test("testing reshapeMatrix for test 3", () => {
 	const result = keyboardRow(["adsdf", "sfd"]); // cSpell: disable-line
 	const expected = ["adsdf", "sfd"] as const; // cSpell: disable-line
 

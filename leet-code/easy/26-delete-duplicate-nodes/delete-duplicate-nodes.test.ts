@@ -26,7 +26,7 @@ test("testing deleteDuplicateNodes for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing deleteDuplicateNodes for test 2", () => {
+test("testing deleteDuplicateNodes for test 3", () => {
 	const result = deleteDuplicateNodes(arrayToLinkedList([1, 1, 1]).head);
 	const expected = arrayToLinkedList([1]).head;
 

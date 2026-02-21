@@ -24,7 +24,7 @@ test("testing diStringMatch for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing diStringMatch for test 2", () => {
+test("testing diStringMatch for test 3", () => {
 	const result = diStringMatch("DDI");
 	const expected = [3, 2, 0, 1] as const;
 

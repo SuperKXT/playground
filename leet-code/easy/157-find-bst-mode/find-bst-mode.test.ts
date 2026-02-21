@@ -17,7 +17,7 @@ test("testing arrayToBinaryTree for test 1", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing arrayToBinaryTree for test 1", () => {
+test("testing arrayToBinaryTree for test 2", () => {
 	const tree = arrayToBinaryTree([0]);
 	const result = findMode(tree);
 	const expected = [0];

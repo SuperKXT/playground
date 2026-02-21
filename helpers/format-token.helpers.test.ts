@@ -1,8 +1,6 @@
-import { assertType, expect, test } from "vitest";
+import { assertType, expect, expectTypeOf, test } from "vitest";
 
 import { formatToken } from "./format-token.helpers.js";
-
-import type { Utils } from "../types/utils.types.js";
 
 test("formatToken against the 1st test string", () => {
 	const input = "ThisIsSomeTestString";
@@ -23,31 +21,11 @@ test("formatToken against the 1st test string", () => {
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
 		nonLiteral: formatToken(input as string, "camel"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 
 	expect(expected.nonLiteral).toStrictEqual(response.nonLiteral);
 
@@ -72,31 +50,11 @@ test("formatToken against the 2nd test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 3rd test string", () => {
@@ -116,31 +74,11 @@ test("formatToken against the 3rd test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 4th test string", () => {
@@ -160,31 +98,11 @@ test("formatToken against the 4th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 5th test string", () => {
@@ -204,31 +122,11 @@ test("formatToken against the 5th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 6th test string", () => {
@@ -248,31 +146,11 @@ test("formatToken against the 6th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 7th test string", () => {
@@ -292,31 +170,11 @@ test("formatToken against the 7th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 8th test string", () => {
@@ -336,31 +194,11 @@ test("formatToken against the 8th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 9th test string", () => {
@@ -380,31 +218,11 @@ test("formatToken against the 9th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against the 10th test string", () => {
@@ -424,31 +242,11 @@ test("formatToken against the 10th test string", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<typeof response.camel>(expected.camel);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<typeof response.pascal>(expected.pascal);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<typeof response.snake>(expected.snake);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<typeof response.kebab>(expected.kebab);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<typeof response.constant>(expected.constant);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<typeof response.human>(expected.human);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
 test("formatToken against a union string type", () => {
@@ -468,31 +266,9 @@ test("formatToken against a union string type", () => {
 		kebab: formatToken(input, "kebab"),
 		constant: formatToken(input, "constant"),
 		human: formatToken(input, "human"),
-	};
+	} as const;
 
-	expect(expected.camel).toStrictEqual(response.camel);
+	expect(expected).toStrictEqual(response);
 
-	assertType<Utils.equal<typeof expected.camel, typeof response.camel>>(true);
-
-	expect(expected.pascal).toStrictEqual(response.pascal);
-
-	assertType<Utils.equal<typeof expected.pascal, typeof response.pascal>>(true);
-
-	expect(expected.snake).toStrictEqual(response.snake);
-
-	assertType<Utils.equal<typeof expected.snake, typeof response.snake>>(true);
-
-	expect(expected.kebab).toStrictEqual(response.kebab);
-
-	assertType<Utils.equal<typeof expected.kebab, typeof response.kebab>>(true);
-
-	expect(expected.constant).toStrictEqual(response.constant);
-
-	assertType<Utils.equal<typeof expected.constant, typeof response.constant>>(
-		true,
-	);
-
-	expect(expected.human).toStrictEqual(response.human);
-
-	assertType<Utils.equal<typeof expected.human, typeof response.human>>(true);
+	expectTypeOf(response).toEqualTypeOf(expected);
 });

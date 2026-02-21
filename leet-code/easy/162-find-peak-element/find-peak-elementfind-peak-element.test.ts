@@ -34,7 +34,7 @@ test("testing findPeakElement for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing findPeakElement for test 3", () => {
+test("testing findPeakElement for test 4", () => {
 	const result = findPeakElement([1]);
 	const expected = [0] as const;
 
@@ -44,7 +44,7 @@ test("testing findPeakElement for test 3", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing findPeakElement for test 3", () => {
+test("testing findPeakElement for test 5", () => {
 	const result = findPeakElement([3, 2, 1]);
 	const expected = [0] as const;
 

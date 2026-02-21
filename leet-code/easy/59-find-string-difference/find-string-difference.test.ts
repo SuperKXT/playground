@@ -24,7 +24,7 @@ test("testing findStringDifference for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing findStringDifference for test 2", () => {
+test("testing findStringDifference for test 3", () => {
 	const result = findStringDifference("a", "aa");
 	const expected = "a";
 
@@ -34,7 +34,7 @@ test("testing findStringDifference for test 2", () => {
 	assertType<TTrue>(true);
 });
 
-test("testing findStringDifference for test 2", () => {
+test("testing findStringDifference for test 4", () => {
 	const result = findStringDifference("aa", "aab");
 	const expected = "b";
 
