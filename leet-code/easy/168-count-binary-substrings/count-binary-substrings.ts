@@ -23,14 +23,19 @@ type TCountBinarySubstrings<
 	total extends Array<1> = [],
 > = S extends `${infer char extends "0" | "1"}${infer rest}`
 	? last extends null
-		? TCountBinarySubstrings<rest, "0", TUpdateCounts<counts, char, [1]>, total>
+		? TCountBinarySubstrings<
+				rest,
+				char,
+				TUpdateCounts<counts, char, [1]>,
+				total
+			>
 		: char extends last
 			? TCountBinarySubstrings<
 					rest,
 					char,
-					TUpdateCounts<counts, char, [...total, 1]>,
+					TUpdateCounts<counts, char, [...counts[char], 1]>,
 					TLessOrEqualLength<
-						counts[char],
+						[...counts[char], 1],
 						counts[char extends "0" ? "1" : "0"]
 					> extends true
 						? [...total, 1]
@@ -41,7 +46,7 @@ type TCountBinarySubstrings<
 					char,
 					TUpdateCounts<counts, char, [1]>,
 					TLessOrEqualLength<
-						counts[char],
+						[1],
 						counts[char extends "0" ? "1" : "0"]
 					> extends true
 						? [...total, 1]
