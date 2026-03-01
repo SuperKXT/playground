@@ -19,3 +19,21 @@ test("testing countBinarySubstrings for test 2", () => {
 
 	expectTypeOf(result).toEqualTypeOf(expected);
 });
+
+test("testing countBinarySubstrings for test 3", () => {
+	const result = countBinarySubstrings("000111");
+	const expected = 3 as const;
+
+	expect(result).toStrictEqual(expected);
+
+	expectTypeOf(result).toEqualTypeOf(expected);
+});
+
+test("testing countBinarySubstrings for test 4", () => {
+	const result = countBinarySubstrings("00111");
+	const expected = 2 as const;
+
+	expect(result).toStrictEqual(expected);
+
+	expectTypeOf(result).toEqualTypeOf(expected);
+});
