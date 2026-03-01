@@ -4,7 +4,7 @@ import { countBinarySubstrings } from "./count-binary-substrings.js";
 
 test("testing countBinarySubstrings for test 1", () => {
 	const result = countBinarySubstrings("00110011");
-	const expected = 6 as number;
+	const expected = 6 as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -13,7 +13,7 @@ test("testing countBinarySubstrings for test 1", () => {
 
 test("testing countBinarySubstrings for test 2", () => {
 	const result = countBinarySubstrings("10101");
-	const expected = 4 as number;
+	const expected = 4 as const;
 
 	expect(result).toStrictEqual(expected);
 
