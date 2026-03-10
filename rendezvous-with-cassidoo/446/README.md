@@ -19,4 +19,4 @@ majorityElement([3, 3, 4, 2, 3, 3, 1]);
 
 ---
 
-<!-- [Solution Playground](https://tsplay.dev/N7rqEw) -->
+[Solution Playground](https://tsplay.dev/WGLbkw)
