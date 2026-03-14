@@ -7,7 +7,7 @@ test("testing isAlienSorted for test 1", () => {
 		["hello", "leetcode"], // cSpell: disable-line
 		"hlabcdefgijkmnopqrstuvwxyz", // cSpell: disable-line
 	);
-	const expected = true as boolean;
+	const expected = true as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -19,7 +19,7 @@ test("testing isAlienSorted for test 2", () => {
 		["word", "world", "row"], // cSpell: disable-line
 		"worldabcefghijkmnpqstuvxyz", // cSpell: disable-line
 	);
-	const expected = false as boolean;
+	const expected = false as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -31,7 +31,7 @@ test("testing isAlienSorted for test 3", () => {
 		["apple", "app"], // cSpell: disable-line
 		"abcdefghijklmnopqrstuvwxyz", // cSpell: disable-line
 	);
-	const expected = false as boolean;
+	const expected = false as const;
 
 	expect(result).toStrictEqual(expected);
 
