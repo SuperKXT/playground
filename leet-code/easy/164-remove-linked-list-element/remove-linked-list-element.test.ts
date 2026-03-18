@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { removeElements } from "./remove-linked-list-element.js";
-
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import { removeElements } from "./remove-linked-list-element.js";
 
 test("testing removeElements for test 1", () => {
 	const list = arrayToLinkedList([1, 2, 6, 3, 4, 5, 6]);

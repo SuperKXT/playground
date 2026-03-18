@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { sortArrayByParity } from "./sort-array-by-parity.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { sortArrayByParity } from "./sort-array-by-parity.js";
 
 test("testing sortArrayByParity for test 1", () => {
 	const result = sortArrayByParity([3, 1, 2, 4]);

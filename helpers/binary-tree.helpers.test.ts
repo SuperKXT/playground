@@ -1,7 +1,6 @@
 import { expect, expectTypeOf, test } from "vitest";
 
 import { arrayToBinaryTree, binaryTreeToArray } from "./binary-tree.helpers.js";
-
 import type { TBinaryTreeNode } from "./binary-tree.helpers.js";
 
 test("testing arrayToBinaryTree helper", () => {

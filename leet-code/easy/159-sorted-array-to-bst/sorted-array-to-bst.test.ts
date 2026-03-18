@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { sortedArrayToBST } from "./sorted-array-to-bst.js";
-
 import type { TBinaryTreeNode } from "../../../helpers/binary-tree.helpers.js";
+
+import { sortedArrayToBST } from "./sorted-array-to-bst.js";
 
 test("testing sortedArrayToBST for test 1", () => {
 	const result = sortedArrayToBST([-10, -3, 0, 5, 9]);

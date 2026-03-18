@@ -36,7 +36,7 @@ test("should test assert helper", () => {
 		assert(isObject(a), error);
 
 		expectTypeOf(a).toEqualTypeOf<object>();
-	}).toThrowError(error);
+	}).toThrow(error);
 	expect(() => {
 		const a: unknown = { fist: "of fury" };
 
@@ -45,7 +45,7 @@ test("should test assert helper", () => {
 		assert(isObject(a), error);
 
 		expectTypeOf(a).toEqualTypeOf<object>();
-	}).not.toThrowError();
+	}).not.toThrow();
 });
 
 test("should test isObject helper", () => {
@@ -77,16 +77,16 @@ test("should test assertObject helper", () => {
 		assertObject(a);
 
 		expectTypeOf(a).toEqualTypeOf<object>();
-	}).toThrowError("Expected object, received number");
+	}).toThrow("Expected object, received number");
 	expect(() => {
 		a = { fist: "of fury" };
 		assertObject(a);
 
 		expectTypeOf(a).toEqualTypeOf<object>();
-	}).not.toThrowError();
+	}).not.toThrow();
 	expect(() => {
 		assertObject({ fist: "of fury" });
-	}).not.toThrowError();
+	}).not.toThrow();
 });
 
 test("should test assertArray helper", () => {
@@ -97,35 +97,35 @@ test("should test assertArray helper", () => {
 		assertArray(a);
 
 		expectTypeOf(a).toEqualTypeOf<unknown[]>();
-	}).toThrowError("Invalid array type");
+	}).toThrow("Invalid array type");
 	expect(() => {
 		a = [2];
 		assertArray(a);
 
 		expectTypeOf(a).toEqualTypeOf<unknown[]>();
-	}).not.toThrowError();
+	}).not.toThrow();
 	expect(() => {
 		a = [2, 3];
 		assertArray(a, isObject);
 
 		expectTypeOf(a).toEqualTypeOf<object[]>();
-	}).toThrowError("Invalid array type");
+	}).toThrow("Invalid array type");
 	expect(() => {
 		a = [2];
 		assertArray(a, isNumber);
 
 		expectTypeOf(a).toEqualTypeOf<number[]>();
-	}).not.toThrowError();
+	}).not.toThrow();
 	expect(() => {
 		a = { fist: "of fury" };
 		assertArray(a);
 
 		expectTypeOf(a).toEqualTypeOf<unknown[]>();
-	}).toThrowError("Invalid array type");
+	}).toThrow("Invalid array type");
 	expect(() => {
 		a = [[2]];
 		assertArray(a, isArray);
 
 		expectTypeOf(a).toEqualTypeOf<unknown[][]>();
-	}).not.toThrowError();
+	}).not.toThrow();
 });

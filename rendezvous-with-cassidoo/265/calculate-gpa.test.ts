@@ -1,7 +1,6 @@
 import { expect, test } from "vitest";
 
 import { calculateGpa } from "./calculate-gpa.js";
-
 import type { TGradePoint } from "./calculate-gpa.js";
 
 type TTest = {

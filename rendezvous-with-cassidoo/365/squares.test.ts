@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { findUnused } from "./squares.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { findUnused } from "./squares.js";
 
 test("testing findUnused against test 1", () => {
 	const result = findUnused(["a = 1", "b = a", "c = 2", "log(b)"]);

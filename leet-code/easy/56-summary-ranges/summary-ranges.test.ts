@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { summaryRanges } from "./summary-ranges.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { summaryRanges } from "./summary-ranges.js";
 
 test("testing summaryRanges for test 1", () => {
 	const result = summaryRanges([0, 1, 2, 4, 5, 7]);

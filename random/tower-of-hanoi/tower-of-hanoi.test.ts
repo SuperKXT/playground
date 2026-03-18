@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { towerOfHanoi } from "./tower-of-hanoi.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { towerOfHanoi } from "./tower-of-hanoi.js";
 
 test("testing towerOfHanoi against test 1", () => {
 	const result = towerOfHanoi(0);

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { luhnCheck } from "./luh-check.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { luhnCheck } from "./luh-check.js";
 
 test("testing luhnCheck against test 1", () => {
 	const result = luhnCheck(123456789);

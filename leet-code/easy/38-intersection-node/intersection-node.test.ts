@@ -1,13 +1,12 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { intersectionNode } from "./intersection-node.js";
-
 import {
 	arrayToLinkedList,
 	insertNodeToLinkedList,
 } from "../../../helpers/linked-list.helpers.js";
-
 import type { TLinkedListNode } from "../../../helpers/linked-list.helpers.js";
+
+import { intersectionNode } from "./intersection-node.js";
 
 test("testing intersectionNode for test 1", () => {
 	const intersected = arrayToLinkedList([8, 4, 5] as number[]);

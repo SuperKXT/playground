@@ -29,5 +29,5 @@ test.each(tests)(
 test("should fail for less then 3 sides", () => {
 	expect(() => {
 		getStarAngles(2);
-	}).toThrowError("stars must have at least 3 sides!");
+	}).toThrow("stars must have at least 3 sides!");
 });

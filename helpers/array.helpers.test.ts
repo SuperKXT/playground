@@ -236,19 +236,19 @@ test("assertMinArrayLength", () => {
 		assertMinArrayLength(array, 2);
 
 		expectTypeOf(array).toEqualTypeOf<[number, number, ...number[]]>();
-	}).not.toThrowError();
+	}).not.toThrow();
 	expect(() => {
 		assertMinArrayLength([1], 2);
-	}).toThrowError(`Expected Minimum Array Length: 2, Actual: 1`);
+	}).toThrow(`Expected Minimum Array Length: 2, Actual: 1`);
 	expect(() => {
 		assertMinArrayLength([], 1, "Custom Error");
-	}).toThrowError("Custom Error");
+	}).toThrow("Custom Error");
 
 	const customError = new TestError("Test Error");
 
 	expect(() => {
 		assertMinArrayLength([], 1, () => customError);
-	}).toThrowError(customError);
+	}).toThrow(customError);
 });
 
 test("isNonEmptyArrayLength", () => {
@@ -275,19 +275,19 @@ test("assertNonEmptyArray", () => {
 		assertNonEmptyArray(array);
 
 		expectTypeOf(array).toEqualTypeOf<[number, ...number[]]>();
-	}).not.toThrowError();
+	}).not.toThrow();
 	expect(() => {
 		assertNonEmptyArray([]);
-	}).toThrowError("Array is empty!");
+	}).toThrow("Array is empty!");
 	expect(() => {
 		assertNonEmptyArray([], "Custom Error");
-	}).toThrowError("Custom Error");
+	}).toThrow("Custom Error");
 
 	const customError = new TestError("Test Error");
 
 	expect(() => {
 		assertNonEmptyArray([], () => customError);
-	}).toThrowError(customError);
+	}).toThrow(customError);
 });
 
 test("isArrayLength", () => {
@@ -314,19 +314,19 @@ test("assertArrayLength", () => {
 		assertArrayLength(array, 3);
 
 		expectTypeOf(array).toEqualTypeOf<[number, number, number]>();
-	}).not.toThrowError();
+	}).not.toThrow();
 	expect(() => {
 		assertArrayLength([1, 2], 3);
-	}).toThrowError("Expected Array Length: 3, Actual: 2");
+	}).toThrow("Expected Array Length: 3, Actual: 2");
 	expect(() => {
 		assertArrayLength([1, 2], 3, "Custom Error");
-	}).toThrowError("Custom Error");
+	}).toThrow("Custom Error");
 
 	const customError = new TestError("Test Error");
 
 	expect(() => {
 		assertArrayLength([], 2, () => customError);
-	}).toThrowError(customError);
+	}).toThrow(customError);
 });
 
 test("range", () => {

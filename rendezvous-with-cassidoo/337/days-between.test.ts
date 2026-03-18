@@ -21,7 +21,7 @@ test("testing daysBetween against test 2", () => {
 });
 
 test("testing daysBetween against test 3", () => {
-	expect(() => daysBetween("2020-02-29", "incorrect date")).toThrowError(
+	expect(() => daysBetween("2020-02-29", "incorrect date")).toThrow(
 		"invalid date input. required: YYYY-MM-DD",
 	);
 });

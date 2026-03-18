@@ -4,11 +4,10 @@ import path from "node:path";
 
 import { afterEach, beforeEach, expect, test, vi } from "vitest";
 
-import { getRenameLogs, recursiveRename } from "./recursive-rename.js";
-import { RENAME_ERRORS } from "./recursive-rename.types.js";
-
 import { config } from "../../config.js";
 
+import { getRenameLogs, recursiveRename } from "./recursive-rename.js";
+import { RENAME_ERRORS } from "./recursive-rename.types.js";
 import type {
 	TRenameOptions,
 	TRenameResult,
@@ -180,8 +179,8 @@ test.each(SORTED_TESTS)(
 test("testing recursiveRename for invalid path", async () => {
 	await expect(
 		recursiveRename("./invalid-path", { yes: true }),
-	).rejects.toThrowError(RENAME_ERRORS.badPath);
+	).rejects.toThrow(RENAME_ERRORS.badPath);
 	await expect(
 		recursiveRename(path.join(config.dirname, "README.md"), { yes: true }),
-	).rejects.toThrowError(RENAME_ERRORS.badPath);
+	).rejects.toThrow(RENAME_ERRORS.badPath);
 });

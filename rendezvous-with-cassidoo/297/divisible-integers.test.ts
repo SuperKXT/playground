@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
 
-import { divisibleIntegers } from "./divisible-integers.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { divisibleIntegers } from "./divisible-integers.js";
 import type { TDivisibleIntegerN } from "./divisible-integers.js";
 
 type TTest = {

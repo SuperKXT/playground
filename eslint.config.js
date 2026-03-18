@@ -2,12 +2,12 @@ import { fileURLToPath } from "node:url";
 
 import js from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
+import { defineConfig } from "eslint/config";
 import { createTypeScriptImportResolver } from "eslint-import-resolver-typescript";
 import { importX } from "eslint-plugin-import-x";
 import node from "eslint-plugin-n";
 import "eslint-plugin-only-warn";
 import unusedImports from "eslint-plugin-unused-imports";
-import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -50,9 +50,7 @@ export default defineConfig([
 	js.configs.recommended,
 	tseslint.configs.strictTypeChecked,
 	tseslint.configs.stylisticTypeChecked,
-	// @ts-expect-error https://github.com/typescript-eslint/typescript-eslint/issues/11543
 	importX.flatConfigs.recommended,
-	// @ts-expect-error https://github.com/typescript-eslint/typescript-eslint/issues/11543
 	importX.flatConfigs.typescript,
 	node.configs["flat/recommended-module"],
 
@@ -178,11 +176,14 @@ export default defineConfig([
 						"builtin",
 						"external",
 						"internal",
-						"sibling",
-						"index",
 						"parent",
-						"type",
+						["sibling", "index"],
 					],
+					alphabetize: {
+						order: "asc",
+						orderImportKind: "desc",
+					},
+					named: true,
 					"newlines-between": "always",
 				},
 			],

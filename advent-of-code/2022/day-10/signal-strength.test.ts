@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { signalStrength } from "./signal-strength.js";
-
 import { config } from "../../../config.js";
+
+import { signalStrength } from "./signal-strength.js";
 
 const EXAMPLE = `
 addx 15

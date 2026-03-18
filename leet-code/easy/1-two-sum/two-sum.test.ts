@@ -26,5 +26,5 @@ test("testing two-sum for test 3", () => {
 test("testing two-sum for test 4", () => {
 	expect(() => {
 		twoSum([3, 2], 6);
-	}).toThrowError("No match found!");
+	}).toThrow("No match found!");
 });

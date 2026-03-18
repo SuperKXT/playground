@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { maxDepth } from "./max-tree-depth.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { maxDepth } from "./max-tree-depth.js";
 
 test("testing maxDepth for test 1", () => {
 	const result = maxDepth(arrayToBinaryTree([3, 9, 20, null, null, 15, 7]));

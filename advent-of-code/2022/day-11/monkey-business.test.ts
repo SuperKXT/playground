@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { monkeyBusiness } from "./monkey-business.js";
-
 import { config } from "../../../config.js";
+
+import { monkeyBusiness } from "./monkey-business.js";
 
 const EXAMPLE = `Monkey 0:
   Starting items: 79, 98

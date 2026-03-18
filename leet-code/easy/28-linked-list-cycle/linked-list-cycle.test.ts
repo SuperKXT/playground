@@ -1,11 +1,11 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { linkedListCycle } from "./linked-list-cycle.js";
-
 import {
 	arrayToLinkedList,
 	insertNodeToLinkedList,
 } from "../../../helpers/linked-list.helpers.js";
+
+import { linkedListCycle } from "./linked-list-cycle.js";
 
 test("testing linkedListCycle for test 1", () => {
 	const preList = arrayToLinkedList([3, 2, 0]);

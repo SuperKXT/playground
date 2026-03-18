@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 
 import { isValidMove } from "./check-chess-move.js";
 import { CHESS_ERRORS } from "./check-chess-move.types.js";
-
 import type {
 	TChessResponse,
 	TIsValidMoveArgs,

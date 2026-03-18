@@ -1,5 +1,4 @@
 import { areArraysEqual } from "../../helpers/array.helpers.js";
-
 import type { TLinkedListNode } from "../../helpers/linked-list.helpers.js";
 
 export type TIntersection = TLinkedListNode<number> | [number, number];

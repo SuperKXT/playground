@@ -2,7 +2,6 @@ import { expect, test } from "vitest";
 
 import { assertValidCatanBoard, generateCatanBoard } from "./generate-catan.js";
 import { CATAN_ERRORS } from "./generate-catan.types.js";
-
 import type { TCatanError } from "./generate-catan.types.js";
 
 const VALID_BOARDS: string[] = [
@@ -38,7 +37,7 @@ const INVALID_BOARDS: TInvalidBoard[] = [
 test.each(VALID_BOARDS)("assertValidCatanBoard for valid input", (board) => {
 	expect(() => {
 		assertValidCatanBoard(board);
-	}).not.toThrowError();
+	}).not.toThrow();
 });
 
 test.each(INVALID_BOARDS)(
@@ -46,7 +45,7 @@ test.each(INVALID_BOARDS)(
 	({ board, error }) => {
 		expect(() => {
 			assertValidCatanBoard(board);
-		}).toThrowError(error);
+		}).toThrow(error);
 	},
 );
 
@@ -56,5 +55,5 @@ test("testing generateCatanBoard", () => {
 			const board = generateCatanBoard();
 			assertValidCatanBoard(board);
 		});
-	}).not.toThrowError();
+	}).not.toThrow();
 });

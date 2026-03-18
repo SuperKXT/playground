@@ -61,7 +61,7 @@ test.each(GET_TESTS)(
 test.each(BAD_GET_TESTS)(
 	"testing getFibonacciLike for bad input",
 	({ input, error }) => {
-		expect(() => getFibonacciLike(...input)).toThrowError(error);
+		expect(() => getFibonacciLike(...input)).toThrow(error);
 	},
 );
 

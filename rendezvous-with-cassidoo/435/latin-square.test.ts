@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { latinSquare } from "./latin-square.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { latinSquare } from "./latin-square.js";
 
 test("testing latinSquare against test 1", () => {
 	const result = latinSquare(1);

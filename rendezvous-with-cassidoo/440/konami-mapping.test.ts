@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { konamiMappingNonRegex, konamiMappingRegex } from "./konami-mapping.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { konamiMappingNonRegex, konamiMappingRegex } from "./konami-mapping.js";
 
 const tests = {
 	first: {

@@ -1,7 +1,6 @@
 import { expect, expectTypeOf, test } from "vitest";
 
 import { createLaundryItem } from "./create-laundry-item.js";
-
 import type { TLaundryStep } from "./create-laundry-item.js";
 
 test("testing createLaundryItem against test 1", () => {

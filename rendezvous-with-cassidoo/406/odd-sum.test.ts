@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { oddSum } from "./odd-sum.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { oddSum } from "./odd-sum.js";
 
 test("testing addOperators against test 1", () => {
 	const result = oddSum([9, 14, 6, 2, 11], [8, 4, 7, 20]);

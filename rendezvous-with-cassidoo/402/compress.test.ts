@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { compress } from "./compress.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { compress } from "./compress.js";
 
 test("testing compress against test 1", () => {
 	const result = compress(["a", "b", "b", "b", "c"]);

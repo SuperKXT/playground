@@ -1,4 +1,5 @@
 import type { Equal, Expect } from "@type-challenges/utils";
+
 import type { Utils } from "../../types/utils.types.js";
 
 /**

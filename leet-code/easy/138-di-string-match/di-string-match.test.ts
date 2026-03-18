@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { diStringMatch } from "./di-string-match.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { diStringMatch } from "./di-string-match.js";
 
 test("testing diStringMatch for test 1", () => {
 	const result = diStringMatch("IDID"); // cSpell: disable-line

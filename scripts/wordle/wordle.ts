@@ -2,9 +2,9 @@ import chalk from "chalk";
 import argumentParser from "minimist-lite";
 import { z } from "zod";
 
-import { WORDLE_WORDS } from "./word-list.js";
-
 import { config } from "../../config.js";
+
+import { WORDLE_WORDS } from "./word-list.js";
 
 const REGEX = {
 	available: /^[a-z]{0,26}$/iu,

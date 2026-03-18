@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { groupAnagrams } from "./group-anagrams.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { groupAnagrams } from "./group-anagrams.js";
 
 test("testing groupAnagrams 1", () => {
 	const result = groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]);

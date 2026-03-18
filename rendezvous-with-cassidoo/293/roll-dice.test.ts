@@ -1,4 +1,4 @@
-import { expect, test, expectTypeOf } from "vitest";
+import { expect, expectTypeOf, test } from "vitest";
 
 import { rollDice } from "./roll-dice.js";
 
@@ -41,5 +41,5 @@ test.each(TESTS)(
 
 test("roll dice should throw an error for incorrect dice notation", () => {
 	// @ts-expect-error type error
-	expect(() => rollDice("2d")).toThrowError("bad dice notation!");
+	expect(() => rollDice("2d")).toThrow("bad dice notation!");
 });

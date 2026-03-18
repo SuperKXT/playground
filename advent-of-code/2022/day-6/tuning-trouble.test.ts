@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { tuningTrouble } from "./tuning-trouble.js";
-
 import { config } from "../../../config.js";
+
+import { tuningTrouble } from "./tuning-trouble.js";
 
 type TSolution = ReturnType<typeof tuningTrouble>;
 

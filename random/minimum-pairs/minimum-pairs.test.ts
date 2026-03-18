@@ -1,7 +1,6 @@
 import { expect, test } from "vitest";
 
 import { minimumPairs } from "./minimum-pairs.js";
-
 import type { TPair } from "./minimum-pairs.js";
 
 type TTest = {

@@ -17,5 +17,5 @@ test("testing typeMatchup against test 1", async () => {
 test("testing typeMatchup against test 2", async () => {
 	await expect(async () => {
 		return await typeMatchup("cassidy");
-	}).rejects.toThrowError("Invalid Pokemon type: cassidy");
+	}).rejects.toThrow("Invalid Pokemon type: cassidy");
 });

@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { aoc2024Day6 } from "./aoc-2024-day-6.js";
-
 import { config } from "../../../config.js";
+
+import { aoc2024Day6 } from "./aoc-2024-day-6.js";
 
 const dirname = path.join(config.dirname, "advent-of-code", "2024", "day-6");
 

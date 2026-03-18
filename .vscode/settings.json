@@ -1,6 +1,14 @@
 {
-	"task.allowAutomaticTasks": "on",
-	"typescript.tsdk": "node_modules/typescript/lib",
+	"js/ts.tsdk.path": "node_modules/typescript/lib",
+	"js/ts.preferences.importModuleSpecifier": "non-relative",
+	"js/ts.preferences.importModuleSpecifierEnding": "js",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "always",
+		"source.fixAll.prettier": "never",
+		"source.organizeImports": "never"
+	},
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/bower_components": true,

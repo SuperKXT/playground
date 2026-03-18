@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { countNodes } from "./count-tree-nodes.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { countNodes } from "./count-tree-nodes.js";
 
 test("testing countNodes for test 1", () => {
 	const result = countNodes(arrayToBinaryTree([1, 2, 3, 4, 5, 6]));

@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { orderedPairs } from "./ordered-pairs.js";
-
 import { config } from "../../../config.js";
+
+import { orderedPairs } from "./ordered-pairs.js";
 
 const EXAMPLE = `[1,1,3,1,1]
 [1,1,5,1,1]

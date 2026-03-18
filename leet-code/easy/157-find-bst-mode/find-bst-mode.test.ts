@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { findMode } from "./find-bst-mode.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { findMode } from "./find-bst-mode.js";
 
 test("testing arrayToBinaryTree for test 1", () => {
 	const tree = arrayToBinaryTree([1, null, 2, null, null, 2]);

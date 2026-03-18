@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 
 import { humanizeCases, humanizeToken } from "./humanize-token.helpers.js";
-
 import type { THumanizeCase } from "./humanize-token.helpers.js";
 
 type TTest = {

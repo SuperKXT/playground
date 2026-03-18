@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { supplyStacks } from "./supply-stacks.js";
-
 import { config } from "../../../config.js";
+
+import { supplyStacks } from "./supply-stacks.js";
 
 const INPUT = [
 	"    [D]    ",

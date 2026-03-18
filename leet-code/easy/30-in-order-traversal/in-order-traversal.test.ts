@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { inOrderTraversal } from "./in-order-traversal.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { inOrderTraversal } from "./in-order-traversal.js";
 
 test("testing inOrderTraversal for test 1", () => {
 	const result = inOrderTraversal(

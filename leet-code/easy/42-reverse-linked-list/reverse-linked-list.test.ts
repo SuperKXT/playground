@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { reverseLinkedList } from "./reverse-linked-list.js";
-
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import { reverseLinkedList } from "./reverse-linked-list.js";
 
 test("testing reverseLinkedList for test 1", () => {
 	const result = reverseLinkedList(arrayToLinkedList([1, 2, 3, 4, 5]).head);

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { letters } from "./letters.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { letters } from "./letters.js";
 
 test("testing letters against test 1", () => {
 	const result = letters(["X"]);

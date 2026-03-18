@@ -6,12 +6,11 @@ import argumentParser from "minimist-lite";
 import prompt from "prompt";
 import { z } from "zod";
 
-import { RENAME_ERRORS } from "./recursive-rename.types.js";
-
 import { config } from "../../config.js";
 import { stringifyError } from "../../helpers/error.helpers.js";
 import { formatToken } from "../../helpers/format-token.helpers.js";
 
+import { RENAME_ERRORS } from "./recursive-rename.types.js";
 import type {
 	TRenameOptions,
 	TRenameResult,

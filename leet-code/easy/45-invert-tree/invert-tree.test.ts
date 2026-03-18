@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { invertTree } from "./invert-tree.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { invertTree } from "./invert-tree.js";
 
 test("testing invertTree for test 1", () => {
 	const result = invertTree(arrayToBinaryTree([4, 2, 7, 1, 3, 6, 9]));

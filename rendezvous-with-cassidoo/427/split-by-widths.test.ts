@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { splitByWidths } from "./split-by-widths.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { splitByWidths } from "./split-by-widths.js";
 
 test("testing splitByWidths against test 1", () => {
 	const result = splitByWidths("Supercalifragilisticexpialidocious", [5, 9, 4]);

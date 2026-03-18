@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { afterBiGram } from "./after-bi-gram.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { afterBiGram } from "./after-bi-gram.js";
 
 test("testing afterBiGram for test 1", () => {
 	const result = afterBiGram(

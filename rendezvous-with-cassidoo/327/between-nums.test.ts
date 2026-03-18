@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { betweenNums } from "./between-nums.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { betweenNums } from "./between-nums.js";
 
 test("testing betweenNums against test 1", () => {
 	const result = betweenNums(3, 11, "even");

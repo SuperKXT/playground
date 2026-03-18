@@ -1,14 +1,14 @@
 // eslint-disable-next-line no-restricted-imports
 import { default as dayjs } from "dayjs";
+import type { Dayjs } from "dayjs";
 import duration from "dayjs/plugin/duration.js";
 import utc from "dayjs/plugin/utc.js";
 import { z } from "zod";
 
+import type { Utils } from "../types/utils.types.js";
+
 import { safeObjAccess } from "./object.helpers.js";
 import { pluralize } from "./pluralize.helpers.js";
-
-import type { Dayjs } from "dayjs";
-import type { Utils } from "../types/utils.types.js";
 
 dayjs.extend(utc);
 dayjs.extend(duration);

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { dailyTemperatures } from "./daily-temperatures.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { dailyTemperatures } from "./daily-temperatures.js";
 
 test("testing dailyTemperatures against test 1", () => {
 	const result = dailyTemperatures([70, 70, 70, 75]);

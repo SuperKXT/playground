@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { caloriesCost } from "./calories-cost.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { caloriesCost } from "./calories-cost.js";
 
 test("testing caloriesCost against test 1", () => {
 	const calories = [200, 400, 600, 800];

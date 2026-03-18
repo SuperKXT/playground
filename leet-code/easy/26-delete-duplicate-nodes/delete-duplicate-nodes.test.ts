@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { deleteDuplicateNodes } from "./delete-duplicate-nodes.js";
-
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import { deleteDuplicateNodes } from "./delete-duplicate-nodes.js";
 
 test("testing deleteDuplicateNodes for test 1", () => {
 	const result = deleteDuplicateNodes(arrayToLinkedList([1, 1, 2]).head);

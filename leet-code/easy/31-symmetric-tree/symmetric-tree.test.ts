@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { symmetricTree } from "./symmetric-tree.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { symmetricTree } from "./symmetric-tree.js";
 
 test("testing symmetricTree for test 1", () => {
 	const result = symmetricTree(arrayToBinaryTree([1, 2, 2, 3, 4, 4, 3]));

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { maxSubArraySum } from "./max-sub-array-sum.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { maxSubArraySum } from "./max-sub-array-sum.js";
 
 test("testing maxSubArraySum against test 1", () => {
 	const result = maxSubArraySum([-2, 1, -3, 4, -1, 2, 1, -5, 4]);

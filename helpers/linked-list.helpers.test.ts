@@ -1,13 +1,13 @@
 import { expect, expectTypeOf, test } from "vitest";
 
+import type { Utils } from "../types/utils.types.js";
+
 import {
 	arrayToLinkedList,
 	insertNodeToLinkedList,
 	insertToLinkedList,
 	linkedListToArray,
 } from "./linked-list.helpers.js";
-
-import type { Utils } from "../types/utils.types.js";
 
 test("testing arrayToLinkedList helper", () => {
 	const test1 = {

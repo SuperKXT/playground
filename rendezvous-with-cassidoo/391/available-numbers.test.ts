@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { availableNumbers } from "./available-numbers.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { availableNumbers } from "./available-numbers.js";
 
 test("testing availableNumbers against test 1", () => {
 	const result = availableNumbers("QB", [1, 2, 3, 10, 19]);

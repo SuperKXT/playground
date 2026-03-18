@@ -1,7 +1,6 @@
 import { expect, test } from "vitest";
 
 import { getOrdinalNumber } from "./get-ordinal-number.js";
-
 import type { TOrdinalNumber } from "./get-ordinal-number.js";
 
 type TTest = {

@@ -1,7 +1,6 @@
 import { expect, expectTypeOf, test } from "vitest";
 
 import { scoreWordGame } from "./score-word-game.js";
-
 import type { TLetterScores } from "./score-word-game.js";
 
 test("testing scoreWordGame against test 1", () => {

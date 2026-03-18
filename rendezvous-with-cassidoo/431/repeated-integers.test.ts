@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { repeatedIntegers } from "./repeated-integers.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { repeatedIntegers } from "./repeated-integers.js";
 
 test("testing repeatedIntegers against test 1", () => {
 	const result = repeatedIntegers(4);

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { findAnagrams } from "./find-anagram.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { findAnagrams } from "./find-anagram.js";
 
 test("testing findAnagram against test 1", () => {
 	const result = findAnagrams("cbaebabacd", "abc"); // cSpell: disable-line;

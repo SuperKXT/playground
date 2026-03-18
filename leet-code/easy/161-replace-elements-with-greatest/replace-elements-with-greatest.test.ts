@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { replaceElements } from "./replace-elements-with-greatest.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { replaceElements } from "./replace-elements-with-greatest.js";
 
 test("testing replaceElements for test 1", () => {
 	const result = replaceElements([17, 18, 5, 4, 6, 1]);

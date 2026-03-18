@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { raumdeuter } from "./raumdeuter.js";
-
 import { config } from "../../../config.js";
+
+import { raumdeuter } from "./raumdeuter.js";
 
 const EXAMPLE = [
 	"$ cd /",

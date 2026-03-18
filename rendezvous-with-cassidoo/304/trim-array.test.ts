@@ -1,9 +1,9 @@
 /** cSpell: disable */
 import { expect, expectTypeOf, test } from "vitest";
 
-import { trimArray } from "./trim-array.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { trimArray } from "./trim-array.js";
 
 test("testing trimArray against test 1", () => {
 	const response = trimArray([1, 2, 3, 4, 5, 6], 2, 1);

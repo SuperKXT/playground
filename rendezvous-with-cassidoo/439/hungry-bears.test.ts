@@ -1,7 +1,6 @@
 import { expect, expectTypeOf, test } from "vitest";
 
 import { hungryBearsImmutable, hungryBearsMutable } from "./hungry-bears.js";
-
 import type { TBear } from "./hungry-bears.js";
 
 const randomString = (length: number = 8): string => {

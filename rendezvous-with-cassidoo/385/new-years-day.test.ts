@@ -1,7 +1,6 @@
 import { expect, expectTypeOf, test } from "vitest";
 
 import { newYearsDay } from "./new-years-day.js";
-
 import type { TDay } from "./new-years-day.js";
 
 test("testing newYearsDay 1", () => {

@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
 
-import { addTwoNumbers } from "./add-two-numbers.js";
-
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import { addTwoNumbers } from "./add-two-numbers.js";
 
 test("testing addTwoNumbers for test 1", () => {
 	const num1 = arrayToLinkedList([2, 4, 3]);

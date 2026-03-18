@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { reshapeMatrix } from "./reshape-matrix.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { reshapeMatrix } from "./reshape-matrix.js";
 
 test("testing reshapeMatrix for test 1", () => {
 	const result = reshapeMatrix(

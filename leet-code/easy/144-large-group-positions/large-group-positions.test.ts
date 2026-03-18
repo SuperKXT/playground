@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { largeGroupPositions } from "./large-group-positions.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { largeGroupPositions } from "./large-group-positions.js";
 
 test("testing largeGroupPositions for test 1", () => {
 	const result = largeGroupPositions("abbxxxxzzy"); // cSpell: disable-line

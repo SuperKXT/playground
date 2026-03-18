@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { arrayIntersection } from "./array-intersection.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { arrayIntersection } from "./array-intersection.js";
 
 test("testing arrayIntersection for test 1", () => {
 	const result = arrayIntersection([1, 2, 2, 1], [2, 2]);

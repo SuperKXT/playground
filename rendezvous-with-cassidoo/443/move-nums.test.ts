@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { moveNumsImmutable, moveNumsInPlace } from "./move-nums.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { moveNumsImmutable, moveNumsInPlace } from "./move-nums.js";
 
 test("testing moveNumsImmutable against test 1", () => {
 	const result = moveNumsImmutable([0, 2, 0, 3, 10], 0);

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { minDepth } from "./min-tree-depth.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { minDepth } from "./min-tree-depth.js";
 
 test("testing minDepth for test 1", () => {
 	const result = minDepth(arrayToBinaryTree([3, 9, 20, null, null, 15, 7]));

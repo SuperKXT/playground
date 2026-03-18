@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { keyboardRow } from "./keyboard-row.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { keyboardRow } from "./keyboard-row.js";
 
 test("testing reshapeMatrix for test 1", () => {
 	const result = keyboardRow(["Hello", "Alaska", "Dad", "Peace"]);

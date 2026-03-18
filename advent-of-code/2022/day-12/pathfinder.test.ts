@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { pathfinder } from "./pathfinder.js";
-
 import { config } from "../../../config.js";
+
+import { pathfinder } from "./pathfinder.js";
 
 /** cSpell: disable */
 const EXAMPLE = [

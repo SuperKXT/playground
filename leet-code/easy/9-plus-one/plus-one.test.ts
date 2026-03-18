@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { plusOne } from "./plus-one.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { plusOne } from "./plus-one.js";
 
 test("testing plusOne for test 1", () => {
 	const result = plusOne([1, 2, 3]);

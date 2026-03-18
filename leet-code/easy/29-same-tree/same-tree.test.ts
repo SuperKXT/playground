@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { sameTree } from "./same-tree.js";
-
 import { arrayToBinaryTree } from "../../../helpers/binary-tree.helpers.js";
+
+import { sameTree } from "./same-tree.js";
 
 test("testing sameTree for test 1", () => {
 	const result = sameTree(

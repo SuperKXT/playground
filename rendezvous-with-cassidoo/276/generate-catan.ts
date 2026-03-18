@@ -4,7 +4,6 @@ import {
 	DOUBLE_PIECES,
 	SINGLE_PIECES,
 } from "./generate-catan.types.js";
-
 import type {
 	TBoard,
 	TCell,

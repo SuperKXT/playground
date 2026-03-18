@@ -1,6 +1,6 @@
-import { isObject, readableTypeOf } from "./type.helpers.js";
-
 import type { Utils } from "../types/utils.types.js";
+
+import { isObject, readableTypeOf } from "./type.helpers.js";
 
 export const safeObjAccess = (obj: object, key: string): unknown => {
 	if (readableTypeOf(obj) !== "object" || !(key in obj)) return undefined;

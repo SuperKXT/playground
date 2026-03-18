@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { stringSplit } from "./string-split.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { stringSplit } from "./string-split.js";
 
 test("testing stringSplit", () => {
 	const str = "This is so, so silly!";

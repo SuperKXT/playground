@@ -3,9 +3,9 @@ import path from "node:path";
 
 import { expect, test } from "vitest";
 
-import { sandTetris } from "./sand-tetris.js";
-
 import { config } from "../../../config.js";
+
+import { sandTetris } from "./sand-tetris.js";
 
 const EXAMPLE = `498,4 -> 498,6 -> 496,6
 503,4 -> 502,4 -> 502,9 -> 494,9`;

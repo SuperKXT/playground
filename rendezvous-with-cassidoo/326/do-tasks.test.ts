@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { doWork } from "./do-tasks.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { doWork } from "./do-tasks.js";
 
 test("testing doWork against test 1", () => {
 	const tasks = [

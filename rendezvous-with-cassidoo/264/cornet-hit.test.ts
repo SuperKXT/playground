@@ -1,7 +1,6 @@
 import { expect, test } from "vitest";
 
 import { cornerHit } from "./cornet-hit.js";
-
 import type { TCoord } from "./cornet-hit.js";
 
 type TTest = {

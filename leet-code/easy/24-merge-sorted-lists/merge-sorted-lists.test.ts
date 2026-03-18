@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { mergeSortedLists } from "./merge-sorted-lists.js";
-
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import { mergeSortedLists } from "./merge-sorted-lists.js";
 
 test("testing mergeSortedLists for test 1", () => {
 	const result = mergeSortedLists(

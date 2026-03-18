@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { zoom } from "./zoom.js";
-
 import type { Utils } from "../../types/utils.types.js";
+
+import { zoom } from "./zoom.js";
 
 test("testing zoom against test 1", () => {
 	const result = zoom(

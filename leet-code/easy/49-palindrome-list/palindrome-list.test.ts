@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { palindromeList } from "./palindrome-list.js";
-
 import { arrayToLinkedList } from "../../../helpers/linked-list.helpers.js";
+
+import { palindromeList } from "./palindrome-list.js";
 
 test("testing palindromeList for test 1", () => {
 	const result = palindromeList(arrayToLinkedList([1, 2, 2, 1]).head);

@@ -1,8 +1,8 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-import { fizzBuzz } from "./fizz-buzz.js";
-
 import type { Utils } from "../../../types/utils.types.js";
+
+import { fizzBuzz } from "./fizz-buzz.js";
 
 test("testing longestPalindrome for test 1", () => {
 	const result = fizzBuzz(3);

@@ -1,8 +1,7 @@
 import { expect, test } from "vitest";
 
-import { findWordle } from "./wordle.js";
-
 import type { TWordleWord } from "./word-list.js";
+import { findWordle } from "./wordle.js";
 import type { TArguments } from "./wordle.js";
 
 type TTest = {

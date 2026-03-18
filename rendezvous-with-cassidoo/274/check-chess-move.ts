@@ -1,3 +1,5 @@
+import type { Utils } from "../../types/utils.types.js";
+
 import {
 	BLACK_PIECES,
 	CHESS_ERRORS,
@@ -5,8 +7,6 @@ import {
 	SQUARE,
 	WHITE_PIECES,
 } from "./check-chess-move.types.js";
-
-import type { Utils } from "../../types/utils.types.js";
 import type {
 	TBlackPiece,
 	TBoard,

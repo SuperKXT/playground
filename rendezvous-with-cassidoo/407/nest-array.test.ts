@@ -1,8 +1,8 @@
-import { expect, test, expectTypeOf } from "vitest";
-
-import { nestArray } from "./nest-array.js";
+import { expect, expectTypeOf, test } from "vitest";
 
 import type { Utils } from "../../types/utils.types.js";
+
+import { nestArray } from "./nest-array.js";
 
 test("testing nestArray against test 1", () => {
 	const result = nestArray([1, 2, 3, 4]);

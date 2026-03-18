@@ -1,16 +1,16 @@
 import { expect, test } from "vitest";
 
 import {
+	arrayToLinkedList,
+	linkedListToArray,
+} from "../../helpers/linked-list.helpers.js";
+
+import {
 	swapArrayPairsWithLoop,
 	swapArrayPairsWithRecursion,
 	swapArrayPairsWithRegex,
 	swapLinkedListPairs,
 } from "./swap-pairs.js";
-
-import {
-	arrayToLinkedList,
-	linkedListToArray,
-} from "../../helpers/linked-list.helpers.js";
 
 const ARRAY_1 = [1, 2, 3, 4];
 const ARRAY_2: number[] = [];
