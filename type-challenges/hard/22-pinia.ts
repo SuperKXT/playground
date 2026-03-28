@@ -122,6 +122,7 @@ const store = defineStore({
 			this.increment();
 		},
 		increment(step = 1) {
+			// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
 			this.num += step;
 		},
 		reset() {
@@ -130,7 +131,7 @@ const store = defineStore({
 			// @ts-expect-error
 			this.parsedNum = 0;
 
-			return true;
+			return true as const;
 		},
 		setNum(value: number) {
 			this.num = value;
