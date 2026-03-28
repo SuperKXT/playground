@@ -58,6 +58,7 @@ const closest = (grid: number[][], x: number, y: number): number => {
 	}
 	return -1;
 };
+
 export const fireStationCoverage = (grid: number[][]): number[][] => {
 	const res: number[][] = [];
 	for (let i = 0; i < grid.length; i++) {
