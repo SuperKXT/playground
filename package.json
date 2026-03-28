@@ -33,9 +33,9 @@
 		"@types/node": "^25.5.0",
 		"@types/prompt": "^1.1.9",
 		"@typescript/analyze-trace": "^0.10.1",
-		"@vitest/coverage-v8": "^4.1.1",
+		"@vitest/coverage-v8": "^4.1.2",
 		"@vitest/eslint-plugin": "^1.6.13",
-		"@vitest/ui": "^4.1.1",
+		"@vitest/ui": "^4.1.2",
 		"cspell": "^9.7.0",
 		"eslint": "^10.1.0",
 		"eslint-import-resolver-typescript": "^4.4.4",
@@ -48,7 +48,7 @@
 		"tsx": "^4.21.0",
 		"typescript": "^6.0.2",
 		"typescript-eslint": "^8.57.2",
-		"vitest": "^4.1.1"
+		"vitest": "^4.1.2"
 	},
 	"engines": {
 		"node": ">=24.14.0"
