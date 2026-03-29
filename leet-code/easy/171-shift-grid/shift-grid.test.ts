@@ -1,5 +1,7 @@
 import { expect, expectTypeOf, test } from "vitest";
 
+import type { Utils } from "../../../types/utils.types.js";
+
 import { shiftGrid } from "./shift-grid.js";
 
 test("testing shiftGrid for test 1", () => {
@@ -15,11 +17,13 @@ test("testing shiftGrid for test 1", () => {
 		[9, 1, 2],
 		[3, 4, 5],
 		[6, 7, 8],
-	];
+	] as const;
 
 	expect(result).toStrictEqual(expected);
 
-	expectTypeOf(result).toEqualTypeOf(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing shiftGrid for test 2", () => {
@@ -37,11 +41,13 @@ test("testing shiftGrid for test 2", () => {
 		[3, 8, 1, 9],
 		[19, 7, 2, 5],
 		[4, 6, 11, 10],
-	];
+	] as const;
 
 	expect(result).toStrictEqual(expected);
 
-	expectTypeOf(result).toEqualTypeOf(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
 
 test("testing shiftGrid for test 3", () => {
@@ -57,9 +63,11 @@ test("testing shiftGrid for test 3", () => {
 		[1, 2, 3],
 		[4, 5, 6],
 		[7, 8, 9],
-	];
+	] as const;
 
 	expect(result).toStrictEqual(expected);
 
-	expectTypeOf(result).toEqualTypeOf(expected);
+	expectTypeOf<Utils.deepReadonly<typeof result>>(result).toEqualTypeOf(
+		expected,
+	);
 });
