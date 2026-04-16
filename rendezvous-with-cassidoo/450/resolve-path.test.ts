@@ -3,18 +3,18 @@ import { expect, expectTypeOf, test } from "vitest";
 import { resolvePath } from "./resolve-path.js";
 
 const fs = {
-  "/a": "/b",
-  "/b": "/c",
-  "/c": null,
-  "/loop1": "/loop2",
-  "/loop2": "/loop1",
-  "/real": null,
-  "/alias": "/real",
-};
+	"/a": "/b",
+	"/b": "/c",
+	"/c": null,
+	"/loop1": "/loop2",
+	"/loop2": "/loop1",
+	"/real": null,
+	"/alias": "/real",
+} as const;
 
 test("testing resolvePath against test 1", () => {
-	const result = resolvePath(fs, '/a');
-	const expected = '/c' as string | null;
+	const result = resolvePath(fs, "/a");
+	const expected = "/c" as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -22,8 +22,8 @@ test("testing resolvePath against test 1", () => {
 });
 
 test("testing resolvePath against test 2", () => {
-	const result = resolvePath(fs, '/alias');
-	const expected = '/real' as string | null;
+	const result = resolvePath(fs, "/alias");
+	const expected = "/real" as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -31,8 +31,8 @@ test("testing resolvePath against test 2", () => {
 });
 
 test("testing resolvePath against test 3", () => {
-	const result = resolvePath(fs, '/loop1');
-	const expected = null as string | null;
+	const result = resolvePath(fs, "/loop1");
+	const expected = null;
 
 	expect(result).toStrictEqual(expected);
 
@@ -40,8 +40,8 @@ test("testing resolvePath against test 3", () => {
 });
 
 test("testing resolvePath against test 4", () => {
-	const result = resolvePath(fs, '/real');
-	const expected = '/real' as string | null;
+	const result = resolvePath(fs, "/real");
+	const expected = "/real" as const;
 
 	expect(result).toStrictEqual(expected);
 
