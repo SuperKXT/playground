@@ -8,5 +8,5 @@ export const maxScoreWithOneReset = (nums: number[]): number => {
 			sum = 0;
 		}
 	}
-	return sum as never;
+	return sum;
 };

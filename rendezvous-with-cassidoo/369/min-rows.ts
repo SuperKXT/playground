@@ -37,5 +37,5 @@ export const minRows = <
 		rows++;
 		remaining = filtered;
 	}
-	return rows as never;
+	return rows;
 };

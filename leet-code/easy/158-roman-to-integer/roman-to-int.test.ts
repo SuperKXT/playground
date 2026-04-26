@@ -75,7 +75,7 @@ test("testing romanToInt for test 8", () => {
 });
 
 test("testing romanToInt for test 9", () => {
-	const result = romanToInt("MMXXV" as string); // cSpell: disable-line
+	const result = romanToInt("MMXXV"); // cSpell: disable-line
 	const expected = 2025 as number;
 
 	expect(result).toStrictEqual(expected);

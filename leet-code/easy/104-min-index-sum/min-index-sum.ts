@@ -16,5 +16,5 @@ export const minIndexSum = (list1: string[], list2: string[]): string[] => {
 		res.push(word);
 		min = sum;
 	}
-	return res as never;
+	return res;
 };

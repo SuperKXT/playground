@@ -23,5 +23,5 @@ export const maximumAverageSubarray = (nums: number[], k: number): number => {
 		first++;
 		max = Math.max(max, sum / k);
 	}
-	return max as never;
+	return max;
 };

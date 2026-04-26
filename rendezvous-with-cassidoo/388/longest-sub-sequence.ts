@@ -11,5 +11,5 @@ export const longestSubsequence = (list: number[]): number => {
 		}
 		last = num;
 	}
-	return Math.max(highest, curr) as never;
+	return Math.max(highest, curr);
 };

@@ -17,5 +17,5 @@ export const knightMoves = (pos: [number, number]): Array<[number, number]> => {
 		if (col < 6) res.push([row - 1, col + 2]);
 		if (col > 1) res.push([row - 1, col - 2]);
 	}
-	return res.sort((a, b) => a[0] - b[0] || a[1] - b[1]) as never;
+	return res.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
 };

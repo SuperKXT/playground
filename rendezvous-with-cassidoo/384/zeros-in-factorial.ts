@@ -6,5 +6,5 @@ export const zerosInFactorial = (num: number): number => {
 		result += Math.floor(num / power);
 		power *= 5;
 	}
-	return result as never;
+	return result;
 };

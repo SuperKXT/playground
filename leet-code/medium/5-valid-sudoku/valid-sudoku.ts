@@ -85,7 +85,7 @@ export const isValidSudoku = <const Board extends TSudokuCell[][]>(
 				sets.set(gridKey, grid);
 			}
 			if (cell === ".") continue;
-			if (!digitSet.has(cell as never)) return false as never;
+			if (!digitSet.has(cell)) return false as never;
 			if (row.has(cell) || col.has(cell) || grid.has(cell))
 				return false as never;
 			row.add(cell);

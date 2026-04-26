@@ -14,19 +14,19 @@ Example:
 
 ```ts
 const fs = {
-  "/a": "/b",
-  "/b": "/c",
-  "/c": null,
-  "/loop1": "/loop2",
-  "/loop2": "/loop1",
-  "/real": null,
-  "/alias": "/real",
+	"/a": "/b",
+	"/b": "/c",
+	"/c": null,
+	"/loop1": "/loop2",
+	"/loop2": "/loop1",
+	"/real": null,
+	"/alias": "/real",
 };
 
-resolvePath(fs, "/a");      // "/c"
-resolvePath(fs, "/alias");  // "/real"
-resolvePath(fs, "/loop1");  // null
-resolvePath(fs, "/real");   // "/real"
+resolvePath(fs, "/a"); // "/c"
+resolvePath(fs, "/alias"); // "/real"
+resolvePath(fs, "/loop1"); // null
+resolvePath(fs, "/real"); // "/real"
 ```
 
 ---

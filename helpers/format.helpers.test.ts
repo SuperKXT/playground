@@ -242,7 +242,7 @@ test("should test numberToWords", () => {
 	expectTypeOf(test26.response).toEqualTypeOf(test26.expected);
 
 	const test27 = {
-		response: numberToWords(43000 as number),
+		response: numberToWords(43000),
 		expected: "forty three thousand" as string,
 	} as const;
 

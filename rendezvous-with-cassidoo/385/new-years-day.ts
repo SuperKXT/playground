@@ -12,5 +12,5 @@ export type TDay = (typeof dayMap)[keyof typeof dayMap];
 
 export const newYearsDay = (year: number): TDay => {
 	const day = new Date(year, 0, 1).getDay();
-	return dayMap[day as keyof typeof dayMap] as TDay;
+	return dayMap[day as keyof typeof dayMap];
 };

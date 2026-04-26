@@ -6,5 +6,5 @@ export const sumOfNeighbors = (nums: number[]): number => {
 		const next = nums[idx + 1] ?? 0;
 		sum += curr + prev + next;
 	}
-	return sum as never;
+	return sum;
 };
