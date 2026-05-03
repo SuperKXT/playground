@@ -2,13 +2,11 @@
 
 [issue #451 of rendezvous with cassidoo.](https://buttondown.com/cassidoo/archive/9-ufe0f-u20e3-there-are-no-mistakes-only/)
 
-ou are given a file system represented as an object where keys are absolute paths and
-values are either `null` (real file/directory) or a `string` (a symlink pointing to another path).
+Given an integer `n`, return all unique combinations of Perrin numbers
+(up to and including the `nth` Perrin number) that sum to a target value `k`,
+where each Perrin number can be used at most once.
 
-Write a function that resolves a given path to its real destination,
-following symlinks along the way.
-
-If a symlink chain forms a cycle, return `null`.
+Return the combinations sorted in ascending order.
 
 Example:
 
