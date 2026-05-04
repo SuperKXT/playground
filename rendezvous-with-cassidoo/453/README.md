@@ -17,7 +17,3 @@ maxPatternCopies("aab??", "aab"); // 1
 
 maxPatternCopies("??????", "abc"); // 2
 ```
-
----
-
-<!-- [Solution Playground](https://tsplay.dev/WGLbkw) -->
