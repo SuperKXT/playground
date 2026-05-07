@@ -3,7 +3,7 @@ import { expect, expectTypeOf, test } from "vitest";
 import { maxPatternCopies } from "./max-pattern-copies.js";
 
 test("testing maxPatternCopies against test 1", () => {
-	const result = maxPatternCopies("abcabc???", "ac");
+	const result = maxPatternCopies("abcabc???", "ac"); // cSpell: disable-line
 	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);

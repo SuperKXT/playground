@@ -11,7 +11,7 @@ appear in the rearranged result.
 Example:
 
 ```ts
-maxPatternCopies("abcabc???", "ac"); // 3
+maxPatternCopies("abcabc???", "ac"); // 3 // cSpell: disable-line
 
 maxPatternCopies("aab??", "aab"); // 1
 
