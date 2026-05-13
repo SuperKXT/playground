@@ -1,1 +1,5 @@
 saveExact: true
+
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
