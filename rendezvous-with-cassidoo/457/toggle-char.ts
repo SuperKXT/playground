@@ -1,3 +1,28 @@
+type TIsAlphabet<T extends string> =
+	Lowercase<T> extends Uppercase<T> ? false : true;
+
+type TIsUpperCase<T extends string> = Lowercase<T> extends T ? false : true;
+
+type TAlternateChar<
+	T extends string,
+	last extends "upper" | "lower" = "lower",
+> = T extends `${infer first}${infer rest}`
+	? TIsAlphabet<first> extends true
+		? last extends "lower"
+			? `${Uppercase<first>}${TAlternateChar<rest, "upper">}`
+			: `${Lowercase<first>}${TAlternateChar<rest>}`
+		: `${first}${TAlternateChar<rest, last>}`
+	: "";
+
+type _TToggleChar<T extends string> = T extends `${infer first}${infer rest}`
+	? `${TIsUpperCase<first> extends true ? Lowercase<first> : Uppercase<first>}${_TToggleChar<rest>}`
+	: "";
+
+type TToggleChar<
+	T extends string,
+	Alternating extends boolean,
+> = Alternating extends true ? TAlternateChar<T> : _TToggleChar<T>;
+
 const isUpperCase = (char: string): boolean => {
 	const code = char.charCodeAt(0);
 	return code >= 65 && code <= 90;
@@ -25,8 +50,14 @@ const alternateChar = (str: string): string => {
 	return res;
 };
 
-export const toggleChar = (str: string, alternating?: boolean): string => {
-	if (alternating) return alternateChar(str);
+export const toggleChar = <
+	Str extends string,
+	Alternating extends boolean = false,
+>(
+	str: Str,
+	alternating?: Alternating,
+): TToggleChar<Str, Alternating> => {
+	if (alternating) return alternateChar(str) as never;
 
 	let res = "";
 	for (const char of str) {
@@ -36,5 +67,5 @@ export const toggleChar = (str: string, alternating?: boolean): string => {
 			res += char.toUpperCase();
 		}
 	}
-	return res;
+	return res as never;
 };
