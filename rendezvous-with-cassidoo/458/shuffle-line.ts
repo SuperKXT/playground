@@ -1,4 +1,19 @@
-export const shuffleLine = (names: string[], n: number): string[] => {
+type TShuffleLine<
+	Names extends string[],
+	N extends number,
+	curr extends Array<1> = [1],
+	left extends string[] = [],
+	right extends string[] = [],
+> = Names extends [infer first extends string, ...infer rest extends string[]]
+	? curr["length"] extends N
+		? TShuffleLine<rest, N, [1], left, [...right, first]>
+		: TShuffleLine<rest, N, [...curr, 1], [...left, first], right>
+	: [...left, ...right];
+
+export const shuffleLine = <const Names extends string[], N extends number>(
+	names: Names,
+	n: N,
+): TShuffleLine<Names, N> => {
 	const left: string[] = [];
 	const right: string[] = [];
 	let curr = 1;
@@ -12,5 +27,5 @@ export const shuffleLine = (names: string[], n: number): string[] => {
 		curr++;
 	}
 
-	return [...left, ...right];
+	return [...left, ...right] as never;
 };
