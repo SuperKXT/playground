@@ -11,7 +11,7 @@ test("testing toggleChar against test 1", () => {
 	expectTypeOf<typeof result>(result).toEqualTypeOf(expected);
 });
 
-test("testing countBouncesToTarget against test 2", () => {
+test("testing toggleChar against test 2", () => {
 	const result = toggleChar("HeheHeheHEheheHeH"); // cSpell: disable-line
 	const expected = "hEHEhEHEheHEHEhEh" as const;
 
