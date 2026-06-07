@@ -30,7 +30,7 @@
 		"@total-typescript/ts-reset": "0.6.1",
 		"@type-challenges/utils": "0.1.1",
 		"@types/eslint": "9.6.1",
-		"@types/node": "25.9.1",
+		"@types/node": "25.9.2",
 		"@types/prompt": "1.1.9",
 		"@typescript/analyze-trace": "0.11.0",
 		"@vitest/coverage-v8": "4.1.8",
