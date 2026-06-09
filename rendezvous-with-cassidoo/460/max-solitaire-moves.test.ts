@@ -9,7 +9,7 @@ test("testing maxSolitaireMoves against test 1", () => {
 		{ rank: 5, color: "black" },
 		{ rank: 9, color: "red" },
 	]);
-	const expected = 2 as number;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -23,7 +23,7 @@ test("testing maxSolitaireMoves against test 2", () => {
 		{ rank: 6, color: "red" },
 		{ rank: 5, color: "black" },
 	]);
-	const expected = 2 as number;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
