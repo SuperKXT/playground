@@ -1,4 +1,15 @@
 {
+	"dictionaries": [
+		"cpp-compound-words",
+		"css",
+		"fullstack",
+		"node",
+		"npm",
+		"python",
+		"sql",
+		"typescript"
+	],
+	"ignoreRegExpList": ["/[\\u0600-\\u06FF]+/", "/[\\u0621-\\u064A]+/"],
 	"words": [
 		"addx",
 		"antfu",

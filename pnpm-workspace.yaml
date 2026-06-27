@@ -2,4 +2,4 @@ saveExact: true
 
 allowBuilds:
   esbuild: true
-  unrs-resolver: true
+  unrs-resolver: true # cSpell: disable-line
