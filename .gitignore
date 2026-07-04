@@ -39,5 +39,5 @@ tsconfig.vitest-temp.json
 
 trace
 
-.eslintcache
 .cspellcache
+.eslintcache
