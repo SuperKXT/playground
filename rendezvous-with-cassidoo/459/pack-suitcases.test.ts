@@ -1,6 +1,5 @@
 import { expect, expectTypeOf, test } from "vitest";
 
-
 import { packSuitcases } from "./pack-suitcases.js";
 
 test("testing packSuitcases against test 1", () => {
@@ -9,9 +8,7 @@ test("testing packSuitcases against test 1", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	expectTypeOf<typeof result>(result).toEqualTypeOf(
-		expected,
-	);
+	expectTypeOf<typeof result>(result).toEqualTypeOf(expected);
 });
 
 test("testing packSuitcases against test 2", () => {
@@ -20,7 +17,5 @@ test("testing packSuitcases against test 2", () => {
 
 	expect(result).toStrictEqual(expected);
 
-	expectTypeOf<typeof result>(result).toEqualTypeOf(
-		expected,
-	);
+	expectTypeOf<typeof result>(result).toEqualTypeOf(expected);
 });

@@ -5,8 +5,8 @@
 	"author": "Saad Khan",
 	"type": "module",
 	"scripts": {
-		"lint": "eslint . --max-warnings=0 --fix && pnpm format && pnpm spellcheck",
-		"format": "prettier --write --log-level silent .",
+		"lint": "eslint . --max-warnings=0 --cache --fix && pnpm format && pnpm spellcheck",
+		"format": "prettier --write --cache --log-level silent .",
 		"test": "vitest watch",
 		"test-ui": "vitest --ui",
 		"tsc": "tsc",
@@ -14,7 +14,7 @@
 		"wordle": "tsx ./scripts/wordle/wordle.ts",
 		"kebab-rename": "tsx ./scripts/recursive-rename/recursive-rename.ts",
 		"md-csv": "tsx ./scripts/md-links-to-csv/script.ts",
-		"spellcheck": "cspell . --quiet",
+		"spellcheck": "cspell  --cache . --quiet",
 		"diag": "tsc --extendedDiagnostics",
 		"trace": "tsc --generateTrace ./trace && npx @typescript/analyze-trace trace"
 	},

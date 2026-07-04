@@ -14,6 +14,7 @@
 		"**/bower_components": true,
 		"**/*.code-search": true,
 		"coverage": true,
-		"pnpm-lock.yaml": true
+		"pnpm-lock.yaml": true,
+		".cspellcache": true
 	}
 }

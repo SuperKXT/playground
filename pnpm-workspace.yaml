@@ -1,5 +1,5 @@
 saveExact: true
 
 allowBuilds:
-  esbuild: true
-  unrs-resolver: true
+  esbuild: true # cSpell: disable-line
+  unrs-resolver: true # cSpell: disable-line
