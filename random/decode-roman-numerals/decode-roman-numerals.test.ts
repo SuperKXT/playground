@@ -76,7 +76,7 @@ test("testing decodeRomanNumerals for test 8", () => {
 
 test("testing decodeRomanNumerals for test 9", () => {
 	const result = decodeRomanNumerals("MMXXV"); // cSpell: disable-line
-	const expected = 2025 as number;
+	const expected = 2025 as const;
 
 	expect(result).toStrictEqual(expected);
 

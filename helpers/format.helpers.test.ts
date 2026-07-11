@@ -243,7 +243,7 @@ test("should test numberToWords", () => {
 
 	const test27 = {
 		response: numberToWords(43000),
-		expected: "forty three thousand" as string,
+		expected: "forty three thousand",
 	} as const;
 
 	expect(test27.response).toStrictEqual(test27.expected);
