@@ -72,19 +72,15 @@ type TFindPeakElement<
 	infer next extends number,
 	...infer rest extends number[],
 ]
-	?
-			| (
-					| TCompareNumbers<first, prev>
-					| TCompareNumbers<first, next> extends "greater"
-					? idx["length"]
-					: never)
-			| TFindPeakElement<[next, ...rest], [...idx, 1], first>
+	? | (
+				| TCompareNumbers<first, prev>
+				| TCompareNumbers<first, next> extends "greater"
+				? idx["length"]
+				: never)
+		| TFindPeakElement<[next, ...rest], [...idx, 1], first>
 	: Nums extends [infer first extends number, ...infer rest extends number[]]
-		?
-				| (TCompareNumbers<first, prev> extends "greater"
-						? idx["length"]
-						: never)
-				| TFindPeakElement<rest, [...idx, 1], first>
+		? | (TCompareNumbers<first, prev> extends "greater" ? idx["length"] : never)
+			| TFindPeakElement<rest, [...idx, 1], first>
 		: never;
 
 // export const findPeakElement = <const Nums extends number[]>(

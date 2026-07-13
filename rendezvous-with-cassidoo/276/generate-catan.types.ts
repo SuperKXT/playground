@@ -5,8 +5,7 @@ export const SINGLE_PIECES = [".", "2", "C"] as const;
 export const DOUBLE_PIECES = ["3", "4", "5", "6", "8", "9", "A", "B"] as const;
 
 export type TCell =
-	| (typeof DOUBLE_PIECES)[number]
-	| (typeof SINGLE_PIECES)[number];
+	(typeof DOUBLE_PIECES)[number] | (typeof SINGLE_PIECES)[number];
 
 export type TBoard = [
 	Utils.tuple<3, TCell>,

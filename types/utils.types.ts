@@ -77,8 +77,7 @@ export declare namespace Utils {
 
 	/** trim the empty spaces from the start and end of the string */
 	type trim<str extends string> = str extends
-		| ` ${infer trimmed}`
-		| `${infer trimmed} `
+		` ${infer trimmed}` | `${infer trimmed} `
 		? trim<trimmed>
 		: str;
 
@@ -132,13 +131,15 @@ export declare namespace Utils {
 
 	/** remove index signatures from an object type */
 	type removeIndexSignature<T extends object> = {
-		[k in keyof T as string extends k
-			? never
-			: number extends k
+		[
+			k in keyof T as string extends k
 				? never
-				: symbol extends k
+				: number extends k
 					? never
-					: k]: T[k];
+					: symbol extends k
+						? never
+						: k
+		]: T[k];
 	};
 
 	/** omit utility that distributes over the union */
@@ -239,18 +240,17 @@ export declare namespace Utils {
 
 	/** extract the properties of a class */
 	type extractClassProps<T> = {
-		[k in keyof T as T[k] extends (...args: any[]) => unknown
-			? never
-			: k]: T[k];
+		[
+			k in keyof T as T[k] extends (...args: any[]) => unknown ? never : k
+		]: T[k];
 	};
 
 	type numberEnumFromTuple<Tuple extends readonly string[]> =
 		Tuple extends Tuple
 			? Utils.prettify<{
-					-readonly [k in keyof Omit<Tuple, keyof unknown[]> as Tuple[k] &
-						PropertyKey]: k & string extends `${infer num extends number}`
-						? num
-						: never;
+					-readonly [
+						k in keyof Omit<Tuple, keyof unknown[]> as Tuple[k] & PropertyKey
+					]: k & string extends `${infer num extends number}` ? num : never;
 				}>
 			: never;
 

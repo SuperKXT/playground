@@ -51,8 +51,7 @@
 /* _____________ Your Code Here _____________ */
 
 type PropConstructor<T = any> =
-	| (new (...args: any[]) => T & object)
-	| (() => T);
+	(new (...args: any[]) => T & object) | (() => T);
 
 type PropType<T> = PropConstructor<T> | Array<PropConstructor<T>>;
 type Prop<T = any> = PropType<T> | { type?: PropType<T> };
@@ -82,9 +81,9 @@ declare function VueBasicProps<
 		ExtractProps<P> &
 			D &
 			M & {
-				[K in keyof C as C[K] extends (...args: any[]) => any
-					? K
-					: never]: ReturnType<C[K]>;
+				[
+					K in keyof C as C[K] extends (...args: any[]) => any ? K : never
+				]: ReturnType<C[K]>;
 			}
 	>,
 ): any;

@@ -37,11 +37,10 @@ type _AllCombinations<S extends string, T extends string = StringToUnion<S>> = [
 	T,
 ] extends [never]
 	? ""
-	:
-			| ""
-			| {
-					[K in T]: `${K}${AllCombinations<never, Exclude<T, K>>}`;
-			  }[T];
+	: | ""
+		| {
+				[K in T]: `${K}${AllCombinations<never, Exclude<T, K>>}`;
+		  }[T];
 
 /* _____________ Test Cases _____________ */
 // eslint-disable-next-line import-x/first

@@ -62,11 +62,9 @@ declare function SimpleVue<
 	} & ThisType<
 		D &
 			M & {
-				[K in keyof C as C[K] extends (...args: any[]) => unknown
-					? K
-					: never]: C[K] extends (...args: any[]) => unknown
-					? ReturnType<C[K]>
-					: never;
+				[
+					K in keyof C as C[K] extends (...args: any[]) => unknown ? K : never
+				]: C[K] extends (...args: any[]) => unknown ? ReturnType<C[K]> : never;
 			}
 	>,
 ): unknown;

@@ -5,11 +5,13 @@ type TExtract<
 	Map extends Record<string, unknown[]>,
 	Trusts,
 > = keyof {
-	[k in keyof Map as [...Map[k], 1]["length"] extends N
-		? k extends Trusts
-			? never
-			: k
-		: never]: k;
+	[
+		k in keyof Map as [...Map[k], 1]["length"] extends N
+			? k extends Trusts
+				? never
+				: k
+			: never
+	]: k;
 };
 
 type TAdd<

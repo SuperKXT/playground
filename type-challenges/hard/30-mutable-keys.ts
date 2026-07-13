@@ -20,9 +20,11 @@
 /* _____________ Your Code Here _____________ */
 
 type MutableKeys<T extends Record<string, unknown>> = keyof {
-	[K in keyof T as Equal<Pick<T, K>, Readonly<Pick<T, K>>> extends true
-		? never
-		: K]: T[K];
+	[
+		K in keyof T as Equal<Pick<T, K>, Readonly<Pick<T, K>>> extends true
+			? never
+			: K
+	]: T[K];
 };
 
 /* _____________ Test Cases _____________ */

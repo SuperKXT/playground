@@ -3,8 +3,7 @@ type TIsOdd<T extends number> = `${T}` extends `${string}${1 | 3 | 5 | 7 | 9}`
 	: false;
 
 type TIsSumOdd<A extends number, B extends number> = boolean extends
-	| TIsOdd<A>
-	| TIsOdd<B>
+	TIsOdd<A> | TIsOdd<B>
 	? true
 	: [];
 

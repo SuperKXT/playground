@@ -137,16 +137,7 @@ function numberComparator<
 }
 
 declare const _num:
-	| 1
-	| 2
-	| 3
-	| 4
-	| 50_000
-	| 65_000
-	| 10_000_001
-	| 20
-	| -20
-	| 20.234;
+	1 | 2 | 3 | 4 | 50_000 | 65_000 | 10_000_001 | 20 | -20 | 20.234;
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 _num;
 //^?

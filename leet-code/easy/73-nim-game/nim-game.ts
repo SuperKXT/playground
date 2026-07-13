@@ -28,9 +28,7 @@ type TDivisibleBy4 =
 	| `100`;
 
 type TNimGame<N extends number> = `${N}` extends
-	| `4`
-	| `8`
-	| `${string}${TDivisibleBy4}`
+	`4` | `8` | `${string}${TDivisibleBy4}`
 	? false
 	: true;
 

@@ -690,8 +690,7 @@ test("deepReadonly type util", () => {
 	};
 
 	type TExpected2 =
-		| { readonly a: string }
-		| { readonly b: number; readonly foo: () => string };
+		{ readonly a: string } | { readonly b: number; readonly foo: () => string };
 
 	type TTests = Utils.trueTuple<
 		[

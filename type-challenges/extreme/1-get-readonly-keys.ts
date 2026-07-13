@@ -25,9 +25,11 @@
 /* _____________ Your Code Here _____________ */
 
 type GetReadonlyKeys<T extends object> = keyof {
-	[K in keyof T as Equal<Pick<T, K>, Readonly<Pick<T, K>>> extends true
-		? K
-		: never]: unknown;
+	[
+		K in keyof T as Equal<Pick<T, K>, Readonly<Pick<T, K>>> extends true
+			? K
+			: never
+	]: unknown;
 };
 
 /* _____________ Test Cases _____________ */

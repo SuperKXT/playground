@@ -30,11 +30,10 @@ type ObjectKeyPaths<
 	R extends boolean = true,
 	K extends keyof T = keyof T,
 > = K extends string | number
-	?
-			| KeyPath<K, R>
-			| (T[K] extends object
-					? `${KeyPath<K, R>}${ObjectKeyPaths<T[K], false>}`
-					: never)
+	? | KeyPath<K, R>
+		| (T[K] extends object
+				? `${KeyPath<K, R>}${ObjectKeyPaths<T[K], false>}`
+				: never)
 	: never;
 
 type _ = ObjectKeyPaths<{ a: number; b: [{ c: 1 }] }>;

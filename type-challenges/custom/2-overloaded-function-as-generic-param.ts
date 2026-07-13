@@ -8,14 +8,13 @@ type OverloadUnionRecursive<
 		// has accumulated all of the TOverload signatures.
 		TPartialOverload extends TOverload
 		? never
-		:
-				| OverloadUnionRecursive<
-						TPartialOverload & TOverload,
-						TPartialOverload &
-							((...args: TArgs) => TReturn) &
-							OverloadProps<TOverload>
-				  >
-				| ((...args: TArgs) => TReturn)
+		: | OverloadUnionRecursive<
+					TPartialOverload & TOverload,
+					TPartialOverload &
+						((...args: TArgs) => TReturn) &
+						OverloadProps<TOverload>
+			  >
+			| ((...args: TArgs) => TReturn)
 	: never;
 
 type OverloadUnion<TOverload extends (...args: any[]) => unknown> = Exclude<

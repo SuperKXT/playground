@@ -1,16 +1,5 @@
 export type TGradePoint =
-	| "A-"
-	| "A"
-	| "B-"
-	| "B"
-	| "B+"
-	| "C-"
-	| "C"
-	| "C+"
-	| "D-"
-	| "D"
-	| "D+"
-	| "F";
+	"A-" | "A" | "B-" | "B" | "B+" | "C-" | "C" | "C+" | "D-" | "D" | "D+" | "F";
 
 export const key: Record<TGradePoint, number> = {
 	A: 4,

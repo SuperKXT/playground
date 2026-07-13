@@ -1,16 +1,7 @@
 // https://leetcode.com/problems/valid-palindrome/
 
 type TIsDigit<Char extends string> = Char extends
-	| "0"
-	| "1"
-	| "2"
-	| "3"
-	| "4"
-	| "5"
-	| "6"
-	| "7"
-	| "8"
-	| "9"
+	"0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 	? true
 	: false;
 
@@ -18,8 +9,7 @@ type TISAlphabet<Char extends string> =
 	Uppercase<Char> extends Lowercase<Char> ? false : true;
 
 type TIsAlphanumeric<Char extends string> =
-	| TIsDigit<Char>
-	| TISAlphabet<Char> extends false
+	TIsDigit<Char> | TISAlphabet<Char> extends false
 	? TIsDigit<Char> | TISAlphabet<Char>
 	: true;
 

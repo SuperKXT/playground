@@ -38,9 +38,7 @@ type Model = {
 };
 
 type ModelEntries =
-	| ["name", string]
-	| ["age", number]
-	| ["locations", string[] | null];
+	["name", string] | ["age", number] | ["locations", string[] | null];
 
 type _cases = [
 	Expect<Equal<ObjectEntries<Model>, ModelEntries>>,

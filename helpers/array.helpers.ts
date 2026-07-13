@@ -72,8 +72,7 @@ export const compareValuesForSorting = (a: unknown, b: unknown): number => {
 };
 
 export type TSortArrayByOpt<Obj extends object> =
-	| keyof Obj
-	| ((row: Obj) => string | number);
+	keyof Obj | ((row: Obj) => string | number);
 
 export const sortArrayBy = <Obj extends object>(
 	arr: Obj[],

@@ -26,13 +26,15 @@
 /* _____________ Your Code Here _____________ */
 
 type RemoveIndexSignature<T extends Record<string, unknown>> = {
-	[key in keyof T as string extends key
-		? never
-		: number extends key
+	[
+		key in keyof T as string extends key
 			? never
-			: symbol extends key
+			: number extends key
 				? never
-				: key]: T[key];
+				: symbol extends key
+					? never
+					: key
+	]: T[key];
 };
 
 // Alternative Solution, probably better
