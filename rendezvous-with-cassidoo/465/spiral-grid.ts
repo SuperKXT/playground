@@ -7,8 +7,6 @@ const nextDirectionMap = {
 	up: "right",
 } as const;
 
-type TNextDirectionMap = typeof nextDirectionMap;
-
 export const spiralGrid = (n: number): string => {
 	const digits = n.toString().length;
 	const size = Math.ceil(Math.sqrt(n + 1));
