@@ -7,7 +7,7 @@ test("testing fulfilledOrdersBeforeFailure against test 1", () => {
 		[["chocolate"], ["chocolate"], ["chocolate"]],
 		{ chocolate: 2 },
 	);
-	const expected = 2 as number;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -24,7 +24,7 @@ test("testing fulfilledOrdersBeforeFailure against test 2", () => {
 		],
 		{ vanilla: 2, chocolate: 1, mint: 1, strawberry: 5 },
 	);
-	const expected = 3 as number;
+	const expected = 3 as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -35,7 +35,7 @@ test("testing fulfilledOrdersBeforeFailure against test 3", () => {
 	const result = fulfilledOrdersBeforeFailure([["rocky road"], ["vanilla"]], {
 		vanilla: 3,
 	});
-	const expected = 0 as number;
+	const expected = 0 as const;
 
 	expect(result).toStrictEqual(expected);
 
