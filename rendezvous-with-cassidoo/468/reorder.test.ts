@@ -12,3 +12,14 @@ test("testing reorder against test 1", () => {
 
 	expectTypeOf<typeof result>(result).toEqualTypeOf(expected);
 });
+
+test("testing reorder against test 2", () => {
+	const a = ["C", "D", "E", "F", "G", "H"] as const;
+	const b = [3, 0, 4, 1, 2, 5] as const;
+	const result = reorder(a, b);
+	const expected = ["D", "F", "G", "C", "E", "H"] as const;
+
+	expect(result).toStrictEqual(expected);
+
+	expectTypeOf<Readonly<typeof result>>(result).toEqualTypeOf(expected);
+});
