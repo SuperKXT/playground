@@ -1,14 +1,11 @@
 import { access, readdir, rename, stat } from "node:fs/promises";
 import path from "node:path";
-
-import chalk from "chalk";
-import argumentParser from "minimist-lite";
-import prompt from "prompt";
-import { z } from "zod";
+import { parseArgs, styleText } from "node:util";
 
 import { config } from "../../config.js";
 import { stringifyError } from "../../helpers/error.helpers.js";
 import { formatToken } from "../../helpers/format-token.helpers.js";
+import { confirmPrompt } from "../../helpers/prompt.helpers.js";
 
 import { RENAME_ERRORS } from "./recursive-rename.types.js";
 import type {
@@ -16,23 +13,6 @@ import type {
 	TRenameResult,
 	TRenameResultType,
 } from "./recursive-rename.types.js";
-
-const PARAMS_SCHEMA = z.strictObject({
-	"--": z.string().array().length(0).optional(),
-	_: z.tuple([z.string()]),
-	h: z.boolean().optional(),
-	help: z.boolean().optional(),
-	o: z.boolean().optional(),
-	"only-changes": z.boolean().optional(),
-	t: z.boolean().optional(),
-	tree: z.boolean().optional(),
-	v: z.boolean().optional(),
-	verbose: z.boolean().optional(),
-	y: z.boolean().optional(),
-	yes: z.boolean().optional(),
-});
-
-export type TParams = z.infer<typeof PARAMS_SCHEMA>;
 
 type TRecursiveLogResponse = {
 	logs: string[];
@@ -85,13 +65,13 @@ export const getRecursiveLogs = ({
 		) {
 			const log = [
 				tree && "  ".repeat(depth - 1),
-				tree && chalk.dim("|_ "),
+				tree && styleText("dim", "|_ "),
 				!tree && `${labels[type]} `,
-				!tree && `${chalk.dim(resultPath)}/`,
-				type === "unchanged" ? oldName : chalk.strikethrough(oldName),
+				!tree && `${styleText("dim", resultPath)}/`,
+				type === "unchanged" ? oldName : styleText("strikethrough", oldName),
 				type !== "unchanged" &&
-					chalk[type === "success" ? "green" : "red"](` ${newName}`),
-				type === "error" && ` ${chalk.bgRed(` ${error} `)}`,
+					styleText(type === "success" ? "green" : "red", ` ${newName}`),
+				type === "error" && ` ${styleText("bgRed", ` ${error} `)}`,
 			]
 				.filter(Boolean)
 				.join("");
@@ -127,11 +107,15 @@ export const getRenameLogs = (
 	isConfirmation?: boolean,
 ): string => {
 	const labels: Record<TRenameResultType, string> = {
-		error: chalk.bgRedBright(!isConfirmation ? "   ERROR   " : "   ISSUE   "),
-		success: chalk.bgGreenBright(
+		error: styleText(
+			"bgRedBright",
+			!isConfirmation ? "   ERROR   " : "   ISSUE   ",
+		),
+		success: styleText(
+			"bgGreenBright",
 			!isConfirmation ? "  SUCCESS  " : "  POSSIBLE ",
 		),
-		unchanged: chalk.bgYellowBright(" UNCHANGED "),
+		unchanged: styleText("bgYellowBright", " UNCHANGED "),
 	};
 
 	const { logs, success, error, unchanged } = getRecursiveLogs({
@@ -147,11 +131,11 @@ export const getRenameLogs = (
 		[
 			"\n",
 			labels.success,
-			chalk.bold.green(` ${success.length} `),
+			styleText(["bold", "green"], ` ${success.length} `),
 			labels.error,
-			chalk.bold.red(` ${error.length} `),
+			styleText(["bold", "red"], ` ${error.length} `),
 			labels.unchanged,
-			chalk.bold.yellow(` ${unchanged.length} `),
+			styleText(["bold", "yellow"], ` ${unchanged.length} `),
 			"\n",
 		].join(""),
 	);
@@ -277,21 +261,9 @@ export const recursiveRename = async (
 	if (!yes) {
 		console.info(getRenameLogs(files, verbose, onlyChanges, tree, true));
 
-		prompt.start();
-		prompt.message = "";
-		prompt.delimiter = "";
-		const { confirm } = await prompt.get({
-			properties: {
-				confirm: {
-					description: "Do you want to continue? [y/n]: ",
-					message: "Please enter y for yes or n for no",
-					pattern: /^[yn]$/iu,
-					type: "string",
-				},
-			},
-		});
+		const confirmed = await confirmPrompt("Do you want to continue?");
 
-		if (confirm !== "y" && confirm !== "Y") return [];
+		if (!confirmed) return [];
 	}
 
 	const results = await renameFiles(folder, files);
@@ -303,24 +275,22 @@ export const recursiveRename = async (
 
 if (!config.isTest) {
 	try {
-		const args = argumentParser<TParams>(process.argv.slice(2), {
-			alias: {
-				help: "h",
-				"only-changes": "o",
-				tree: "t",
-				verbose: "v",
-				yes: "y",
+		const { values, positionals } = parseArgs({
+			allowPositionals: true,
+			args: process.argv.slice(2),
+			options: {
+				help: { default: false, short: "h", type: "boolean" },
+				"only-changes": { default: false, short: "o", type: "boolean" },
+				tree: { default: false, short: "t", type: "boolean" },
+				verbose: { default: false, short: "v", type: "boolean" },
+				yes: { default: false, short: "y", type: "boolean" },
 			},
 		});
 
-		const {
-			_: [folder],
-			verbose,
-			yes,
-			"only-changes": onlyChanges,
-			tree,
-			help,
-		} = PARAMS_SCHEMA.parse(args);
+		const [folder] = positionals;
+		if (!folder) throw new Error(RENAME_ERRORS.badArguments);
+
+		const { verbose, yes, "only-changes": onlyChanges, tree, help } = values;
 
 		recursiveRename(folder, {
 			help,

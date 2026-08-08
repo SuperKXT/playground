@@ -1,5 +1,6 @@
-import chalk from "chalk";
-import argumentParser from "minimist-lite";
+import { parseArgs, styleText } from "node:util";
+
+import { note } from "@clack/prompts";
 import { z } from "zod";
 
 import { config } from "../../config.js";
@@ -54,27 +55,24 @@ export const findWordle = (parameters: TArguments): string[] => {
 	);
 
 	if (!config.isTest) {
-		console.info(
-			[
-				"Found",
-				chalk.bgGreen(matches.length),
-				`Match${matches.length !== 1 ? "es" : ""}`,
-			].join(" "),
+		note(
+			matches.length ? styleText("green", matches.join(", ")) : "No matches",
+			`${matches.length} Match${matches.length !== 1 ? "es" : ""}`,
 		);
-		console.info(chalk.green(matches.join(", ")));
 	}
 	return matches;
 };
 
 if (!config.isTest) {
-	const args = argumentParser<TArguments>(process.argv.slice(2), {
-		alias: {
-			available: "a",
-			known: "k",
-			pattern: "p",
-			unavailable: "u",
-			distinct: "d",
+	const { values } = parseArgs({
+		args: process.argv.slice(2),
+		options: {
+			available: { type: "string", short: "a" },
+			known: { type: "string", short: "k" },
+			pattern: { type: "string", short: "p" },
+			unavailable: { type: "string", short: "u" },
+			distinct: { type: "boolean", short: "d" },
 		},
 	});
-	findWordle(args);
+	findWordle(values);
 }

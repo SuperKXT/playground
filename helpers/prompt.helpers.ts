@@ -1,16 +1,13 @@
-import prompt from "prompt";
+import { cancel, confirm, isCancel } from "@clack/prompts";
 
-prompt.start();
-prompt.message = "";
-prompt.delimiter = "";
-
-export const confirmPrompt = async (message: string) => {
-	const { question } = await prompt.get({
-		description: `${message} [y/n]: `,
-		message: "Please enter 'y' for yes or 'n' for no",
-		pattern: /^[yn]$/iu,
-		required: true,
-		type: "string",
-	});
-	return question === "y" || question === "Y";
+export const unwrapPrompt = <T>(value: T | symbol): T => {
+	if (isCancel(value)) {
+		cancel("Operation cancelled");
+		// eslint-disable-next-line n/no-process-exit
+		process.exit(0);
+	}
+	return value;
 };
+
+export const confirmPrompt = async (message: string): Promise<boolean> =>
+	unwrapPrompt(await confirm({ message }));
