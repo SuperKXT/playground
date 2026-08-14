@@ -1,6 +1,34 @@
 type TTrimType = "leading" | "trailing" | "both" | "compress";
 
-export const trim = (type: TTrimType, s: string): string => {
+type TCompress<
+	Str extends string,
+	last extends string = "",
+> = Str extends `${infer first}${infer rest}`
+	? first | last extends " "
+		? TCompress<rest, first>
+		: `${first}${TCompress<rest, first>}`
+	: Str;
+
+type TTrimLeft<Str extends string> = Str extends ` ${infer rest}`
+	? TTrimLeft<rest>
+	: Str;
+
+type TTrimRight<Str extends string> = Str extends `${infer rest} `
+	? TTrimRight<rest>
+	: Str;
+
+type TTrim<Type extends TTrimType, Str extends string> = Type extends "compress"
+	? TCompress<Str>
+	: Type extends "leading"
+		? TTrimLeft<Str>
+		: Type extends "trailing"
+			? TTrimRight<Str>
+			: TTrimRight<TTrimLeft<Str>>;
+
+export const trim = <Type extends TTrimType, Str extends string>(
+	type: Type,
+	s: Str,
+): TTrim<Type, Str> => {
 	if (type === "compress") {
 		let res = "";
 		let last = "";
@@ -9,7 +37,7 @@ export const trim = (type: TTrimType, s: string): string => {
 			last = char;
 			res += char;
 		}
-		return res;
+		return res as never;
 	}
 
 	let startIdx = 0;
@@ -24,5 +52,5 @@ export const trim = (type: TTrimType, s: string): string => {
 			if (s[endIdx] !== " ") break;
 		}
 	}
-	return s.slice(startIdx, endIdx + 1);
+	return s.slice(startIdx, endIdx + 1) as never;
 };
