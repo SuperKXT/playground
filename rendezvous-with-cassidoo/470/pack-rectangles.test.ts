@@ -28,3 +28,12 @@ test("testing packRectangles against test 3", () => {
 
 	expectTypeOf<typeof result>(result).toEqualTypeOf(expected);
 });
+
+test("testing packRectangles against test 4", () => {
+	const result = packRectangles(6, 10, 2, 3);
+	const expected = 10 as number;
+
+	expect(result).toStrictEqual(expected);
+
+	expectTypeOf<typeof result>(result).toEqualTypeOf(expected);
+});
