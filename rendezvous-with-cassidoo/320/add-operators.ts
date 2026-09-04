@@ -10,7 +10,8 @@ const digitOperate = (
 	const results: TResult[] = [];
 	if (!first) return [];
 	if (amount === undefined) {
-		results.push(...digitOperate(rest, first, Number(first)));
+		for (const result of digitOperate(rest, first, Number(first)))
+			results.push(result);
 	} else {
 		for (const operator of operators) {
 			let nextAmount = amount;
@@ -30,7 +31,8 @@ const digitOperate = (
 					break;
 			}
 			if (rest.length)
-				results.push(...digitOperate(rest, nextString, nextAmount));
+				for (const result of digitOperate(rest, nextString, nextAmount))
+					results.push(result);
 			else results.push({ string: nextString, amount: nextAmount });
 		}
 	}

@@ -12,8 +12,10 @@ test("testing explodeString against test 1", () => {
 });
 
 test("testing explodeString against test 2", () => {
-	const result = explodeString("o/o/");
-	const expected = ["//", "\\", "oo"];
+	// the readme writes this input as \o/\o/, so the backslashes have to be
+	// escaped to actually survive into the string
+	const result = explodeString("\\o/\\o/");
+	const expected = ["//", "\\\\", "oo"];
 
 	expect(result).toStrictEqual(expected);
 

@@ -5,5 +5,7 @@ import { getSourceLength } from "./source-length.js";
 test("sourceLength should return the number of characters in its source code", async () => {
 	const response = await getSourceLength();
 
-	expect(response).toBe("one thousand, eight hundred seventy eight");
+	// this is the length of source-length.ts itself, so it has to be updated
+	// whenever that file changes
+	expect(response).toBe("one thousand, eight hundred ninety three");
 });

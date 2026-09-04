@@ -105,7 +105,11 @@ type TMaximumProfit<
 export const maximumProfit = <const arr extends readonly number[]>(
 	array: arr,
 ): TMaximumProfit<arr> => {
-	const min = Math.min(...array, 0);
-	const max = Math.max(...array.slice(array.indexOf(min)), 0);
-	return (max - min) as never;
+	let min = Infinity;
+	let profit = 0;
+	for (const price of array) {
+		if (price < min) min = price;
+		else if (price - min > profit) profit = price - min;
+	}
+	return profit as never;
 };

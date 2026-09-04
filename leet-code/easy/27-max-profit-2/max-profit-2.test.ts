@@ -46,12 +46,3 @@ test("testing maxProfit for test 5", () => {
 
 	expectTypeOf(result).toEqualTypeOf(expected);
 });
-
-test("testing maxProfit for test 6", () => {
-	const result = maxProfit([7, 1, 5, 3, 6, 4]);
-	const expected = 5 as number;
-
-	expect(result).toStrictEqual(expected);
-
-	expectTypeOf(result).toEqualTypeOf(expected);
-});

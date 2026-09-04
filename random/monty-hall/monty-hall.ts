@@ -3,7 +3,7 @@ import crypto from "node:crypto";
 import { config } from "../../config.js";
 
 const getRandomDoor = (doors: number) => {
-	return (crypto.randomBytes(1).toString("ascii").charCodeAt(0) % doors) + 1;
+	return crypto.randomInt(doors) + 1;
 };
 
 export const tryMontyHall = (args: { iterations: number; doors: number }) => {

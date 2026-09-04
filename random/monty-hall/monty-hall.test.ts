@@ -19,8 +19,11 @@ test("testing tryMontyHall", () => {
 		},
 	};
 
-	expect(Math.round(percentages[100].stay)).toBe(1);
-	expect(Math.round(percentages[100].change)).toBe(99);
-	expect([33, 34]).toContain(Math.round(percentages[3].stay));
-	expect([66, 67]).toContain(Math.round(percentages[3].change));
+	// these come out of 10_000 random games, so they land near the theoretical
+	// odds rather than exactly on them - the tolerances below are wide enough
+	// that ordinary sampling noise cannot fail the test
+	expect(percentages[100].stay).toBeCloseTo(1, 0);
+	expect(percentages[100].change).toBeCloseTo(99, 0);
+	expect(percentages[3].stay).toBeCloseTo(33.3, -1);
+	expect(percentages[3].change).toBeCloseTo(66.7, -1);
 });
