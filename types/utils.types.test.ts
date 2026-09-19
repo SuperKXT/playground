@@ -24,7 +24,7 @@ test("equal type util", () => {
 	interface TInt2 extends TInt1 {
 		y: 2;
 	}
-	type TTests = Utils.trueTuple<
+	type TTrueTests = Utils.trueTuple<
 		[
 			Utils.equal<1, 1>,
 			Utils.equal<1 | 2 | 3, 1 | 2 | 3>,
@@ -54,7 +54,7 @@ test("equal type util", () => {
 		]
 	>;
 
-	expectTypeOf<true>().toEqualTypeOf<TTests>();
+	expectTypeOf<true>().toEqualTypeOf<TTrueTests>();
 });
 
 // eslint-disable-next-line vitest/expect-expect
@@ -180,6 +180,19 @@ test("keysOfType type util", () => {
 				>,
 				"foo"
 			>,
+			// index signatures are dropped, only declared keys are matched
+			Utils.equal<
+				Utils.keysOfType<{ foo: 1; bar: string } & Record<string, unknown>, 1>,
+				"foo"
+			>,
+			Utils.equal<
+				Utils.keysOfType<
+					{ foo: 1; bar: string; [key: string]: unknown },
+					string | number
+				>,
+				"foo" | "bar"
+			>,
+			Utils.equal<Utils.keysOfType<Record<string, number>, number>, never>,
 		]
 	>;
 
@@ -609,7 +622,7 @@ test("isUnion type util", () => {
 			Utils.equal<Utils.isUnion<boolean>, true>,
 			Utils.equal<Utils.isUnion<string | number>, true>,
 			Utils.equal<Utils.isUnion<"a" | "b" | "c" | "d">, true>,
-			// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+
 			Utils.equal<Utils.isUnion<undefined | null | void | "">, true>,
 			Utils.equal<Utils.isUnion<{ a: string } | { a: number }>, true>,
 			Utils.equal<Utils.isUnion<{ a: string | number }>, false>,

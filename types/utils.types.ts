@@ -36,6 +36,19 @@ type _unionToSingleTuple<
 		? [union, ..._unionToSingleTuple<union, Exclude<remaining, curr>>]
 		: never;
 
+/** drops index signatures, keeping only the explicitly declared keys */
+type _knownKeys<T> = {
+	[
+		k in keyof T as string extends k
+			? never
+			: number extends k
+				? never
+				: symbol extends k
+					? never
+					: k
+	]: T[k];
+};
+
 export declare namespace Utils {
 	/** types that resolve as falsy  */
 	type falsy = false | "" | 0 | null | undefined;
@@ -87,13 +100,16 @@ export declare namespace Utils {
 	/** global type helper to be able to use arrow functions for assertions */
 	type assertFunction<Type> = (value: unknown) => asserts value is Type;
 
-	/** return only the keys of the object whose value is assignable to the given type */
+	/**
+	 * return only the keys of the object whose value is assignable to the given type.
+	 * index signatures are dropped — only explicitly declared keys are considered
+	 */
 	type keysOfType<T, Match> = {
-		[k in keyof T]-?: T[k] extends Match ? k : never;
-	}[keyof T];
+		[k in keyof _knownKeys<T>]-?: _knownKeys<T>[k] extends Match ? k : never;
+	}[keyof _knownKeys<T>];
 
 	/** Return a union of keys from all objects in the union */
-	type allUnionKeys<T> = T extends infer U ? keyof U : never;
+	type allUnionKeys<T> = T extends T ? keyof T : never;
 
 	/** returns a uniformed union of objects by adding missing keys in each union */
 	type includeUnionKeys<T extends Record<string, unknown>, U = T> = U extends U
@@ -146,6 +162,10 @@ export declare namespace Utils {
 	type distributiveOmit<T, K extends PropertyKey> = T extends T
 		? Omit<T, K>
 		: never;
+
+	type prefixKeys<Obj extends object, Prefix extends string> = {
+		[k in keyof Obj as `${Prefix}${k & string}`]: Obj[k];
+	};
 
 	/** takes a string literal as input and returns the union of all the characters */
 	type stringToUnion<T extends string> = T extends `${infer U}${infer V}`
