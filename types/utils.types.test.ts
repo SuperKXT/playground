@@ -623,6 +623,7 @@ test("isUnion type util", () => {
 			Utils.equal<Utils.isUnion<string | number>, true>,
 			Utils.equal<Utils.isUnion<"a" | "b" | "c" | "d">, true>,
 
+			// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 			Utils.equal<Utils.isUnion<undefined | null | void | "">, true>,
 			Utils.equal<Utils.isUnion<{ a: string } | { a: number }>, true>,
 			Utils.equal<Utils.isUnion<{ a: string | number }>, false>,

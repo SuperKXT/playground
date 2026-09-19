@@ -24,29 +24,6 @@ type Pop<T extends unknown[]> = T extends [...infer L, unknown] ? L : [];
 type _ = Pop<[]>;
 //   ^?
 
-type _Fill<
-	T extends unknown[],
-	N,
-	Start extends number = 0,
-	End extends number = T["length"],
-	Output extends unknown[] = [],
-> = Output["length"] extends T["length"]
-	? Output
-	: _Fill<
-			T,
-			N,
-			Start,
-			End,
-			[
-				...Output,
-				[...Output, 1][Start] extends NonNullable<unknown>
-					? [...Output, 1][End] extends undefined
-						? N
-						: T[Output["length"]]
-					: T[Output["length"]],
-			]
-		>;
-
 type Fill<
 	T extends unknown[],
 	N,

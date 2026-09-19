@@ -114,6 +114,7 @@ type Type6 = JSONSchema2TS<{
 type Expected6 = Record<string, unknown>;
 type Result6 = Expect<Equal<Type6, Expected6>>;
 
+// eslint-disable-next-line @typescript-eslint/no-generated-empty-object-type
 type Type7 = JSONSchema2TS<{
 	type: "object";
 	properties: {};

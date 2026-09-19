@@ -53,6 +53,7 @@ import type { Equal, Expect } from "@type-challenges/utils";
 import type { Utils } from "../../types/utils.types.js";
 
 type _cases = [
+	// eslint-disable-next-line @typescript-eslint/no-generated-empty-object-type
 	Expect<Equal<ParseQueryString<"">, {}>>,
 	Expect<Equal<ParseQueryString<"k1">, { k1: true }>>,
 	Expect<Equal<ParseQueryString<"k1&k1">, { k1: true }>>,

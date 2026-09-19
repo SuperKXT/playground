@@ -352,6 +352,7 @@ type _cases = [
 	 */
 	IsTrue<Equal<UnTag<null>, null>>,
 	IsTrue<Equal<UnTag<undefined>, undefined>>,
+	// eslint-disable-next-line @typescript-eslint/no-generated-empty-object-type
 	IsTrue<Equal<UnTag<Tag<{}, "foo">>, {}>>,
 	IsTrue<Equal<UnTag<Tag<Tag<{ x: 0 }, "foo">, "bar">>, { x: 0 }>>,
 	IsTrue<Equal<keyof UnTag<Tag<Tag<number, "foo">, "bar">>, keyof number>>,

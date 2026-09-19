@@ -80,6 +80,7 @@ const Command = [
 ] as const;
 
 type _cases = [
+	// eslint-disable-next-line @typescript-eslint/no-generated-empty-object-type
 	Expect<Equal<Enum<[]>, {}>>,
 	Expect<
 		Equal<
