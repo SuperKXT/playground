@@ -218,6 +218,7 @@ export default defineConfig([
 				"warn",
 				{ allowConstantLoopConditions: true },
 			],
+			"@typescript-eslint/no-unnecessary-template-expression": "warn",
 			"@typescript-eslint/no-unused-expressions": [
 				"warn",
 				{
