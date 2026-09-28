@@ -249,6 +249,54 @@ test("formatToken against the 10th test string", () => {
 	expectTypeOf(response).toEqualTypeOf(expected);
 });
 
+test("formatToken against an acronym followed by a word", () => {
+	const input = "AlertSLAConfig";
+	const expected = {
+		camel: "alertSlaConfig",
+		pascal: "AlertSlaConfig",
+		snake: "alert_sla_config",
+		kebab: "alert-sla-config",
+		constant: "ALERT_SLA_CONFIG",
+		human: "alert sla config",
+	} as const;
+	const response = {
+		camel: formatToken(input, "camel"),
+		pascal: formatToken(input, "pascal"),
+		snake: formatToken(input, "snake"),
+		kebab: formatToken(input, "kebab"),
+		constant: formatToken(input, "constant"),
+		human: formatToken(input, "human"),
+	} as const;
+
+	expect(expected).toStrictEqual(response);
+
+	expectTypeOf(response).toEqualTypeOf(expected);
+});
+
+test("formatToken against a trailing acronym", () => {
+	const input = "AlertKPI";
+	const expected = {
+		camel: "alertKpi",
+		pascal: "AlertKpi",
+		snake: "alert_kpi",
+		kebab: "alert-kpi",
+		constant: "ALERT_KPI",
+		human: "alert kpi",
+	} as const;
+	const response = {
+		camel: formatToken(input, "camel"),
+		pascal: formatToken(input, "pascal"),
+		snake: formatToken(input, "snake"),
+		kebab: formatToken(input, "kebab"),
+		constant: formatToken(input, "constant"),
+		human: formatToken(input, "human"),
+	} as const;
+
+	expect(expected).toStrictEqual(response);
+
+	expectTypeOf(response).toEqualTypeOf(expected);
+});
+
 test("formatToken against a union string type", () => {
 	const input = "foo string" as "foo string" | "bar string";
 	const expected = {

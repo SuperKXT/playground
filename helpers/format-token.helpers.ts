@@ -40,6 +40,7 @@ type _TFirstChar<
 type _TFormatChar<
 	char extends string,
 	lastChar extends string,
+	nextChar extends string,
 	strategy extends TStrategy,
 	formatted extends string,
 > =
@@ -49,10 +50,11 @@ type _TFormatChar<
 			? strategy extends "pascal" | "constant"
 				? Uppercase<char>
 				: Lowercase<char>
-			: [char, lastChar] extends
-						| [TAlphabet, TWordSeparators]
-						| [TUpperAlphabet, TLowerAlphabet]
-						| [TNumeric, Exclude<lastChar, TNumeric>]
+			: [char, lastChar, nextChar] extends
+						| [TAlphabet, TWordSeparators, string]
+						| [TUpperAlphabet, TLowerAlphabet, string]
+						| [TNumeric, Exclude<lastChar, TNumeric>, string]
+						| [TUpperAlphabet, TUpperAlphabet, TLowerAlphabet] // acronym end e.g. `SLAConfig`
 				? _TFirstChar<char, strategy>
 				: strategy extends "constant"
 					? Uppercase<char>
@@ -68,7 +70,13 @@ type _TFormatToken<
 			rest,
 			strategy,
 			first,
-			`${formatted}${_TFormatChar<first, lastChar, strategy, formatted>}`
+			`${formatted}${_TFormatChar<
+				first,
+				lastChar,
+				rest extends `${infer next}${string}` ? next : "",
+				strategy,
+				formatted
+			>}`
 		>
 	: formatted;
 
@@ -99,6 +107,7 @@ export const formatToken = <T extends string, S extends TStrategy>(
 	for (let index = 0; index < string.length; index++) {
 		const current = string[index] as string;
 		const last = string[index - 1];
+		const next = string[index + 1];
 
 		if (!alphaNumeric.includes(current)) continue;
 
@@ -109,7 +118,12 @@ export const formatToken = <T extends string, S extends TStrategy>(
 		} else if (
 			(alphabet.includes(current) && wordSeparators.includes(last)) ||
 			(upperAlphabet.includes(current) && lowerAlphabet.includes(last)) ||
-			(numeric.includes(current) && !numeric.includes(last))
+			(numeric.includes(current) && !numeric.includes(last)) ||
+			// acronym end e.g. `SLAConfig`
+			(upperAlphabet.includes(current) &&
+				upperAlphabet.includes(last) &&
+				next !== undefined &&
+				lowerAlphabet.includes(next))
 		) {
 			const char = ["kebab", "snake", "human"].includes(strategy)
 				? current.toLowerCase()
