@@ -4,7 +4,7 @@ import { climbStairs } from "./climb-stairs.js";
 
 test("testing climbStairs against test 1", () => {
 	const result = climbStairs(2);
-	const expected = 2 as number;
+	const expected = 2 as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -13,7 +13,7 @@ test("testing climbStairs against test 1", () => {
 
 test("testing climbStairs against test 2", () => {
 	const result = climbStairs(4);
-	const expected = 5 as number;
+	const expected = 5 as const;
 
 	expect(result).toStrictEqual(expected);
 
@@ -22,7 +22,7 @@ test("testing climbStairs against test 2", () => {
 
 test("testing climbStairs against test 3", () => {
 	const result = climbStairs(10);
-	const expected = 89 as number;
+	const expected = 89 as const;
 
 	expect(result).toStrictEqual(expected);
 
