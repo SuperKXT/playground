@@ -47,8 +47,16 @@
 		"typescript-eslint": "8.72.2",
 		"vitest": "5.1.0"
 	},
-	"engines": {
-		"node": ">=24.14.0"
-	},
-	"packageManager": "pnpm@12.4.2"
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": "^26.0.0",
+			"onFail": "download"
+		},
+		"packageManager": {
+			"name": "pnpm",
+			"version": "12.4.2",
+			"onFail": "download"
+		}
+	}
 }
